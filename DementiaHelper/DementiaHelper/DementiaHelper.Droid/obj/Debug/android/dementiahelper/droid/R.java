@@ -2687,6 +2687,7 @@ containing a value of this type.
         public static final int showCustom=0x7f070011;
         public static final int showHome=0x7f070012;
         public static final int showTitle=0x7f070013;
+        public static final int sliding_tabs=0x7f070098;
         public static final int snackbar_action=0x7f07006c;
         public static final int snackbar_text=0x7f07006b;
         public static final int snap=0x7f070027;
@@ -2705,6 +2706,7 @@ containing a value of this type.
         public static final int time=0x7f070091;
         public static final int title=0x7f070043;
         public static final int title_template=0x7f070048;
+        public static final int toolbar=0x7f070099;
         public static final int top=0x7f070032;
         public static final int topPanel=0x7f070047;
         public static final int touch_outside=0x7f070069;
@@ -2787,6 +2789,8 @@ containing a value of this type.
         public static final int select_dialog_multichoice_material=0x7f030034;
         public static final int select_dialog_singlechoice_material=0x7f030035;
         public static final int support_simple_spinner_dropdown_item=0x7f030036;
+        public static final int tabbar=0x7f030037;
+        public static final int toolbar=0x7f030038;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f08000f;
@@ -2834,6 +2838,7 @@ containing a value of this type.
         public static final int Animation_AppCompat_Dialog=0x7f0a00a3;
         public static final int Animation_AppCompat_DropDownUp=0x7f0a00a4;
         public static final int Animation_Design_BottomSheetDialog=0x7f0a015a;
+        public static final int AppCompatDialogStyle=0x7f0a0174;
         public static final int Base_AlertDialog_AppCompat=0x7f0a00a5;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f0a00a6;
         public static final int Base_Animation_AppCompat_Dialog=0x7f0a00a7;
@@ -2981,6 +2986,10 @@ containing a value of this type.
         public static final int CardView=0x7f0a0017;
         public static final int CardView_Dark=0x7f0a0019;
         public static final int CardView_Light=0x7f0a001a;
+        public static final int MainTheme=0x7f0a0172;
+        /**  Base theme applied no matter what API 
+         */
+        public static final int MainTheme_Base=0x7f0a0173;
         public static final int Platform_AppCompat=0x7f0a0032;
         public static final int Platform_AppCompat_Light=0x7f0a0033;
         public static final int Platform_ThemeOverlay_AppCompat=0x7f0a0095;

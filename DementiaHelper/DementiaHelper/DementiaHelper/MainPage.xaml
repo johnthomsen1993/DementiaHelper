@@ -4,8 +4,8 @@
              xmlns:local="clr-namespace:DementiaHelper"
              x:Class="DementiaHelper.MainPage">
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
+  <Label Text="Welcome to Xamarin Forms!"
+           VerticalOptions="Center"
            HorizontalOptions="Center" />
 
 </ContentPage>

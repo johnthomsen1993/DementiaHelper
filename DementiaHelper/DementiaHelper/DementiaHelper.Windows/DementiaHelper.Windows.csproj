@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{153F66BE-16BF-4F80-BC46-B164558FC592}</ProjectGuid>
+    <ProjectGuid>{33BACADF-04A6-47FE-BEC2-CA13CBEFA3C3}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DementiaHelper.Windows</RootNamespace>
@@ -134,10 +134,15 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DementiaHelper\DementiaHelper.csproj">
+      <Project>{8bd591ef-e9ff-48e7-b96c-cf710d349e00}</Project>
+      <Name>DementiaHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
-  <Import Project="..\DementiaHelper\DementiaHelper.projitems" Label="Shared" Condition="Exists('..\DementiaHelper\DementiaHelper.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
