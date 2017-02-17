@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using DementiaHelper.WebApi.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DementiaHelper.WebApi
 {
@@ -36,7 +38,8 @@ namespace DementiaHelper.WebApi
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
+            services.AddDbContext<ApplicationDBContext>(options =>
+    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
         }
 
