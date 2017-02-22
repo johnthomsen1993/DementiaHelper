@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DementiaHelper.Services;
 using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using DementiaHelper.ViewModel;
+using DementiaHelper.View;
 
 namespace DementiaHelper
 {
@@ -16,18 +19,14 @@ namespace DementiaHelper
     {
         public App()
         {
-            InitializeComponent();
-            if (Device.OS == TargetPlatform.iOS || Device.OS == TargetPlatform.Android)
-            {
-                var ci = DependencyService.Get<Resx.ILocalize>().GetCurrentCultureInfo();
-                Resx.AppResources.Culture = ci; // set the RESX for resource localization
-                DependencyService.Get<Resx.ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
-            }
-            var tabs = new TabbedPage();
-            tabs.Children.Add(new View.ContactList { Title = Resx.AppResources.ContactList});
-            tabs.Children.Add(new View.MainPage { Title = Resx.AppResources.ShoppingList});
+            RegisterPages();
+            NavigationService.SetRoot(new LoginPageViewModel());
+        }
 
-            MainPage = tabs;
+        void RegisterPages()
+        {
+            SimpleIoC.RegisterPage<LoginPageViewModel, LoginPage>();
+            SimpleIoC.RegisterPage<ClockViewModel, MainPage>();
         }
 
         protected override void OnStart()

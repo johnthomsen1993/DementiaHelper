@@ -1,15 +1,14 @@
-﻿using System;
+﻿using DementiaHelper.Base;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace DementiaHelper.ViewModel
 {
-    class ClockViewModel : INotifyPropertyChanged
+    class ClockViewModel : BaseViewModel
     {
         DateTime dateTime;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public ClockViewModel()
         {
@@ -29,12 +28,6 @@ namespace DementiaHelper.ViewModel
                 if (dateTime != value)
                 {
                     dateTime = value;
-
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this,
-                            new PropertyChangedEventArgs("DateTime"));
-                    }
                 }
             }
             get

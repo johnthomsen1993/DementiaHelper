@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-namespace DementiaHelper.View
+namespace DementiaHelper.Extensions
 {
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
