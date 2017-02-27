@@ -16,12 +16,13 @@
     <StackLayout VerticalOptions="CenterAndExpand">
       <Entry Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
       <Entry  IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
-      <Button  Text="Login" />
+      <Button Command="{Binding LoginCommand}"  Text="Login" >
+      </Button>
     </StackLayout>
     <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
       <!-- bottom controls -->
-      <customRenders:FacebookButtonCustomRenderer Text="login with facebook" />
-      <customRenders:GoogleButtonCustomRender Text="login with Google" />
+      <customRenders:FacebookButtonCustomRenderer Text="{i18n:Translate LoginWithFacebook}" />
+      <customRenders:GoogleButtonCustomRender Text="{i18n:Translate LoginWithGoogle}" />
     </StackLayout>
   </StackLayout>
 </ContentPage>

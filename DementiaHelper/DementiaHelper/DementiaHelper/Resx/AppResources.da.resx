@@ -125,6 +125,13 @@
     <value>Kontakter</value>
     <comment>label for View</comment>
   </data>
+  <data name="LoginWithFacebook" xml:space="preserve">
+    <value>Log ind med facebook</value>
+    <comment>label for button facebookbutton</comment>
+  </data>
+  <data name="LoginWithGoogle" xml:space="preserve">
+    <value>Log ind med google</value>
+  </data>
   <data name="ShoppingList" xml:space="preserve">
     <value>Indkøbsliste</value>
     <comment>label for textbox</comment>

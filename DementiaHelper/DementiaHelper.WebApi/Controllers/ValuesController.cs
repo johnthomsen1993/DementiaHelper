@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DementiaHelper.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DementiaHelper.WebApi.Controllers
@@ -9,6 +10,12 @@ namespace DementiaHelper.WebApi.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private IRepository _iRepository;
+        public ValuesController(IRepository iRepository)
+        {
+            _iRepository = iRepository;
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

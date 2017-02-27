@@ -89,6 +89,24 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login with facebook.
+        /// </summary>
+        public static string LoginWithFacebook {
+            get {
+                return ResourceManager.GetString("LoginWithFacebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login with google.
+        /// </summary>
+        public static string LoginWithGoogle {
+            get {
+                return ResourceManager.GetString("LoginWithGoogle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {

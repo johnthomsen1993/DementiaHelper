@@ -129,6 +129,12 @@
     <value>Login</value>
     <comment>Title for login view</comment>
   </data>
+  <data name="LoginWithFacebook" xml:space="preserve">
+    <value>Login with facebook</value>
+  </data>
+  <data name="LoginWithGoogle" xml:space="preserve">
+    <value>Login with google</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
     <comment>label for login view Password label og placeholder for password entry</comment>

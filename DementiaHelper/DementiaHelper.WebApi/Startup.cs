@@ -41,6 +41,7 @@ namespace DementiaHelper.WebApi
             services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
+            services.AddTransient<IRepository, Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

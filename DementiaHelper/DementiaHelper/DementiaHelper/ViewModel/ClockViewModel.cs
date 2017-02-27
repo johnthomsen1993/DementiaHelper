@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace DementiaHelper.ViewModel
 {
-    class ClockViewModel : BaseViewModel
+    public class ClockViewModel : BaseViewModel
     {
         DateTime dateTime;
 
