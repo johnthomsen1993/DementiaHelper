@@ -1,7 +1,8 @@
-﻿using DementiaHelper.Base;
+﻿
 using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using DementiaHelper.Extensions;
 using Xamarin.Forms;
 
 namespace DementiaHelper.ViewModel

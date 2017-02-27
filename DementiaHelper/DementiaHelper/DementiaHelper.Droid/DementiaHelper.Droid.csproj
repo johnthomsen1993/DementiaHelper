@@ -120,6 +120,8 @@
   <ItemGroup>
     <Compile Include="Localize.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renders\FacebookButtonRenderer.cs" />
+    <Compile Include="Renders\GoogleButtonRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

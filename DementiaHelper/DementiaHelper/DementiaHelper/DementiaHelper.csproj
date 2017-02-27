@@ -38,8 +38,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Base\BaseViewModel.cs" />
+    <Compile Include="Extensions\BaseViewModel.cs" />
     <Compile Include="Extensions\BaseNotify.cs" />
+    <Compile Include="Renders\CustomControlRenders\FacebookButtonCustomRender.cs" />
+    <Compile Include="Renders\CustomControlRenders\GoogleButtonCustomRender.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\SimpleIoC.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />

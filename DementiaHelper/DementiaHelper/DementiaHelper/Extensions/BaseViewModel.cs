@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace DementiaHelper.Base
+namespace DementiaHelper.Extensions
 {
    public class BaseViewModel : INotifyPropertyChanged, IDisposable
     {

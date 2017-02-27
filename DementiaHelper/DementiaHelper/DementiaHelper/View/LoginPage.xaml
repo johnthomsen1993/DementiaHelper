@@ -1,22 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DementiaHelper.View.LoginPage">
-  <ContentPage.Content>
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
-      <Label Text="Top Left" Grid.Row="0" Grid.Column="0" />
-      <Label Text="Top Right" Grid.Row="0" Grid.Column="1" />
-      <Label Text="Bottom Left" Grid.Row="1" Grid.Column="0" />
-      <Label Text="Bottom Right" Grid.Row="1" Grid.Column="1" />
-    </Grid>
-  </ContentPage.Content>
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
+             x:Class="DementiaHelper.View.LoginPage"
+             NavigationPage.HasNavigationBar="false">
+
+
+  <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <StackLayout  Orientation="Vertical" VerticalOptions="Start">
+      <!-- top controls -->
+
+
+    </StackLayout>
+    <StackLayout VerticalOptions="CenterAndExpand">
+      <Entry Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+      <Entry  IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
+      <Button  Text="Login" />
+    </StackLayout>
+    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+      <!-- bottom controls -->
+      <customRenders:FacebookButtonCustomRenderer Text="login with facebook" />
+      <customRenders:GoogleButtonCustomRender Text="login with Google" />
+    </StackLayout>
+  </StackLayout>
 </ContentPage>
+

@@ -123,10 +123,22 @@
   </data>
   <data name="ContactList" xml:space="preserve">
     <value>Contacts</value>
-    <comment>Label for View</comment>
+    <comment>Login for Contact list View</comment>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+    <comment>Title for login view</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+    <comment>label for login view Password label og placeholder for password entry</comment>
   </data>
   <data name="ShoppingList" xml:space="preserve">
     <value>Shopping List</value>
-    <comment>Label for textbox</comment>
+    <comment>Login for shopping list view</comment>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Username</value>
+    <comment>Label for textbow</comment>
   </data>
 </root>
