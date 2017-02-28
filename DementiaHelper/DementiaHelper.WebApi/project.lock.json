@@ -3966,6 +3966,9 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "DementiaHelper/1.0.0": {
+        "type": "project"
       }
     }
   },
@@ -10350,6 +10353,10 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
+    },
+    "DementiaHelper/1.0.0": {
+      "type": "project",
+      "msbuildProject": "../DementiaHelper/DementiaHelper/DementiaHelper.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10371,7 +10378,9 @@
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0",
       "Microsoft.NETCore.App >= 1.0.1"
     ],
-    ".NETCoreApp,Version=v1.0": []
+    ".NETCoreApp,Version=v1.0": [
+      "DementiaHelper"
+    ]
   },
   "tools": {
     ".NETCoreApp,Version=v1.0": {

@@ -14,18 +14,23 @@ namespace DementiaHelper.ViewModel
    public class LoginPageViewModel : BaseViewModel
     {
       public ICommand LoginCommand { get; protected set; }
+      public ICommand GoToCreateAccountCommand { get; protected set; }
 
-      public LoginPageViewModel()
+        public LoginPageViewModel()
       {
           this.LoginCommand = new Command(async () => await LoginAsync());
-     
+          this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
+          
+
         }
 
         async Task LoginAsync()
         {
            await NavigationService.PushAsync(new ClockViewModel());
         }
-
-
+        async Task GoToCreateAccount()
+        {
+            await NavigationService.PushModalAsync(new CreateAccountViewModel());
+        }
     }
 }

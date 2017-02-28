@@ -121,6 +121,9 @@
     <value>Add shopping items</value>
     <comment>text for button</comment>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ContactList" xml:space="preserve">
     <value>Contacts</value>
     <comment>Login for Contact list View</comment>

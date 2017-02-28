@@ -27,6 +27,11 @@
 
   "frameworks": {
     "netcoreapp1.0": {
+      "dependencies": {
+        "DementiaHelper": {
+          "target": "project"
+        }
+      },
       "imports": [
         "dotnet5.6",
         "portable-net45+win8"

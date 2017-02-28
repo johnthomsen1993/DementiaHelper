@@ -121,9 +121,15 @@
     <value>Tilføj varer</value>
     <comment>text for button</comment>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
   <data name="ContactList" xml:space="preserve">
     <value>Kontakter</value>
     <comment>label for View</comment>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log ind</value>
   </data>
   <data name="LoginWithFacebook" xml:space="preserve">
     <value>Log ind med facebook</value>
@@ -132,8 +138,14 @@
   <data name="LoginWithGoogle" xml:space="preserve">
     <value>Log ind med google</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Kodeord</value>
+  </data>
   <data name="ShoppingList" xml:space="preserve">
     <value>Indkøbsliste</value>
     <comment>label for textbox</comment>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Brugernavn</value>
   </data>
 </root>

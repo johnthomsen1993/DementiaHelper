@@ -17,16 +17,24 @@ namespace DementiaHelper
     }
     public partial class App : Application
     {
+        public static string AppName { get { return "Dementia Helper"; } }
+        public static string UserName { get { return "John"; } }
+        public static string Password { get { return "passwords"; } }
         public App()
         {
             RegisterPages();
-            NavigationService.SetRoot(new LoginPageViewModel());
+            if (DependencyService.Get<ICredentialsService>().Authenticate()){
+                NavigationService.SetRoot(new ClockViewModel());
+            } else {
+                NavigationService.SetRoot(new LoginPageViewModel());
+            }
         }
 
         void RegisterPages()
         {
             SimpleIoC.RegisterPage<LoginPageViewModel, LoginPage>();
             SimpleIoC.RegisterPage<ClockViewModel, MainPage>();
+            SimpleIoC.RegisterPage<CreateAccountViewModel, CreateAccount>();
         }
 
         protected override void OnStart()

@@ -4,6 +4,7 @@
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              x:Class="DementiaHelper.View.LoginPage"
+             BackgroundColor="#00AAC8"
              NavigationPage.HasNavigationBar="false">
 
 
@@ -14,15 +15,22 @@
 
     </StackLayout>
     <StackLayout VerticalOptions="CenterAndExpand">
-      <Entry Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
-      <Entry  IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
-      <Button Command="{Binding LoginCommand}"  Text="Login" >
+      <Entry BackgroundColor="#00A8C8" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+      <Entry BackgroundColor="#00A8C8" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
+      <Button Text="{i18n:Translate Login}" >
       </Button>
+    <StackLayout Orientation="Horizontal" Spacing="2">
+    <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account"> 
+     <Label.GestureRecognizers>
+       <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
+     </Label.GestureRecognizers> 
+    </Label>
+    </StackLayout>
     </StackLayout>
     <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
       <!-- bottom controls -->
-      <customRenders:FacebookButtonCustomRenderer Text="{i18n:Translate LoginWithFacebook}" />
-      <customRenders:GoogleButtonCustomRender Text="{i18n:Translate LoginWithGoogle}" />
+      <customRenders:FacebookButtonCustomRenderer TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
+      <customRenders:GoogleButtonCustomRender TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
     </StackLayout>
   </StackLayout>
 </ContentPage>
