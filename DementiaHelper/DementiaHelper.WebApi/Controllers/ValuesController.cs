@@ -39,6 +39,14 @@ namespace DementiaHelper.WebApi.Controllers
             return  "Hello xamarin";
         }
 
+        [HttpPost("save")]
+        [AllowAnonymous]
+        public string Post(string id, string firstName, string lastName, string email, string description)
+        {
+            return "The data is saved";
+        }
+
+
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
