@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DementiaHelper.WebApi.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DementiaHelper.WebApi.Controllers
@@ -31,9 +32,11 @@ namespace DementiaHelper.WebApi.Controllers
         }
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpPost("register")]
+        [AllowAnonymous]
+        public  string Post(string userName,string password)
         {
+            return  "Hello xamarin";
         }
 
         // PUT api/values/5
