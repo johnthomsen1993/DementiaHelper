@@ -11,8 +11,8 @@
       <!-- top controls -->
     </StackLayout>
     <StackLayout VerticalOptions="CenterAndExpand">
-      <Entry Text="{Binding User.Name, Mode=TwoWay}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
-      <Entry IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
+      <Entry Text="{Binding Email, Mode=TwoWay}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+      <Entry Text="{Binding Password, Mode=TwoWay}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
       <Button Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
 
     </StackLayout>
