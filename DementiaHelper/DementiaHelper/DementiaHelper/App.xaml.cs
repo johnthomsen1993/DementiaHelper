@@ -4,7 +4,7 @@ using System.Linq;
 using DementiaHelper.Services;
 using System.Text;
 using System.Threading.Tasks;
-
+using DementiaHelper.Model;
 using Xamarin.Forms;
 using DementiaHelper.ViewModel;
 using DementiaHelper.View;
@@ -35,6 +35,8 @@ namespace DementiaHelper
             SimpleIoC.RegisterPage<LoginPageViewModel, LoginPage>();
             SimpleIoC.RegisterPage<ClockViewModel, MainPage>();
             SimpleIoC.RegisterPage<CreateAccountViewModel, CreateAccount>();
+            SimpleIoC.RegisterPage<AccountInformationViewModel, AccountInformation>();
+            SimpleIoC.RegisterPage<EditAccountInformationViewModel, EditAccountInformation>();
         }
 
         protected override void OnStart()

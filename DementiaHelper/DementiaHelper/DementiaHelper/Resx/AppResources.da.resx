@@ -121,12 +121,30 @@
     <value>Tilføj varer</value>
     <comment>text for button</comment>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Tilbage</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuller</value>
   </data>
   <data name="ContactList" xml:space="preserve">
     <value>Kontakter</value>
     <comment>label for View</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="EditUserInformation" xml:space="preserve">
+    <value>Ret oplysninger</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Fornavn</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Efternavn</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Log ind</value>
@@ -140,6 +158,12 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Kodeord</value>
+  </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Billed</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Gem</value>
   </data>
   <data name="ShoppingList" xml:space="preserve">
     <value>Indkøbsliste</value>

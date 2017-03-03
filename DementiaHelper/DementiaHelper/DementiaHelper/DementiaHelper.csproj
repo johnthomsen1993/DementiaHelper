@@ -46,11 +46,19 @@
     <Compile Include="Services\ICredentialsService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\SimpleIoC.cs" />
+    <Compile Include="ViewModel\AccountInformationViewModel.cs" />
     <Compile Include="ViewModel\ContactListViewModel.cs" />
     <Compile Include="ViewModel\CreateAccountViewModel.cs" />
+    <Compile Include="ViewModel\EditAccountInformationViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
+    <Compile Include="View\AccountInformation.xaml.cs">
+      <DependentUpon>AccountInformation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateAccount.xaml.cs">
       <DependentUpon>CreateAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditAccountInformation.xaml.cs">
+      <DependentUpon>EditAccountInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -130,6 +138,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\CreateAccount.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\AccountInformation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\EditAccountInformation.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

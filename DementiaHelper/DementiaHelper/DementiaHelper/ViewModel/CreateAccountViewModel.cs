@@ -19,7 +19,7 @@ namespace DementiaHelper.ViewModel
             this.CreateAccountCommand = new Command<User>((User) =>
             {
              //  App.Current.MainPage.DisplayAlert(User.Name, "Test", "OK");
-               DependencyService.Get<ICredentialsService>().SaveCredentials(User.Name,"password");
+               DependencyService.Get<ICredentialsService>().SaveCredentials(User.FirstName,"password");
 
             });
          

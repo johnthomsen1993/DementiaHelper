@@ -15,12 +15,13 @@ namespace DementiaHelper.ViewModel
     {
       public ICommand LoginCommand { get; protected set; }
       public ICommand GoToCreateAccountCommand { get; protected set; }
+      //public ICommand GoToAccountInformationCommand { get; protected set; }
 
         public LoginPageViewModel()
       {
           this.LoginCommand = new Command(async () => await LoginAsync());
           this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
-          
+          //this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
 
         }
 
@@ -32,5 +33,9 @@ namespace DementiaHelper.ViewModel
         {
             await NavigationService.PushModalAsync(new CreateAccountViewModel());
         }
+        //async Task GoToAccountInformation()
+        //{
+        //    await NavigationService.PushModalAsync(new AccountInformationViewModel());
+        //}
     }
 }

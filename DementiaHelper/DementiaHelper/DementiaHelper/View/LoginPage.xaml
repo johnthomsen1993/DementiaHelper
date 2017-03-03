@@ -25,6 +25,11 @@
        <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
      </Label.GestureRecognizers> 
     </Label>
+     <!--<Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Account Information"> 
+         <Label.GestureRecognizers>
+         <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
+         </Label.GestureRecognizers> 
+    </Label>-->
     </StackLayout>
     </StackLayout>
     <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
