@@ -16,12 +16,12 @@ namespace DementiaHelper.ViewModel
 {
     class EditAccountInformationViewModel : BaseViewModel
     {
-        
-        public UserInformation User { get; set; }
+        HttpClient h = new HttpClient();
+        public User User { get; set; }
         public ICommand SaveCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
 
-        public EditAccountInformationViewModel(UserInformation user)
+        public EditAccountInformationViewModel(User user)
         {
             User = user;
             this.SaveCommand = new Command(async () => await Save());
@@ -37,15 +37,13 @@ namespace DementiaHelper.ViewModel
                 {"Email", User.Email},
                 {"Description", User.Description}
             };
-            using (var h = new HttpClient())
-            {
-                var content = new FormUrlEncodedContent(values);
-                var result = h.PostAsync(new Uri("http://dementiahelperwebapi20170303124653.azurewebsites.net/api/values/save"),content).Result;
-                var response = result.Content.ReadAsStringAsync();
-                await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
-            }
+            var content = new FormUrlEncodedContent(values);
+            var result = h.PostAsync(new Uri("http://dementiahelperwebapi20170302110209.azurewebsites.net/api/values/save"), content).Result;
+            var response = result.Content.ReadAsStringAsync();
 
-        await NavigationService.PopModalAsync();
+            await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
+
+            await NavigationService.PopModalAsync();
         }
         async Task Cancel()
         {

@@ -36,14 +36,14 @@ namespace DementiaHelper.WebApi.Controllers
         [AllowAnonymous]
         public  string Post(string userName,string password)
         {
-            return  userName+password;
+            return  "Hello xamarin";
         }
 
         [HttpPost("save")]
         [AllowAnonymous]
         public string Post(string id, string firstName, string lastName, string email, string description)
         {
-            return id+firstName+lastName+email+description;
+            return "The data is saved";
         }
 
 
