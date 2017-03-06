@@ -11,11 +11,10 @@
       <!-- top controls -->
     </StackLayout>
     <StackLayout VerticalOptions="CenterAndExpand">
-      <Entry Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+      <Entry Text="{Binding Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
       <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
-      <Button Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
-
-    </StackLayout>
+            <Button Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
+        </StackLayout>
     <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
       <Button Text="{i18n:Translate Cancel}"  Command="{Binding CancelCreateAccountCommand}" BackgroundColor="Red"></Button>
     </StackLayout>

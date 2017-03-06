@@ -13,14 +13,14 @@ namespace DementiaHelper.ViewModel
 {
     public class AccountInformationViewModel: BaseViewModel
     {
-        public User User { get; set; }
+        public UserInformation User { get; set; }
         public bool EditButton { get; set; }
         public ICommand GoToEditAccountInformationCommand { get; protected set; }
         public ICommand BackCommand { get; protected set; }
 
         public AccountInformationViewModel()
         {
-            User = new User() {Id = "test@email.com", FirstName = "Claus", Email = "test@email.com", Description = "This is a default in the viewmodel"};
+            User = new UserInformation() {Id = "test@email.com", FirstName = "Claus", Email = "test@email.com", Description = "This is a default in the viewmodel"};
 
             EditButton = User.Id == "test@email.com";
             this.GoToEditAccountInformationCommand = new Command(async () => await GoToEditAccountInformation());

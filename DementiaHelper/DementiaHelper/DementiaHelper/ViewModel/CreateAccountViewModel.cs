@@ -12,7 +12,7 @@ namespace DementiaHelper.ViewModel
 {
     public class CreateAccountViewModel : BaseViewModel
     {
-        public string UserName { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
         public ICommand CancelCreateAccountCommand { get; protected set; }
         public ICommand CreateAccountCommand { get; protected set; }
@@ -28,7 +28,7 @@ namespace DementiaHelper.ViewModel
         {
             var values = new Dictionary<string, string>
             {
-                {"userName",UserName},
+                {"email",Email},
                 {"password", Password}
             };
             using (var h = new HttpClient())

@@ -17,11 +17,11 @@ namespace DementiaHelper.ViewModel
     class EditAccountInformationViewModel : BaseViewModel
     {
         HttpClient h = new HttpClient();
-        public User User { get; set; }
+        public UserInformation User { get; set; }
         public ICommand SaveCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
 
-        public EditAccountInformationViewModel(User user)
+        public EditAccountInformationViewModel(UserInformation user)
         {
             User = user;
             this.SaveCommand = new Command(async () => await Save());

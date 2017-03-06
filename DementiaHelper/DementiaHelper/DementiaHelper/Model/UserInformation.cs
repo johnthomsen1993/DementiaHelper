@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace DementiaHelper.Model
 {
     [JsonObject]
-    public class User
+    public class UserInformation
     {
         [JsonProperty("id")]
         public string Id { get; set; }

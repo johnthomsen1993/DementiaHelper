@@ -50,7 +50,7 @@ namespace DementiaHelper.WebApi.Controllers
             var user = new ApplicationUser() {Email = email, Salt = GenerateSalt() };
             user.Hash = GenerateHash(password,user.Salt);
             if (_repository.CreateAccount(user) == "User already exists") {return new OkObjectResult("User already exists"); }
-            var identity = await GetClaimsIdentity(email, password);
+            var identity = await GetClaimsIdentity(email, password,user.Salt,user.Hash);
             if (identity == null)
             {
                 _logger.LogInformation($"Invalid username ({email}) or password ({password})");
@@ -114,7 +114,7 @@ namespace DementiaHelper.WebApi.Controllers
             {
                 return new OkObjectResult("User not found");
             }
-            var identity = await GetClaimsIdentity(email,password);
+            var identity = await GetClaimsIdentity(email,password,user.Salt,user.Hash);
             if (identity == null)
             {
                 _logger.LogInformation($"Invalid username ({email}) or password ({password})");
@@ -158,14 +158,12 @@ namespace DementiaHelper.WebApi.Controllers
         /// You'd want to retrieve claims through your claims provider
         /// in whatever way suits you, the below is purely for demo purposes!
         /// </summary>
-        private static Task<ClaimsIdentity> GetClaimsIdentity(string email, string password)
+        private Task<ClaimsIdentity> GetClaimsIdentity(string email, string password, string salt, string hash)
         {
-            if (email == "john" &&
-               password == "password")
+            if (ComparePasswords(password,salt,hash))
             {
                 return Task.FromResult(new ClaimsIdentity(new GenericIdentity(email, "Token"), new[]{new Claim("DementiaHelper", "Dementia") }));
             }
-
             // Credentials are invalid, or account doesn't exist
             return Task.FromResult<ClaimsIdentity>(null);
         }
