@@ -7,5 +7,6 @@ namespace DementiaHelper.WebApi.Data
 {
     public interface IRepository
     {
+        bool createAccount(string userName, string password);
     }
 }

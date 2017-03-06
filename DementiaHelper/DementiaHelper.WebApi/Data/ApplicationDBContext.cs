@@ -1,4 +1,5 @@
 ﻿
+using DementiaHelper.WebApi.model;
 using Microsoft.EntityFrameworkCore;
 
 namespace DementiaHelper.WebApi.Data
@@ -9,7 +10,7 @@ namespace DementiaHelper.WebApi.Data
             : base(options)
         {
         }
-
+        
            protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
