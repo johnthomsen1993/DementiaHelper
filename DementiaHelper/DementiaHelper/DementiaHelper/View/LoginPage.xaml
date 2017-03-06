@@ -15,11 +15,10 @@
 
     </StackLayout>
     <StackLayout VerticalOptions="CenterAndExpand">
-      <Entry BackgroundColor="#00A8C8" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
-      <Entry BackgroundColor="#00A8C8" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
-      <Button Text="{i18n:Translate Login}" >
-      </Button>
-    <StackLayout Orientation="Horizontal" Spacing="2">
+      <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+      <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
+      <Button Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
+        <StackLayout Orientation="Horizontal" Spacing="2">
     <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account"> 
      <Label.GestureRecognizers>
        <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>

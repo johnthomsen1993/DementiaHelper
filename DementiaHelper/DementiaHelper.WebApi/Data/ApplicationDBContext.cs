@@ -4,13 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DementiaHelper.WebApi.Data
 {
-    public class ApplicationDBContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-        
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+
            protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
