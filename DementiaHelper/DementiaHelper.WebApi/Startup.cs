@@ -60,7 +60,7 @@ namespace DementiaHelper.WebApi
             });
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
             services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddDbContext<ApplicationDBContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IRepository, Repository>();

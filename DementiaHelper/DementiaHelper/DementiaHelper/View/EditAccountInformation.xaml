@@ -35,8 +35,7 @@
             <Label Text="{extensions:Translate Description}" Grid.Row="3" Grid.Column="1"></Label>
             <Editor Text="{Binding User.Description}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"></Editor>
             <Label Text="{extensions:Translate Picture}" Grid.Row="4" Grid.Column="1"></Label>
-            
-                <Image Source="{Binding User.Picture}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"></Image>
+            <Image Source="{Binding User.Picture}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"></Image>
         </Grid>
         <StackLayout VerticalOptions="Start" Orientation="Vertical">
             <Button Text="{extensions:Translate Save}" Command="{Binding SaveCommand}"></Button>

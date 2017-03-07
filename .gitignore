@@ -240,3 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/DementiaHelper/DementiaHelper.WebApi/Properties/PublishProfiles/DementiaHelper - Web Deploy.pubxml
+/DementiaHelper/DementiaHelper.WebApi/Properties/PublishProfiles/DementiaHelper - Web Deploy-publish.ps1
+/DementiaHelper/DementiaHelper.WebApi/Properties/PublishProfiles/publish-module.psm1

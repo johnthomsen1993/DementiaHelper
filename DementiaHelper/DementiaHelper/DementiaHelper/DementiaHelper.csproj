@@ -40,7 +40,7 @@
     </Compile>
     <Compile Include="Extensions\BaseViewModel.cs" />
     <Compile Include="Extensions\BaseNotify.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserInformation.cs" />
     <Compile Include="Renders\CustomControlRenders\FacebookButtonCustomRender.cs" />
     <Compile Include="Renders\CustomControlRenders\GoogleButtonCustomRender.cs" />
     <Compile Include="Services\ICredentialsService.cs" />
