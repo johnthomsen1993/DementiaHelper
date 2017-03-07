@@ -42,14 +42,23 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpPost("save")]
         [AllowAnonymous]
-        public string Post(string firstName, string lastName, string email, string description, byte[] picture)
+        public string Post(string firstName, string lastName, string email, string description)
         {
-            bool succes = _iRepository.UpdateAccount(firstName, lastName, email, description, picture);
-            if (succes)
+            if (_iRepository.CheckIfUserExists(email))
             {
-                return "The data is saved";
+                bool succes = _iRepository.UpdateAccount(firstName, lastName, email, description);
+                if (succes)
+                {
+                    return "The data is saved";
+                }
+                return "Mistakes were made";
             }
-            return "Mistakes were made";
+            else
+            {
+                _iRepository.CreateAccountInformation(firstName, lastName, email, description);
+                return "New user saved in the database"; 
+                
+            }
         }
 
 
