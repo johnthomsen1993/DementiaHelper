@@ -22,7 +22,7 @@ namespace DementiaHelper.WebApi.Data
         {
             try
             {
-                AcccountInformation target = _context.AccountInformations.Find(email);
+                AccountInformation target = _context.AccountInformations.Find(email);
 
                 target.FirstName = firstName;
                 target.LastName = lastName;
@@ -42,11 +42,11 @@ namespace DementiaHelper.WebApi.Data
           
         }
 
-        public AcccountInformation GetAccount(string email)
+        public AccountInformation GetAccount(string email)
         {
             try
             {
-                AcccountInformation target = _context.AccountInformations.Find(email);
+                AccountInformation target = _context.AccountInformations.Find(email);
                 return target;
             }
             catch (Exception)

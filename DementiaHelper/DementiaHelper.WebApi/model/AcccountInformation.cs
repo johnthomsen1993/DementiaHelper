@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Query.Expressions;
 
 namespace DementiaHelper.WebApi.model
 {
-    public class AcccountInformation
+    public class AccountInformation
     {
         public int AccountInformationId { get; set; }
         public string Email { get; set; }
@@ -20,7 +20,8 @@ namespace DementiaHelper.WebApi.model
     {
         public int AccountPictureId { get; set; }
         public byte[] Image { get; set; }
-        public virtual AcccountInformation AcccountInformation { get; set; }
+        public int AccountInformationForeignKey { get; set; }
+        public AccountInformation AccountInformation { get; set; }
 
     }
 }
