@@ -23,6 +23,5 @@ namespace DementiaHelper.WebApi.model
         public byte[] Image { get; set; }
         public int AccountInformationForeignKey { get; set; }
         public AccountInformation AccountInformation { get; set; }
-
     }
 }

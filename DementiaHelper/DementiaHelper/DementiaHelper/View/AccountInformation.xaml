@@ -5,7 +5,11 @@
              x:Class="DementiaHelper.View.AccountInformation"
              BackgroundColor="White">
     
-    
+    <StackLayout Orientation="Horizontal">
+        <Entry Text="{Binding AddItem.Product}"></Entry>
+        <Entry Text="{Binding AddItem.Amount}"></Entry>
+        <Button Text="{extensions:Translate Save}" Command="{Binding }"></Button>
+    </StackLayout>
     <StackLayout>
         <StackLayout VerticalOptions="Start" Orientation="Vertical">
             <!-- top controls -->

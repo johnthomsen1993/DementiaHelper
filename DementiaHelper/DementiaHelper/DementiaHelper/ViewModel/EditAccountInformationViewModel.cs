@@ -39,6 +39,8 @@ namespace DementiaHelper.ViewModel
             var content = new FormUrlEncodedContent(values);
             var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/save"), content).Result;
             //var result = h.PostAsync(new Uri("http://localhost:29342//api/values/save"), content).Result;
+
+
         
             var response = result.Content.ReadAsStringAsync();
 

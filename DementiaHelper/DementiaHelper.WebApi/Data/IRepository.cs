@@ -10,7 +10,7 @@ namespace DementiaHelper.WebApi.Data
     {
         void CreateAccountInformation(string firstName, string lastName, string email, string description);
         bool UpdateAccount(string firstName, string lastName, string email, string description);
-        AccountInformation GetAccount(string email);
+        Dictionary<string, string> GetAccount(string email);
         string CreateAccount(ApplicationUser user);
         ApplicationUser FetchApplicationUser(string email);
         bool CheckIfUserExists(string email);

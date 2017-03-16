@@ -22,7 +22,6 @@ namespace DementiaHelper.WebApi.Data
         {
             try
             {
-
                 _context.AccountInformations.Add(new AccountInformation()
                 {
                     FirstName = firstName,
@@ -30,6 +29,7 @@ namespace DementiaHelper.WebApi.Data
                     Email = email,
                     Description = description
                 });
+                _context.SaveChanges();
 
             }
             catch (Exception)
@@ -43,7 +43,12 @@ namespace DementiaHelper.WebApi.Data
         {
             try
             {
-                AccountInformation target = _context.AccountInformations.Find(email);
+                //AccountInformation target = _context.AccountInformations.Find(email);
+                var query = from p in _context.AccountInformations
+                            where p.Email == email
+                            select p;
+                
+                var target = query.SingleOrDefault();
 
                 target.FirstName = firstName;
                 target.LastName = lastName;
@@ -62,12 +67,26 @@ namespace DementiaHelper.WebApi.Data
           
         }
 
-        public AccountInformation GetAccount(string email)
+        public Dictionary<string, string> GetAccount(string email)
         {
             try
             {
-                AccountInformation target = _context.AccountInformations.Find(email);
-                return target;
+                //AccountInformation target = _context.AccountInformations.Find(email);
+                var query = from p in _context.AccountInformations
+                            where p.Email == email
+                            select p;
+
+                var target = query.SingleOrDefault();
+
+                var values = new Dictionary<string, string>
+            {
+                {"FirstName", target.FirstName},
+                {"LaseName", target.LastName},
+                {"Email", target.Email},
+                {"Description", target.Description}
+            };
+                
+                return values;
             }
             catch (Exception)
             {

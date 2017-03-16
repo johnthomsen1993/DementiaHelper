@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DementiaHelper.WebApi.Data;
+using DementiaHelper.WebApi.model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,15 +30,15 @@ namespace DementiaHelper.WebApi.Controllers
         public string Get(int id)
         {
             return "value";
-            
         }
 
         // POST api/values
-        [HttpPost("register")]
+        [HttpPost("getspecific")]
         [AllowAnonymous]
-        public  string Post(string userName,string password)
+        public string Post(string email)
         {
-            return  "Hello xamarin";
+            return "Yay";
+            //return _iRepository.GetAccount(email);
         }
 
         [HttpPost("save")]
