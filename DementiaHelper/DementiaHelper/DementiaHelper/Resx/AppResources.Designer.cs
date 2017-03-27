@@ -107,6 +107,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Profile.
+        /// </summary>
+        public static string EditProfile {
+            get {
+                return ResourceManager.GetString("EditProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Information.
         /// </summary>
         public static string EditUserInformation {
@@ -184,6 +193,15 @@ namespace DementiaHelper.Resx {
         public static string Picture {
             get {
                 return ResourceManager.GetString("Picture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile Settings.
+        /// </summary>
+        public static string ProfileSettings {
+            get {
+                return ResourceManager.GetString("ProfileSettings", resourceCulture);
             }
         }
         

@@ -8,9 +8,10 @@ using DementiaHelper.WebApi.Data;
 namespace DementiaHelper.WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170327091932_ChangedToNewModel")]
+    partial class ChangedToNewModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -93,15 +94,15 @@ namespace DementiaHelper.WebApi.Migrations
                     b.Property<int>("CaregiverConnectionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("Caregiver");
+                    b.Property<int?>("CaregiverForeignKeyCaregiverId");
 
-                    b.Property<int?>("Citizen");
+                    b.Property<int?>("CitizenForeignKeyCitizenId");
 
                     b.HasKey("CaregiverConnectionId");
 
-                    b.HasIndex("Caregiver");
+                    b.HasIndex("CaregiverForeignKeyCaregiverId");
 
-                    b.HasIndex("Citizen");
+                    b.HasIndex("CitizenForeignKeyCitizenId");
 
                     b.ToTable("CaregiverConnection");
                 });
@@ -133,15 +134,15 @@ namespace DementiaHelper.WebApi.Migrations
                     b.Property<int>("RelativeConnectionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("Citizen");
+                    b.Property<int?>("CitizenForeignKeyCitizenId");
 
-                    b.Property<int?>("Relative");
+                    b.Property<int?>("RelativeForeignKeyRelativeId");
 
                     b.HasKey("RelativeConnectionId");
 
-                    b.HasIndex("Citizen");
+                    b.HasIndex("CitizenForeignKeyCitizenId");
 
-                    b.HasIndex("Relative");
+                    b.HasIndex("RelativeForeignKeyRelativeId");
 
                     b.ToTable("RelativeConnectiob");
                 });
@@ -186,11 +187,11 @@ namespace DementiaHelper.WebApi.Migrations
                 {
                     b.HasOne("DementiaHelper.WebApi.model.Caregiver", "CaregiverForeignKey")
                         .WithMany()
-                        .HasForeignKey("Caregiver");
+                        .HasForeignKey("CaregiverForeignKeyCaregiverId");
 
                     b.HasOne("DementiaHelper.WebApi.model.Citizen", "CitizenForeignKey")
                         .WithMany()
-                        .HasForeignKey("Citizen");
+                        .HasForeignKey("CitizenForeignKeyCitizenId");
                 });
 
             modelBuilder.Entity("DementiaHelper.WebApi.model.Citizen", b =>
@@ -213,11 +214,11 @@ namespace DementiaHelper.WebApi.Migrations
                 {
                     b.HasOne("DementiaHelper.WebApi.model.Citizen", "CitizenForeignKey")
                         .WithMany()
-                        .HasForeignKey("Citizen");
+                        .HasForeignKey("CitizenForeignKeyCitizenId");
 
                     b.HasOne("DementiaHelper.WebApi.model.Relative", "RelativeForeignKey")
                         .WithMany()
-                        .HasForeignKey("Relative");
+                        .HasForeignKey("RelativeForeignKeyRelativeId");
                 });
         }
     }
