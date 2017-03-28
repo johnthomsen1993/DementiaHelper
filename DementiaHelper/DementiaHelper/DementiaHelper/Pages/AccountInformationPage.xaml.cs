@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace DementiaHelper.View
+namespace DementiaHelper.Pages
 {
-    public partial class LoginPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AccountInformationPage : ContentPage
     {
-        public LoginPage()
+        public AccountInformationPage()
         {
             InitializeComponent();
         }

@@ -8,18 +8,18 @@ using Xamarin.Forms;
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace DementiaHelper.ViewModel
+namespace DementiaHelper.PageModels
 {
-    public class CreateAccountViewModel : BaseViewModel
+    public class CreateAccountPageModel : FreshMvvm.FreshBasePageModel
     {
         public UserInformation User { get; set; }
         public string Password { get; set; }
         public ICommand CancelCreateAccountCommand { get; protected set; }
         public ICommand CreateAccountCommand { get; protected set; }
-        public CreateAccountViewModel()
+        public CreateAccountPageModel()
         {
             User = new UserInformation();
-            this.CancelCreateAccountCommand = new Command(async () => await NavigationService.PopModalAsync());
+            this.CancelCreateAccountCommand = new Command(async () => await CoreMethods.PopPageModel());
             this.CreateAccountCommand = new Command( async() => await CreateAccountAsync());
         }
 

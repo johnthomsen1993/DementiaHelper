@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
-             x:Class="DementiaHelper.View.AccountInformation"
+             x:Class="DementiaHelper.Pages.AccountInformationPage"
              BackgroundColor="White">
     
     <StackLayout Orientation="Horizontal">

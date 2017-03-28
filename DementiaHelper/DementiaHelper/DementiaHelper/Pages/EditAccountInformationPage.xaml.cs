@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DementiaHelper.View
+namespace DementiaHelper.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AccountInformation : ContentPage
+    public partial class EditAccountInformationPage : ContentPage
     {
-        public AccountInformation()
+        public EditAccountInformationPage()
         {
             InitializeComponent();
         }

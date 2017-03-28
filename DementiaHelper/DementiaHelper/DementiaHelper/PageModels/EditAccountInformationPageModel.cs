@@ -12,16 +12,16 @@ using DementiaHelper.Services;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 
-namespace DementiaHelper.ViewModel
+namespace DementiaHelper.PageModels
 {
-    class EditAccountInformationViewModel : BaseViewModel
+    class EditAccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
         HttpClient h = new HttpClient();
         public UserInformation User { get; set; }
         public ICommand SaveCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
 
-        public EditAccountInformationViewModel(UserInformation user)
+        public EditAccountInformationPageModel(UserInformation user)
         {
             User = user;
             this.SaveCommand = new Command(async () => await Save());
@@ -46,11 +46,11 @@ namespace DementiaHelper.ViewModel
 
             await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
 
-            await NavigationService.PopModalAsync();
+            await CoreMethods.PopPageModel();
         }
         async Task Cancel()
         {
-            await NavigationService.PopModalAsync();
+            await CoreMethods.PopPageModel();
         }
 
         

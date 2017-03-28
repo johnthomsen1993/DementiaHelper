@@ -9,10 +9,10 @@ using System.Windows.Input;
 using DementiaHelper.Services;
 using Xamarin.Forms;
 
-namespace DementiaHelper.ViewModel
+namespace DementiaHelper.PageModels
 {
    
-   public class LoginPageViewModel : BaseViewModel
+   public class LoginPageModel : FreshMvvm.FreshBasePageModel
     {
       public string UserName { get; set; }
       public string Password { get; set; }
@@ -20,12 +20,17 @@ namespace DementiaHelper.ViewModel
       public ICommand GoToCreateAccountCommand { get; protected set; }
       public ICommand GoToAccountInformationCommand { get; protected set; }
 
-        public LoginPageViewModel()
-      {
-          this.LoginCommand = new Command(async () => await LoginAsync());
-          this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
-          this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
+        public LoginPageModel()
+        {
+        
 
+        }
+        public override void Init(object initData)
+        {
+            base.Init(initData);
+            this.LoginCommand = new Command(async () => await LoginAsync());
+            this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
+            this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
         }
 
         async Task LoginAsync()
@@ -45,11 +50,11 @@ namespace DementiaHelper.ViewModel
         }
         async Task GoToCreateAccount()
         {
-            await NavigationService.PushModalAsync(new CreateAccountViewModel());
+            await CoreMethods.PushPageModel<CreateAccountPageModel>();
         }
         async Task GoToAccountInformation()
         {
-            await NavigationService.PushModalAsync(new AccountInformationViewModel());
+            await CoreMethods.PushPageModel<AccountInformationPageModel>();
         }
     }
 }

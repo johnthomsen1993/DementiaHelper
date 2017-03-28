@@ -10,9 +10,9 @@ using DementiaHelper.Model;
 using DementiaHelper.Services;
 using Xamarin.Forms;
 
-namespace DementiaHelper.ViewModel
+namespace DementiaHelper.PageModels
 {
-    public class AccountInformationViewModel: BaseViewModel
+    public class AccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
         HttpClient h = new HttpClient();
         public UserInformation User { get; set; }
@@ -24,7 +24,7 @@ namespace DementiaHelper.ViewModel
 
         public AddToShoppingList AddItem { get; set; }
 
-        public AccountInformationViewModel()
+        public AccountInformationPageModel()
         {
             AddItem = new AddToShoppingList();
             var values = new Dictionary<string, string>
@@ -50,11 +50,11 @@ namespace DementiaHelper.ViewModel
 
         async Task GoToEditAccountInformation()
         {
-            await NavigationService.PushModalAsync(new EditAccountInformationViewModel(User));
+            await CoreMethods.PushPageModel<EditAccountInformationPageModel>(User);
         }
         async Task Back()
         {
-            await NavigationService.PopModalAsync();
+            await CoreMethods.PopPageModel();
         }
         async Task AddItemToDatabase(AddToShoppingList addItem)
         {
@@ -72,7 +72,7 @@ namespace DementiaHelper.ViewModel
             var response = result.Content.ReadAsStringAsync();
 
             await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
-            await NavigationService.PopModalAsync();
+            await CoreMethods.PopPageModel();
         }
     }
 }
