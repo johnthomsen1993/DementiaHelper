@@ -12,14 +12,13 @@ namespace DementiaHelper.ViewModel
 {
     public class CreateAccountViewModel : BaseViewModel
     {
-        public string Email { get; set; }
+        public UserInformation User { get; set; }
         public string Password { get; set; }
         public ICommand CancelCreateAccountCommand { get; protected set; }
         public ICommand CreateAccountCommand { get; protected set; }
         public CreateAccountViewModel()
         {
-      
-    
+            User = new UserInformation();
             this.CancelCreateAccountCommand = new Command(async () => await NavigationService.PopModalAsync());
             this.CreateAccountCommand = new Command( async() => await CreateAccountAsync());
         }
@@ -28,7 +27,7 @@ namespace DementiaHelper.ViewModel
         {
             var values = new Dictionary<string, string>
             {
-                {"email",Email},
+                {"email",User.Email},
                 {"password", Password}
             };
             using (var h = new HttpClient())
@@ -37,7 +36,6 @@ namespace DementiaHelper.ViewModel
                 var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/createaccount"), content).Result;
                 var response = result.Content.ReadAsStringAsync();
                 await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
-                // await NavigationService.PushAsync(new ClockViewModel());
             }
         }
 

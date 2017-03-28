@@ -14,7 +14,7 @@
                         <!-- top controls -->
                     </StackLayout>
                     <StackLayout VerticalOptions="CenterAndExpand">
-                        <Entry Text="{Binding Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                        <Entry Text="{Binding User.Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
                         <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
                         <Button Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
                     </StackLayout>
@@ -48,12 +48,17 @@
                             <Label Text="Extra Information" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand">
-                            <Entry Text="{Binding Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                            <Entry Text="{Binding User.Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
                             <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
                             <Button Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
                         </StackLayout>
                     </StackLayout>
-
+                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1">
+                        <Entry Text="{Binding User.FirstName}" HorizontalOptions="CenterAndExpand"></Entry>
+                        <Entry Text="{Binding User.LastName}" HorizontalOptions="CenterAndExpand"></Entry>
+                        <Entry Text="{Binding User.Description}" HorizontalOptions="CenterAndExpand"></Entry>
+                        <Image Source="{Binding User.Picture}" HorizontalOptions="CenterAndExpand"></Image>
+                    </StackLayout>
                 </Grid>
             </OnIdiom.Tablet>
         </OnIdiom>
