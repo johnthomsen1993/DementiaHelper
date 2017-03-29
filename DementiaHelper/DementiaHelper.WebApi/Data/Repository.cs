@@ -73,5 +73,9 @@ namespace DementiaHelper.WebApi.Data
             return _context.ApplicationUsers.FirstOrDefault(b => b.Email == email);
         }
 
+        public ShoppingList GetShoppingList(string citizenId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,24 +14,29 @@
 
 
     </StackLayout>
-    <StackLayout VerticalOptions="CenterAndExpand">
-      <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
-      <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
-      <Button Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
-        <StackLayout Orientation="Horizontal" Spacing="2">
-    <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account"> 
-     <Label.GestureRecognizers>
-       <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
-     </Label.GestureRecognizers> 
-    </Label>
-     <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Account Information"> 
-         <Label.GestureRecognizers>
-         <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
-         </Label.GestureRecognizers> 
-    </Label>
-    </StackLayout>
-    </StackLayout>
-    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+            <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
+            <Button Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
+            <StackLayout Orientation="Horizontal" Spacing="2">
+                <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Account Information">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Shopping List">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToShoppingListCommand}"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
       <!-- bottom controls -->
       <customRenders:FacebookButtonCustomRenderer TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
       <customRenders:GoogleButtonCustomRender TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />

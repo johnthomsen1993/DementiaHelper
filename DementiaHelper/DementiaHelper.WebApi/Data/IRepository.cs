@@ -13,5 +13,6 @@ namespace DementiaHelper.WebApi.Data
         AccountInformation GetAccount(string email);
         string CreateAccount(ApplicationUser user);
         ApplicationUser FetchApplicationUser(string email);
+        ShoppingList GetShoppingList(string citizenId);
     }
 }

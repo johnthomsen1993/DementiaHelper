@@ -3,6 +3,21 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.0": {
+      "JwtCore/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1",
+          "NETStandard.Library": "1.6.0",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Security.Cryptography.Algorithms": "4.2.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/JwtCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/JwtCore.dll": {}
+        }
+      },
       "Libuv/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -4307,6 +4322,17 @@
     }
   },
   "libraries": {
+    "JwtCore/1.1.0": {
+      "sha512": "Ab1B/S9X/AKWZHhN52Wl7lFNjkAl2GlJTOpibDHHL2GcFIv2jkBabOZyurJ7Iy7qfUkrnkRYp1Krd4NPu06VvQ==",
+      "type": "package",
+      "path": "JwtCore/1.1.0",
+      "files": [
+        "JwtCore.1.1.0.nupkg.sha512",
+        "JwtCore.nuspec",
+        "lib/net46/JwtCore.dll",
+        "lib/netstandard1.3/JwtCore.dll"
+      ]
+    },
     "Libuv/1.9.0": {
       "sha512": "9Q7AaqtQhS8JDSIvRBt6ODSLWDBI4c8YxNxyCQemWebBFUtBbc6M5Vi5Gz1ZyIUlTW3rZK9bIr5gnVyv0z7a2Q==",
       "type": "package",
@@ -10958,6 +10984,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "JwtCore >= 1.1.0",
       "Microsoft.ApplicationInsights.AspNetCore >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 1.0.0",
       "Microsoft.AspNetCore.Cryptography.KeyDerivation >= 1.1.0",

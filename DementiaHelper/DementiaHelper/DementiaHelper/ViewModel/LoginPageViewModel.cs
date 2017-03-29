@@ -19,12 +19,14 @@ namespace DementiaHelper.ViewModel
       public ICommand LoginCommand { get; protected set; }
       public ICommand GoToCreateAccountCommand { get; protected set; }
       public ICommand GoToAccountInformationCommand { get; protected set; }
+      public ICommand GoToShoppingListCommand { get; protected set; }
 
         public LoginPageViewModel()
       {
           this.LoginCommand = new Command(async () => await LoginAsync());
           this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
           this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
+          this.GoToShoppingListCommand = new Command(async () => await GoToShoppingList());
 
         }
 
@@ -50,6 +52,10 @@ namespace DementiaHelper.ViewModel
         async Task GoToAccountInformation()
         {
             await NavigationService.PushModalAsync(new AccountInformationViewModel());
+        }
+        async Task GoToShoppingList()
+        {
+            await NavigationService.PushModalAsync(new ShoppingListViewModel());
         }
     }
 }

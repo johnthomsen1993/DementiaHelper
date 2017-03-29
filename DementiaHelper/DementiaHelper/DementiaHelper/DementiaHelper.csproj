@@ -40,10 +40,12 @@
     </Compile>
     <Compile Include="Extensions\BaseViewModel.cs" />
     <Compile Include="Extensions\BaseNotify.cs" />
+    <Compile Include="Model\ShoppingList.cs" />
     <Compile Include="Model\UserInformation.cs" />
     <Compile Include="Renders\CustomControlRenders\FacebookButtonCustomRender.cs" />
     <Compile Include="Renders\CustomControlRenders\GoogleButtonCustomRender.cs" />
     <Compile Include="Services\ICredentialsService.cs" />
+    <Compile Include="Services\JWTService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\SimpleIoC.cs" />
     <Compile Include="ViewModel\AccountInformationViewModel.cs" />
@@ -51,6 +53,7 @@
     <Compile Include="ViewModel\CreateAccountViewModel.cs" />
     <Compile Include="ViewModel\EditAccountInformationViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
+    <Compile Include="ViewModel\ShoppingListViewModel.cs" />
     <Compile Include="View\AccountInformation.xaml.cs">
       <DependentUpon>AccountInformation.xaml</DependentUpon>
     </Compile>
@@ -72,7 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resx\AppResources.da.Designer.cs">
+    <Compile Include="View\AppResources.da.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.da.resx</DependentUpon>
@@ -83,6 +86,9 @@
       <DependentUpon>ContactList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\TranslateExtension.cs" />
+    <Compile Include="View\ShoppingList.xaml.cs">
+      <DependentUpon>ShoppingList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\MainPage.xaml">
@@ -95,6 +101,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="crypto, Version=1.8.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Portable.BouncyCastle.1.8.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10\crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JWT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Portable.JWT.1.0.5\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\JWT.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -130,7 +144,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resx\AppResources.da.resx">
+    <EmbeddedResource Include="View\AppResources.da.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.da.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -164,6 +178,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\EditAccountInformation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\ShoppingList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

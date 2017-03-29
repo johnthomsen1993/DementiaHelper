@@ -163,6 +163,12 @@
   <data name="Picture" xml:space="preserve">
     <value>Picture</value>
   </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>

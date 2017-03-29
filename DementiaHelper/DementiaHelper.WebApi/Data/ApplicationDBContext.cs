@@ -12,7 +12,10 @@ namespace DementiaHelper.WebApi.Data
         }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<AccountInformation> AccountInformations { get; set; }
-        public DbSet<AccountPicture> AccountPictures { get; set; } 
+        public DbSet<AccountPicture> AccountPictures { get; set; }
+        public DbSet<ShoppingList> ShoppingLists { get; set; }
+        public DbSet<ShoppingListDetail> ShoppingListDetails { get; set; }
+        public DbSet<Product> Products { get; set; }   
 
 
            protected override void OnModelCreating(ModelBuilder builder)

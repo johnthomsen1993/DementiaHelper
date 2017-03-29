@@ -162,6 +162,12 @@
   <data name="Picture" xml:space="preserve">
     <value>Billed</value>
   </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Antal</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Gem</value>
   </data>

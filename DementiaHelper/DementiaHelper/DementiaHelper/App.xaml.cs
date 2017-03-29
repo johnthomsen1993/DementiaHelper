@@ -37,6 +37,7 @@ namespace DementiaHelper
             SimpleIoC.RegisterPage<CreateAccountViewModel, CreateAccount>();
             SimpleIoC.RegisterPage<AccountInformationViewModel, AccountInformation>();
             SimpleIoC.RegisterPage<EditAccountInformationViewModel, EditAccountInformation>();
+            SimpleIoC.RegisterPage<ShoppingListViewModel, View.ShoppingList>();
         }
 
         protected override void OnStart()
