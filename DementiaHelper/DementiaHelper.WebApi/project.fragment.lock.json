@@ -8,6 +8,8 @@
         "bin/Debug/DementiaHelper.dll": {}
       },
       "runtime": {
+        "../../packages/FreshMvvm.2.2.0/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/FreshIOC.dll": {},
+        "../../packages/FreshMvvm.2.2.0/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/FreshMvvm.dll": {},
         "../../packages/Microsoft.Net.Http.2.2.29/lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.dll": {},
         "../../packages/Microsoft.Net.Http.2.2.29/lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.dll": {},
         "../../packages/Newtonsoft.Json.9.0.1/lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll": {},

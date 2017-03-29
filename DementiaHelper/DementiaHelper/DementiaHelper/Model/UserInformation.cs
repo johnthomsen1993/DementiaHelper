@@ -28,6 +28,9 @@ namespace DementiaHelper.Model
         [JsonProperty("picture")]
         public string Picture { get; set; }
 
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
+
         [JsonProperty("gender")]
         public string Gender { get; set; }
     }
