@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Query.Expressions;
 
 namespace DementiaHelper.WebApi.model
@@ -22,6 +23,5 @@ namespace DementiaHelper.WebApi.model
         public byte[] Image { get; set; }
         public int AccountInformationForeignKey { get; set; }
         public AccountInformation AccountInformation { get; set; }
-
     }
 }

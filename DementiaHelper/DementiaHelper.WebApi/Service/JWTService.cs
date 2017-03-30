@@ -22,7 +22,7 @@ namespace DementiaHelper.WebApi.Service
             {
                 payload =  JwtCore.JsonWebToken.DecodeToObject(token, SecretKey) as IDictionary<string, object>;
             }
-            catch (JwtCore.SignatureVerificationException e)
+            catch (JwtCore.SignatureVerificationException)
             {
                 // TODO: make log trace
                 //Console.WriteLine(e.StackTrace);

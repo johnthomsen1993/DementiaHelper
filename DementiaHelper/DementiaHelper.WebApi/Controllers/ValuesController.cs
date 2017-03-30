@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DementiaHelper.WebApi.Data;
+using DementiaHelper.WebApi.model;
 using DementiaHelper.WebApi.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,27 +31,36 @@ namespace DementiaHelper.WebApi.Controllers
         public string Get(int id)
         {
             return "value";
-            
         }
 
         // POST api/values
-        [HttpPost("register")]
+        [HttpPost("getspecific")]
         [AllowAnonymous]
-        public  string Post(string userName,string password)
+        public string Post(string email)
         {
-            return  "Hello xamarin";
+            return "Yay";
+            //return _iRepository.GetAccount(email);
         }
 
         [HttpPost("save")]
         [AllowAnonymous]
-        public string Post(string firstName, string lastName, string email, string description, byte[] picture)
+        public string Post(string firstName, string lastName, string email, string description)
         {
-            bool succes = _iRepository.UpdateAccount(firstName, lastName, email, description, picture);
-            if (succes)
+            if (_iRepository.CheckIfUserExists(email))
             {
-                return "The data is saved";
+                bool succes = _iRepository.UpdateAccount(firstName, lastName, email, description);
+                if (succes)
+                {
+                    return "The data is saved";
+                }
+                return "Mistakes were made";
             }
-            return "Mistakes were made";
+            else
+            {
+                _iRepository.CreateAccountInformation(firstName, lastName, email, description);
+                return "New user saved in the database"; 
+                
+            }
         }
 
 

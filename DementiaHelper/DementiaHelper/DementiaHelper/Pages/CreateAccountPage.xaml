@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             x:Class="DementiaHelper.Pages.CreateAccountPage"
+             NavigationPage.HasNavigationBar="false"
+             BackgroundColor="Silver">
+
+    <ContentPage.Content>
+        <OnIdiom x:TypeArguments="View">
+            <OnIdiom.Phone>
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout  Orientation="Vertical" VerticalOptions="Start">
+                        <!-- top controls -->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Entry Text="{Binding User.Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                        <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
+                        <Button Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                        <Button Text="{i18n:Translate Cancel}"  Command="{Binding CancelCreateAccountCommand}" BackgroundColor="Red"></Button>
+                    </StackLayout>
+                </StackLayout>
+            </OnIdiom.Phone>
+            <OnIdiom.Tablet>
+                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="0">
+                        <StackLayout  Orientation="Vertical" VerticalOptions="Start">
+                            <!-- top controls -->
+                        </StackLayout>
+                        <StackLayout VerticalOptions="CenterAndExpand">
+                            <Entry Text="{Binding Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                            <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
+                            <Button Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                            <Button Text="{i18n:Translate Cancel}"  Command="{Binding CancelCreateAccountCommand}" BackgroundColor="Red"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1">
+                        <StackLayout  Orientation="Vertical" VerticalOptions="Start">
+                            <Label Text="Extra Information" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+                        </StackLayout>
+                        <StackLayout VerticalOptions="CenterAndExpand">
+                            <Entry Text="{Binding User.Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                            <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
+                            <Button Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1">
+                        <Entry Text="{Binding User.FirstName}" HorizontalOptions="CenterAndExpand"></Entry>
+                        <Entry Text="{Binding User.LastName}" HorizontalOptions="CenterAndExpand"></Entry>
+                        <Entry Text="{Binding User.Description}" HorizontalOptions="CenterAndExpand"></Entry>
+                        <Image Source="{Binding User.Picture}" HorizontalOptions="CenterAndExpand"></Image>
+                    </StackLayout>
+                </Grid>
+            </OnIdiom.Tablet>
+        </OnIdiom>
+    </ContentPage.Content>
+
+
+</ContentPage>

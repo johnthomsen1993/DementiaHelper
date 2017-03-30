@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace DementiaHelper.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditAccountInformation : ContentPage
+    public partial class ConnectToCitizen : ContentPage
     {
-        public EditAccountInformation()
+        public ConnectToCitizen()
         {
             InitializeComponent();
         }

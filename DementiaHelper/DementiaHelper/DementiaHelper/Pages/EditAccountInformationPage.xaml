@@ -2,15 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
-             x:Class="DementiaHelper.View.AccountInformation"
+             x:Class="DementiaHelper.Pages.EditAccountInformationPage"
              BackgroundColor="White">
     
-    
-    <StackLayout>
-        <StackLayout VerticalOptions="Start" Orientation="Vertical">
-            <!-- top controls -->
-            <Button Text="{extensions:Translate Back}" Command="{Binding BackCommand}"></Button>
+
+    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
+        <StackLayout BackgroundColor="Maroon" VerticalOptions="Start">
+            <Label Text="{Binding User.FirstName, StringFormat='{0:N}s oplysninger'}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20"></Label>
         </StackLayout>
+
         <Grid ColumnSpacing="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -27,18 +27,19 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Text="{extensions:Translate FirstName}" Grid.Row="0" Grid.Column="1"></Label>
-            <Label Text="{Binding User.FirstName}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"></Label>
+            <Entry Text="{Binding User.FirstName}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"></Entry>
             <Label Text="{extensions:Translate LastName}" Grid.Row="1" Grid.Column="1"></Label>
-            <Label Text="{Binding User.LastName}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"></Label>
+            <Entry Text="{Binding User.LastName}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"></Entry>
             <Label Text="{extensions:Translate Email}" Grid.Row="2" Grid.Column="1"></Label>
-            <Label Text="{Binding User.Email}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3"></Label>
+            <Entry Text="{Binding User.Email}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3"></Entry>
             <Label Text="{extensions:Translate Description}" Grid.Row="3" Grid.Column="1"></Label>
-            <Label Text="{Binding User.Description}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"></Label>
+            <Editor Text="{Binding User.Description}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"></Editor>
             <Label Text="{extensions:Translate Picture}" Grid.Row="4" Grid.Column="1"></Label>
             <Image Source="{Binding User.Picture}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"></Image>
         </Grid>
-        <StackLayout>
-            <Button IsEnabled="{Binding Editbutton}" Text="{extensions:Translate EditUserInformation}" Command="{Binding GoToEditAccountInformationCommand}"></Button>
+        <StackLayout VerticalOptions="Start" Orientation="Vertical">
+            <Button Text="{extensions:Translate Save}" Command="{Binding SaveCommand}"></Button>
+            <Button Text="{extensions:Translate Cancel}" Command="{Binding CancelCommand}"></Button>
         </StackLayout>
     </StackLayout>
 </ContentPage>

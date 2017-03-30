@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
-             x:Class="DementiaHelper.View.ContactList"
+             x:Class="DementiaHelper.Pages.ContactListPage"
              >
-
-  <ListView></ListView>
+    <ListView></ListView>
 </ContentPage>

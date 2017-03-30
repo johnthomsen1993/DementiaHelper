@@ -5,9 +5,9 @@ using System.Windows.Input;
 using DementiaHelper.Extensions;
 using Xamarin.Forms;
 
-namespace DementiaHelper.ViewModel
+namespace DementiaHelper.PageModels
 {
-    public class ClockViewModel : BaseViewModel
+    public class ClockViewModel : FreshMvvm.FreshBasePageModel
     {
         DateTime dateTime;
 

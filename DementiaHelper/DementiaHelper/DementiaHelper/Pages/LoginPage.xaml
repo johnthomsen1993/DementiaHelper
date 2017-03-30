@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
+             x:Class="DementiaHelper.Pages.LoginPage"
+             BackgroundColor="#00AAC8"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <OnIdiom x:TypeArguments="View">
+            <OnIdiom.Phone>
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout  Orientation="Vertical" VerticalOptions="Start">
+                        <!-- top controls -->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                        <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
+                        <Button Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
+                        <StackLayout Orientation="Horizontal" Spacing="3">
+                            <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Account Information">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Shopping List">
+                              <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToShoppingListCommand}"></TapGestureRecognizer>
+                              </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                        <customRenders:FacebookButtonCustomRenderer TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
+                        <customRenders:GoogleButtonCustomRender TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
+                    </StackLayout>
+                </StackLayout>
+            </OnIdiom.Phone>
+            <OnIdiom.Tablet>
+                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1">
+                        <StackLayout  Orientation="Vertical" VerticalOptions="Start">
+                            <!-- top controls -->
+                        </StackLayout>
+                        <StackLayout VerticalOptions="CenterAndExpand">
+                            <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                            <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
+                            <Button Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
+                            <StackLayout Orientation="Horizontal" Spacing="3">
+                                <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Account Information">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                              <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Shopping List">
+                                <Label.GestureRecognizers>
+                                  <TapGestureRecognizer Command="{Binding GoToShoppingListCommand}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                              </Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                            <customRenders:FacebookButtonCustomRenderer TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
+                            <customRenders:GoogleButtonCustomRender TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </OnIdiom.Tablet>
+        </OnIdiom>
+    </ContentPage.Content>
+</ContentPage>
+

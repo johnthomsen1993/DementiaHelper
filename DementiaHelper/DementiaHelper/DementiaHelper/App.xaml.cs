@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DementiaHelper.Model;
 using Xamarin.Forms;
-using DementiaHelper.ViewModel;
 using DementiaHelper.View;
+using DementiaHelper.PageModels;
 
 namespace DementiaHelper
 {
@@ -22,23 +22,24 @@ namespace DementiaHelper
         public static string Password { get { return "passwords"; } }
         public App()
         {
-            RegisterPages();
+
+            var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
+            var navContainer = new FreshMvvm.FreshNavigationContainer(Login);
+            MainPage = navContainer;
             if (DependencyService.Get<ICredentialsService>().Authenticate()){
-                NavigationService.SetRoot(new ClockViewModel());
+
             } else {
-                NavigationService.SetRoot(new LoginPageViewModel());
             }
         }
 
-        void RegisterPages()
-        {
-            SimpleIoC.RegisterPage<LoginPageViewModel, LoginPage>();
-            SimpleIoC.RegisterPage<ClockViewModel, MainPage>();
-            SimpleIoC.RegisterPage<CreateAccountViewModel, CreateAccount>();
-            SimpleIoC.RegisterPage<AccountInformationViewModel, AccountInformation>();
-            SimpleIoC.RegisterPage<EditAccountInformationViewModel, EditAccountInformation>();
-            SimpleIoC.RegisterPage<ShoppingListViewModel, View.ShoppingList>();
-        }
+        //void RegisterPages()
+        //{
+           
+        //    SimpleIoC.RegisterPage<ClockViewModel, MainPage>();
+           
+        //    SimpleIoC.RegisterPage<AccountInformationViewModel, AccountInformation>();
+        //    SimpleIoC.RegisterPage<EditAccountInformationViewModel, EditAccountInformation>();
+        //}
 
         protected override void OnStart()
         {

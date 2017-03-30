@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace DementiaHelper.View
+namespace DementiaHelper.Pages
 {
-    public partial class CreateAccount : ContentPage
+    public partial class CreateAccountPage : ContentPage
     {
-        public CreateAccount()
+        public CreateAccountPage()
         {
             InitializeComponent();
         }

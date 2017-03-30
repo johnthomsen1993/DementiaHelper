@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DementiaHelper.WebApi.model
 {
@@ -12,6 +14,13 @@ namespace DementiaHelper.WebApi.model
         public string Email { get; set; }
         public string Salt { get; set; }
         public string Hash { get; set; }
-        public int BorgerId { get; set; }
+        public string FirstName { get; set; }
+        public string Lastname { get; set; }
+        public string Description { get; set; }
+
+
+        [ForeignKey("Role")]
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
     }
 }

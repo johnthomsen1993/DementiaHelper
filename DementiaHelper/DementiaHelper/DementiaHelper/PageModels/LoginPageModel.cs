@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using DementiaHelper.Extensions;
 using System.Windows.Input;
 using DementiaHelper.Services;
+using DementiaHelper.PageModels;
 using Xamarin.Forms;
 
-namespace DementiaHelper.ViewModel
+namespace DementiaHelper.PageModels
 {
    
-   public class LoginPageViewModel : BaseViewModel
+   public class LoginPageModel : FreshMvvm.FreshBasePageModel
     {
       public string UserName { get; set; }
       public string Password { get; set; }
@@ -21,13 +22,18 @@ namespace DementiaHelper.ViewModel
       public ICommand GoToAccountInformationCommand { get; protected set; }
       public ICommand GoToShoppingListCommand { get; protected set; }
 
-        public LoginPageViewModel()
-      {
-          this.LoginCommand = new Command(async () => await LoginAsync());
-          this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
-          this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
-          this.GoToShoppingListCommand = new Command(async () => await GoToShoppingList());
+        public LoginPageModel()
+        {
+        
 
+        }
+        public override void Init(object initData)
+        {
+            base.Init(initData);
+            this.LoginCommand = new Command(async () => await LoginAsync());
+            this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
+            this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
+            this.GoToShoppingListCommand = new Command(async () => await GoToShoppingList());
         }
 
         async Task LoginAsync()
@@ -47,15 +53,15 @@ namespace DementiaHelper.ViewModel
         }
         async Task GoToCreateAccount()
         {
-            await NavigationService.PushModalAsync(new CreateAccountViewModel());
+            await CoreMethods.PushPageModel<CreateAccountPageModel>();
         }
         async Task GoToAccountInformation()
         {
-            await NavigationService.PushModalAsync(new AccountInformationViewModel());
+            await CoreMethods.PushPageModel<AccountInformationPageModel>();
         }
         async Task GoToShoppingList()
         {
-            await NavigationService.PushModalAsync(new ShoppingListViewModel());
+            await CoreMethods.PushPageModel <ShoppingListPageModel>();
         }
     }
 }

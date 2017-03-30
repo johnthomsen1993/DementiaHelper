@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DementiaHelper.PageModels;
 using Xamarin.Forms;
 
-namespace DementiaHelper.View
+namespace DementiaHelper.Pages
 {
-    public partial class ContactList : ContentPage
+    public partial class ShoppingListPage : ContentPage
     {
-        public ContactList()
+        public ShoppingListPage()
         {
             InitializeComponent();
         }

@@ -18,17 +18,42 @@ namespace DementiaHelper.WebApi.Data
             this._context = context;
         }
 
-        public bool UpdateAccount(string firstName, string lastName, string email, string description, byte[] picture)
+        public void CreateAccountInformation(string firstName, string lastName, string email, string description)
         {
             try
             {
-                AccountInformation target = _context.AccountInformations.Find(email);
+                _context.AccountInformations.Add(new AccountInformation()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    Description = description
+                });
+                _context.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception were thrown when creating AccountInformation in database");
+                throw;
+            }
+        }
+
+        public bool UpdateAccount(string firstName, string lastName, string email, string description)
+        {
+            try
+            {
+                //AccountInformation target = _context.AccountInformations.Find(email);
+                var query = from p in _context.AccountInformations
+                            where p.Email == email
+                            select p;
+                
+                var target = query.SingleOrDefault();
 
                 target.FirstName = firstName;
                 target.LastName = lastName;
                 target.Email = email;
                 target.Description = description;
-                target.Picture.Image = picture;
 
                 _context.AccountInformations.Update(target);
                 _context.SaveChanges();
@@ -42,12 +67,26 @@ namespace DementiaHelper.WebApi.Data
           
         }
 
-        public AccountInformation GetAccount(string email)
+        public Dictionary<string, string> GetAccount(string email)
         {
             try
             {
-                AccountInformation target = _context.AccountInformations.Find(email);
-                return target;
+                //AccountInformation target = _context.AccountInformations.Find(email);
+                var query = from p in _context.AccountInformations
+                            where p.Email == email
+                            select p;
+
+                var target = query.SingleOrDefault();
+
+                var values = new Dictionary<string, string>
+            {
+                {"FirstName", target.FirstName},
+                {"LaseName", target.LastName},
+                {"Email", target.Email},
+                {"Description", target.Description}
+            };
+                
+                return values;
             }
             catch (Exception)
             {
@@ -73,6 +112,17 @@ namespace DementiaHelper.WebApi.Data
             return _context.ApplicationUsers.FirstOrDefault(b => b.Email == email);
         }
 
+        public bool CheckIfUserExists(string email)
+        {
+            if (_context.AccountInformations.Any(information => information.Email.Equals(email)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public ShoppingList GetShoppingList(string citizenId)
         {
             throw new NotImplementedException();

@@ -38,35 +38,31 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\BaseViewModel.cs" />
-    <Compile Include="Extensions\BaseNotify.cs" />
     <Compile Include="Model\ShoppingList.cs" />
     <Compile Include="Model\UserInformation.cs" />
+    <Compile Include="PageModels\EditAccountInformationPageModel.cs" />
     <Compile Include="Renders\CustomControlRenders\FacebookButtonCustomRender.cs" />
     <Compile Include="Renders\CustomControlRenders\GoogleButtonCustomRender.cs" />
     <Compile Include="Services\ICredentialsService.cs" />
     <Compile Include="Services\JWTService.cs" />
-    <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="Services\SimpleIoC.cs" />
-    <Compile Include="ViewModel\AccountInformationViewModel.cs" />
-    <Compile Include="ViewModel\ContactListViewModel.cs" />
-    <Compile Include="ViewModel\CreateAccountViewModel.cs" />
-    <Compile Include="ViewModel\EditAccountInformationViewModel.cs" />
-    <Compile Include="ViewModel\LoginPageViewModel.cs" />
-    <Compile Include="ViewModel\ShoppingListViewModel.cs" />
-    <Compile Include="View\AccountInformation.xaml.cs">
-      <DependentUpon>AccountInformation.xaml</DependentUpon>
+    <Compile Include="PageModels\AccountInformationPageModel.cs" />
+    <Compile Include="PageModels\ContactListPageModel.cs" />
+    <Compile Include="PageModels\CreateAccountPageModel.cs" />
+    <Compile Include="PageModels\LoginPageModel.cs" />
+    <Compile Include="PageModels\ShoppingListPageModel.cs" />
+    <Compile Include="Pages\AccountInformationPage.xaml.cs">
+      <DependentUpon>AccountInformationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CreateAccount.xaml.cs">
-      <DependentUpon>CreateAccount.xaml</DependentUpon>
+    <Compile Include="Pages\CreateAccountPage.xaml.cs">
+      <DependentUpon>CreateAccountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EditAccountInformation.xaml.cs">
-      <DependentUpon>EditAccountInformation.xaml</DependentUpon>
+    <Compile Include="Pages\EditAccountInformationPage.xaml.cs">
+      <DependentUpon>EditAccountInformationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LoginPage.xaml.cs">
+    <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainPage.xaml.cs">
+    <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,17 +77,17 @@
       <DependentUpon>AppResources.da.resx</DependentUpon>
     </Compile>
     <Compile Include="Resx\ILocalize.cs" />
-    <Compile Include="ViewModel\ClockViewModel.cs" />
-    <Compile Include="View\ContactList.xaml.cs">
-      <DependentUpon>ContactList.xaml</DependentUpon>
+    <Compile Include="PageModels\ClockViewModel.cs" />
+    <Compile Include="Pages\ContactListPage.xaml.cs">
+      <DependentUpon>ContactListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\TranslateExtension.cs" />
-    <Compile Include="View\ShoppingList.xaml.cs">
-      <DependentUpon>ShoppingList.xaml</DependentUpon>
+    <Compile Include="Pages\ShoppingListPage.xaml.cs">
+      <DependentUpon>ShoppingListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\MainPage.xaml">
+    <EmbeddedResource Include="Pages\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -108,6 +104,12 @@
     <Reference Include="JWT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Portable.JWT.1.0.5\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\JWT.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="FreshIOC, Version=1.0.6071.17008, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreshMvvm.2.2.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\FreshIOC.dll</HintPath>
+    </Reference>
+    <Reference Include="FreshMvvm, Version=1.0.6071.17008, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreshMvvm.2.2.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\FreshMvvm.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
@@ -153,37 +155,37 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ContactList.xaml">
+    <EmbeddedResource Include="Pages\ContactListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\LoginPage.xaml">
+    <EmbeddedResource Include="Pages\LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\CreateAccount.xaml">
+    <EmbeddedResource Include="Pages\CreateAccountPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\AccountInformation.xaml">
+    <EmbeddedResource Include="Pages\AccountInformationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\EditAccountInformation.xaml">
+    <EmbeddedResource Include="Pages\EditAccountInformationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\ShoppingList.xaml">
+    <EmbeddedResource Include="Pages\ShoppingListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -134,6 +134,10 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Edit Profile</value>
+    <comment>Label for edit profile view</comment>
+  </data>
   <data name="EditUserInformation" xml:space="preserve">
     <value>Edit Information</value>
   </data>
@@ -162,6 +166,10 @@
   </data>
   <data name="Picture" xml:space="preserve">
     <value>Picture</value>
+  </data>
+  <data name="ProfileSettings" xml:space="preserve">
+    <value>Profile Settings</value>
+    <comment>Title for edit profile view</comment>
   </data>
   <data name="ProductName" xml:space="preserve">
     <value>Product</value>

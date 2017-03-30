@@ -12,16 +12,16 @@ using DementiaHelper.Services;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 
-namespace DementiaHelper.ViewModel
+namespace DementiaHelper.PageModels
 {
-    class EditAccountInformationViewModel : BaseViewModel
+    class EditAccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
         HttpClient h = new HttpClient();
         public UserInformation User { get; set; }
         public ICommand SaveCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
 
-        public EditAccountInformationViewModel(UserInformation user)
+        public EditAccountInformationPageModel(UserInformation user)
         {
             User = user;
             this.SaveCommand = new Command(async () => await Save());
@@ -31,25 +31,26 @@ namespace DementiaHelper.ViewModel
         {
             var values = new Dictionary<string, string>
             {
-                {"Id", User.Id},
                 {"FirstName", User.FirstName},
                 {"LaseName", User.LastName},
                 {"Email", User.Email},
                 {"Description", User.Description}
             };
             var content = new FormUrlEncodedContent(values);
-            //var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/save"), content).Result;
-            var result = h.PostAsync(new Uri("http://localhost:29342//api/values/save"), content).Result;
+            var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/save"), content).Result;
+            //var result = h.PostAsync(new Uri("http://localhost:29342//api/values/save"), content).Result;
+
+
         
             var response = result.Content.ReadAsStringAsync();
 
             await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
 
-            await NavigationService.PopModalAsync();
+            await CoreMethods.PopPageModel();
         }
         async Task Cancel()
         {
-            await NavigationService.PopModalAsync();
+            await CoreMethods.PopPageModel();
         }
 
         

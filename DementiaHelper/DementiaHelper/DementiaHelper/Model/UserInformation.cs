@@ -31,4 +31,10 @@ namespace DementiaHelper.Model
         [JsonProperty("gender")]
         public string Gender { get; set; }
     }
+
+    public class AddToShoppingList
+    {
+        public string Product { get; set; }
+        public int Amount { get; set; }
+    }
 }
