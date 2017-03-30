@@ -75,7 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="View\AppResources.da.Designer.cs">
+    <Compile Include="Resx\AppResources.da.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.da.resx</DependentUpon>
@@ -144,7 +144,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\AppResources.da.resx">
+    <EmbeddedResource Include="Resx\AppResources.da.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.da.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
