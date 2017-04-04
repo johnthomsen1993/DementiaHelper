@@ -16,6 +16,16 @@
             <Label Text="{extensions:Translate ProfileSettings}" HorizontalOptions="Center" FontSize="16"></Label>
            </StackLayout>
         <Grid ColumnSpacing="5">
+            <!--<Grid.Padding>
+                <OnIdiom x:TypeArguments="Thickness"
+                        Phone="10, 10, 10, 0"
+                        Tablet="20, 20, 20, 0"/>
+            </Grid.Padding>
+            <Grid.ColumnSpacing>
+                <OnIdiom x:TypeArguments="x:Double"
+                        Phone="5"
+                        Tablet="10"/>
+            </Grid.ColumnSpacing>-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -34,12 +44,13 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
 
 
             <Label Text="{extensions:Translate PersonalDetails}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"></Label>

@@ -41,6 +41,11 @@ namespace DementiaHelper.PageModels
             EditButton = User.Id == "test@email.com";
             GoToEditAccountInformationCommand = new Command(async () => await GoToEditAccountInformation());
             BackCommand = new Command(async () => await Back());
+
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                
+            }
             
 
         }

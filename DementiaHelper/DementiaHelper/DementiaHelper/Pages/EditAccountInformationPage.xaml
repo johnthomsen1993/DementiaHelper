@@ -6,6 +6,7 @@
              BackgroundColor="White">
 
     <ScrollView>
+        
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
             <StackLayout VerticalOptions="Start">
                 <Label Text="{extensions:Translate EditProfile}" HorizontalOptions="Center" FontSize="16"></Label>
@@ -28,7 +29,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -78,5 +79,8 @@
                 <Button Text="{extensions:Translate Cancel}" Command="{Binding CancelCommand}"></Button>
             </StackLayout>
         </StackLayout>
+
+        
+
     </ScrollView>
 </ContentPage>
