@@ -2,9 +2,12 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DementiaHelper.App">
-  <Application.Resources>
-
-    <!-- Application resource dictionary -->
-
-  </Application.Resources>
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#0099cc"/>
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

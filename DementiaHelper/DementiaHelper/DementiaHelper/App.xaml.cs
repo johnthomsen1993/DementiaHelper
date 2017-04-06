@@ -8,6 +8,8 @@ using DementiaHelper.Model;
 using Xamarin.Forms;
 using DementiaHelper.View;
 using DementiaHelper.PageModels;
+using DementiaHelper.Pages;
+using DementiaHelper.Resx;
 
 namespace DementiaHelper
 {
@@ -17,29 +19,38 @@ namespace DementiaHelper
     }
     public partial class App : Application
     {
+        //Setup names for you navigation stacks
+        public class NavigationStacks
+        {
+            public static string LoginNavigationStack = "LoginNavigationStack";
+            public static string MainAppStack = "MainAppStack";
+        }
         public static string AppName { get { return "Dementia Helper"; } }
         public static string UserName { get { return "John"; } }
-        public static string Password { get { return "passwords"; } }
+        public static string Password { get { return "password"; } }
         public App()
         {
-
+            InitializeComponent();
+            var masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+            masterDetailNav.Init("menu");
+            masterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
+            masterDetailNav.AddPage<ChatPageModel>("Chat", null);
+            masterDetailNav.AddPage<ChooseCitizenPageModel>("Choose Citizen", null);
+           masterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
+            
             var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
-            var navContainer = new FreshMvvm.FreshNavigationContainer(Login);
-            MainPage = navContainer;
+            var navContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
+           
+            DependencyService.Get<ICredentialsService>().SaveCredentials(UserName, Password+"s");
             if (DependencyService.Get<ICredentialsService>().Authenticate()){
-
-            } else {
+                      MainPage = masterDetailNav;
+            }
+            else {
+                MainPage = navContainer;
             }
         }
 
-        //void RegisterPages()
-        //{
-           
-        //    SimpleIoC.RegisterPage<ClockViewModel, MainPage>();
-           
-        //    SimpleIoC.RegisterPage<AccountInformationViewModel, AccountInformation>();
-        //    SimpleIoC.RegisterPage<EditAccountInformationViewModel, EditAccountInformation>();
-        //}
+
 
         protected override void OnStart()
         {

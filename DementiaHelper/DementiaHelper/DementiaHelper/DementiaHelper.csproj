@@ -39,8 +39,24 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ShoppingList.cs" />
+    <Compile Include="Behaviors\BehaviorBase.cs" />
+    <Compile Include="Behaviors\EventToCommandBehavior.cs" />
+    <Compile Include="Converters\ItemTappedEventArgsConverter.cs" />
+    <Compile Include="Model\Citizen.cs" />
     <Compile Include="Model\UserInformation.cs" />
+    <Compile Include="PageModels\ChatPageModel.cs" />
+    <Compile Include="PageModels\ChooseCitizenPageModel.cs" />
+    <Compile Include="PageModels\ConnectToCitizenViewModel.cs" />
     <Compile Include="PageModels\EditAccountInformationPageModel.cs" />
+    <Compile Include="Pages\ChatPage.xaml.cs">
+      <DependentUpon>ChatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChooseCitizenPage.xaml.cs">
+      <DependentUpon>ChooseCitizenPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConnectToCitizenPage.xaml.cs">
+      <DependentUpon>ConnectToCitizenPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Renders\CustomControlRenders\FacebookButtonCustomRender.cs" />
     <Compile Include="Renders\CustomControlRenders\GoogleButtonCustomRender.cs" />
     <Compile Include="Services\ICredentialsService.cs" />
@@ -85,6 +101,7 @@
     <Compile Include="Pages\ShoppingListPage.xaml.cs">
       <DependentUpon>ShoppingListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\INativeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\MainPage.xaml">
@@ -154,6 +171,7 @@
     <EmbeddedResource Include="Resx\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ContactListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -180,6 +198,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\EditAccountInformationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ChatPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ConnectToCitizenPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ChooseCitizenPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

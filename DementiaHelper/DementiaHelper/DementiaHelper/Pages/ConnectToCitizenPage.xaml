@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             x:Class="DementiaHelper.Pages.ConnectToCitizenPage"
+              BackgroundColor="White"
+             NavigationPage.HasNavigationBar="True">
+
+
+    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <StackLayout  Orientation="Vertical" VerticalOptions="Start">
+
+        </StackLayout>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Font="Bold" Text="Indtast dement id, se Idet i den dementes account information"></Label>
+            <Entry Placeholder="{i18n:Translate CitizenId}" ></Entry>
+            <Button  Style="{StaticResource buttonStyle}" Text="Connect"></Button>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

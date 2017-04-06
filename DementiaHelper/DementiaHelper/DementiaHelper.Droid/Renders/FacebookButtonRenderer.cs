@@ -45,7 +45,7 @@ namespace DementiaHelper.Droid.Renders
                 
                 // Create a drawable for the button's pressed state
                 _pressed = new Android.Graphics.Drawables.GradientDrawable();
-                var highlight = Context.ObtainStyledAttributes(new int[] { Android.Resource.Attribute.ColorActivatedHighlight }).GetColor(0, Android.Graphics.Color.Gray);
+                var highlight = Context.ObtainStyledAttributes(new int[] { Android.Resource.Attribute.ColorActivatedHighlight }).GetColor(0, Android.Graphics.Color.Green);
                 _pressed.SetColor(highlight);
                 _pressed.SetStroke((int)button.BorderWidth, button.BorderColor.ToAndroid());
                 _pressed.SetCornerRadius(button.BorderRadius);
