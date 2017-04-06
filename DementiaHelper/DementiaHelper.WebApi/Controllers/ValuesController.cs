@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DementiaHelper.WebApi.Data;
 using DementiaHelper.WebApi.model;
+using DementiaHelper.WebApi.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -73,6 +74,20 @@ namespace DementiaHelper.WebApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [Route("api/[controller]/ShoppingList/{token}")]
+        [HttpGet]
+        public string GetShoppingList(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var shoppingList = _iRepository.GetShoppingList(decoded["citizenId"]?.ToString());
+            var payload = new Dictionary<string, object>()
+            {
+                {"ShoppingList", shoppingList}
+            };
+            var encoded = JWTService.Encode(payload);
+            return encoded;
         }
     }
 }

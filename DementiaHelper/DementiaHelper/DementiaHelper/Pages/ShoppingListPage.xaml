@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             x:Class="DementiaHelper.Pages.ShoppingListPage"
+             BackgroundColor="White">
+
+  <StackLayout>
+    <ListView ItemsSource="{Binding ShoppingList.ShoppingListDetails}">
+      <ListView.Header>
+        <Grid ColumnSpacing="4">
+           <Grid.ColumnDefinitions>
+             <ColumnDefinition Width="*"></ColumnDefinition>
+             <ColumnDefinition Width="*"></ColumnDefinition>
+             <ColumnDefinition Width="*"></ColumnDefinition>
+             <ColumnDefinition Width="*"></ColumnDefinition>
+           </Grid.ColumnDefinitions>
+          <Label Text="{extensions:Translate Quantity}" Grid.Row="0" Grid.Column="0"></Label>
+          <Label Text="{extensions:Translate ProductName}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"></Label>
+        </Grid>
+      </ListView.Header>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Grid ColumnSpacing="4">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+              </Grid.ColumnDefinitions>
+              <Label Text="{Binding Quantity}" Grid.Column="0"></Label>
+              <Label Text="{Binding Product.ProductName}" Grid.Column="1" Grid.ColumnSpan="3"></Label>
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+      
+    </ListView>
+  </StackLayout>
+</ContentPage>

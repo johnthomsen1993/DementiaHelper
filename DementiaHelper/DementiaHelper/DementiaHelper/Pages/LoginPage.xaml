@@ -17,7 +17,7 @@
                         <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
                         <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
                         <Button Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
-                        <StackLayout Orientation="Horizontal" Spacing="2">
+                        <StackLayout Orientation="Horizontal" Spacing="3">
                             <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
@@ -27,6 +27,11 @@
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
                                 </Label.GestureRecognizers>
+                            </Label>
+                            <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Shopping List">
+                              <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToShoppingListCommand}"></TapGestureRecognizer>
+                              </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
                     </StackLayout>
@@ -50,7 +55,7 @@
                             <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
                             <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
                             <Button Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
-                            <StackLayout Orientation="Horizontal" Spacing="2">
+                            <StackLayout Orientation="Horizontal" Spacing="3">
                                 <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
@@ -61,6 +66,11 @@
                                         <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
                                     </Label.GestureRecognizers>
                                 </Label>
+                              <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Shopping List">
+                                <Label.GestureRecognizers>
+                                  <TapGestureRecognizer Command="{Binding GoToShoppingListCommand}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                              </Label>
                             </StackLayout>
                         </StackLayout>
                         <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">

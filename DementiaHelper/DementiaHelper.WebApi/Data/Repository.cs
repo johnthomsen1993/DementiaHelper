@@ -123,5 +123,9 @@ namespace DementiaHelper.WebApi.Data
                 return false;
             }
         }
+        public ShoppingList GetShoppingList(string citizenId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

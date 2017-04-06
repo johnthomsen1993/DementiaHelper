@@ -14,5 +14,6 @@ namespace DementiaHelper.WebApi.Data
         string CreateAccount(ApplicationUser user);
         ApplicationUser FetchApplicationUser(string email);
         bool CheckIfUserExists(string email);
+        ShoppingList GetShoppingList(string citizenId);
     }
 }
