@@ -296,14 +296,32 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Relatives.
+        ///   Looks up a localized string similar to Product.
         /// </summary>
-        public static string RelativesRole {
+        public static string ProductName {
             get {
-                return ResourceManager.GetString("RelativesRole", resourceCulture);
+                return ResourceManager.GetString("ProductName", resourceCulture);
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        public static string Quantity {
+            get {
+                return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        ///   Looks up a localized string similar to Relatives.
+        /// </summary>
+        public static string RelativesRole
+        {
+            get
+            {
+                return ResourceManager.GetString("RelativesRole", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>

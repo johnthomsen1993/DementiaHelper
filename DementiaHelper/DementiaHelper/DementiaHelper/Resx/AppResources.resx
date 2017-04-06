@@ -201,8 +201,11 @@
     <value>Profile Settings</value>
     <comment>Title for edit profile view</comment>
   </data>
-  <data name="RelativesRole" xml:space="preserve">
-    <value>Relatives</value>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -220,5 +223,8 @@
   </data>
   <data name="YesText" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="RelativesRole" xml:space="preserve">
+    <value>Relatives</value>
   </data>
 </root>

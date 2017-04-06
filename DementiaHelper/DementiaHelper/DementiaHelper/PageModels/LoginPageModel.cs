@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DementiaHelper.Extensions;
 using System.Windows.Input;
 using DementiaHelper.Services;
+using DementiaHelper.PageModels;
 using Xamarin.Forms;
 using DementiaHelper.Pages;
 
@@ -20,6 +21,7 @@ namespace DementiaHelper.PageModels
       public ICommand LoginCommand { get; protected set; }
       public ICommand GoToCreateAccountCommand { get; protected set; }
       public ICommand GoToAccountInformationCommand { get; protected set; }
+      public ICommand GoToShoppingListCommand { get; protected set; }
 
         public LoginPageModel()
         {
@@ -32,6 +34,7 @@ namespace DementiaHelper.PageModels
             this.LoginCommand = new Command( () =>  LoginAsync());
             this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
             this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
+            this.GoToShoppingListCommand = new Command(async () => await GoToShoppingList());
         }
 
          void LoginAsync()
@@ -59,6 +62,10 @@ namespace DementiaHelper.PageModels
         {
             
             await CoreMethods.PushPageModel<AccountInformationPageModel>();
+        }
+        async Task GoToShoppingList()
+        {
+            await CoreMethods.PushPageModel <ShoppingListPageModel>();
         }
     }
 }
