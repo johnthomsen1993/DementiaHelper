@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DementiaHelper.Pages.ChooseCitizenPage"
+             xmlns:c="clr-namespace:DementiaHelper.Converters;assembly=DementiaHelper"
+             xmlns:b="clr-namespace:DementiaHelper.Behaviors;assembly=DementiaHelper"
+             xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+              BackgroundColor="#ffffff">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <c:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+
+        <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
+            <SearchBar Placeholder="søg" Text="{Binding SearchText}" HeightRequest="50">
+            </SearchBar>
+            <ListView ItemsSource="{Binding CitizenCollection}">
+                <ListView.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Name of citizen" Grid.Row="0" Grid.Column="0"></Label>
+                    </Grid>
+                </ListView.Header>
+                <ListView.Behaviors>
+                    <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding CitizenTappedCommand}" Converter="{StaticResource ItemTappedConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}" Grid.Column="0"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+
+    </ContentPage.Content>
+    
+</ContentPage>

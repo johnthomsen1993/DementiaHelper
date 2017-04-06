@@ -4,35 +4,41 @@
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.LoginPage"
-             BackgroundColor="#00AAC8"
+             BackgroundColor="#ffffff"
              NavigationPage.HasNavigationBar="false">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ForgotPasswordButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="#0099cc" />
+                <Setter Property="BorderColor" Value="#0099cc" />
+                <Setter Property="BorderRadius" Value="5" />
+                <Setter Property="BorderWidth" Value="5" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <OnIdiom x:TypeArguments="View">
             <OnIdiom.Phone>
-                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <StackLayout  Orientation="Vertical" VerticalOptions="Start">
-                        <!-- top controls -->
-                    </StackLayout>
-                    <StackLayout VerticalOptions="CenterAndExpand">
-                        <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
-                        <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
-                        <Button Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
-                        <StackLayout Orientation="Horizontal" Spacing="2">
-                            <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Account Information">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
-                                </Label.GestureRecognizers>
-                            </Label>
+                <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout x:Name="outerStack" VerticalOptions="Start" >
+                        <StackLayout Orientation="Vertical" VerticalOptions="Start" >
+                            <Image   x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
+                        </StackLayout>
+                        <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand">
+                            <Entry  Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                            <Entry  Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
                         </StackLayout>
                     </StackLayout>
+                    <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
+                        <customRenders:FacebookButtonCustomRenderer  Style="{StaticResource buttonStyle}" HeightRequest="40"  Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
+                        <customRenders:FacebookButtonCustomRenderer  Style="{StaticResource ForgotPasswordButtonStyle}" HeightRequest="40"  Text="{i18n:Translate ForgotPassword}" />
+                    </StackLayout>
+
                     <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
-                        <customRenders:FacebookButtonCustomRenderer TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
-                        <customRenders:GoogleButtonCustomRender TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
+                        <customRenders:FacebookButtonCustomRenderer  HeightRequest="40"  Style="{StaticResource buttonStyle}" Command="{Binding GoToCreateAccountCommand}" Text="{i18n:Translate CreateNewAccount}" />
+                        <customRenders:FacebookButtonCustomRenderer HeightRequest="40"  TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
+                        <customRenders:GoogleButtonCustomRender HeightRequest="40"  TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
                     </StackLayout>
                 </StackLayout>
             </OnIdiom.Phone>
@@ -49,7 +55,7 @@
                         <StackLayout VerticalOptions="CenterAndExpand">
                             <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
                             <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
-                            <Button Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
+                            <Button HorizontalOptions="CenterAndExpand" Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
                             <StackLayout Orientation="Horizontal" Spacing="2">
                                 <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account">
                                     <Label.GestureRecognizers>
@@ -64,8 +70,8 @@
                             </StackLayout>
                         </StackLayout>
                         <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
-                            <customRenders:FacebookButtonCustomRenderer TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
-                            <customRenders:GoogleButtonCustomRender TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
+                            <customRenders:FacebookButtonCustomRenderer HorizontalOptions="CenterAndExpand" TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
+                            <customRenders:GoogleButtonCustomRender HorizontalOptions="CenterAndExpand" TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
                         </StackLayout>
                     </StackLayout>
                 </Grid>

@@ -121,15 +121,39 @@
     <value>Tilføj varer</value>
     <comment>text for button</comment>
   </data>
+  <data name="AreYouSureThatYouWantToCloseThisApplication" xml:space="preserve">
+    <value>Er du sikker på at du vil lukke applikationen?</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Tilbage</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuller</value>
   </data>
-  <data name="ContactList" xml:space="preserve">
+  <data name="CaregiverRole" xml:space="preserve">
+    <value>Plejepersonale</value>
+  </data>
+  <data name="CitizenId" xml:space="preserve">
+    <value>Borger Id</value>
+  </data>
+  <data name="ConnectToCitizenLabelText" xml:space="preserve">
+    <value>Indtast dement id, se Idet i den dementes account information</value>
+  </data>
+  <data name="ConnectToCitizenPlaceholderText" xml:space="preserve">
+    <value>Dementens Id</value>
+  </data>
+  <data name="ConnectToCitizenTitle" xml:space="preserve">
+    <value>Opret forbindelse til borger</value>
+  </data>
+  <data name="ContactListTitle" xml:space="preserve">
     <value>Kontakter</value>
     <comment>label for View</comment>
+  </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>Opret ny konto</value>
+  </data>
+  <data name="DementiaRole" xml:space="preserve">
+    <value>Under pleje</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Beskrivelse</value>
@@ -147,6 +171,9 @@
   <data name="FirstName" xml:space="preserve">
     <value>Fornavn</value>
   </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Glemt din adgangskode?</value>
+  </data>
   <data name="LastName" xml:space="preserve">
     <value>Efternavn</value>
   </data>
@@ -160,8 +187,11 @@
   <data name="LoginWithGoogle" xml:space="preserve">
     <value>Log ind med google</value>
   </data>
+  <data name="NoText" xml:space="preserve">
+    <value>Nej</value>
+  </data>
   <data name="Password" xml:space="preserve">
-    <value>Kodeord</value>
+    <value>Adgangskode</value>
   </data>
   <data name="Picture" xml:space="preserve">
     <value>Billed</value>
@@ -169,6 +199,9 @@
   <data name="ProfileSettings" xml:space="preserve">
     <value>Brugeroplysninger</value>
     <comment>Title for edit profile view</comment>
+  </data>
+  <data name="RelativesRole" xml:space="preserve">
+    <value>Pårørende</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Gem</value>
@@ -179,5 +212,11 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Brugernavn</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Advarsel</value>
+  </data>
+  <data name="YesText" xml:space="preserve">
+    <value>Ja</value>
   </data>
 </root>

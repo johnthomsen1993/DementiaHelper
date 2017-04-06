@@ -1,6 +1,6 @@
 ﻿namespace DementiaHelper.PageModels
 {
-    public class ContactListViewModel : FreshMvvm.FreshBasePageModel
+    public class ContactListPageModel : FreshMvvm.FreshBasePageModel
     {
          
     }
