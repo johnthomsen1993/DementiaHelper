@@ -132,11 +132,12 @@ namespace DementiaHelper.WebApi.Data
         {
             var queryable = _context.ShoppingListDetails.AsQueryable();
 
-            Expression<Func<ShoppingListDetail, Product>> include = detail => detail.ProductForeignKey;
+            Expression<Func<ShoppingListDetail, Product>> include_product = detail => detail.ProductForeignKey;
+            Expression<Func<ShoppingListDetail, ShoppingList>> include_shoppinglist = detail => detail.ShoppingListForeignKey;
 
             return
                 queryable.Where(
-                    x => x.ShoppingListForeignKey.RelativeConnectionForeignKey.CitizenForeignKey.CitizenId == citizenId).Include(include)
+                    x => x.ShoppingListForeignKey.RelativeConnectionForeignKey.CitizenForeignKey.CitizenId == citizenId).Include(include_product).Include(include_shoppinglist)
                     .ToList();
         }
 
