@@ -10,6 +10,7 @@ namespace DementiaHelper.Model
 {
     public class ShoppingList
     {
+        public int? ShoppingListId { get; set; }
         public ObservableCollection<ShoppingListDetail> ShoppingListDetails { get; set; }
     }
     

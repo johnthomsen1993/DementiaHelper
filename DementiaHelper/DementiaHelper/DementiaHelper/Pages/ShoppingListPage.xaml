@@ -6,7 +6,6 @@
              BackgroundColor="White">
 
   <StackLayout>
-    <Button Command="{Binding UpdateCommand}" Text="{extensions:Translate Login}" />
     <ListView ItemsSource="{Binding ShoppingList.ShoppingListDetails}">
       <ListView.Header>
         <Grid ColumnSpacing="4">
