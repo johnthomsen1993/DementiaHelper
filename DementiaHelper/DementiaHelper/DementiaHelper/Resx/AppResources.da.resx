@@ -135,7 +135,7 @@
   </data>
   <data name="ContactList" xml:space="preserve">
     <value>Kontaktliste</value>
-</data>
+  </data>
   <data name="CaregiverRole" xml:space="preserve">
     <value>Plejepersonale</value>
   </data>
@@ -152,7 +152,6 @@
     <value>Opret forbindelse til borger</value>
   </data>
   <data name="ContactListTitle" xml:space="preserve">
->>>>>>> 771510afef78525b6bd3d12efed1fc2646a8c8b1
     <value>Kontakter</value>
     <comment>label for View</comment>
   </data>
@@ -237,5 +236,8 @@
   </data>
   <data name="RelativesRole" xml:space="preserve">
     <value>Pårørende</value>
+  </data>
+  <data name="ItemToAdd" xml:space="preserve">
+    <value>Vare</value>
   </data>
 </root>

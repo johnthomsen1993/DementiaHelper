@@ -67,7 +67,7 @@ namespace DementiaHelper.WebApi.Data
           
         }
 
-        public Dictionary<string, string> GetAccount(string email)
+        public Dictionary<string, object> GetAccount(string email)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace DementiaHelper.WebApi.Data
 
                 var target = query.SingleOrDefault();
 
-                var values = new Dictionary<string, string>
+                var values = new Dictionary<string, object>
             {
                 {"FirstName", target.FirstName},
                 {"LaseName", target.LastName},
@@ -126,6 +126,39 @@ namespace DementiaHelper.WebApi.Data
         public ShoppingList GetShoppingList(string citizenId)
         {
             throw new NotImplementedException();
+        }
+
+        public bool SaveItemInShoppingList(int shoppinglistId, string item, int quantity)
+        {
+            
+            try
+            {
+                var query = from p in _context.Products
+                            where p.ProductName == item.Trim()
+                            select p;
+
+                Product product = query.SingleOrDefault();
+
+                if (product == null)
+                {
+                    product = _context.Products.Add(new Product() {ProductName = item}).Entity;
+                    _context.SaveChanges();
+                }
+
+                var query2 = from p in _context.ShoppingLists
+                            where p.ShoppingListId == shoppinglistId
+                            select p;
+                var shoppinglist = query2.SingleOrDefault();
+
+                _context.ShoppingListDetails.Add(new ShoppingListDetail() {Bought = false, Product = product, Quantity = quantity, ShoppingList = shoppinglist});
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
         }
     }
 }

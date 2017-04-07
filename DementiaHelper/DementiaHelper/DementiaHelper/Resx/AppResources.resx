@@ -239,4 +239,7 @@
   <data name="RelativesRole" xml:space="preserve">
     <value>Relatives</value>
   </data>
+  <data name="ItemToAdd" xml:space="preserve">
+    <value>Item</value>
+  </data>
 </root>

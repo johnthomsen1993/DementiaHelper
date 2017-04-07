@@ -14,40 +14,36 @@ namespace DementiaHelper.PageModels
 {
     public class AccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
-        HttpClient h = new HttpClient();
+        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/getspecific/";
+        public const string URI_BASE_TEST = "http://localhost:29342/api/values/getspecific/";
         public UserInformation User { get; set; }
         public bool EditButton { get; set; }
         public ICommand GoToEditAccountInformationCommand { get; protected set; }
         public ICommand BackCommand { get; protected set; }
 
 
-        public AddToShoppingList AddItem { get; set; }
-
         public AccountInformationPageModel()
         {
-            AddItem = new AddToShoppingList();
-            var values = new Dictionary<string, string>
+            
+            var values = new Dictionary<string, object>
             {
                 {"Email", "test@gmail.com"}
             };
-            var content = new FormUrlEncodedContent(values);
-            var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/getspecific"), content).Result;
-            //var result = h.PostAsync(new Uri("http://localhost:29342//api/values/save"), content).Result;
 
-            var response = result.Content.ReadAsStringAsync();
+            using (HttpClient h = new HttpClient())
+            {
+                var encoded = JWTService.Encode(values);
+                StringContent content = new StringContent(encoded);
+                var result = h.PostAsync(new Uri(URI_BASE), content).Result;
+                var decoded = JWTService.Decode(result.Content.ReadAsStringAsync().ToString());
 
-            User = new UserInformation() {FirstName = "Claus", Email = "test@email.com", Description = "This is a default in the viewmodel"};
-
+                User = new UserInformation() { FirstName = decoded["FirstName"]?.ToString(), LastName = decoded["LastName"]?.ToString(), Email = decoded["Email"]?.ToString(), Description = decoded["Description"]?.ToString() };
+            }
+            
             EditButton = User.Id == "test@email.com";
             GoToEditAccountInformationCommand = new Command(async () => await GoToEditAccountInformation());
             BackCommand = new Command(async () => await Back());
-
-            if (Device.Idiom == TargetIdiom.Phone)
-            {
-                
-            }
             
-
         }
 
         async Task GoToEditAccountInformation()

@@ -10,13 +10,15 @@ using DementiaHelper.Extensions;
 using DementiaHelper.Model;
 using DementiaHelper.Services;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Crypto.Agreement.JPake;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
 {
     class EditAccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
-        HttpClient h = new HttpClient();
+        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/save/";
+        public const string URI_BASE_TEST = "http://localhost:29342/api/values/save/";
         public UserInformation User { get; set; }
         public ICommand SaveCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
@@ -29,22 +31,23 @@ namespace DementiaHelper.PageModels
         }
         async Task Save()
         {
-            var values = new Dictionary<string, string>
+            var values = new Dictionary<string, object>
             {
                 {"FirstName", User.FirstName},
-                {"LaseName", User.LastName},
+                {"LastName", User.LastName},
                 {"Email", User.Email},
                 {"Description", User.Description}
             };
-            var content = new FormUrlEncodedContent(values);
-            var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/save"), content).Result;
-            //var result = h.PostAsync(new Uri("http://localhost:29342//api/values/save"), content).Result;
 
+            var payload = JWTService.Encode(values);
 
-        
-            var response = result.Content.ReadAsStringAsync();
-
-            await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
+            using (HttpClient h = new HttpClient())
+            {
+                var content = new StringContent(payload);
+                var result = h.PostAsync(new Uri(URI_BASE), content).Result;
+                var response = result.Content.ReadAsStringAsync();
+                await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
+            }
 
             await CoreMethods.PopPageModel();
         }
