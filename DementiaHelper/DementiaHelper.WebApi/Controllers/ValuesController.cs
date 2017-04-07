@@ -79,13 +79,15 @@ namespace DementiaHelper.WebApi.Controllers
         public void Delete(int id)
         {
         }
-
-        [Route("api/[controller]/ShoppingList/{token}")]
-        [HttpGet]
+        
+        // GET api/values/shoppinglist/GAGfwgewegopmXEOM
+        [HttpGet("shoppinglist/{token}")]
+        [AllowAnonymous]
         public string GetShoppingList(string token)
         {
             var decoded = JWTService.Decode(token);
-            var shoppingList = _iRepository.GetShoppingList(decoded["citizenId"]?.ToString());
+            var id = Convert.ToInt32(decoded["citizenId"]);
+            var shoppingList = _iRepository.GetShoppingList(id);
             var payload = new Dictionary<string, object>()
             {
                 {"ShoppingList", shoppingList}

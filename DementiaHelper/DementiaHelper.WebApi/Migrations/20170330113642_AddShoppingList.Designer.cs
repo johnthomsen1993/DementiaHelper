@@ -8,9 +8,10 @@ using DementiaHelper.WebApi.Data;
 namespace DementiaHelper.WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170330113642_AddShoppingList")]
+    partial class AddShoppingList
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -275,11 +276,11 @@ namespace DementiaHelper.WebApi.Migrations
             modelBuilder.Entity("DementiaHelper.WebApi.model.ShoppingList", b =>
                 {
                     b.HasOne("DementiaHelper.WebApi.model.CaregiverConnection", "CaregiverConnectionForeignKey")
-                        .WithOne()
+                        .WithMany()
                         .HasForeignKey("CaregiverConnection");
 
                     b.HasOne("DementiaHelper.WebApi.model.RelativeConnection", "RelativeConnectionForeignKey")
-                        .WithOne()
+                        .WithMany()
                         .HasForeignKey("RelativeConnection");
                 });
 
@@ -287,7 +288,7 @@ namespace DementiaHelper.WebApi.Migrations
                 {
                     b.HasOne("DementiaHelper.WebApi.model.Product", "ProductForeignKey")
                         .WithMany()
-                        .HasForeignKey("Product").IsRequired();
+                        .HasForeignKey("Product");
 
                     b.HasOne("DementiaHelper.WebApi.model.ShoppingList", "ShoppingListForeignKey")
                         .WithMany()
