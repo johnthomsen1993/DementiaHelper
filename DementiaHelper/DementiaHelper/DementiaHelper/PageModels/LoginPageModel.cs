@@ -9,6 +9,7 @@ using System.Windows.Input;
 using DementiaHelper.Services;
 using DementiaHelper.PageModels;
 using Xamarin.Forms;
+using DementiaHelper.Pages;
 
 namespace DementiaHelper.PageModels
 {
@@ -30,33 +31,36 @@ namespace DementiaHelper.PageModels
         public override void Init(object initData)
         {
             base.Init(initData);
-            this.LoginCommand = new Command(async () => await LoginAsync());
+            this.LoginCommand = new Command( () =>  LoginAsync());
             this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
             this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
             this.GoToShoppingListCommand = new Command(async () => await GoToShoppingList());
         }
 
-        async Task LoginAsync()
+         void LoginAsync()
         {
             var values = new Dictionary<string, string>
             {
                 {"userName",UserName},
                 {"password", Password}
             };
-            using(var h = new HttpClient()){
+            CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
+           /* using (var h = new HttpClient()){
                 var content = new FormUrlEncodedContent(values);
                 var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/"), content).Result;
                 var response = result.Content.ReadAsStringAsync();
                 await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
                // await NavigationService.PushAsync(new ClockViewModel());
-            }
+            }*/
         }
         async Task GoToCreateAccount()
         {
+            
             await CoreMethods.PushPageModel<CreateAccountPageModel>();
         }
         async Task GoToAccountInformation()
         {
+            
             await CoreMethods.PushPageModel<AccountInformationPageModel>();
         }
         async Task GoToShoppingList()

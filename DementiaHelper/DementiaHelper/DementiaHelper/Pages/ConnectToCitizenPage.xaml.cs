@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DementiaHelper.View
+namespace DementiaHelper.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ConnectToCitizen : ContentPage
+    public partial class ConnectToCitizenPage : ContentPage
     {
-        public ConnectToCitizen()
+        public ConnectToCitizenPage()
         {
             InitializeComponent();
         }

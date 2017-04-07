@@ -121,15 +121,39 @@
     <value>Add shopping items</value>
     <comment>text for button</comment>
   </data>
+  <data name="AreYouSureThatYouWantToCloseThisApplication" xml:space="preserve">
+    <value>Are you sure, that you would want to close this application</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="ContactList" xml:space="preserve">
+  <data name="CaregiverRole" xml:space="preserve">
+    <value>Caregiver</value>
+  </data>
+  <data name="CitizenId" xml:space="preserve">
+    <value>Citizen id</value>
+  </data>
+  <data name="ConnectToCitizenLabelText" xml:space="preserve">
+    <value>Enter the persons under care ID, given in the account Information view of the person with dementia</value>
+  </data>
+  <data name="ConnectToCitizenPlaceholderText" xml:space="preserve">
+    <value>Demented Person Id</value>
+  </data>
+  <data name="ConnectToCitizenTitle" xml:space="preserve">
+    <value>Connect To  Citizen</value>
+  </data>
+  <data name="ContactListTitle" xml:space="preserve">
     <value>Contacts</value>
     <comment>Login for Contact list View</comment>
+  </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>Create new account</value>
+  </data>
+  <data name="DementiaRole" xml:space="preserve">
+    <value>Caretaker</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -147,6 +171,9 @@
   <data name="FirstName" xml:space="preserve">
     <value>First name</value>
   </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
   <data name="LastName" xml:space="preserve">
     <value>Last name</value>
   </data>
@@ -159,6 +186,9 @@
   </data>
   <data name="LoginWithGoogle" xml:space="preserve">
     <value>Login with google</value>
+  </data>
+  <data name="NoText" xml:space="preserve">
+    <value>No</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
@@ -186,6 +216,15 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Username</value>
-    <comment>Label for textbow</comment>
+    <comment>Label for textbox</comment>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="YesText" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="RelativesRole" xml:space="preserve">
+    <value>Relatives</value>
   </data>
 </root>

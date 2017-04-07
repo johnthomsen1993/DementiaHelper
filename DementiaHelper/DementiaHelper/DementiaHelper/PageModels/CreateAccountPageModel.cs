@@ -12,6 +12,7 @@ namespace DementiaHelper.PageModels
 {
     public class CreateAccountPageModel : FreshMvvm.FreshBasePageModel
     {
+        
         public UserInformation User { get; set; }
         public string Password { get; set; }
         public ICommand CancelCreateAccountCommand { get; protected set; }
