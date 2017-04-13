@@ -34,7 +34,7 @@ namespace DementiaHelper.WebApi.Controllers
         //}
 
         // POST api/values
-        [HttpPost("getspecific")]
+        [HttpGet("getspecific/{token}")]
         [AllowAnonymous]
         public string GetUserAccount(string token)
         {

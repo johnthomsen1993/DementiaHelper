@@ -74,18 +74,13 @@ namespace DementiaHelper.WebApi.Data
         {
             try
             {
-                //AccountInformation target = _context.AccountInformations.Find(email);
-                var query = from p in _context.AccountInformations
-                    where p.Email == email
-                    select p;
-
-                var target = query.SingleOrDefault();
-
+                var target = _context.ApplicationUsers.First(i=> i.Email == email);
+                
 
                 var values = new Dictionary<string, object>
             {
                 {"FirstName", target.FirstName},
-                {"LaseName", target.LastName},
+                {"LastName", target.Lastname},
                 {"Email", target.Email},
                 {"Description", target.Description}
             };
