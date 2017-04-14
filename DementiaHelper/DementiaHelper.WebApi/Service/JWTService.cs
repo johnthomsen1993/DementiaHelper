@@ -9,7 +9,7 @@ namespace DementiaHelper.WebApi.Service
     // adapted from example at https://github.com/SiroccoHub/JwtCore/
     public static class JWTService
     {
-        private const string SecretKey = "";
+        private const string SecretKey = "1234";
         public static string Encode(IDictionary<string, object> payload)
         {
             return JwtCore.JsonWebToken.Encode(payload, SecretKey, JwtCore.JwtHashAlgorithm.HS256);

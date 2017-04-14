@@ -14,38 +14,24 @@ namespace DementiaHelper.PageModels
 {
     public class AccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
-        HttpClient h = new HttpClient();
+        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/getspecific/";
+        public const string URI_BASE_TEST = "http://localhost:29342/api/values/getspecific/";
         public UserInformation User { get; set; }
-        public bool EditButton { get; set; }
+        public bool EditButton { get; set ; }
         public ICommand GoToEditAccountInformationCommand { get; protected set; }
         public ICommand BackCommand { get; protected set; }
-        public ICommand AddItemCommand { get; protected set; }
 
-
-        public AddToShoppingList AddItem { get; set; }
 
         public AccountInformationPageModel()
         {
-            AddItem = new AddToShoppingList();
-            var values = new Dictionary<string, string>
+            Device.BeginInvokeOnMainThread(async() =>
             {
-                {"Email", "test@gmail.com"}
-            };
-            var content = new FormUrlEncodedContent(values);
-            var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/getspecific"), content).Result;
-            //var result = h.PostAsync(new Uri("http://localhost:29342//api/values/save"), content).Result;
-
-            var response = result.Content.ReadAsStringAsync();
-
+                User  = await GetProfile("test@email.com");
+                EditButton = User.Id == "test@email.com";
+            });
             
-
-            User = new UserInformation() {FirstName = "Claus", Email = "test@email.com", Description = "This is a default in the viewmodel"};
-
-            EditButton = User.Id == "test@email.com";
-            this.GoToEditAccountInformationCommand = new Command(async () => await GoToEditAccountInformation());
+            GoToEditAccountInformationCommand = new Command(async () => await GoToEditAccountInformation());
             BackCommand = new Command(async () => await Back());
-            AddItemCommand = new Command(async () => await AddItemToDatabase(AddItem));
-
         }
 
         async Task GoToEditAccountInformation()
@@ -56,23 +42,33 @@ namespace DementiaHelper.PageModels
         {
             await CoreMethods.PopPageModel();
         }
-        async Task AddItemToDatabase(AddToShoppingList addItem)
+
+        async Task<UserInformation> GetProfile(string email)
         {
-            var values = new Dictionary<string, string>
+            var values = new Dictionary<string, object>
             {
-                {"FirstName", User.FirstName},
-                {"LaseName", User.LastName},
-                {"Email", User.Email},
-                {"Description", User.Description}
+                {"Email", email}
             };
-            var content = new FormUrlEncodedContent(values);
-            var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/save"), content).Result;
-            //var result = h.PostAsync(new Uri("http://localhost:29342//api/values/save"), content).Result;
+            
+            using (HttpClient h = new HttpClient())
+            {
+                try
+                {
+                    var encoded = JWTService.Encode(values);
+                    var result = await h.GetStringAsync(new Uri(URI_BASE + encoded));
+                    var decoded = JWTService.Decode(result);
 
-            var response = result.Content.ReadAsStringAsync();
-
-            await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
-            await CoreMethods.PopPageModel();
+                    return new UserInformation() { FirstName = decoded["FirstName"]?.ToString(), LastName = decoded["LastName"]?.ToString(), Email = decoded["Email"]?.ToString(), Description = decoded["Description"]?.ToString() };
+                }
+                catch (Exception)
+                {
+                    return new UserInformation() { FirstName = "FirstName", LastName = "LastName", Email = "Email", Description = "Description" }; //Test string
+                    
+                }
+            }
         }
+
+
+
     }
 }

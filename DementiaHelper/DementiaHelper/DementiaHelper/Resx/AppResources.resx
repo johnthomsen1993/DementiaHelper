@@ -130,6 +130,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ContactDetails" xml:space="preserve">
+    <value>Contact Details</value>
+  </data>
+  <data name="ContactList" xml:space="preserve">
+    <value>ContactList</value>
+  </data>
   <data name="CaregiverRole" xml:space="preserve">
     <value>Caregiver</value>
   </data>
@@ -159,7 +165,7 @@
     <value>Description</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
-    <value>Edit Profile</value>
+    <value>Edit Profile Information</value>
     <comment>Label for edit profile view</comment>
   </data>
   <data name="EditUserInformation" xml:space="preserve">
@@ -194,6 +200,12 @@
     <value>Password</value>
     <comment>label for login view Password label og placeholder for password entry</comment>
   </data>
+  <data name="PersonalDetails" xml:space="preserve">
+    <value>Personal Details</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
   <data name="Picture" xml:space="preserve">
     <value>Picture</value>
   </data>
@@ -227,40 +239,7 @@
   <data name="RelativesRole" xml:space="preserve">
     <value>Relatives</value>
   </data>
-  <data name="April" xml:space="preserve">
-    <value>April</value>
-  </data>
-  <data name="August" xml:space="preserve">
-    <value>August</value>
-  </data>
-  <data name="December" xml:space="preserve">
-    <value>December</value>
-  </data>
-  <data name="February" xml:space="preserve">
-    <value>February</value>
-  </data>
-  <data name="January" xml:space="preserve">
-    <value>January</value>
-  </data>
-  <data name="July" xml:space="preserve">
-    <value>July</value>
-  </data>
-  <data name="June" xml:space="preserve">
-    <value>June</value>
-  </data>
-  <data name="March" xml:space="preserve">
-    <value>March</value>
-  </data>
-  <data name="May" xml:space="preserve">
-    <value>May</value>
-  </data>
-  <data name="November" xml:space="preserve">
-    <value>November</value>
-  </data>
-  <data name="October" xml:space="preserve">
-    <value>October</value>
-  </data>
-  <data name="September" xml:space="preserve">
-    <value>September</value>
+  <data name="ItemToAdd" xml:space="preserve">
+    <value>Item</value>
   </data>
 </root>

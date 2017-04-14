@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using DementiaHelper.WebApi.model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -13,6 +15,7 @@ namespace DementiaHelper.WebApi.Data
     public class Repository : IRepository
     {
         private readonly ApplicationDbContext _context;
+
         public Repository(ApplicationDbContext context)
         {
             this._context = context;
@@ -45,9 +48,9 @@ namespace DementiaHelper.WebApi.Data
             {
                 //AccountInformation target = _context.AccountInformations.Find(email);
                 var query = from p in _context.AccountInformations
-                            where p.Email == email
-                            select p;
-                
+                    where p.Email == email
+                    select p;
+
                 var target = query.SingleOrDefault();
 
                 target.FirstName = firstName;
@@ -64,24 +67,20 @@ namespace DementiaHelper.WebApi.Data
                 Console.WriteLine("Exception were thrown when trying to update AccountInformation in database");
                 return false;
             }
-          
+
         }
 
-        public Dictionary<string, string> GetAccount(string email)
+        public Dictionary<string, object> GetAccount(string email)
         {
             try
             {
-                //AccountInformation target = _context.AccountInformations.Find(email);
-                var query = from p in _context.AccountInformations
-                            where p.Email == email
-                            select p;
+                var target = _context.ApplicationUsers.First(i=> i.Email == email);
+                
 
-                var target = query.SingleOrDefault();
-
-                var values = new Dictionary<string, string>
+                var values = new Dictionary<string, object>
             {
                 {"FirstName", target.FirstName},
-                {"LaseName", target.LastName},
+                {"LastName", target.Lastname},
                 {"Email", target.Email},
                 {"Description", target.Description}
             };
@@ -104,7 +103,7 @@ namespace DementiaHelper.WebApi.Data
             _context.ApplicationUsers.Add(user);
             _context.SaveChanges();
             return "User Created";
-           
+
         }
 
         public ApplicationUser FetchApplicationUser(string email)
@@ -123,9 +122,50 @@ namespace DementiaHelper.WebApi.Data
                 return false;
             }
         }
-        public ShoppingList GetShoppingList(string citizenId)
+
+        public List<ShoppingListDetail> GetShoppingList(int citizenId)
         {
-            throw new NotImplementedException();
+            var queryable = _context.ShoppingListDetails.AsQueryable();
+
+            Expression<Func<ShoppingListDetail, Product>> include_product = detail => detail.ProductForeignKey;
+            Expression<Func<ShoppingListDetail, ShoppingList>> include_shoppinglist = detail => detail.ShoppingListForeignKey;
+
+            return
+                queryable.Where(
+                    x => x.ShoppingListForeignKey.RelativeConnectionForeignKey.CitizenForeignKey.CitizenId == citizenId).Include(include_product).Include(include_shoppinglist)
+                    .ToList();
+        }
+
+        public bool SaveItemInShoppingList(int shoppinglistId, string item, int quantity)
+        {
+            try
+            {
+                var query = from p in _context.Products
+                            where p.ProductName == item.Trim()
+                            select p;
+
+                Product product = query.SingleOrDefault();
+
+                if (product == null)
+                {
+                    product = _context.Products.Add(new Product() {ProductName = item}).Entity;
+                    _context.SaveChanges();
+                }
+
+                var query2 = from p in _context.ShoppingLists
+                            where p.ShoppingListId == shoppinglistId
+                            select p;
+                var shoppinglist = query2.SingleOrDefault();
+
+                _context.ShoppingListDetails.Add(new ShoppingListDetail() {Bought = false, ProductForeignKey = product, Quantity = quantity, ShoppingListForeignKey = shoppinglist});
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
         }
     }
 }
