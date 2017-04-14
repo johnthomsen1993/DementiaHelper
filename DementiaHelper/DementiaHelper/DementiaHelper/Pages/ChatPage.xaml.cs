@@ -17,6 +17,17 @@ namespace DementiaHelper.Pages
         {
             InitializeComponent();
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+                var last = MessageList.ItemsSource.Cast<object>().LastOrDefault();
+            if (last != null)
+            {
+                MessageList.ScrollTo(last, ScrollToPosition.MakeVisible, true);
+            }
+            
+        }
         protected override bool OnBackButtonPressed()
         {
             Device.BeginInvokeOnMainThread(async () => {
