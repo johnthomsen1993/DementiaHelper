@@ -7,19 +7,12 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace SignalR_Server
 {
-    
-    public class ChatHub : Hub
+    [HubName("GroupChatHub")]
+    public class GroupChatHub : Hub
     {
         public void Hello()
         {
             Clients.All.hello();
-        }
-
-        [HubMethodName("singleChat")]
-        public void BroadcastMessage(string name, string message)
-        {
-            var id = Context.ConnectionId;
-            Clients.All.broadcastMessage(name, message);
         }
 
         [HubMethodName("groupChat")]

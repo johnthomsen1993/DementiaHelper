@@ -1,7 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DementiaHelper.Pages.ChatPage">
+             xmlns:model="clr-namespace:DementiaHelper.Model;assembly=DementiaHelper"
+             x:Class="DementiaHelper.Pages.ChatPage"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="True">
 
-    <Label Text="Greetings"></Label>
+    <StackLayout Orientation="Vertical" Padding="5, 20, 5, 10">
+        <Button Text="Join Group" Command="{Binding JoinRoomCommand}"></Button>
+        <Entry Text="{Binding ChatMessage.Name}" Placeholder="Name"></Entry>
+        <Entry Text="{Binding ChatMessage.Message}" Placeholder="Message"></Entry>
+        <Button Text="Send Message" Command="{Binding SendMessageCommand}"></Button>
+
+        <ListView x:Name="MessageList" ItemsSource="{Binding Messages}" VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding ChatMessage.Name, stringFormat= '{0}: '}"></Label>
+                            <Label Text="{Binding ChatMessage.Message}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+    
 </ContentPage>

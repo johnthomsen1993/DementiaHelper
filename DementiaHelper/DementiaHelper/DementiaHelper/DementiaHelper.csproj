@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Chat.cs" />
     <Compile Include="Model\ShoppingList.cs" />
     <Compile Include="Behaviors\BehaviorBase.cs" />
     <Compile Include="Behaviors\EventToCommandBehavior.cs" />
@@ -45,6 +46,8 @@
     <Compile Include="Model\Citizen.cs" />
     <Compile Include="Model\UserInformation.cs" />
     <Compile Include="PageModels\AddItem.cs" />
+    <Compile Include="PageModels\ChatBasePageModel.cs" />
+    <Compile Include="PageModels\ChatMassagePageModel.cs" />
     <Compile Include="PageModels\ChatPageModel.cs" />
     <Compile Include="PageModels\ChooseCitizenPageModel.cs" />
     <Compile Include="PageModels\ConnectToCitizenViewModel.cs" />
@@ -52,6 +55,7 @@
     <Compile Include="Pages\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ChatMessagePageModel.cs" />
     <Compile Include="Pages\ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
     </Compile>
@@ -61,8 +65,12 @@
     <Compile Include="Pages\ConnectToCitizenPage.xaml.cs">
       <DependentUpon>ConnectToCitizenPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Renders\ChatListView.cs" />
     <Compile Include="Renders\CustomControlRenders\FacebookButtonCustomRender.cs" />
     <Compile Include="Renders\CustomControlRenders\GoogleButtonCustomRender.cs" />
+    <Compile Include="Renders\MessageViewCell.cs" />
+    <Compile Include="Services\ChatService.cs" />
+    <Compile Include="Services\IChatService.cs" />
     <Compile Include="Services\ICredentialsService.cs" />
     <Compile Include="Services\JWTService.cs" />
     <Compile Include="PageModels\AccountInformationPageModel.cs" />
