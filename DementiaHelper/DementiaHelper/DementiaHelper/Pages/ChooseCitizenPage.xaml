@@ -5,7 +5,7 @@
              xmlns:c="clr-namespace:DementiaHelper.Converters;assembly=DementiaHelper"
              xmlns:b="clr-namespace:DementiaHelper.Behaviors;assembly=DementiaHelper"
              xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
-              BackgroundColor="#ffffff">
+             BackgroundColor="#ffffff">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -23,9 +23,8 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-
                         </Grid.ColumnDefinitions>
-                        <Label Text="Name of citizen" Grid.Row="0" Grid.Column="0"></Label>
+                        <Label Text="Name of citizen" Grid.Row="0" Grid.Column="0" ></Label>
                     </Grid>
                 </ListView.Header>
                 <ListView.Behaviors>
@@ -33,7 +32,7 @@
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <ViewCell IsEnabled="False">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>

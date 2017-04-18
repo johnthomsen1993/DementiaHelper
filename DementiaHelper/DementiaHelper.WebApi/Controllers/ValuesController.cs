@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DementiaHelper.WebApi.Data;
 using DementiaHelper.WebApi.model;
@@ -27,28 +28,31 @@ namespace DementiaHelper.WebApi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //[HttpGet("{id}")]
+        //public string Get(string token)
+        //{
+        //}
 
         // POST api/values
-        [HttpPost("getspecific")]
+        [HttpGet("getspecific/{token}")]
         [AllowAnonymous]
-        public string Post(string email)
+        public string GetUserAccount(string token)
         {
-            return "Yay";
-            //return _iRepository.GetAccount(email);
+            var decoded = JWTService.Decode(token);
+            var userAccount = _iRepository.GetAccount(decoded["Email"]?.ToString());
+            var encoded = JWTService.Encode(userAccount);
+            return encoded;
         }
 
         [HttpPost("save")]
         [AllowAnonymous]
-        public string Post(string firstName, string lastName, string email, string description)
+        public string Post(string token)
         {
-            if (_iRepository.CheckIfUserExists(email))
+            var decoded = JWTService.Decode(token);
+            if (_iRepository.CheckIfUserExists(decoded["Email"]?.ToString()))
             {
-                bool succes = _iRepository.UpdateAccount(firstName, lastName, email, description);
+                bool succes = _iRepository.UpdateAccount(decoded["FirstName"]?.ToString(),
+                    decoded["LastName"]?.ToString(), decoded["Email"]?.ToString(), decoded["Description"]?.ToString());
                 if (succes)
                 {
                     return "The data is saved";
@@ -57,9 +61,9 @@ namespace DementiaHelper.WebApi.Controllers
             }
             else
             {
-                _iRepository.CreateAccountInformation(firstName, lastName, email, description);
-                return "New user saved in the database"; 
-                
+                _iRepository.CreateAccountInformation(decoded["FirstName"]?.ToString(),
+                    decoded["LastName"]?.ToString(), decoded["Email"]?.ToString(), decoded["Description"]?.ToString());
+                return "New user saved in the database";
             }
         }
 
@@ -90,6 +94,16 @@ namespace DementiaHelper.WebApi.Controllers
             };
             var encoded = JWTService.Encode(payload);
             return encoded;
+        }
+
+        // PUT api/values/5
+        [HttpPut("shoppinglist")]
+        [AllowAnonymous]
+        public bool Put(string content)
+        {
+            var decoded = JWTService.Decode(content);
+            var sucess = _iRepository.SaveItemInShoppingList(Convert.ToInt32(decoded["ShoppingListId"]), decoded["Item"]?.ToString(), Convert.ToInt32(decoded["Quantity"]));
+            return sucess;
         }
     }
 }

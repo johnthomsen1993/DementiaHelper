@@ -130,6 +130,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ContactDetails" xml:space="preserve">
+    <value>Contact Details</value>
+  </data>
+  <data name="ContactList" xml:space="preserve">
+    <value>ContactList</value>
+  </data>
   <data name="CaregiverRole" xml:space="preserve">
     <value>Caregiver</value>
   </data>
@@ -159,7 +165,7 @@
     <value>Description</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
-    <value>Edit Profile</value>
+    <value>Edit Profile Information</value>
     <comment>Label for edit profile view</comment>
   </data>
   <data name="EditUserInformation" xml:space="preserve">
@@ -194,6 +200,12 @@
     <value>Password</value>
     <comment>label for login view Password label og placeholder for password entry</comment>
   </data>
+  <data name="PersonalDetails" xml:space="preserve">
+    <value>Personal Details</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
   <data name="Picture" xml:space="preserve">
     <value>Picture</value>
   </data>
@@ -226,5 +238,8 @@
   </data>
   <data name="RelativesRole" xml:space="preserve">
     <value>Relatives</value>
+  </data>
+  <data name="ItemToAdd" xml:space="preserve">
+    <value>Item</value>
   </data>
 </root>

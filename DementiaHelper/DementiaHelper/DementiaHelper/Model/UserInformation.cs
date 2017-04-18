@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using Newtonsoft.Json;
 namespace DementiaHelper.Model
 {
     [JsonObject]
-    public class UserInformation
+    public class UserInformation 
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -28,8 +29,12 @@ namespace DementiaHelper.Model
         [JsonProperty("picture")]
         public string Picture { get; set; }
 
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
+
         [JsonProperty("gender")]
         public string Gender { get; set; }
+
     }
 
     public class AddToShoppingList

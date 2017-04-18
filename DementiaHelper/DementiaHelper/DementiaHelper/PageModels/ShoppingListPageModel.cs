@@ -22,6 +22,8 @@ namespace DementiaHelper.PageModels
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/shoppinglist/";
         public const string URI_BASE_TEST = "http://localhost:29342/api/values/shoppinglist/";
         public ShoppingList ShoppingList { get; set; }
+        public ICommand SaveToDatabaseCommand { get; protected set; }
+        public string Item { get; set; }
         public ObservableCollection<ShoppingListDetail> ShoppingListDetails { get; set; }
 
         public ShoppingListPageModel()
@@ -35,8 +37,6 @@ namespace DementiaHelper.PageModels
                 ShoppingListDetails = ShoppingList.ShoppingListDetails;
             });
         }
-
-        
 
         private async Task<ShoppingList> GetShoppingList(int id)
         {

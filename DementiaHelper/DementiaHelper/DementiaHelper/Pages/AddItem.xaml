@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             x:Class="DementiaHelper.Pages.AddItem">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ForgotPasswordButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="#0099cc" />
+                <Setter Property="BorderColor" Value="#0099cc" />
+                <Setter Property="BorderRadius" Value="5" />
+                <Setter Property="BorderWidth" Value="5" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <OnIdiom x:TypeArguments="View">
+        <OnIdiom.Phone>
+            <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout x:Name="outerStack" VerticalOptions="Start" >
+                    <StackLayout Orientation="Vertical" VerticalOptions="Start" >
+                        <Image   x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <Entry  Text="{Binding Item}" Placeholder="{extensions:Translate ItemToAdd}" HorizontalOptions="CenterAndExpand" />
+                    <Entry  Text="{Binding Quantity}" Placeholder="{extensions:Translate Quantity}" Keyboard="Numeric" HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
+                <StackLayout VerticalOptions="Start" Orientation="Vertical">
+                    <Button Text="{extensions:Translate Save}" Command="{Binding SaveCommand}"></Button>
+                    <Button Text="{extensions:Translate Cancel}" Command="{Binding CancelCommand}"></Button>
+                </StackLayout>
+                </StackLayout>
+        </OnIdiom.Phone>
+    </OnIdiom>
+</ContentPage>

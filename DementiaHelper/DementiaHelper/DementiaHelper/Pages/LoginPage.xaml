@@ -62,7 +62,7 @@
                                         <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
                                     </Label.GestureRecognizers>
                                 </Label>
-                                <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Account Information">
+                                <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Account Info">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
                                     </Label.GestureRecognizers>

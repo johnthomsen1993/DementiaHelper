@@ -130,6 +130,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>Annuller</value>
   </data>
+  <data name="ContactDetails" xml:space="preserve">
+    <value>Kontakt oplysninger</value>
+  </data>
+  <data name="ContactList" xml:space="preserve">
+    <value>Kontaktliste</value>
+  </data>
   <data name="CaregiverRole" xml:space="preserve">
     <value>Plejepersonale</value>
   </data>
@@ -159,7 +165,7 @@
     <value>Beskrivelse</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
-    <value>Ret brugeroplysninger</value>
+    <value>Rediger brugeroplysninger</value>
     <comment>Label for edit profile view</comment>
   </data>
   <data name="EditUserInformation" xml:space="preserve">
@@ -193,6 +199,12 @@
   <data name="Password" xml:space="preserve">
     <value>Adgangskode</value>
   </data>
+  <data name="PersonalDetails" xml:space="preserve">
+    <value>Personlige oplysninger</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
   <data name="Picture" xml:space="preserve">
     <value>Billed</value>
   </data>
@@ -224,5 +236,8 @@
   </data>
   <data name="RelativesRole" xml:space="preserve">
     <value>Pårørende</value>
+  </data>
+  <data name="ItemToAdd" xml:space="preserve">
+    <value>Vare</value>
   </data>
 </root>
