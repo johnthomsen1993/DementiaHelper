@@ -42,7 +42,7 @@ namespace DementiaHelper
             masterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
             masterDetailNav.AddPage<AccountInformationPageModel>("Account Information", null);
             
-            var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
+            var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<ShoppingListPageModel>();
             var navContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
            
             DependencyService.Get<ICredentialsService>().SaveCredentials(UserName, Password+"s");

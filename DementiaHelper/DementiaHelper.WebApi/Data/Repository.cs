@@ -167,5 +167,14 @@ namespace DementiaHelper.WebApi.Data
                 throw;
             }
         }
+
+        public bool RemoveShoppingListDetail(int id)
+        {
+            var item = _context.ShoppingListDetails.SingleOrDefault(x => x.ShoppingListDetailId == id);
+            if (item == null) return false;
+            _context.ShoppingListDetails.Remove(item);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }

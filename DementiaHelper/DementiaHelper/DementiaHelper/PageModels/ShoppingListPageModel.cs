@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DementiaHelper.Resx;
 using DementiaHelper.Services;
 using Newtonsoft.Json.Linq;
 using PropertyChanged;
@@ -23,6 +24,7 @@ namespace DementiaHelper.PageModels
         public const string URI_BASE_TEST = "http://localhost:29342/api/values/shoppinglist/";
         public ShoppingList ShoppingList { get; set; }
         public ICommand SaveToDatabaseCommand { get; protected set; }
+        public ICommand RemoveFromDatabaseCommand { get; protected set; }
         public string Item { get; set; }
         public ObservableCollection<ShoppingListDetail> ShoppingListDetails { get; set; }
 
@@ -31,11 +33,39 @@ namespace DementiaHelper.PageModels
             ShoppingList = new ShoppingList() {ShoppingListDetails = new ObservableCollection<ShoppingListDetail>() {} };
             Device.BeginInvokeOnMainThread(async () =>
             {
-                var shoppinglist = await GetShoppingList(8);
+                var shoppinglist = await GetShoppingList(8); //TODO: Make citizenid accessible and change this
                 ShoppingList.ShoppingListDetails = shoppinglist.ShoppingListDetails;
                 ShoppingList.ShoppingListId = shoppinglist.ShoppingListId;
                 ShoppingListDetails = ShoppingList.ShoppingListDetails;
             });
+            RemoveFromDatabaseCommand = new Command(async (obj) => await RemoveFromDatabase((ShoppingListDetail) obj));
+        }
+
+        private async Task RemoveFromDatabase(ShoppingListDetail item)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "shoppingListDetailId", item.ShoppingListDetailId }, {"citizenId", 8} }); //TODO: Make citizenid accessible and change this
+                    var result = await client.DeleteAsync(new Uri(URI_BASE + encoded));
+                    var test = await result.Content.ReadAsStringAsync();
+                    var decoded = JWTService.Decode(test);
+                    if (!decoded.ContainsKey("ErrorOnRemove"))
+                    {
+                        ShoppingList = MapToShoppingListModel(decoded);
+                        ShoppingListDetails = ShoppingList.ShoppingListDetails;
+                    }
+                    else
+                    {
+                        App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.ErrorOnRemoveAccept);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
         }
 
         private async Task<ShoppingList> GetShoppingList(int id)

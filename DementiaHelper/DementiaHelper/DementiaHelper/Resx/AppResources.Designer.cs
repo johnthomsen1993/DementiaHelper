@@ -62,20 +62,11 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add shopping items.
+        ///   Looks up a localized string similar to Add shopping item.
         /// </summary>
-        public static string AddShoppingItems {
+        public static string AddShoppingItem {
             get {
-                return ResourceManager.GetString("AddShoppingItems", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to April.
-        /// </summary>
-        public static string April {
-            get {
-                return ResourceManager.GetString("April", resourceCulture);
+                return ResourceManager.GetString("AddShoppingItem", resourceCulture);
             }
         }
         
@@ -85,15 +76,6 @@ namespace DementiaHelper.Resx {
         public static string AreYouSureThatYouWantToCloseThisApplication {
             get {
                 return ResourceManager.GetString("AreYouSureThatYouWantToCloseThisApplication", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to August.
-        /// </summary>
-        public static string August {
-            get {
-                return ResourceManager.GetString("August", resourceCulture);
             }
         }
         
@@ -197,15 +179,6 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to December.
-        /// </summary>
-        public static string December {
-            get {
-                return ResourceManager.GetString("December", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Caretaker.
         /// </summary>
         public static string DementiaRole {
@@ -251,11 +224,29 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to February.
+        ///   Looks up a localized string similar to Error happened when trying to remove item, please try again later.
         /// </summary>
-        public static string February {
+        public static string ErrorOnRemove {
             get {
-                return ResourceManager.GetString("February", resourceCulture);
+                return ResourceManager.GetString("ErrorOnRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string ErrorOnRemoveAccept {
+            get {
+                return ResourceManager.GetString("ErrorOnRemoveAccept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ErrorOnRemoveTitle {
+            get {
+                return ResourceManager.GetString("ErrorOnRemoveTitle", resourceCulture);
             }
         }
         
@@ -323,47 +314,11 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to March.
-        /// </summary>
-        public static string March {
-            get {
-                return ResourceManager.GetString("March", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to May.
-        /// </summary>
-        public static string May {
-            get {
-                return ResourceManager.GetString("May", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string NoText {
             get {
                 return ResourceManager.GetString("NoText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to November.
-        /// </summary>
-        public static string November {
-            get {
-                return ResourceManager.GetString("November", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to October.
-        /// </summary>
-        public static string October {
-            get {
-                return ResourceManager.GetString("October", resourceCulture);
             }
         }
         
@@ -445,15 +400,6 @@ namespace DementiaHelper.Resx {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to September.
-        /// </summary>
-        public static string September {
-            get {
-                return ResourceManager.GetString("September", resourceCulture);
             }
         }
         
