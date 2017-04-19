@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DementiaHelper.Pages.CreateCalenderAppointmentPage"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              Title="Ny begivenhed">
 
@@ -106,7 +107,7 @@
                     <Label x:Name="DateEndTimeLabel" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Text="Sluttidspunkt:"></Label>
                     <TimePicker  x:Name="DateEndTimeTimePicker" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Format="HH:mm" Time="{Binding AppointmentEndTimeSpan}"></TimePicker>
                     <Label x:Name="ColorLabel" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" Text="Farve:"></Label>
-                    <Picker x:Name="ColorPicker"  Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Title="Farve" ItemsSource="{Binding ColorList}" ></Picker>
+                    <customRenders:ColorPickerCustomRender x:Name="ColorPicker"  Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Title="Farve" ItemsSource="{Binding ColorList}" ></customRenders:ColorPickerCustomRender>
                 </Grid>
             </Grid>
             <Grid x:Name="buttonsGrid" Grid.Row="1">

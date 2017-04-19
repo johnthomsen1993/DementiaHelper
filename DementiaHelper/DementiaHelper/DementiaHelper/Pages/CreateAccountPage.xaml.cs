@@ -12,21 +12,14 @@ namespace DementiaHelper.Pages
 {
     public partial class CreateAccountPage : ContentPage
     {
-        ObservableCollection<string> roleCollection = new ObservableCollection<string>
-        {
-            {AppResources.DementiaRole}, {AppResources.CaregiverRole},{AppResources.RelativesRole}
 
-        };
 
         private double width;
         private double height;
         public CreateAccountPage()
         {
             InitializeComponent();
-            foreach (string role in roleCollection)
-            {
-                rolePicker.Items.Add(role);
-            }
+
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -48,29 +41,6 @@ namespace DementiaHelper.Pages
                     secondInnerStack.VerticalOptions = LayoutOptions.CenterAndExpand;
                     imageElderlyHands.HeightRequest = 200;
                 }
-            }
-        }
-
-        private void rolePicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (rolePicker.SelectedIndex == -1)
-            {
-                
-            }
-            else
-            {
-                string role = rolePicker.Items[rolePicker.SelectedIndex];
-                if(AppResources.DementiaRole == role)
-                {
-
-                }else if(AppResources.CaregiverRole == role)
-                {
-
-                }else if(AppResources.RelativesRole == role)
-                {
-
-                }
-                  
             }
         }
     }
