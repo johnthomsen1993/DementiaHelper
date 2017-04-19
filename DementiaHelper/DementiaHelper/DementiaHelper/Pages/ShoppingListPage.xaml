@@ -6,17 +6,24 @@
              BackgroundColor="White">
 
   <StackLayout>
-    <ListView ItemsSource="{Binding ShoppingList.ShoppingListDetails}">
+    <ListView ItemsSource="{Binding ShoppingListDetails}" SeparatorVisibility="Default" SeparatorColor="Gray">
       <ListView.Header>
         <Grid ColumnSpacing="4">
-           <Grid.ColumnDefinitions>
-             <ColumnDefinition Width="*"></ColumnDefinition>
-             <ColumnDefinition Width="*"></ColumnDefinition>
-             <ColumnDefinition Width="*"></ColumnDefinition>
-             <ColumnDefinition Width="*"></ColumnDefinition>
-           </Grid.ColumnDefinitions>
-          <Label Text="{extensions:Translate Quantity}" Grid.Row="0" Grid.Column="0"></Label>
-          <Label Text="{extensions:Translate ProductName}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"></Label>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+          </Grid.RowDefinitions>
+          <Label Text="{extensions:Translate Quantity}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></Label>
+          <Label Text="{extensions:Translate ProductName}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3"></Label>
         </Grid>
       </ListView.Header>
       <ListView.ItemTemplate>
@@ -28,9 +35,17 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
               </Grid.ColumnDefinitions>
-              <Label Text="{Binding Quantity}" Grid.Column="0"></Label>
-              <Label Text="{Binding Product.ProductName}" Grid.Column="1" Grid.ColumnSpan="3"></Label>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+              </Grid.RowDefinitions>
+              <Button Text="X" Grid.Column="0" TextColor="Red" BackgroundColor="White" BorderColor="White"></Button>
+              <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2"></Label>
+              <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3"></Label>
             </Grid>
           </ViewCell>
         </DataTemplate>
