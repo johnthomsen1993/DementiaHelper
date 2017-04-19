@@ -7,12 +7,14 @@ using DementiaHelper.Services;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Collections.ObjectModel;
+using DementiaHelper.Resx;
 
 namespace DementiaHelper.PageModels
 {
     public class CreateAccountPageModel : FreshMvvm.FreshBasePageModel
     {
-        
+        public ObservableCollection<string> RoleCollection { get; set; }
         public UserInformation User { get; set; }
         public string Password { get; set; }
         public ICommand CancelCreateAccountCommand { get; protected set; }
@@ -22,6 +24,24 @@ namespace DementiaHelper.PageModels
             User = new UserInformation();
             this.CancelCreateAccountCommand = new Command(async () => await CoreMethods.PopPageModel());
             this.CreateAccountCommand = new Command( async() => await CreateAccountAsync());
+            this.RoleCollection = new ObservableCollection<string>
+        {
+            {AppResources.DementiaRole}, {AppResources.CaregiverRole},{AppResources.RelativesRole}
+
+        };
+        }
+        private string _selectedRoleName;
+        public string SelecteRoleName
+        {
+            get { return _selectedRoleName; }
+            set
+            {
+                if (_selectedRoleName != value)
+                {
+                    _selectedRoleName = value;
+                    RaisePropertyChanged("SelecteRoleName");
+                }
+            }
         }
 
         async Task CreateAccountAsync()

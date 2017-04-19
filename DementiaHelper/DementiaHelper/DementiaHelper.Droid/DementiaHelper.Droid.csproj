@@ -66,6 +66,21 @@
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="mscorlib" />
+    <Reference Include="Plugin.CurrentActivity, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\MonoAndroid10\Plugin.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media.Abstractions, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\MonoAndroid10\Plugin.Media.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.Permissions.1.2.1\lib\MonoAndroid10\Plugin.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions.Abstractions, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.Permissions.1.2.1\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.SfSchedule.Android, Version=15.1451.0.41, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Syncfusion.Xamarin.SfSchedule.Android.15.1.0.41\lib\MonoAndroid10\Syncfusion.SfSchedule.Android.dll</HintPath>
     </Reference>
@@ -131,11 +146,14 @@
   <ItemGroup>
     <Compile Include="Localize.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="MainApplication.cs" />
+    <Compile Include="Renders\ColorPickerRenderer.cs" />
     <Compile Include="Renders\FacebookButtonRenderer.cs" />
     <Compile Include="Renders\GoogleButtonRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CredentialsService.cs" />
+    <Compile Include="Services\ImageResizer.cs" />
     <Compile Include="Services\NativeService.cs" />
   </ItemGroup>
   <ItemGroup>

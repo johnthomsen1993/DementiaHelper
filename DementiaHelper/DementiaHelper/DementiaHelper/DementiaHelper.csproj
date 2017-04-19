@@ -39,6 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\CalenderTask.cs" />
+    <Compile Include="Model\GalleryImage.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\ShoppingList.cs" />
     <Compile Include="Behaviors\BehaviorBase.cs" />
@@ -47,16 +48,18 @@
     <Compile Include="Model\Citizen.cs" />
     <Compile Include="Model\UserInformation.cs" />
     <Compile Include="PageModels\CalenderPageModel.cs" />
-	 <Compile Include="PageModels\AddItem.cs" />
+    <Compile Include="PageModels\AddItem.cs" />
     <Compile Include="PageModels\ChatPageModel.cs" />
     <Compile Include="PageModels\ChooseCitizenPageModel.cs" />
+    <Compile Include="PageModels\CitizenHomePageModel.cs" />
     <Compile Include="PageModels\ConnectToCitizenViewModel.cs" />
     <Compile Include="PageModels\CreateCalenderAppointmentPageModel.cs" />
     <Compile Include="PageModels\EditAccountInformationPageModel.cs" />
+    <Compile Include="PageModels\ImageGalleryPageModel.cs" />
     <Compile Include="Pages\CalenderPage.xaml.cs">
       <DependentUpon>CalenderPage.xaml</DependentUpon>
     </Compile>
-	    <Compile Include="Pages\AddItem.xaml.cs">
+    <Compile Include="Pages\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ChatPage.xaml.cs">
@@ -65,15 +68,24 @@
     <Compile Include="Pages\ChooseCitizenPage.xaml.cs">
       <DependentUpon>ChooseCitizenPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CitizenHomePage.xaml.cs">
+      <DependentUpon>CitizenHomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ConnectToCitizenPage.xaml.cs">
       <DependentUpon>ConnectToCitizenPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CreateCalenderAppointmentPage.xaml.cs">
       <DependentUpon>CreateCalenderAppointmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ImageGalleryPage.xaml.cs">
+      <DependentUpon>ImageGalleryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Renders\CustomControlRenders\ColorPickerCustomRender.cs" />
+    <Compile Include="Renders\CustomControlRenders\CustomImageGallery.cs" />
     <Compile Include="Renders\CustomControlRenders\FacebookButtonCustomRender.cs" />
     <Compile Include="Renders\CustomControlRenders\GoogleButtonCustomRender.cs" />
     <Compile Include="Services\ICredentialsService.cs" />
+    <Compile Include="Services\IImageResize.cs" />
     <Compile Include="Services\JWTService.cs" />
     <Compile Include="PageModels\AccountInformationPageModel.cs" />
     <Compile Include="PageModels\ContactListPageModel.cs" />
@@ -91,9 +103,6 @@
     </Compile>
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resx\AppResources.Designer.cs">
@@ -118,10 +127,6 @@
     <Compile Include="Services\INativeService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -152,6 +157,12 @@
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Media, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\portable-net45+wp80+win8+wpa81\Plugin.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media.Abstractions, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\portable-net45+wp80+win8+wpa81\Plugin.Media.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfSchedule.XForms, Version=15.1451.0.41, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Syncfusion.Xamarin.SfSchedule.15.1.0.41\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.SfSchedule.XForms.dll</HintPath>
@@ -263,13 +274,25 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Pages\AddItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Pages\CitizenHomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ImageGalleryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+    <ItemGroup>
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

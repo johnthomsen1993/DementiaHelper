@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DementiaHelper.Model;
 using Xamarin.Forms;
-using DementiaHelper.View;
+
 using DementiaHelper.PageModels;
 using DementiaHelper.Pages;
 using DementiaHelper.Resx;
@@ -34,13 +34,14 @@ namespace DementiaHelper
             var masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
             masterDetailNav.Init("menu");
             masterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
-
+            masterDetailNav.AddPage<ImageGalleryPageModel>("Foto minder", null);
             masterDetailNav.AddPage<ChatPageModel>("Chat", null);
             masterDetailNav.AddPage<CalenderPageModel>("Kalender", null);
             masterDetailNav.AddPage<ChooseCitizenPageModel>("Choose Citizen", null);
             masterDetailNav.AddPage<ShoppingListPageModel>("Shopping list", null);
             masterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
             masterDetailNav.AddPage<AccountInformationPageModel>("Account Information", null);
+      //      masterDetailNav.AddPage<CitizenHomePageModel>("Idag", null);
             
             var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<ShoppingListPageModel>();
             var navContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
