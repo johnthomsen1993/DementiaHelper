@@ -31,16 +31,9 @@ namespace DementiaHelper.WebApi.Controllers
         private readonly IRepository _repository;
         // GET: /<controller>/
 
-        public AccountController(IOptions<JwtIssuerOptions> jwtOptions, ILoggerFactory loggerFactory, IRepository repository)
+        public AccountController(IRepository repository)
         {
             _repository = repository;
-            _jwtOptions = jwtOptions.Value;
-            ThrowIfInvalidOptions(_jwtOptions);
-            _logger = loggerFactory.CreateLogger<AccountController>();
-            _serializerSettings = new JsonSerializerSettings
-            {
-                Formatting = Formatting.Indented
-            };
         }
 
         [HttpPost("createAccount")]
@@ -168,26 +161,6 @@ namespace DementiaHelper.WebApi.Controllers
             return Task.FromResult<ClaimsIdentity>(null);
         }
 
-
-        private static void ThrowIfInvalidOptions(JwtIssuerOptions options)
-        {
-            if (options == null) throw new ArgumentNullException(nameof(options));
-
-            if (options.ValidFor <= TimeSpan.Zero)
-            {
-                throw new ArgumentException("Must be a non-zero TimeSpan.", nameof(JwtIssuerOptions.ValidFor));
-            }
-
-            if (options.SigningCredentials == null)
-            {
-                throw new ArgumentNullException(nameof(JwtIssuerOptions.SigningCredentials));
-            }
-
-            if (options.JtiGenerator == null)
-            {
-                throw new ArgumentNullException(nameof(JwtIssuerOptions.JtiGenerator));
-            }
-        }
         private string GenerateSalt()
         {
             var key = new byte[256 / 8];

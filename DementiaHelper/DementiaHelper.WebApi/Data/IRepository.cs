@@ -16,5 +16,6 @@ namespace DementiaHelper.WebApi.Data
         bool CheckIfUserExists(string email);
         List<ShoppingListDetail> GetShoppingList(int citizenId);
         bool SaveItemInShoppingList(int shoppinglistId, string item, int quantity);
+        bool RemoveShoppingListDetail(int id);
     }
 }

@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddShoppingItems" xml:space="preserve">
-    <value>Tilføj varer</value>
+  <data name="AddShoppingItem" xml:space="preserve">
+    <value>Tilføj vare</value>
     <comment>text for button</comment>
   </data>
   <data name="AreYouSureThatYouWantToCloseThisApplication" xml:space="preserve">
@@ -266,5 +266,14 @@
   <data name="ShoppingListTitle" xml:space="preserve">
     <value>Indkøbsliste</value>
     <comment>Title for Shopping list view</comment>
+  </data>
+  <data name="ErrorOnRemove" xml:space="preserve">
+    <value>Der skete en fejl ved sletning af vare, prøv igen senere</value>
+  </data>
+  <data name="ErrorOnRemoveAccept" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ErrorOnRemoveTitle" xml:space="preserve">
+    <value>Fejl</value>
   </data>
 </root>

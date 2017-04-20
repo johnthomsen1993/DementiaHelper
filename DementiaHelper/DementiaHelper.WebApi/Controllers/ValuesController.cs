@@ -20,19 +20,6 @@ namespace DementiaHelper.WebApi.Controllers
             _iRepository = iRepository;
         }
 
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        //[HttpGet("{id}")]
-        //public string Get(string token)
-        //{
-        //}
-
         // POST api/values
         [HttpGet("getspecific/{token}")]
         [AllowAnonymous]
@@ -67,20 +54,29 @@ namespace DementiaHelper.WebApi.Controllers
             }
         }
 
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        // DELETE api/values/shoppinglist/{token}
+        [HttpDelete("shoppinglist/{token}")]
+        [AllowAnonymous]
+        public string DeleteItemFromList(string token)
         {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var decoded = JWTService.Decode(token);
+            var id = Convert.ToInt32(decoded["shoppingListDetailId"]);
+            var removed = _iRepository.RemoveShoppingListDetail(id);
+            string encoded;
+            if (removed)
+            {
+                var shoppingList = _iRepository.GetShoppingList(Convert.ToInt32(decoded["citizenId"]));
+                encoded = JWTService.Encode(new Dictionary<string, object>() {{ "ShoppingList", shoppingList}});
+                return encoded;
+            }
+            else
+            {
+                encoded = JWTService.Encode(new Dictionary<string, object>() {{"ErrorOnRemove", removed}});
+                return encoded;
+            }
         }
         
-        // GET api/values/shoppinglist/GAGfwgewegopmXEOM
+        // GET api/values/shoppinglist/{token}
         [HttpGet("shoppinglist/{token}")]
         [AllowAnonymous]
         public string GetShoppingList(string token)
