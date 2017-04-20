@@ -4,39 +4,10 @@
              x:Class="DementiaHelper.Pages.CalenderPage"
              xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
              xmlns:pages="clr-namespace:DementiaHelper.Pages;assembly=DementiaHelper.Pages"
-             Title="Calender">
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             Title="{i18n:Translate CalenderTitle}">
 
 
-
-
-    <ContentPage Title="Month">
-
-        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
-
-                <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
-                    <schedule:SfSchedule 
-            x:Name="MonthSchedule"
-      ScheduleView="MonthView"
-      HorizontalOptions="FillAndExpand"
-      VerticalOptions="FillAndExpand" ShowAppointmentsInline="True" >
-                    </schedule:SfSchedule>
-                </ScrollView>
-            </StackLayout>
-
-
-            <Image Source="ic_add_circle_black_48dp.png"
-              VerticalOptions="FillAndExpand"
-              HorizontalOptions="FillAndExpand"
-              AbsoluteLayout.LayoutBounds="1,.99, 65, 65"
-              AbsoluteLayout.LayoutFlags="PositionProportional" >
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-              Command="{Binding AddAppointmentCommand}"/>
-                </Image.GestureRecognizers>
-            </Image>
-        </AbsoluteLayout>
-    </ContentPage>
     <ContentPage Title="Day">
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  >
@@ -71,7 +42,37 @@
             </Image>
         </AbsoluteLayout>
     </ContentPage>
-    
+
+
+    <ContentPage Title="Month">
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
+
+                <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                    <schedule:SfSchedule 
+            x:Name="MonthSchedule"
+      ScheduleView="MonthView"
+      HorizontalOptions="FillAndExpand"
+      VerticalOptions="FillAndExpand" ShowAppointmentsInline="True" >
+                    </schedule:SfSchedule>
+                </ScrollView>
+            </StackLayout>
+
+
+            <Image Source="ic_add_circle_black_48dp.png"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              AbsoluteLayout.LayoutBounds="1,.99, 65, 65"
+              AbsoluteLayout.LayoutFlags="PositionProportional" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+              Command="{Binding AddAppointmentCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </ContentPage>
+   
     
     <!--<ContentPage Title="Week">
 

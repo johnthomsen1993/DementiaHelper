@@ -4,8 +4,9 @@
              x:Class="DementiaHelper.Pages.ChooseCitizenPage"
              xmlns:c="clr-namespace:DementiaHelper.Converters;assembly=DementiaHelper"
              xmlns:b="clr-namespace:DementiaHelper.Behaviors;assembly=DementiaHelper"
-             xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
-             BackgroundColor="#ffffff">
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             BackgroundColor="#ffffff"
+             Title="{i18n:Translate ChooseCitizenTitle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

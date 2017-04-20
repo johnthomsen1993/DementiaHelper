@@ -133,9 +133,6 @@
   <data name="ContactDetails" xml:space="preserve">
     <value>Contact Details</value>
   </data>
-  <data name="ContactList" xml:space="preserve">
-    <value>ContactList</value>
-  </data>
   <data name="CaregiverRole" xml:space="preserve">
     <value>Caregiver</value>
   </data>
@@ -241,5 +238,29 @@
   </data>
   <data name="ItemToAdd" xml:space="preserve">
     <value>Item</value>
+  </data>
+  <data name="AccountInformationTitle" xml:space="preserve">
+    <value>My account</value>
+    <comment>Title for account information view</comment>
+  </data>
+  <data name="CalenderTitle" xml:space="preserve">
+    <value>Calender</value>
+    <comment>Title for calender view</comment>
+  </data>
+  <data name="ChatTitle" xml:space="preserve">
+    <value>Chat</value>
+    <comment>Title for chat view</comment>
+  </data>
+  <data name="ChooseCitizenTitle" xml:space="preserve">
+    <value>Choose Citizen</value>
+    <comment>Title for choose citizen view</comment>
+  </data>
+  <data name="ImageGalleryTitle" xml:space="preserve">
+    <value>My pictures</value>
+    <comment>Title for image gallery view</comment>
+  </data>
+  <data name="ShoppingListTitle" xml:space="preserve">
+    <value>Shoppinglist</value>
+    <comment>Title for shopping list view</comment>
   </data>
 </root>

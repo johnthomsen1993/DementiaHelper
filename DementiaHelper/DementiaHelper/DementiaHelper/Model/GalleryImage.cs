@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using Xamarin.Forms;
 namespace DementiaHelper.Model
 {
 
+    [ImplementPropertyChanged]
     public class GalleryImage
     {
         public GalleryImage()

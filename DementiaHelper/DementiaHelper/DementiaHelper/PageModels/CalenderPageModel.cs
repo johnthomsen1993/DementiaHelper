@@ -1,6 +1,7 @@
 ﻿using DementiaHelper.Model;
 using DementiaHelper.Pages;
 using DementiaHelper.Resx;
+using PropertyChanged;
 using Syncfusion.SfSchedule.XForms;
 using System;
 using System.Collections.Generic;
@@ -13,31 +14,14 @@ using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
 {
-   public class CalenderPageModel : FreshMvvm.FreshBasePageModel
+    [ImplementPropertyChanged]
+    public class CalenderPageModel : FreshMvvm.FreshBasePageModel
     {
 
         public ICommand AddAppointmentCommand { get; protected set; }
-        public bool _createdNewItem { get; set; }
-        public bool CreatedNewItem
-        {
-            get { return _createdNewItem; }
-            set{_createdNewItem = value;
-                RaisePropertyChanged("CreatedNewItem");
-               }
-        }
+        public bool CreatedNewItem { get; set; }
         #region Properties
-        private string _calenderView { get; set; }
-        public string CalenderView
-        {
-            get{
-                return _calenderView;
-            }
-            set {
-                _calenderView = value;
-                RaisePropertyChanged("CalenderView");
 
-
-            } }
         public ObservableCollection<ScheduleAppointment> Appointments { get; set; }
         public ObservableCollection<ScheduleAppointment> CopyOfAppointments { get; set; }
 
@@ -60,11 +44,7 @@ namespace DementiaHelper.PageModels
         #region Constructor
         public CalenderPageModel()
         {
-            CalenderView = "DayView";
-
-
             this.AddAppointmentCommand = new Command(async () => await GoToCreateAppointment());
-
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)

@@ -223,21 +223,48 @@
   </data>
   <data name="ShoppingList" xml:space="preserve">
     <value>Indkøbsliste</value>
-    <comment>label for textbox</comment>
+    <comment>Label</comment>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Brugernavn</value>
+    <comment>Label</comment>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Advarsel</value>
+    <comment>Label</comment>
   </data>
   <data name="YesText" xml:space="preserve">
     <value>Ja</value>
+    <comment>Label</comment>
   </data>
   <data name="RelativesRole" xml:space="preserve">
     <value>Pårørende</value>
   </data>
   <data name="ItemToAdd" xml:space="preserve">
     <value>Vare</value>
+  </data>
+  <data name="AccountInformationTitle" xml:space="preserve">
+    <value>Min Konto</value>
+    <comment>Title for account information view</comment>
+  </data>
+  <data name="CalenderTitle" xml:space="preserve">
+    <value>Kalender</value>
+    <comment>Title for calender view</comment>
+  </data>
+  <data name="ChatTitle" xml:space="preserve">
+    <value>Chat</value>
+    <comment>Title for chat view</comment>
+  </data>
+  <data name="ChooseCitizenTitle" xml:space="preserve">
+    <value>Vælg borger</value>
+    <comment>Title for choose citizen view</comment>
+  </data>
+  <data name="ImageGalleryTitle" xml:space="preserve">
+    <value>Mine billeder</value>
+    <comment>Title for image gallery view</comment>
+  </data>
+  <data name="ShoppingListTitle" xml:space="preserve">
+    <value>Indkøbsliste</value>
+    <comment>Title for Shopping list view</comment>
   </data>
 </root>
