@@ -45,7 +45,7 @@ namespace DementiaHelper.WebApi.Controllers
             var user = new ApplicationUser()
             {
                 Email = decoded.SingleOrDefault(x => x.Key.Equals("email")).ToString(),
-                Role = new Role() {RoleId = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("RoleId")))},
+                Role = new Role() {RoleId = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("role")))},
                 Salt = GenerateSalt()
             };
             user.Hash = GenerateHash(decoded.SingleOrDefault(x => x.Key.Equals("password")).ToString(),user.Salt);

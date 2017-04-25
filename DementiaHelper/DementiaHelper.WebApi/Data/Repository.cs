@@ -103,17 +103,17 @@ namespace DementiaHelper.WebApi.Data
             switch (user.Role.RoleId)
             {
                 case 0:
-                    var citizen = new Citizen() {ApplicationUser = user};
+                    var citizen = new Citizen() {ApplicationUser = user, ApplicationUserForeignKey = 1}; //TODO: Remove ApplicationUserForeignKey from DB
                     _context.Add(citizen);
                     _context.SaveChanges();
                     return true;
                 case 1:
-                    var relative = new Relative() {ApplicationUser = user};
+                    var relative = new Relative() {ApplicationUser = user, ApplicationUserForeignKey = 1}; //TODO: Remove ApplicationUserForeignKey from DB
                     _context.Add(relative);
                     _context.SaveChanges();
                     return true;
                 case 2:
-                    var caregiver = new Caregiver() {ApplicationUser = user};
+                    var caregiver = new Caregiver() {ApplicationUser = user, ApplicationUserForeignKey = 1}; //TODO: Remove ApplicationUserForeignKey from DB
                     _context.Add(caregiver);
                     _context.SaveChanges();
                     return true;
