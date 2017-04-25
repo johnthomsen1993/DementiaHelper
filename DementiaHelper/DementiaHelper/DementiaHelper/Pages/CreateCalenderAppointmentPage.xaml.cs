@@ -41,7 +41,7 @@ namespace DementiaHelper.Pages
                     innerGrid.ColumnDefinitions.Clear();
                     innerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                     innerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                    innerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                    innerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
 
                     innerGrid.Children.Remove(controlsGrid);
                     innerGrid.Children.Add(controlsGrid, 0, 1);

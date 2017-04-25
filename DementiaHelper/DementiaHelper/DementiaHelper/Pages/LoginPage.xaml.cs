@@ -22,13 +22,12 @@ namespace DementiaHelper.Pages
             Device.BeginInvokeOnMainThread(async () => {
                 var result = await this.DisplayAlert(AppResources.Warning+"!", AppResources.AreYouSureThatYouWantToCloseThisApplication, AppResources.YesText, AppResources.NoText);
                 if (result) {
-                    INativeService nativeHelper = null;
-                    nativeHelper = DependencyService.Get<INativeService>();
+                    INativeService nativeHelper = DependencyService.Get<INativeService>();
                     if (nativeHelper != null)
                     {
                         nativeHelper.CloseApp();
                     }
-                } // or anything else
+                } 
             });
 
             return true;
@@ -43,13 +42,11 @@ namespace DementiaHelper.Pages
                 if (width > height)
                 {
                     outerStack.Orientation = StackOrientation.Horizontal;
-                    secondInnerStack.VerticalOptions = LayoutOptions.StartAndExpand;
                     imageElderlyHands.HeightRequest = 120;
                 }
                 else
                 {
                     outerStack.Orientation = StackOrientation.Vertical;
-                    secondInnerStack.VerticalOptions = LayoutOptions.CenterAndExpand;
                     imageElderlyHands.HeightRequest = 200;
                 }
             }

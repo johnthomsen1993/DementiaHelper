@@ -25,9 +25,9 @@
                         <StackLayout Orientation="Vertical" VerticalOptions="Start" >
                             <Image   x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
                         </StackLayout>
-                        <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand">
-                            <Entry  Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
-                            <Entry  Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
+                        <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand" Padding="5">
+                            <Entry  Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalTextAlignment="Center"  />
+                            <Entry  Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalTextAlignment="Center" />
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
@@ -53,7 +53,7 @@
                             <!-- top controls -->
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand">
-                            <Entry BackgroundColor="#00A8C8" Text="{Binding UserName}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                            <Entry BackgroundColor="#00A8C8" Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalOptions="CenterAndExpand" />
                             <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
                             <Button HorizontalOptions="CenterAndExpand" Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
                             <StackLayout Orientation="Horizontal" Spacing="2">

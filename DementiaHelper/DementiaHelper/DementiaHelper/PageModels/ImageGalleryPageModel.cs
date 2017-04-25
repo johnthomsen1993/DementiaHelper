@@ -2,6 +2,7 @@
 using DementiaHelper.Services;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,30 +15,21 @@ using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
 {
-   public class ImageGalleryPageModel : FreshMvvm.FreshBasePageModel
+    [ImplementPropertyChanged]
+    public class ImageGalleryPageModel : FreshMvvm.FreshBasePageModel
     {
         ICommand _cameraCommand, _previewImageCommand = null;
-        ObservableCollection<GalleryImage> _images = new ObservableCollection<GalleryImage>();
-        ImageSource _previewImage = null;
+
 
 
         public ImageGalleryPageModel()
         {
+            Images = new ObservableCollection<GalleryImage>();
         }
 
-        public ObservableCollection<GalleryImage> Images
-        {
-            get { return _images; }
-        }
+        public ObservableCollection<GalleryImage> Images { get; set; }
 
-        public ImageSource PreviewImage
-        {
-            get { return _previewImage; }
-            set
-            {
-                _previewImage = value;
-            }
-        }
+        public ImageSource PreviewImage { get; set; }
 
         public ICommand CameraCommand
         {
@@ -75,7 +67,7 @@ namespace DementiaHelper.PageModels
 
             var imageSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
 
-            _images.Add(new GalleryImage { Source = imageSource, OrgImage = imageAsBytes });
+            Images.Add(new GalleryImage { Source = imageSource, OrgImage = imageAsBytes });
 
 
             return;
@@ -86,11 +78,8 @@ namespace DementiaHelper.PageModels
             get
             {
                 return _previewImageCommand ?? new Command<Guid>((img) => {
-
-                    var image = _images.Single(x => x.ImageId == img).OrgImage;
-
+                    var image = Images.Single(x => x.ImageId == img).OrgImage;
                     PreviewImage = ImageSource.FromStream(() => new MemoryStream(image));
-
                 });
             }
         }

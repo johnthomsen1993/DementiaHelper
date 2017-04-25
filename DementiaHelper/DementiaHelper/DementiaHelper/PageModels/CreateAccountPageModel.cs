@@ -9,9 +9,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Collections.ObjectModel;
 using DementiaHelper.Resx;
+using PropertyChanged;
 
 namespace DementiaHelper.PageModels
 {
+    [ImplementPropertyChanged]
     public class CreateAccountPageModel : FreshMvvm.FreshBasePageModel
     {
         public ObservableCollection<string> RoleCollection { get; set; }
@@ -30,34 +32,27 @@ namespace DementiaHelper.PageModels
 
         };
         }
-        private string _selectedRoleName;
-        public string SelecteRoleName
-        {
-            get { return _selectedRoleName; }
-            set
-            {
-                if (_selectedRoleName != value)
-                {
-                    _selectedRoleName = value;
-                    RaisePropertyChanged("SelecteRoleName");
-                }
-            }
-        }
+
+
+        public string SelecteRoleName { get; set; }
 
         async Task CreateAccountAsync()
         {
-            var values = new Dictionary<string, string>
+            var values = new Dictionary<string, object>
             {
                 {"email",User.Email},
-                {"password", Password}
+                {"password", Password},
+                {"role", SelecteRoleName }
             };
-            using (var h = new HttpClient())
-            {
-                var content = new FormUrlEncodedContent(values);
-                var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/createaccount"), content).Result;
-                var response = result.Content.ReadAsStringAsync();
-                await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
-            }
+            //using (var h = new HttpClient())
+            //{
+            //    var content = new FormUrlEncodedContent(values);
+            //    var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/createaccount"), content).Result;
+            //    var response = result.Content.ReadAsStringAsync();
+            //    await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
+            //}
+            App.SetMasterDetailToRole();
+            CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
         }
 
     }
