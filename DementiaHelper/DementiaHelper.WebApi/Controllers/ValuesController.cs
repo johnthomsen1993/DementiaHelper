@@ -60,12 +60,12 @@ namespace DementiaHelper.WebApi.Controllers
         public string DeleteItemFromList(string token)
         {
             var decoded = JWTService.Decode(token);
-            var id = Convert.ToInt32(decoded["shoppingListDetailId"]);
+            var id = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("shoppingListDetailId")));
             var removed = _iRepository.RemoveShoppingListDetail(id);
             string encoded;
             if (removed)
             {
-                var shoppingList = _iRepository.GetShoppingList(Convert.ToInt32(decoded["citizenId"]));
+                var shoppingList = _iRepository.GetShoppingList(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("citizenId"))));
                 encoded = JWTService.Encode(new Dictionary<string, object>() {{ "ShoppingList", shoppingList}});
                 return encoded;
             }

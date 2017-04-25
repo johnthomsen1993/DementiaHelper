@@ -4,8 +4,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Security.Principal;
@@ -14,6 +16,7 @@ using System.Threading.Tasks;
 using DementiaHelper.WebApi.Data;
 using DementiaHelper.WebApi.model;
 using DementiaHelper.WebApi.Options;
+using DementiaHelper.WebApi.Service;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 
@@ -25,9 +28,6 @@ namespace DementiaHelper.WebApi.Controllers
     public class AccountController : Controller
     {
         private static readonly RandomNumberGenerator Random = RandomNumberGenerator.Create();
-        private readonly JwtIssuerOptions _jwtOptions;
-        private readonly ILogger _logger;
-        private readonly JsonSerializerSettings _serializerSettings;
         private readonly IRepository _repository;
         // GET: /<controller>/
 
@@ -36,47 +36,20 @@ namespace DementiaHelper.WebApi.Controllers
             _repository = repository;
         }
 
-        [HttpPost("createAccount")]
+        //email, password, role
+        [HttpPut("createAccount")]
         [AllowAnonymous]
-        public async Task<IActionResult> CreateAccount(string email, string password)
+        public string CreateAccount(string token)
         {
-            var user = new ApplicationUser() {Email = email, Salt = GenerateSalt() };
-            user.Hash = GenerateHash(password,user.Salt);
-            if (_repository.CreateAccount(user) == "User already exists") {return new OkObjectResult("User already exists"); }
-            var identity = await GetClaimsIdentity(email, password,user.Salt,user.Hash);
-            if (identity == null)
+            var decoded = JWTService.Decode(token);
+            var user = new ApplicationUser()
             {
-                _logger.LogInformation($"Invalid username ({email}) or password ({password})");
-                return BadRequest("Invalid credentials");
-            }
-
-            var claims = new[]
-            {
-               new Claim(JwtRegisteredClaimNames.Sub, email),
-               new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
-               new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-               identity.FindFirst("DementiaHelper")
+                Email = decoded.SingleOrDefault(x => x.Key.Equals("email")).ToString(),
+                Role = new Role() {RoleId = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("RoleId")))},
+                Salt = GenerateSalt()
             };
-            // Create the JWT security token and encode it.
-            var jwt = new JwtSecurityToken(
-                issuer: _jwtOptions.Issuer,
-                audience: _jwtOptions.Audience,
-                claims: claims,
-                notBefore: _jwtOptions.NotBefore,
-                expires: _jwtOptions.Expiration,
-                signingCredentials: _jwtOptions.SigningCredentials);
-
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-            
-            // Serialize and return the response
-            var response = new
-            {
-                access_token = encodedJwt,
-                expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
-            };
-
-            var json = JsonConvert.SerializeObject(response, _serializerSettings);
-            return new OkObjectResult(json);
+            user.Hash = GenerateHash(decoded.SingleOrDefault(x => x.Key.Equals("password")).ToString(),user.Salt);
+            return JWTService.Encode(new Dictionary<string, object>() { {"UserCreated", _repository.CreateAccount(user) } });
         }
 
         private string GenerateHash(string password, string salt)
@@ -92,74 +65,40 @@ namespace DementiaHelper.WebApi.Controllers
 
         private bool ComparePasswords(string password, string salt, string hashedPassword)
         {
-            if (GenerateHash(password, salt) == hashedPassword)
-            {
-                return true;
-            }
-            return false;
+            return GenerateHash(password, salt) == hashedPassword;
         }
-        [HttpPost("login")]
+
+        //email, password
+        [HttpGet("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(string email, string password)
+        public string Login(string token)
         {
-            var user =_repository.FetchApplicationUser(email);
-            if (user == null)
+            var decoded = JWTService.Decode(token);
+            var user =_repository.FetchApplicationUser(decoded["email"].ToString());
+            if (user == null) return JWTService.Encode(new Dictionary<string, object>() {{"UserExists", false}});
+            if (!ComparePasswords(decoded.SingleOrDefault(x => x.Key.Equals("password")).ToString(), user.Salt, user.Hash))
+                return JWTService.Encode(new Dictionary<string, object>() {{"password", false}});
+            var payload = new Dictionary<string, object> {{"user", user}};
+            switch (user.Role.RoleId)
             {
-                return new OkObjectResult("User not found");
+                case 0:
+                    break;
+                case 1:
+                    var relativeConnection = _repository.GetRelativeConnection(user.ApplicationUserId);
+                    payload.Add("citizenId", relativeConnection.CitizenForeignKey.CitizenId);
+                    break;
+                case 2:
+                    var caregiverConnection = _repository.GetCaregiverConnections(user.ApplicationUserId);
+                    var list = new List<int>();
+                    caregiverConnection.ForEach(x => list.Add(x.CitizenForeignKey.CitizenId));
+                    payload.Add("citizenIds", list);
+                    break;
+                default:
+                    return JWTService.Encode(new Dictionary<string, object>() {{"ErrorRole", false}});
             }
-            var identity = await GetClaimsIdentity(email,password,user.Salt,user.Hash);
-            if (identity == null)
-            {
-                _logger.LogInformation($"Invalid username ({email}) or password ({password})");
-                return BadRequest("Invalid credentials");
-            }
-
-            var claims = new[]
-            {
-               new Claim(JwtRegisteredClaimNames.Sub, email),
-               new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
-               new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-               identity.FindFirst("DementiaHelper")
-            };
-            // Create the JWT security token and encode it.
-            var jwt = new JwtSecurityToken(
-                issuer: _jwtOptions.Issuer,
-                audience: _jwtOptions.Audience,
-                claims: claims,
-                notBefore: _jwtOptions.NotBefore,
-                expires: _jwtOptions.Expiration,
-                signingCredentials: _jwtOptions.SigningCredentials);
-
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            // Serialize and return the response
-            var response = new
-            {
-                access_token = encodedJwt,
-                expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
-            };
-
-            var json = JsonConvert.SerializeObject(response, _serializerSettings);
-            return new OkObjectResult(json);
+            return JWTService.Encode(payload);
         }
-        /// <returns>Date converted to seconds since Unix epoch (Jan 1, 1970, midnight UTC).</returns>
-        private static long ToUnixEpochDate(DateTime date)
-          => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
-
-        /// <summary>
-        /// IMAGINE BIG RED WARNING SIGNS HERE!
-        /// You'd want to retrieve claims through your claims provider
-        /// in whatever way suits you, the below is purely for demo purposes!
-        /// </summary>
-        private Task<ClaimsIdentity> GetClaimsIdentity(string email, string password, string salt, string hash)
-        {
-            if (ComparePasswords(password,salt,hash))
-            {
-                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(email, "Token"), new[]{new Claim("DementiaHelper", "Dementia") }));
-            }
-            // Credentials are invalid, or account doesn't exist
-            return Task.FromResult<ClaimsIdentity>(null);
-        }
+        
 
         private string GenerateSalt()
         {

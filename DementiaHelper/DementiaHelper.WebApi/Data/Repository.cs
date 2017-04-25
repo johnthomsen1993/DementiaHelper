@@ -25,10 +25,10 @@ namespace DementiaHelper.WebApi.Data
         {
             try
             {
-                _context.AccountInformations.Add(new AccountInformation()
+                _context.ApplicationUsers.Add(new ApplicationUser()
                 {
                     FirstName = firstName,
-                    LastName = lastName,
+                    Lastname = lastName,
                     Email = email,
                     Description = description
                 });
@@ -47,18 +47,18 @@ namespace DementiaHelper.WebApi.Data
             try
             {
                 //AccountInformation target = _context.AccountInformations.Find(email);
-                var query = from p in _context.AccountInformations
+                var query = from p in _context.ApplicationUsers
                     where p.Email == email
                     select p;
 
                 var target = query.SingleOrDefault();
 
                 target.FirstName = firstName;
-                target.LastName = lastName;
+                target.Lastname = lastName;
                 target.Email = email;
                 target.Description = description;
 
-                _context.AccountInformations.Update(target);
+                _context.ApplicationUsers.Update(target);
                 _context.SaveChanges();
                 return true;
             }
@@ -94,33 +94,42 @@ namespace DementiaHelper.WebApi.Data
             }
         }
 
-        public string CreateAccount(ApplicationUser user)
+        public bool CreateAccount(ApplicationUser user)
         {
-            if (_context.ApplicationUsers.Any(o => o.Email == user.Email))
+            if (CheckIfUserExists(user.Email))
             {
-                return "User already exists";
+                return false;
             }
-            _context.ApplicationUsers.Add(user);
-            _context.SaveChanges();
-            return "User Created";
-
+            switch (user.Role.RoleId)
+            {
+                case 0:
+                    var citizen = new Citizen() {ApplicationUser = user};
+                    _context.Add(citizen);
+                    _context.SaveChanges();
+                    return true;
+                case 1:
+                    var relative = new Relative() {ApplicationUser = user};
+                    _context.Add(relative);
+                    _context.SaveChanges();
+                    return true;
+                case 2:
+                    var caregiver = new Caregiver() {ApplicationUser = user};
+                    _context.Add(caregiver);
+                    _context.SaveChanges();
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         public ApplicationUser FetchApplicationUser(string email)
         {
-            return _context.ApplicationUsers.FirstOrDefault(b => b.Email == email);
+            return _context.ApplicationUsers.SingleOrDefault(b => b.Email == email);
         }
 
         public bool CheckIfUserExists(string email)
         {
-            if (_context.AccountInformations.Any(information => information.Email.Equals(email)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return _context.ApplicationUsers.Any(information => information.Email.Equals(email));
         }
 
         public List<ShoppingListDetail> GetShoppingList(int citizenId)
@@ -175,6 +184,36 @@ namespace DementiaHelper.WebApi.Data
             _context.ShoppingListDetails.Remove(item);
             _context.SaveChanges();
             return true;
+        }
+
+        public Citizen GetCitizen(int id)
+        {
+            return _context.Citizen.Include(x => x.ApplicationUser).SingleOrDefault(x => x.CitizenId == id);
+        }
+
+        public Relative GetRelative(int id)
+        {
+            return _context.Relative.Include(x => x.ApplicationUser).SingleOrDefault(x => x.RelativeId == id);
+        }
+
+        public Caregiver GetCaregiver(int id)
+        {
+            return _context.Caregiver.Include(x => x.ApplicationUser).SingleOrDefault(x => x.CaregiverId == id);
+        }
+
+        public RelativeConnection GetRelativeConnection(int id)
+        {
+            return _context.RelativeConnectiob.Include(x => x.CitizenForeignKey).SingleOrDefault(x => x.RelativeForeignKey.RelativeId == id);
+        }
+
+        public CaregiverConnection GetCaregiverConnection(int id)
+        {
+            return _context.CaregiverConnection.Include(x => x.CitizenForeignKey).SingleOrDefault(x => x.CaregiverForeignKey.CaregiverId == id);
+        }
+
+        public List<CaregiverConnection> GetCaregiverConnections(int id)
+        {
+            return _context.CaregiverConnection.Include(x => x.CitizenForeignKey).Where(x => x.CaregiverForeignKey.CaregiverId == id).ToList();
         }
     }
 }
