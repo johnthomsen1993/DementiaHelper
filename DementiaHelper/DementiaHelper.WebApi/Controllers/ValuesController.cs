@@ -60,12 +60,12 @@ namespace DementiaHelper.WebApi.Controllers
         public string DeleteItemFromList(string token)
         {
             var decoded = JWTService.Decode(token);
-            var id = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("shoppingListDetailId")));
+            var id = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("shoppingListDetailId")).Value);
             var removed = _iRepository.RemoveShoppingListDetail(id);
             string encoded;
             if (removed)
             {
-                var shoppingList = _iRepository.GetShoppingList(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("citizenId"))));
+                var shoppingList = _iRepository.GetShoppingList(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("citizenId")).Value));
                 encoded = JWTService.Encode(new Dictionary<string, object>() {{ "ShoppingList", shoppingList}});
                 return encoded;
             }
@@ -100,6 +100,39 @@ namespace DementiaHelper.WebApi.Controllers
             var decoded = JWTService.Decode(content);
             var sucess = _iRepository.SaveItemInShoppingList(Convert.ToInt32(decoded["ShoppingListId"]), decoded["Item"]?.ToString(), Convert.ToInt32(decoded["Quantity"]));
             return sucess;
+        }
+
+        [HttpGet("calendar/{token}")]
+        [AllowAnonymous]
+        public string GetAppointments(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var appointments = _iRepository.GetAppointments(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("CitizenId")).Value));
+            return JWTService.Encode(new Dictionary<string, object>() {{"Appointments", appointments}});
+        }
+
+        [HttpPut("calendar")]
+        [AllowAnonymous]
+        public string CreateAppointment(string content)
+        {
+            var decoded = JWTService.Decode(content);
+            try
+            {
+                var appointment = new Appointment()
+                {
+                    CitizenId = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("CitizenId")).Value),
+                    Subject = decoded.SingleOrDefault(x => x.Key.Equals("Subject")).Value.ToString(),
+                    StartTime = DateTime.Parse(decoded.SingleOrDefault(x => x.Key.Equals("StartTime")).Value.ToString()),
+                    EndTime = DateTime.Parse(decoded.SingleOrDefault(x => x.Key.Equals("EndTime")).Value.ToString()),
+                    Color = decoded.SingleOrDefault(x => x.Key.Equals("Color")).Value.ToString()
+                };
+                _iRepository.CreateAppointment(appointment);
+                return JWTService.Encode(new Dictionary<string, object>() { { "Success", true } });
+            }
+            catch (Exception)
+            {
+                return JWTService.Encode(new Dictionary<string, object>() { { "Success", false } });
+            }
         }
     }
 }

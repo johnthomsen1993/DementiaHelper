@@ -21,7 +21,8 @@ namespace DementiaHelper.WebApi.Data
         public DbSet<RelativeConnection> RelativeConnectiob { get; set; }
         public DbSet<ShoppingList> ShoppingLists { get; set; }
         public DbSet<ShoppingListDetail> ShoppingListDetails { get; set; }
-        public DbSet<Product> Products { get; set; }   
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

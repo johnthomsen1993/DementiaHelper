@@ -23,5 +23,7 @@ namespace DementiaHelper.WebApi.Data
         RelativeConnection GetRelativeConnection(int id);
         CaregiverConnection GetCaregiverConnection(int id);
         List<CaregiverConnection> GetCaregiverConnections(int id);
+        List<Appointment> GetAppointments(int id);
+        void CreateAppointment(Appointment appointment);
     }
 }

@@ -100,20 +100,20 @@ namespace DementiaHelper.WebApi.Data
             {
                 return false;
             }
-            switch (user.Role.RoleId)
+            switch (user.RoleId)
             {
-                case 0:
-                    var citizen = new Citizen() {ApplicationUser = user, ApplicationUserForeignKey = 1}; //TODO: Remove ApplicationUserForeignKey from DB
+                case 1:
+                    var citizen = new Citizen() {ApplicationUser = user/*, ApplicationUserForeignKey = 1*/}; //TODO: Remove ApplicationUserForeignKey from DB
                     _context.Add(citizen);
                     _context.SaveChanges();
                     return true;
-                case 1:
-                    var relative = new Relative() {ApplicationUser = user, ApplicationUserForeignKey = 1}; //TODO: Remove ApplicationUserForeignKey from DB
+                case 2:
+                    var relative = new Relative() {ApplicationUser = user/*, ApplicationUserForeignKey = 1*/}; //TODO: Remove ApplicationUserForeignKey from DB
                     _context.Add(relative);
                     _context.SaveChanges();
                     return true;
-                case 2:
-                    var caregiver = new Caregiver() {ApplicationUser = user, ApplicationUserForeignKey = 1}; //TODO: Remove ApplicationUserForeignKey from DB
+                case 3:
+                    var caregiver = new Caregiver() {ApplicationUser = user/*, ApplicationUserForeignKey = 1 */}; //TODO: Remove ApplicationUserForeignKey from DB
                     _context.Add(caregiver);
                     _context.SaveChanges();
                     return true;
@@ -124,7 +124,7 @@ namespace DementiaHelper.WebApi.Data
 
         public ApplicationUser FetchApplicationUser(string email)
         {
-            return _context.ApplicationUsers.SingleOrDefault(b => b.Email == email);
+            return _context.ApplicationUsers.Include(x => x.Role).SingleOrDefault(b => b.Email == email);
         }
 
         public bool CheckIfUserExists(string email)
@@ -213,7 +213,18 @@ namespace DementiaHelper.WebApi.Data
 
         public List<CaregiverConnection> GetCaregiverConnections(int id)
         {
-            return _context.CaregiverConnection.Include(x => x.CitizenForeignKey).Where(x => x.CaregiverForeignKey.CaregiverId == id).ToList();
+            return _context.CaregiverConnection.Include(x => x.CitizenForeignKey.ApplicationUser).Where(x => x.CaregiverForeignKey.CaregiverId == id).ToList();
+        }
+
+        public List<Appointment> GetAppointments(int id)
+        {
+            return _context.Appointments.Where(x => x.Citizen.CitizenId == id).ToList();
+        }
+
+        public void CreateAppointment(Appointment appointment)
+        {
+            _context.Appointments.Add(appointment);
+            _context.SaveChanges();
         }
     }
 }

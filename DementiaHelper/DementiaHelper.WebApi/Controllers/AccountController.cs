@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,16 +40,16 @@ namespace DementiaHelper.WebApi.Controllers
         //email, password, role
         [HttpPut("createAccount")]
         [AllowAnonymous]
-        public string CreateAccount(string token)
+        public string CreateAccount(string content)
         {
-            var decoded = JWTService.Decode(token);
+            var decoded = JWTService.Decode(content);
             var user = new ApplicationUser()
             {
-                Email = decoded.SingleOrDefault(x => x.Key.Equals("email")).ToString(),
-                Role = new Role() {RoleId = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("role")))},
+                Email = decoded.SingleOrDefault(x => x.Key.Equals("email")).Value.ToString(),
+                RoleId = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("role")).Value),
                 Salt = GenerateSalt()
             };
-            user.Hash = GenerateHash(decoded.SingleOrDefault(x => x.Key.Equals("password")).ToString(),user.Salt);
+            user.Hash = GenerateHash(decoded.SingleOrDefault(x => x.Key.Equals("password")).Value.ToString(),user.Salt);
             return JWTService.Encode(new Dictionary<string, object>() { {"UserCreated", _repository.CreateAccount(user) } });
         }
 
@@ -71,27 +72,29 @@ namespace DementiaHelper.WebApi.Controllers
         //email, password
         [HttpGet("login")]
         [AllowAnonymous]
-        public string Login(string token)
+        public string Login([FromHeader]string token)
         {
             var decoded = JWTService.Decode(token);
             var user =_repository.FetchApplicationUser(decoded["email"].ToString());
             if (user == null) return JWTService.Encode(new Dictionary<string, object>() {{"UserExists", false}});
-            if (!ComparePasswords(decoded.SingleOrDefault(x => x.Key.Equals("password")).ToString(), user.Salt, user.Hash))
-                return JWTService.Encode(new Dictionary<string, object>() {{"password", false}});
-            var payload = new Dictionary<string, object> {{"user", user}};
+            if (!ComparePasswords(decoded.SingleOrDefault(x => x.Key.Equals("password")).Value.ToString(), user.Salt, user.Hash))
+                return JWTService.Encode(new Dictionary<string, object>() {{"Password", false}});
+            var payload = new Dictionary<string, object> {{"User", user}};
             switch (user.Role.RoleId)
             {
-                case 0:
-                    break;
                 case 1:
-                    var relativeConnection = _repository.GetRelativeConnection(user.ApplicationUserId);
-                    payload.Add("citizenId", relativeConnection.CitizenForeignKey.CitizenId);
                     break;
                 case 2:
+                    var relativeConnection = _repository.GetRelativeConnection(user.ApplicationUserId);
+                    if (relativeConnection == null) break;
+                    payload.Add("CitizenId", relativeConnection.CitizenForeignKey.CitizenId);
+                    break;
+                case 3:
                     var caregiverConnection = _repository.GetCaregiverConnections(user.ApplicationUserId);
-                    var list = new List<int>();
-                    caregiverConnection.ForEach(x => list.Add(x.CitizenForeignKey.CitizenId));
-                    payload.Add("citizenIds", list);
+                    if (caregiverConnection == null) break;
+                    var list = new List<Citizen>();
+                    caregiverConnection.ForEach(x => list.Add(new Citizen() {CitizenId = x.CitizenForeignKey.CitizenId, ApplicationUser = new ApplicationUser() {FirstName = x.CitizenForeignKey.ApplicationUser.FirstName, Lastname = x.CitizenForeignKey.ApplicationUser.Lastname} }));
+                    payload.Add("CitizenIds", list);
                     break;
                 default:
                     return JWTService.Encode(new Dictionary<string, object>() {{"ErrorRole", false}});
