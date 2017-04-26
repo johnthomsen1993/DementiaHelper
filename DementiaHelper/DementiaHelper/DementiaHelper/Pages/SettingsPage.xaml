@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
+             x:Class="DementiaHelper.Pages.SettingsPage">
+    <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <StackLayout x:Name="outerStack" VerticalOptions="Start" >
+            <StackLayout Orientation="Vertical" VerticalOptions="Start" >
+                <Image   x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
+            </StackLayout>
+            <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand" Padding="5">
+
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
+
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <customRenders:CustomButtonRender Grid.Column="1" Command="{Binding LogOutCommand}"  Style="{StaticResource ButtonStyle}" HeightRequest="40"  TextColor="White" Text="LogOut" />
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

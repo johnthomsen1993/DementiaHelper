@@ -23,14 +23,15 @@ namespace DementiaHelper.PageModels
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/shoppinglist/";
         public const string URI_BASE_TEST = "http://localhost:29342/api/values/shoppinglist/";
         public ShoppingList ShoppingList { get; set; }
-        public ICommand SaveToDatabaseCommand { get; protected set; }
         public ICommand RemoveFromDatabaseCommand { get; protected set; }
+        public ICommand CreateShoppingItemCommand { get; protected set; }
         public string Item { get; set; }
         public ObservableCollection<ShoppingListDetail> ShoppingListDetails { get; set; }
 
         public ShoppingListPageModel()
         {
             ShoppingList = new ShoppingList() {ShoppingListDetails = new ObservableCollection<ShoppingListDetail>() {} };
+            var User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
             Device.BeginInvokeOnMainThread(async () =>
             {
                 var shoppinglist = await GetShoppingList(8); //TODO: Make citizenid accessible and change this
@@ -38,9 +39,13 @@ namespace DementiaHelper.PageModels
                 ShoppingList.ShoppingListId = shoppinglist.ShoppingListId;
                 ShoppingListDetails = ShoppingList.ShoppingListDetails;
             });
+            CreateShoppingItemCommand = new Command(async () => await GoToCreateShoppingItem());
             RemoveFromDatabaseCommand = new Command(async (obj) => await RemoveFromDatabase((ShoppingListDetail) obj));
         }
-
+        private async Task GoToCreateShoppingItem()
+        {
+            await CoreMethods.PushPageModel<CreateShoppingItemPageModel>();
+        }
         private async Task RemoveFromDatabase(ShoppingListDetail item)
         {
             using (var client = new HttpClient())
@@ -58,7 +63,7 @@ namespace DementiaHelper.PageModels
                     }
                     else
                     {
-                        App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.ErrorOnRemoveAccept);
+                       await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.ErrorOnRemoveAccept);
                     }
                 }
                 catch (Exception)
@@ -68,8 +73,9 @@ namespace DementiaHelper.PageModels
             }
         }
 
-        private async Task<ShoppingList> GetShoppingList(int id)
+        private async Task<ShoppingList> GetShoppingList(int? id)
         {
+            if (id == null) { return null; }
             using (var client = new HttpClient())
             {
                 try

@@ -10,6 +10,8 @@ using Xamarin.Forms;
 using DementiaHelper.PageModels;
 using DementiaHelper.Pages;
 using DementiaHelper.Resx;
+using Newtonsoft.Json.Linq;
+using System.Net.Http;
 
 namespace DementiaHelper
 {
@@ -26,62 +28,107 @@ namespace DementiaHelper
             public static string MainAppStack = "MainAppStack";
         }
         public static string AppName { get { return "Dementia Helper"; } }
-        public static string UserName { get { return "John"; } }
-        public string ApplicationUser { get; set; }
-        public static string Password { get { return "password"; } }
-        static FreshMvvm.FreshMasterDetailNavigationContainer masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+       // public static string UserName { get { return "John"; } }
+        public ApplicationUser ApplicationUser { get; set; }
+      //  public static string Password { get { return "password"; } }
+        static FreshMvvm.FreshMasterDetailNavigationContainer masterDetailNav { get; set; }
         public App()
         {
             InitializeComponent();
-            masterDetailNav.Init("Menu");
-
-
             var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
             var navContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
-           
-            DependencyService.Get<ICredentialsService>().SaveCredentials(UserName, Password+"s");
-            if (DependencyService.Get<ICredentialsService>().Authenticate()){
-
-                      MainPage = masterDetailNav;
-            }
-            else {
-                MainPage = navContainer;
+            MainPage = navContainer;
+        }
+        static public async Task<bool> LoginAsync(string Email, string Password)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var encoded = JWTService.Encode(new Dictionary<string, object>
+                      {
+                        {"email",Email},
+                       {"password", Password}
+                     });
+                    client.DefaultRequestHeaders.Add("token", encoded);
+                    var result = await client.GetAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/login"));
+                    var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
+                    if (App.MapToApplicationUser(decoded))
+                    {
+                        DependencyService.Get<ICredentialsService>().DeleteCredentials();
+                        DependencyService.Get<ICredentialsService>().SaveCredentials(Email, Password );
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
+     
 
-       static public void SetMasterDetailToRole()
+        static public bool MapToApplicationUser(IDictionary<string, object> dict)
         {
-            var h =App.Current.Properties["Test"];
-           
-            switch ((string)App.Current.Properties["ApplicationUser"])
+            if (dict.ContainsKey("Password") || dict.ContainsKey("UserExists") || dict.ContainsKey("ErrorRole")) { return false; }
+            var User = dict["User"] as JContainer;
+
+            var ApplicationUser = new ApplicationUser()
             {
-                case "Relatives":
+                ApplicationUserId = User.SelectToken("ApplicationUserId").ToObject<int>(),
+                Email = User.SelectToken("Email").ToObject<string>(),
+                Salt = User.SelectToken("Salt").ToObject<string>(),
+                Hash = User.SelectToken("Hash").ToObject<string>(),
+                RoleId = User.SelectToken("RoleId").ToObject<int>(),
+            };
+            ApplicationUser.CitizenId = User.SelectToken("CitizenId") != null ? User.SelectToken("CitizenId").ToObject<int?>() : null;
+            //      ApplicationUser.ListOfCitizens = User.SelectToken("CitizenIds") != null ? User.SelectToken("CitizenId").ToObject< ObservableCollection<int?>() : null;
+            App.Current.Properties["ApplicationUser"] = ApplicationUser;
+            return true;
+        }
+        static public void SetMasterDetailToRole()
+        {
+
+            var User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
+            switch (User.RoleId)
+            {
+                case 1:
                     {
+                        masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        masterDetailNav.Init("Menu");
+                        masterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
+                        masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
+                      //  masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
+                        masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        masterDetailNav.AddPage<SettingsPageModel>("Settings", null);
+                        break;
+                    }
+                case 2:
+                    {
+                        masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        masterDetailNav.Init("Menu");
                         masterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
                         masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
-                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                       // masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        masterDetailNav.AddPage<SettingsPageModel>("Settings", null);
                         break;
                     }
-                case "Citizen":
+                case 3:
                     {
-                        masterDetailNav.AddPage<CitizenHomePageModel>("Idag", null);
-                        masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
-                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
-                        masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
-                        masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
-                        masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
-                        break;
-                    }
-                case "Caregiver":
-                    {
+                        masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        masterDetailNav.Init("Menu");
                         masterDetailNav.AddPage<ChooseCitizenPageModel>(AppResources.ChooseCitizenTitle, null);
-                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        //masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        masterDetailNav.AddPage<SettingsPageModel>("Settings", null);
                         break;
                     }
 
@@ -94,9 +141,10 @@ namespace DementiaHelper
                 
         }
 
-        protected override void OnStart()
+
+        protected override async void OnStart()
         {
-            // Handle when your app starts
+
         }
 
         protected override void OnSleep()

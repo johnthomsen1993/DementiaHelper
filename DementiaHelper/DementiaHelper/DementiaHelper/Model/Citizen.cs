@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace DementiaHelper.Model
 {
-    [JsonObject]
+
     public class Citizen
     {
-        [JsonProperty("Name")]
-        public string Name { get; set; }
-        [JsonProperty("CitizenId")]
+  
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
         public int CitizenId { get; set; }
     }
 }

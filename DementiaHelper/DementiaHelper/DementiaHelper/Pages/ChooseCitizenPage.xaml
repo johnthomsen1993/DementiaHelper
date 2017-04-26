@@ -24,8 +24,10 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Text="Name of citizen" Grid.Row="0" Grid.Column="0" ></Label>
+                        <Label Text="First name" Grid.Column="0"></Label>
+                        <Label Text="Last name" Grid.Column="1"></Label>
                     </Grid>
                 </ListView.Header>
                 <ListView.Behaviors>
@@ -37,8 +39,10 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Name}" Grid.Column="0"></Label>
+                                <Label Text="{Binding FirstName}" Grid.Column="0"></Label>
+                                <Label Text="{Binding LastName}" Grid.Column="1"></Label>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

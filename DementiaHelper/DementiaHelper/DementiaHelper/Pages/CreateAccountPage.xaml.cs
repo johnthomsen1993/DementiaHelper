@@ -22,22 +22,6 @@ namespace DementiaHelper.Pages
             InitializeComponent();
 
         }
-        protected override bool OnBackButtonPressed()
-        {
-            Device.BeginInvokeOnMainThread(async () => {
-                var result = await this.DisplayAlert(AppResources.Warning + "!", AppResources.AreYouSureThatYouWantToCloseThisApplication, AppResources.YesText, AppResources.NoText);
-                if (result)
-                {
-                    INativeService nativeHelper = DependencyService.Get<INativeService>();
-                    if (nativeHelper != null)
-                    {
-                        nativeHelper.CloseApp();
-                    }
-                }
-            });
-
-            return true;
-        }
 
         protected override void OnSizeAllocated(double width, double height)
         {

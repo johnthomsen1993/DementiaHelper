@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.ConnectToCitizenPage"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
               BackgroundColor="White"
-             Title="Opret forbindelse til borger"
+             Title="{i18n:Translate ConnectToCitizenTitle}"
              NavigationPage.HasNavigationBar="True">
 
 
@@ -17,16 +18,17 @@
                         <Image   x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
                     </StackLayout>
                     <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand">
-                        <Entry Placeholder="{i18n:Translate CitizenId}" ></Entry>
-                        <Label Font="Bold" Text="Indtast dement id, se Idet i den dementes account information"></Label>
+                        <StackLayout Margin="10" Padding="1" BackgroundColor="#0099cc">
+                            <Entry BackgroundColor="White" Placeholder="{i18n:Translate CitizenId}" ></Entry>
+                        </StackLayout>
+
+                        <Label  Margin="10" TextColor="#0099cc" Font="Bold" Text="Indtast dement id, se Idet i den dementes account information"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
-                    <Button  Style="{StaticResource buttonStyle}" Text="Connect"></Button>
+                    <customRenders:CustomButtonRender Style="{StaticResource ButtonStyle}" Text="{i18n:Translate Connect}"></customRenders:CustomButtonRender>
                 </StackLayout>
-
                 <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
-
                 </StackLayout>
             </StackLayout>
         </OnIdiom.Phone>

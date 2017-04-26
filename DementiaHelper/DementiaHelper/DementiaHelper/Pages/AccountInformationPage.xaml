@@ -1,21 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.AccountInformationPage"
-             BackgroundColor="White">
-    
-    <StackLayout Orientation="Horizontal">
-        <Entry Text="{Binding AddItem.Product}"></Entry>
-        <Entry Text="{Binding AddItem.Amount}"></Entry>
-        <Button Text="{extensions:Translate Save}" Command="{Binding }"></Button>
-    </StackLayout>
-    <StackLayout>
-        <StackLayout VerticalOptions="Start" Orientation="Vertical">
-            <!-- top controls -->
-            <Label Text="{extensions:Translate ProfileSettings}" HorizontalOptions="Center" FontSize="16"></Label>
-           </StackLayout>
-        <Grid ColumnSpacing="5">
+             BackgroundColor="White"
+             Title="{i18n:Translate AccountInformationTitle}">
+
+   
+        <StackLayout>
+            <ScrollView>
+                <Grid ColumnSpacing="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -43,36 +38,36 @@
 
 
 
-            <Label Text="{extensions:Translate PersonalDetails}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"></Label>
+                <Label Font="Bold" Text="{i18n:Translate PersonalDetails}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"></Label>
             
             <!--This is used as a seperator line in the grid-->
             <BoxView HeightRequest="1" BackgroundColor="Black" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4"/>
-            
-            <Label Text="{extensions:Translate FirstName}" Grid.Row="3" Grid.Column="1"></Label>
+
+                <Label Text="{i18n:Translate FirstName}" Grid.Row="3" Grid.Column="1"></Label>
             <Label Text="{Binding User.FirstName}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"></Label>
-            
-            <Label Text="{extensions:Translate LastName}" Grid.Row="4" Grid.Column="1"></Label>
+
+                <Label Text="{i18n:Translate LastName}" Grid.Row="4" Grid.Column="1"></Label>
             <Label Text="{Binding User.LastName}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"></Label>
 
-            <Label Text="{extensions:Translate Description}" Grid.Row="5" Grid.Column="1"></Label>
+                <Label Text="{i18n:Translate Description}" Grid.Row="5" Grid.Column="1"></Label>
             <Label Text="{Binding User.Description}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3"></Label>
 
-            
 
-            <Label Text="{extensions:Translate ContactDetails}" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="4"></Label>
+
+                <Label Text="{i18n:Translate ContactDetails}" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="4"></Label>
 
             <!--This is used as a seperator line in the grid-->
             <BoxView HeightRequest="1" BackgroundColor="Black" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"/>
-            
-            <Label Text="{extensions:Translate Email}" Grid.Row="9" Grid.Column="1"></Label>
+
+                <Label Text="{i18n:Translate Email}" Grid.Row="9" Grid.Column="1"></Label>
             <Label Text="{Binding User.Email}" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3"></Label>
-            
-            <Label Text="{extensions:Translate Phone}" Grid.Row="10" Grid.Column="1"></Label>
+
+                <Label Text="{i18n:Translate Phone}" Grid.Row="10" Grid.Column="1"></Label>
             <Label Text="{Binding User.Phone}" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3"></Label>
 
 
-            
-            <Label Text="{extensions:Translate Picture}" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="4"></Label>
+
+                <Label Text="{i18n:Translate Picture}" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="4"></Label>
 
             <!--This is used as a seperator line in the grid-->
             <BoxView HeightRequest="1" BackgroundColor="Black" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="4"/>
@@ -80,8 +75,10 @@
             <Image Source="{Binding User.Picture}" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2"></Image>
             
         </Grid>
+        </ScrollView>
         <StackLayout>
-            <Button IsEnabled="{Binding Editbutton}" Text="{extensions:Translate EditUserInformation}" Command="{Binding GoToEditAccountInformationCommand}"></Button>
+                <customRenders:CustomButtonRender Style="{StaticResource ButtonStyle}" IsEnabled="{Binding Editbutton}" Text="{i18n:Translate EditUserInformation}" Command="{Binding GoToEditAccountInformationCommand}"></customRenders:CustomButtonRender>
         </StackLayout>
     </StackLayout>
+
 </ContentPage>

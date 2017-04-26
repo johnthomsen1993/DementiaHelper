@@ -7,8 +7,7 @@ using Xamarin.Forms;
 
 namespace DementiaHelper.Renders.CustomControlRenders
 {
-    public class FacebookButtonCustomRenderer : Button
+    public class CustomButtonRender : Button
     {
-        
     }
 }

@@ -62,30 +62,20 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My account.
+        /// </summary>
+        public static string AccountInformationTitle {
+            get {
+                return ResourceManager.GetString("AccountInformationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add shopping item.
         /// </summary>
         public static string AddShoppingItem {
             get {
                 return ResourceManager.GetString("AddShoppingItem", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to My account.
-        /// </summary>
-        public static string AccountInformationTitle
-        {
-            get
-            {
-                return ResourceManager.GetString("AccountInformationTitle", resourceCulture);
-            }
-        }
-        /// <summary>
-        ///   Looks up a localized string similar to April.
-        /// </summary>
-        public static string April {
-            get {
-                return ResourceManager.GetString("April", resourceCulture);
             }
         }
         
@@ -100,6 +90,15 @@ namespace DementiaHelper.Resx {
         
         /// <summary>
         ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calender.
         /// </summary>
         public static string CalenderTitle {
             get {
@@ -144,11 +143,29 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string CitizenHomeTitle {
+            get {
+                return ResourceManager.GetString("CitizenHomeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Citizen id.
         /// </summary>
         public static string CitizenId {
             get {
                 return ResourceManager.GetString("CitizenId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        public static string Connect {
+            get {
+                return ResourceManager.GetString("Connect", resourceCulture);
             }
         }
         
@@ -225,11 +242,11 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Profile Information.
+        ///   Looks up a localized string similar to Edit account.
         /// </summary>
-        public static string EditProfile {
+        public static string EditProfileTitle {
             get {
-                return ResourceManager.GetString("EditProfile", resourceCulture);
+                return ResourceManager.GetString("EditProfileTitle", resourceCulture);
             }
         }
         
@@ -279,6 +296,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First name.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot your password?.
         /// </summary>
         public static string ForgotPassword {
@@ -324,7 +350,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login with facebook.
+        ///   Looks up a localized string similar to Login facebook.
         /// </summary>
         public static string LoginWithFacebook {
             get {
@@ -333,7 +359,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login with google.
+        ///   Looks up a localized string similar to Login google.
         /// </summary>
         public static string LoginWithGoogle {
             get {
@@ -423,7 +449,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save.
+        ///   Looks up a localized string similar to Save changes.
         /// </summary>
         public static string Save {
             get {
@@ -433,6 +459,15 @@ namespace DementiaHelper.Resx {
         
         /// <summary>
         ///   Looks up a localized string similar to Shopping List.
+        /// </summary>
+        public static string ShoppingList {
+            get {
+                return ResourceManager.GetString("ShoppingList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shoppinglist.
         /// </summary>
         public static string ShoppingListTitle {
             get {

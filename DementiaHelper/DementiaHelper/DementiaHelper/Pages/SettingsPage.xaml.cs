@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace DementiaHelper.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddItem : ContentPage
+    public partial class SettingsPage : ContentPage
     {
-        public AddItem()
+        public SettingsPage()
         {
             InitializeComponent();
         }

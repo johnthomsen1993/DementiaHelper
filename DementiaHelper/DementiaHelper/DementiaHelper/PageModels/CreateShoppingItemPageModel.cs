@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
 {
-    class AddItem : FreshMvvm.FreshBasePageModel
+    class CreateShoppingItemPageModel : FreshMvvm.FreshBasePageModel
     {
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/shoppinglist";
         public const string URI_BASE_TEST = "http://localhost:29342/api/values/shoppinglist/";
@@ -22,9 +22,10 @@ namespace DementiaHelper.PageModels
         public int Quantity { get; set; }
 
 
-        public AddItem (ShoppingList list)
+        public CreateShoppingItemPageModel (ShoppingList list)
         {
             ShoppingList = list;
+            Quantity = 1;
             SaveToDatabaseCommand = new Command(async () => await SaveToDatabase());
             CancelCommand = new Command(async () => await Cancel());
         }

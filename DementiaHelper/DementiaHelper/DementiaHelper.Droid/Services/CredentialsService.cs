@@ -4,20 +4,22 @@ using DementiaHelper.Droid;
 using DementiaHelper.Services;
 using Xamarin.Auth;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+
 [assembly: Dependency(typeof(CredentialsService))]
 namespace DementiaHelper.Droid
 {
     public class CredentialsService : ICredentialsService
     {
-        public bool Authenticate()
+        public async Task<bool> Authenticate()
         {
             var account = AccountStore.Create(Forms.Context).FindAccountsForService(App.AppName).FirstOrDefault();
             if (account != null && account.Username!=null && account.Properties["Password"]!=null )
             {
-                if (account.Username==App.UserName && account.Properties["Password"]==App.Password)
-                {
-                    return true;
-                }
+                    if (await App.LoginAsync(account.Username, account.Properties["Password"]))
+                    {
+                        return true;
+                    }
             }
             return false;
         }
@@ -30,7 +32,6 @@ namespace DementiaHelper.Droid
                 {
                     Username = userName
                 };
-                
                 account.Properties.Add("Password", password);
                 AccountStore.Create(Forms.Context).Save(account, App.AppName);
             }

@@ -18,23 +18,23 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class ImageGalleryPageModel : FreshMvvm.FreshBasePageModel
     {
-        ICommand _cameraCommand, _previewImageCommand = null;
 
-
+        public ICommand PreviewImageCommand { get; set; }
+        public ICommand CameraCommand { get; protected set; }
 
         public ImageGalleryPageModel()
         {
             Images = new ObservableCollection<GalleryImage>();
+            CameraCommand = new Command(async () => await ExecuteCameraCommand(), () => CanExecuteCameraCommand());
+            PreviewImageCommand = new Command<Guid>((img) => {
+                var image = Images.Single(x => x.ImageId == img).OrgImage;
+                PreviewImage = ImageSource.FromStream(() => new MemoryStream(image));
+            });
         }
 
         public ObservableCollection<GalleryImage> Images { get; set; }
 
         public ImageSource PreviewImage { get; set; }
-
-        public ICommand CameraCommand
-        {
-            get { return _cameraCommand ?? new Command(async () => await ExecuteCameraCommand(), () => CanExecuteCameraCommand()); }
-        }
 
         public bool CanExecuteCameraCommand()
         {
@@ -71,17 +71,6 @@ namespace DementiaHelper.PageModels
 
 
             return;
-        }
-
-        public ICommand PreviewImageCommand
-        {
-            get
-            {
-                return _previewImageCommand ?? new Command<Guid>((img) => {
-                    var image = Images.Single(x => x.ImageId == img).OrgImage;
-                    PreviewImage = ImageSource.FromStream(() => new MemoryStream(image));
-                });
-            }
         }
     }
 }

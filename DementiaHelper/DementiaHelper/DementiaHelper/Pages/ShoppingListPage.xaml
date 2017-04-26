@@ -1,134 +1,167 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.ShoppingListPage"
-             BackgroundColor="White">
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <Style x:Key="DeleteItemStylePhone" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Transparent"/>
-        <Setter Property="Text" Value="X"></Setter>
-        <Setter Property="TextColor" Value="Red"></Setter>
-        <Setter Property="BorderColor" Value="Transparent"></Setter>
-      </Style>
-      <Style x:Key="DeleteItemStyleTablet" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Transparent"/>
-        <Setter Property="Text" Value="X"></Setter>
-        <Setter Property="TextColor" Value="Red"></Setter>
-        <Setter Property="BorderColor" Value="Transparent"></Setter>
-        <Setter Property="FontSize" Value="22"></Setter>
-      </Style>
-      <Style x:Key="ListLabelStyleTablet" TargetType="Label">
-        <Setter Property="FontSize" Value="22"></Setter>
-      </Style>
-    </ResourceDictionary>
-  </ContentPage.Resources>
-  <OnIdiom x:TypeArguments="View">
-    <OnIdiom.Phone>
-      <StackLayout>
-        <Button Text="{extensions:Translate AddShoppingItem}" Style="{StaticResource buttonStyle}"></Button>
-        <ListView x:Name="ShoppingListViewPhone" ItemsSource="{Binding ShoppingListDetails}" SeparatorVisibility="Default" SeparatorColor="Gray" HasUnevenRows="True">
-          <ListView.Header>
-            <Grid ColumnSpacing="4">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-              </Grid.ColumnDefinitions>
-              <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="1"></RowDefinition>
-              </Grid.RowDefinitions>
-              <Label Text="{extensions:Translate Quantity}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
-              <Label Text="{extensions:Translate ProductName}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
-              <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"></BoxView>
-            </Grid>
-          </ListView.Header>
-          <ListView.ItemTemplate>
-            <DataTemplate>
-              <ViewCell>
-                <Grid x:Name="Item" ColumnSpacing="4">
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                  </Grid.ColumnDefinitions>
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                  </Grid.RowDefinitions>
-                  <Button Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewPhone},Path=BindingContext}" Style="{StaticResource DeleteItemStylePhone}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></Button>
-                  <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
-                  <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
-                </Grid>
-              </ViewCell>
-            </DataTemplate>
-          </ListView.ItemTemplate>
-        </ListView>
-      </StackLayout>
-    </OnIdiom.Phone>
-    <OnIdiom.Tablet>
-      <StackLayout>
-        <Button Text="{extensions:Translate AddShoppingItem}" Style="{StaticResource buttonStyle}"></Button>
-        <ListView x:Name="ShoppingListViewTablet" ItemsSource="{Binding ShoppingListDetails}" SeparatorVisibility="Default" SeparatorColor="Gray" HasUnevenRows="True">
-          <ListView.Header>
-            <Grid ColumnSpacing="4">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-              </Grid.ColumnDefinitions>
-              <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="1"></RowDefinition>
-              </Grid.RowDefinitions>
-              <Label Text="{extensions:Translate Quantity}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold"></Label>
-              <Label Text="{extensions:Translate ProductName}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold"></Label>
-              <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"></BoxView>
-            </Grid>
-          </ListView.Header>
-          <ListView.ItemTemplate>
-            <DataTemplate>
-              <ViewCell>
-                <Grid x:Name="Item" ColumnSpacing="4">
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                  </Grid.ColumnDefinitions>
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                  </Grid.RowDefinitions>
-                  <Button Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewTablet},Path=BindingContext}" Style="{StaticResource DeleteItemStyleTablet}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></Button>
-                  <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}"></Label>
-                  <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}"></Label>
-                </Grid>
-              </ViewCell>
-            </DataTemplate>
-          </ListView.ItemTemplate>
-        </ListView>
-      </StackLayout>
-    </OnIdiom.Tablet>
-  </OnIdiom>
-  
+             BackgroundColor="White"
+             Title="{i18n:Translate ShoppingListTitle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DeleteItemStylePhone" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Text" Value="X"></Setter>
+                <Setter Property="TextColor" Value="Red"></Setter>
+                <Setter Property="BorderColor" Value="Transparent"></Setter>
+            </Style>
+            <Style x:Key="DeleteItemStyleTablet" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Text" Value="X"></Setter>
+                <Setter Property="TextColor" Value="Red"></Setter>
+                <Setter Property="BorderColor" Value="Transparent"></Setter>
+                <Setter Property="FontSize" Value="22"></Setter>
+            </Style>
+            <Style x:Key="ListLabelStyleTablet" TargetType="Label">
+                <Setter Property="FontSize" Value="22"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <OnIdiom x:TypeArguments="View">
+        <OnIdiom.Phone>
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
+                    <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                        <ListView x:Name="ShoppingListViewPhone" ItemsSource="{Binding ShoppingListDetails}" SeparatorVisibility="Default" SeparatorColor="Gray" HasUnevenRows="True">
+                            <ListView.Header>
+                                <Grid ColumnSpacing="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="1"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{i18n:Translate Quantity}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+                                    <Label Text="{i18n:Translate ProductName}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+                                    <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"></BoxView>
+                                </Grid>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid x:Name="Item" ColumnSpacing="4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <customRenders:CustomButtonRender Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewPhone},Path=BindingContext}" Style="{StaticResource DeleteItemStylePhone}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
+                                            <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                                            <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                                            <Switch IsToggled="{Binding Bought}" Grid.Column="6" Grid.ColumnSpan="2" ></Switch>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                </StackLayout>
+                <Image Source="ic_add_circle_black_48dp.png"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              AbsoluteLayout.LayoutBounds="1,.99, 65, 65"
+              AbsoluteLayout.LayoutFlags="PositionProportional" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+              Command="{Binding CreateShoppingItemCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </AbsoluteLayout>
+
+        </OnIdiom.Phone>
+        <OnIdiom.Tablet>
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
+                    <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                        <ListView  x:Name="ShoppingListViewTablet" ItemsSource="{Binding ShoppingListDetails}" SeparatorVisibility="Default" SeparatorColor="Gray" HasUnevenRows="True">
+                            <ListView.Header>
+                                <Grid ColumnSpacing="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="1"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{i18n:Translate Quantity}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold"></Label>
+                                    <Label Text="{i18n:Translate ProductName}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold"></Label>
+                                    <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"></BoxView>
+                                </Grid>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid x:Name="Item" ColumnSpacing="4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <customRenders:CustomButtonRender Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewTablet},Path=BindingContext}" Style="{StaticResource DeleteItemStyleTablet}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
+                                            <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}"></Label>
+                                            <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}"></Label>
+                                            <Switch  IsToggled="{Binding Bought}" Grid.Column="6" Grid.ColumnSpan="2" ></Switch>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                </StackLayout>
+
+
+                <Image Source="ic_add_circle_black_48dp.png"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              AbsoluteLayout.LayoutBounds="1,.99, 65, 65"
+              AbsoluteLayout.LayoutFlags="PositionProportional" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+              Command="{Binding CreateShoppingItemCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </AbsoluteLayout>
+        </OnIdiom.Tablet>
+    </OnIdiom>
+
 </ContentPage>

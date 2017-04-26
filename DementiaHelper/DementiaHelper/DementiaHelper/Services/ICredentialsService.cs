@@ -8,7 +8,7 @@ namespace DementiaHelper.Services
 {
     public interface ICredentialsService
     {
-        bool Authenticate();
+        Task<bool> Authenticate();
 
         void SaveCredentials(string userName, string password);
 

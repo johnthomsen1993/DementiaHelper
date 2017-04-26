@@ -46,8 +46,8 @@ namespace DementiaHelper.Renders.CustomControlRenders
 
         public IList ItemsSource
         {
-            get => (IList)GetValue(ItemsSourceProperty);
-            set => SetValue(ItemsSourceProperty, value);
+            get { return (IList)GetValue(ItemsSourceProperty); }
+            set { SetValue(ItemsSourceProperty, value); }
         }
 
         void ItemsSourceChanging()
@@ -61,17 +61,18 @@ namespace DementiaHelper.Renders.CustomControlRenders
             if (ItemsSource == null)
                 return;
 
-            var notifyCollection = newValue as INotifyCollectionChanged;
-            if (notifyCollection != null)
+            if (newValue is INotifyCollectionChanged notifyCollection)
             {
-                notifyCollection.CollectionChanged += (sender, args) => {
+                notifyCollection.CollectionChanged += (sender, args) =>
+                {
                     if (args.NewItems != null)
                     {
                         foreach (var newItem in args.NewItems)
                         {
 
                             var view = (View)ItemTemplate.CreateContent();
-                            if (view is BindableObject bindableObject)
+                            var bindableObject = (BindableObject)view;
+                            if (bindableObject != null)
                                 bindableObject.BindingContext = newItem;
                             _imageStack.Children.Add(view);
                         }
@@ -136,8 +137,8 @@ namespace DementiaHelper.Renders.CustomControlRenders
 
         public int SelectedIndex
         {
-            get => (int)GetValue(SelectedIndexProperty);
-            set => SetValue(SelectedIndexProperty, value);
+            get { return (int)GetValue(SelectedIndexProperty); }
+            set { SetValue(SelectedIndexProperty, value); }
         }
 
         void UpdateSelectedItem() =>

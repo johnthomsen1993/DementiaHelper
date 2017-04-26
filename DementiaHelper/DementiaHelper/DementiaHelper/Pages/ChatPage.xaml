@@ -32,7 +32,7 @@
             <StackLayout  BackgroundColor="#0099cc" Padding="1">
                 <Entry BackgroundColor="White"  Placeholder="Besked" Text="{Binding NewMessage}" ></Entry>
             </StackLayout>
-            <Button Text="Send besked" Style="{StaticResource buttonStyle}" Command="{Binding SemdMessageommand}"></Button>
+            <Button Text="Send besked" Style="{StaticResource ButtonStyle}" Command="{Binding SemdMessageommand}"></Button>
         </StackLayout>
 
     </ContentPage.Content>
