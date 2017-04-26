@@ -1,38 +1,32 @@
 ﻿using DementiaHelper.Services;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DementiaHelper.PageModels;
-using DementiaHelper.Renders;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace DementiaHelper.Pages
 {
-
-    public partial class ChatPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ChatPage2 : ContentPage
     {
-        private ChatPageModel chatPageModel;
-        public ChatPage()
+        public ChatPage2()
         {
             InitializeComponent();
-            chatPageModel = new ChatPageModel();
-          
         }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-                var last = MessageList.ItemsSource.Cast<object>().LastOrDefault();
+            var last = MessageList.ItemsSource.Cast<object>().LastOrDefault();
             if (last != null)
             {
                 MessageList.ScrollTo(last, ScrollToPosition.MakeVisible, true);
             }
-            
+
         }
         protected override bool OnBackButtonPressed()
         {

@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DementiaHelper.WebApi.model
 {
@@ -18,6 +17,9 @@ namespace DementiaHelper.WebApi.model
         public string Lastname { get; set; }
         public string Description { get; set; }
 
+        [ForeignKey("ChatGroup")]
+        public int? ChatGroupId { get; set; }
+        public ChatGroup ChatGroup { get; set; }
 
         [ForeignKey("Role")]
         public int RoleId { get; set; }

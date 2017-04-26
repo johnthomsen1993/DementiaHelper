@@ -8,9 +8,10 @@ using DementiaHelper.WebApi.Data;
 namespace DementiaHelper.WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170426102922_AddedChatTodatabase")]
+    partial class AddedChatTodatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -56,7 +57,7 @@ namespace DementiaHelper.WebApi.Migrations
                     b.Property<int>("ApplicationUserId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ChatGroupId");
+                    b.Property<int>("ChatGroupId");
 
                     b.Property<string>("Description");
 
@@ -79,28 +80,6 @@ namespace DementiaHelper.WebApi.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("ApplicationUsers");
-                });
-
-            modelBuilder.Entity("DementiaHelper.WebApi.model.Appointment", b =>
-                {
-                    b.Property<int>("AppointmentId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CitizenId");
-
-                    b.Property<string>("Color");
-
-                    b.Property<DateTime>("EndTime");
-
-                    b.Property<DateTime>("StartTime");
-
-                    b.Property<string>("Subject");
-
-                    b.HasKey("AppointmentId");
-
-                    b.HasIndex("CitizenId");
-
-                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("DementiaHelper.WebApi.model.Caregiver", b =>
@@ -274,19 +253,12 @@ namespace DementiaHelper.WebApi.Migrations
                 {
                     b.HasOne("DementiaHelper.WebApi.model.ChatGroup", "ChatGroup")
                         .WithMany()
-                        .HasForeignKey("ChatGroupId");
+                        .HasForeignKey("ChatGroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DementiaHelper.WebApi.model.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DementiaHelper.WebApi.model.Appointment", b =>
-                {
-                    b.HasOne("DementiaHelper.WebApi.model.Citizen", "Citizen")
-                        .WithMany()
-                        .HasForeignKey("CitizenId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

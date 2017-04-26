@@ -8,9 +8,10 @@ using DementiaHelper.WebApi.Data;
 namespace DementiaHelper.WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170426114849_appointment")]
+    partial class appointment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -56,7 +57,7 @@ namespace DementiaHelper.WebApi.Migrations
                     b.Property<int>("ApplicationUserId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ChatGroupId");
+                    b.Property<int>("ChatGroupId");
 
                     b.Property<string>("Description");
 
@@ -274,7 +275,8 @@ namespace DementiaHelper.WebApi.Migrations
                 {
                     b.HasOne("DementiaHelper.WebApi.model.ChatGroup", "ChatGroup")
                         .WithMany()
-                        .HasForeignKey("ChatGroupId");
+                        .HasForeignKey("ChatGroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DementiaHelper.WebApi.model.Role", "Role")
                         .WithMany()

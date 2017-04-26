@@ -25,10 +25,10 @@ namespace DementiaHelper.WebApi.Data
         {
             try
             {
-                _context.AccountInformations.Add(new AccountInformation()
+                _context.ApplicationUsers.Add(new ApplicationUser()
                 {
                     FirstName = firstName,
-                    LastName = lastName,
+                    Lastname = lastName,
                     Email = email,
                     Description = description
                 });
@@ -47,18 +47,18 @@ namespace DementiaHelper.WebApi.Data
             try
             {
                 //AccountInformation target = _context.AccountInformations.Find(email);
-                var query = from p in _context.AccountInformations
+                var query = from p in _context.ApplicationUsers
                     where p.Email == email
                     select p;
 
                 var target = query.SingleOrDefault();
 
                 target.FirstName = firstName;
-                target.LastName = lastName;
+                target.Lastname = lastName;
                 target.Email = email;
                 target.Description = description;
 
-                _context.AccountInformations.Update(target);
+                _context.ApplicationUsers.Update(target);
                 _context.SaveChanges();
                 return true;
             }
@@ -94,45 +94,53 @@ namespace DementiaHelper.WebApi.Data
             }
         }
 
-        public string CreateAccount(ApplicationUser user)
+        public bool CreateAccount(ApplicationUser user)
         {
-            if (_context.ApplicationUsers.Any(o => o.Email == user.Email))
+            if (CheckIfUserExists(user.Email))
             {
-                return "User already exists";
+                return false;
             }
-            _context.ApplicationUsers.Add(user);
-            _context.SaveChanges();
-            return "User Created";
-
+            switch (user.RoleId)
+            {
+                case 1:
+                    var citizen = new Citizen() {ApplicationUser = user/*, ApplicationUserForeignKey = 1*/}; //TODO: Remove ApplicationUserForeignKey from DB
+                    _context.Add(citizen);
+                    _context.SaveChanges();
+                    return true;
+                case 2:
+                    var relative = new Relative() {ApplicationUser = user/*, ApplicationUserForeignKey = 1*/}; //TODO: Remove ApplicationUserForeignKey from DB
+                    _context.Add(relative);
+                    _context.SaveChanges();
+                    return true;
+                case 3:
+                    var caregiver = new Caregiver() {ApplicationUser = user/*, ApplicationUserForeignKey = 1 */}; //TODO: Remove ApplicationUserForeignKey from DB
+                    _context.Add(caregiver);
+                    _context.SaveChanges();
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         public ApplicationUser FetchApplicationUser(string email)
         {
-            return _context.ApplicationUsers.FirstOrDefault(b => b.Email == email);
+            return _context.ApplicationUsers.Include(x => x.Role).SingleOrDefault(b => b.Email == email);
         }
 
         public bool CheckIfUserExists(string email)
         {
-            if (_context.AccountInformations.Any(information => information.Email.Equals(email)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return _context.ApplicationUsers.Any(information => information.Email.Equals(email));
         }
 
-        public List<ShoppingListDetail> GetShoppingList(int citizenId)
+        public List<ShoppingListItem> GetShoppingList(int citizenId)
         {
-            var queryable = _context.ShoppingListDetails.AsQueryable();
+            var queryable = _context.ShoppingListItems.AsQueryable();
 
-            Expression<Func<ShoppingListDetail, Product>> include_product = detail => detail.ProductForeignKey;
-            Expression<Func<ShoppingListDetail, ShoppingList>> include_shoppinglist = detail => detail.ShoppingListForeignKey;
+            Expression<Func<ShoppingListItem, Product>> include_product = detail => detail.Product;
 
             return
                 queryable.Where(
-                    x => x.ShoppingListForeignKey.RelativeConnectionForeignKey.CitizenForeignKey.CitizenId == citizenId).Include(include_product).Include(include_shoppinglist)
+                    x => x.Citizen.CitizenId == citizenId).Include(include_product)
                     .ToList();
         }
 
@@ -152,12 +160,7 @@ namespace DementiaHelper.WebApi.Data
                     _context.SaveChanges();
                 }
 
-                var query2 = from p in _context.ShoppingLists
-                            where p.ShoppingListId == shoppinglistId
-                            select p;
-                var shoppinglist = query2.SingleOrDefault();
-
-                _context.ShoppingListDetails.Add(new ShoppingListDetail() {Bought = false, ProductForeignKey = product, Quantity = quantity, ShoppingListForeignKey = shoppinglist});
+                _context.ShoppingListItems.Add(new ShoppingListItem() {Bought = false, Product = product, Quantity = quantity});
 
                 return true;
             }
@@ -168,13 +171,72 @@ namespace DementiaHelper.WebApi.Data
             }
         }
 
-        public bool RemoveShoppingListDetail(int id)
+        public bool RemoveShoppingListItem(int id)
         {
-            var item = _context.ShoppingListDetails.SingleOrDefault(x => x.ShoppingListDetailId == id);
+            var item = _context.ShoppingListItems.SingleOrDefault(x => x.ShoppingListItemId == id);
             if (item == null) return false;
-            _context.ShoppingListDetails.Remove(item);
+            _context.ShoppingListItems.Remove(item);
             _context.SaveChanges();
             return true;
+        }
+
+        public Citizen GetCitizen(int id)
+        {
+            return _context.Citizens.Include(x => x.ApplicationUser).SingleOrDefault(x => x.CitizenId == id);
+        }
+
+        public Relative GetRelative(int id)
+        {
+            return _context.Relatives.Include(x => x.ApplicationUser).SingleOrDefault(x => x.RelativeId == id);
+        }
+
+        public Caregiver GetCaregiver(int id)
+        {
+            return _context.Caregivers.Include(x => x.ApplicationUser).SingleOrDefault(x => x.CaregiverId == id);
+        }
+
+        public RelativeConnection GetRelativeConnection(int id)
+        {
+            return _context.RelativeConnections.Include(x => x.Citizen).SingleOrDefault(x => x.Relative.RelativeId == id);
+        }
+
+        public CaregiverConnection GetCaregiverConnection(int id)
+        {
+            return _context.CaregiverConnections.Include(x => x.Citizen).SingleOrDefault(x => x.Caregiver.CaregiverId == id);
+        }
+
+        public List<CaregiverConnection> GetCaregiverConnections(int id)
+        {
+            return _context.CaregiverConnections.Include(x => x.Citizen.ApplicationUser).Where(x => x.Caregiver.CaregiverId == id).ToList();
+        }
+
+        public List<Appointment> GetAppointments(int id)
+        {
+            return _context.Appointments.Where(x => x.Citizen.CitizenId == id).ToList();
+        }
+
+        public void CreateAppointment(Appointment appointment)
+        {
+            _context.Appointments.Add(appointment);
+            _context.SaveChanges();
+        }
+
+        public void SaveChatMessage(string message, int group, string sender)
+        {
+            _context.ChatMessages.Add(new ChatMessage() {GroupId = Convert.ToInt32(group), Message = message, Sender = sender});
+            _context.SaveChanges();
+        }
+
+        public void AddMemberToGroup(int group, string email)
+        {
+            var targetUser = _context.ApplicationUsers.SingleOrDefault(user => user.Email == email);
+            targetUser.ChatGroupId = group;
+           _context.SaveChanges();
+        }
+
+        public ICollection<ChatMessage> GetChatMessagesForGroup(int groupId)
+        {
+            return _context.ChatMessages.Where(chatMessage => chatMessage.GroupId == groupId).ToList();
         }
     }
 }

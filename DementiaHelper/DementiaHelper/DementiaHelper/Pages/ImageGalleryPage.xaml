@@ -6,7 +6,7 @@
              x:Name="ThePage"
              Title="{i18n:Translate ImageGalleryTitle}"
              x:Class="DementiaHelper.Pages.ImageGalleryPage">
-    <ContentPage.Content>
+    <!--<ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition
@@ -46,5 +46,5 @@
 				Command="{Binding CameraCommand}">
             </Button>
         </Grid>
-    </ContentPage.Content>
+    </ContentPage.Content>-->
 </ContentPage>

@@ -13,7 +13,6 @@ namespace DementiaHelper.WebApi.model
     {
         [ForeignKey("ApplicationUser")]
         public int RelativeId { get; set; }
-        public int ApplicationUserForeignKey { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
     }
 
