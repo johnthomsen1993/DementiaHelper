@@ -11,19 +11,18 @@ namespace DementiaHelper.WebApi.Data
         {
         }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<AccountInformation> AccountInformations { get; set; }
-        public DbSet<AccountPicture> AccountPictures { get; set; }
-        public DbSet<Role> Role { get; set; }
-        public DbSet<Caregiver> Caregiver { get; set; }
-        public DbSet<Citizen> Citizen { get; set; }
-        public DbSet<Relative> Relative { get; set; }
-        public DbSet<CaregiverConnection> CaregiverConnection { get; set; }
-        public DbSet<RelativeConnection> RelativeConnectiob { get; set; }
-        public DbSet<ShoppingList> ShoppingLists { get; set; }
-        public DbSet<ShoppingListDetail> ShoppingListDetails { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Caregiver> Caregivers { get; set; }
+        public DbSet<Citizen> Citizens { get; set; }
+        public DbSet<Relative> Relatives { get; set; }
+        public DbSet<CaregiverConnection> CaregiverConnections { get; set; }
+        public DbSet<RelativeConnection> RelativeConnections { get; set; }
+        public DbSet<ShoppingListItem> ShoppingListItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<ChatGroup> ChatGroups { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -18,7 +18,7 @@ namespace DementiaHelper.WebApi.model
         public string Description { get; set; }
 
         [ForeignKey("ChatGroup")]
-        public int ChatGroupId { get; set; }
+        public int? ChatGroupId { get; set; }
         public ChatGroup ChatGroup { get; set; }
 
         [ForeignKey("Role")]

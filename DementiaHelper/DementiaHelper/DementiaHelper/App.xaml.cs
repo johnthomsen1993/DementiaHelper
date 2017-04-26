@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DementiaHelper.Model;
 using Xamarin.Forms;
-using DementiaHelper.View;
+
 using DementiaHelper.PageModels;
 using DementiaHelper.Pages;
 using DementiaHelper.Resx;
@@ -27,26 +27,21 @@ namespace DementiaHelper
         }
         public static string AppName { get { return "Dementia Helper"; } }
         public static string UserName { get { return "John"; } }
+        public string ApplicationUser { get; set; }
         public static string Password { get { return "password"; } }
+        static FreshMvvm.FreshMasterDetailNavigationContainer masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
         public App()
         {
             InitializeComponent();
-            var masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
-            masterDetailNav.Init("menu");
-            masterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
+            masterDetailNav.Init("Menu");
 
-            masterDetailNav.AddPage<ChatPageModel>("Chat", null);
-            masterDetailNav.AddPage<CalenderPageModel>("Kalender", null);
-            masterDetailNav.AddPage<ChooseCitizenPageModel>("Choose Citizen", null);
-            masterDetailNav.AddPage<ShoppingListPageModel>("Shopping list", null);
-            masterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
-            masterDetailNav.AddPage<AccountInformationPageModel>("Account Information", null);
-            
+
             var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
             var navContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
            
             DependencyService.Get<ICredentialsService>().SaveCredentials(UserName, Password+"s");
             if (DependencyService.Get<ICredentialsService>().Authenticate()){
+
                       MainPage = masterDetailNav;
             }
             else {
@@ -54,7 +49,50 @@ namespace DementiaHelper
             }
         }
 
+       static public void SetMasterDetailToRole()
+        {
+            var h =App.Current.Properties["Test"];
+           
+            switch ((string)App.Current.Properties["ApplicationUser"])
+            {
+                case "Relatives":
+                    {
+                        masterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
+                        masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
+                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
+                        masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        break;
+                    }
+                case "Citizen":
+                    {
+                        masterDetailNav.AddPage<CitizenHomePageModel>("Idag", null);
+                        masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
+                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
+                        masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        break;
+                    }
+                case "Caregiver":
+                    {
+                        masterDetailNav.AddPage<ChooseCitizenPageModel>(AppResources.ChooseCitizenTitle, null);
+                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
+                        masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        break;
+                    }
 
+                default:
+                    {
+                        break;
+                    }
+
+            }
+                
+        }
 
         protected override void OnStart()
         {

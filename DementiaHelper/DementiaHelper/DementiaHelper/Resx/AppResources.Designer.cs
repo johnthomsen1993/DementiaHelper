@@ -62,11 +62,30 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add shopping items.
+        ///   Looks up a localized string similar to Add shopping item.
         /// </summary>
-        public static string AddShoppingItems {
+        public static string AddShoppingItem {
             get {
-                return ResourceManager.GetString("AddShoppingItems", resourceCulture);
+                return ResourceManager.GetString("AddShoppingItem", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to My account.
+        /// </summary>
+        public static string AccountInformationTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("AccountInformationTitle", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to April.
+        /// </summary>
+        public static string April {
+            get {
+                return ResourceManager.GetString("April", resourceCulture);
             }
         }
         
@@ -82,9 +101,9 @@ namespace DementiaHelper.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
-        public static string Back {
+        public static string CalenderTitle {
             get {
-                return ResourceManager.GetString("Back", resourceCulture);
+                return ResourceManager.GetString("CalenderTitle", resourceCulture);
             }
         }
         
@@ -103,6 +122,24 @@ namespace DementiaHelper.Resx {
         public static string CaregiverRole {
             get {
                 return ResourceManager.GetString("CaregiverRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chat.
+        /// </summary>
+        public static string ChatTitle {
+            get {
+                return ResourceManager.GetString("ChatTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Citizen.
+        /// </summary>
+        public static string ChooseCitizenTitle {
+            get {
+                return ResourceManager.GetString("ChooseCitizenTitle", resourceCulture);
             }
         }
         
@@ -148,15 +185,6 @@ namespace DementiaHelper.Resx {
         public static string ContactDetails {
             get {
                 return ResourceManager.GetString("ContactDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ContactList.
-        /// </summary>
-        public static string ContactList {
-            get {
-                return ResourceManager.GetString("ContactList", resourceCulture);
             }
         }
         
@@ -224,11 +252,29 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First name.
+        ///   Looks up a localized string similar to Error happened when trying to remove item, please try again later.
         /// </summary>
-        public static string FirstName {
+        public static string ErrorOnRemove {
             get {
-                return ResourceManager.GetString("FirstName", resourceCulture);
+                return ResourceManager.GetString("ErrorOnRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string ErrorOnRemoveAccept {
+            get {
+                return ResourceManager.GetString("ErrorOnRemoveAccept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ErrorOnRemoveTitle {
+            get {
+                return ResourceManager.GetString("ErrorOnRemoveTitle", resourceCulture);
             }
         }
         
@@ -238,6 +284,15 @@ namespace DementiaHelper.Resx {
         public static string ForgotPassword {
             get {
                 return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My pictures.
+        /// </summary>
+        public static string ImageGalleryTitle {
+            get {
+                return ResourceManager.GetString("ImageGalleryTitle", resourceCulture);
             }
         }
         
@@ -388,9 +443,9 @@ namespace DementiaHelper.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Shopping List.
         /// </summary>
-        public static string ShoppingList {
+        public static string ShoppingListTitle {
             get {
-                return ResourceManager.GetString("ShoppingList", resourceCulture);
+                return ResourceManager.GetString("ShoppingListTitle", resourceCulture);
             }
         }
         

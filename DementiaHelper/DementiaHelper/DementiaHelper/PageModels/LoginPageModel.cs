@@ -16,7 +16,7 @@ namespace DementiaHelper.PageModels
    
    public class LoginPageModel : FreshMvvm.FreshBasePageModel
     {
-      public string UserName { get; set; }
+      public string Email { get; set; }
       public string Password { get; set; }
       public ICommand LoginCommand { get; protected set; }
       public ICommand GoToCreateAccountCommand { get; protected set; }
@@ -31,27 +31,31 @@ namespace DementiaHelper.PageModels
         public override void Init(object initData)
         {
             base.Init(initData);
-            this.LoginCommand = new Command( () =>  LoginAsync());
+            this.LoginCommand = new Command( async() =>  LoginAsync());
             this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
             this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
             this.GoToShoppingListCommand = new Command(async () => await GoToShoppingList());
         }
 
-         void LoginAsync()
+        async Task LoginAsync()
         {
             var values = new Dictionary<string, string>
             {
-                {"userName",UserName},
+                {"email",Email},
                 {"password", Password}
             };
+            App.Current.Properties["ApplicationUser"] = "Relatives";
+            
+            App.SetMasterDetailToRole();
             CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
-           /* using (var h = new HttpClient()){
-                var content = new FormUrlEncodedContent(values);
-                var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/"), content).Result;
-                var response = result.Content.ReadAsStringAsync();
-                await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
-               // await NavigationService.PushAsync(new ClockViewModel());
-            }*/
+
+            /* using (var h = new HttpClient()){
+                 var content = new FormUrlEncodedContent(values);
+                 var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/"), content).Result;
+                 var response = result.Content.ReadAsStringAsync();
+                 await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
+                // await NavigationService.PushAsync(new ClockViewModel());
+             }*/
         }
         async Task GoToCreateAccount()
         {

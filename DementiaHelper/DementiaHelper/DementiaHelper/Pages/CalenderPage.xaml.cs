@@ -1,4 +1,6 @@
 ﻿using DementiaHelper.PageModels;
+using DementiaHelper.Resx;
+using DementiaHelper.Services;
 using Syncfusion.SfSchedule.XForms;
 using System;
 using System.Collections.Generic;
@@ -42,11 +44,24 @@ namespace DementiaHelper.Pages
             DaySchedule.DataSource = Appointments;
             //     WeekSchedule.SetBinding(SfSchedule.DataSourceProperty, new Binding("Appointments"));
             MonthSchedule.DataSource = Appointments;
-
         }
-        protected override void OnDisappearing()
+     
+        protected override bool OnBackButtonPressed()
         {
-            base.OnDisappearing();
+            Device.BeginInvokeOnMainThread(async () => {
+                var result = await this.DisplayAlert(AppResources.Warning + "!", AppResources.AreYouSureThatYouWantToCloseThisApplication, AppResources.YesText, AppResources.NoText);
+                if (result)
+                {
+
+                    INativeService nativeHelper = DependencyService.Get<INativeService>();
+                    if (nativeHelper != null)
+                    {
+                        nativeHelper.CloseApp();
+                    }
+                }
+            });
+
+            return true;
         }
     }
 }

@@ -20,41 +20,36 @@ namespace DementiaHelper.Pages
         {
             InitializeComponent();
             chatPageModel = new ChatPageModel();
-
-            //chatPageModel.ScrollToLast += ScrollToLast; // Subscribe to event
+          
         }
 
-        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
-        //public void ScrollToLast(object obj, string str)
-        //{
-        //    ObservableCollection<ChatMassagePageModel> chatMassage = MessageList.ItemsSource as ObservableCollection<ChatMassagePageModel>;
-        //    if (chatMassage != null)
-        //    {
-        //        var target = chatMassage.Count - 1;
-        //        MessageList.ScrollTo(target, ScrollToPosition.Start, true);
-        //    }
+                var last = MessageList.ItemsSource.Cast<object>().LastOrDefault();
+            if (last != null)
+            {
+                MessageList.ScrollTo(last, ScrollToPosition.MakeVisible, true);
+            }
             
-        //}
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                var result = await this.DisplayAlert("Alert!", "Do you really want to exit?", "Yes", "No");
+                if (result)
+                {
+                    INativeService nativeHelper = null;
+                    nativeHelper = DependencyService.Get<INativeService>();
+                    if (nativeHelper != null)
+                    {
+                        nativeHelper.CloseApp();
+                    }
+                } // or anything else
+            });
 
-
-
-        //protected override bool OnBackButtonPressed()
-        //{
-        //    Device.BeginInvokeOnMainThread(async () => {
-        //        var result = await this.DisplayAlert("Alert!", "Do you really want to exit?", "Yes", "No");
-        //        if (result)
-        //        {
-        //            INativeService nativeHelper = null;
-        //            nativeHelper = DependencyService.Get<INativeService>();
-        //            if (nativeHelper != null)
-        //            {
-        //                nativeHelper.CloseApp();
-        //            }
-        //        } // or anything else
-        //    });
-
-        //    return true;
-        //}
+            return true;
+        }
     }
 }

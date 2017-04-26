@@ -21,7 +21,7 @@
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
                         <Label Text="Opret konto som:" Font="Bold"></Label>
-                        <Picker x:Name="rolePicker" SelectedIndexChanged="rolePicker_SelectedIndexChanged" Title="Role"  ></Picker> <!-- In code behind since functionality to do it in xaml does not exist till xamarin.forms nuget 2.3.4-pre1 and since that nuget is not stable we wont install yet-->
+                        <Picker SelectedItem="{Binding SelecteRoleName,Mode=TwoWay}" x:Name="rolePicker"  ItemsSource="{Binding RoleCollection}" Title="Role"  ></Picker> <!-- In code behind since functionality to do it in xaml does not exist till xamarin.forms nuget 2.3.4-pre1 and since that nuget is not stable we wont install yet-->
                         <Button Style="{StaticResource buttonStyle}" Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
                     </StackLayout>
 

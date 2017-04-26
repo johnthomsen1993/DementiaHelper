@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DementiaHelper.Pages.CreateCalenderAppointmentPage"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              Title="Ny begivenhed">
 
@@ -99,14 +100,14 @@
                         <ColumnDefinition Width="*" ></ColumnDefinition>
                         <ColumnDefinition Width="*" ></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="DateLabel" Text="Dato:" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"></Label>
-                    <DatePicker x:Name="DateDatepicker" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Date="{Binding Date}" MinimumDate="01/01/2017" MaximumDate="12/31/2030"></DatePicker>
-                    <Label x:Name="DateStartTimeLabel" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Text="Starttidspunkt:"></Label>
-                    <TimePicker  x:Name="DateStartTimeTimePicker" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Format="HH:mm" Time="{Binding AppointmentStartTimeSpan}"></TimePicker>
-                    <Label x:Name="DateEndTimeLabel" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Text="Sluttidspunkt:"></Label>
-                    <TimePicker  x:Name="DateEndTimeTimePicker" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Format="HH:mm" Time="{Binding AppointmentEndTimeSpan}"></TimePicker>
-                    <Label x:Name="ColorLabel" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" Text="Farve:"></Label>
-                    <Picker x:Name="ColorPicker"  Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Title="Farve" ItemsSource="{Binding ColorList}" ></Picker>
+                    <Label x:Name="DateLabel" Text="Dato:" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"></Label>
+                    <DatePicker x:Name="DateDatepicker" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3" Date="{Binding Date}" MinimumDate="01/01/2017" MaximumDate="12/31/2030"></DatePicker>
+                    <Label x:Name="DateStartTimeLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="Starttidspunkt:"></Label>
+                    <TimePicker  x:Name="DateStartTimeTimePicker" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Format="HH:mm" Time="{Binding AppointmentStartTimeSpan}"></TimePicker>
+                    <Label x:Name="DateEndTimeLabel" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Text="Sluttidspunkt:"></Label>
+                    <TimePicker  x:Name="DateEndTimeTimePicker" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Format="HH:mm" Time="{Binding AppointmentEndTimeSpan}"></TimePicker>
+                    <Label x:Name="ColorLabel" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Text="Farve:"></Label>
+                    <Picker x:Name="ColorPicker"  Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Title="Farve" ItemsSource="{Binding ColorList}" ></Picker>
                 </Grid>
             </Grid>
             <Grid x:Name="buttonsGrid" Grid.Row="1">

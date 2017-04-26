@@ -1,4 +1,5 @@
 ﻿using DementiaHelper.Resx;
+using DementiaHelper.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,21 +13,30 @@ namespace DementiaHelper.Pages
 {
     public partial class CreateAccountPage : ContentPage
     {
-        ObservableCollection<string> roleCollection = new ObservableCollection<string>
-        {
-            {AppResources.DementiaRole}, {AppResources.CaregiverRole},{AppResources.RelativesRole}
 
-        };
 
         private double width;
         private double height;
         public CreateAccountPage()
         {
             InitializeComponent();
-            foreach (string role in roleCollection)
-            {
-                rolePicker.Items.Add(role);
-            }
+
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                var result = await this.DisplayAlert(AppResources.Warning + "!", AppResources.AreYouSureThatYouWantToCloseThisApplication, AppResources.YesText, AppResources.NoText);
+                if (result)
+                {
+                    INativeService nativeHelper = DependencyService.Get<INativeService>();
+                    if (nativeHelper != null)
+                    {
+                        nativeHelper.CloseApp();
+                    }
+                }
+            });
+
+            return true;
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -48,29 +58,6 @@ namespace DementiaHelper.Pages
                     secondInnerStack.VerticalOptions = LayoutOptions.CenterAndExpand;
                     imageElderlyHands.HeightRequest = 200;
                 }
-            }
-        }
-
-        private void rolePicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (rolePicker.SelectedIndex == -1)
-            {
-                
-            }
-            else
-            {
-                string role = rolePicker.Items[rolePicker.SelectedIndex];
-                if(AppResources.DementiaRole == role)
-                {
-
-                }else if(AppResources.CaregiverRole == role)
-                {
-
-                }else if(AppResources.RelativesRole == role)
-                {
-
-                }
-                  
             }
         }
     }
