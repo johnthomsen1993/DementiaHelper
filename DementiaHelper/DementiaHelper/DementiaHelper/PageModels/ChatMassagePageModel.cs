@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace DementiaHelper.PageModels
 {
@@ -10,6 +11,7 @@ namespace DementiaHelper.PageModels
     {
         private string _name;
 
+        [JsonProperty]
         public string Name
         {
             get { return _name; }
@@ -23,6 +25,7 @@ namespace DementiaHelper.PageModels
 
         private string _message;
 
+        [JsonProperty]
         public string Message
         {
             get { return _message; }
@@ -35,6 +38,7 @@ namespace DementiaHelper.PageModels
 
         private string _image;
 
+        [JsonProperty]
         public string Image
         {
             get { return _image; }
@@ -47,6 +51,7 @@ namespace DementiaHelper.PageModels
 
         private bool _isMine;
 
+        [JsonProperty]
         public bool IsMine
         {
             get { return _isMine; }

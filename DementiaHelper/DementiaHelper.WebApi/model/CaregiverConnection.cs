@@ -12,10 +12,14 @@ namespace DementiaHelper.WebApi.model
     public class CaregiverConnection
     {
         public int CaregiverConnectionId { get; set; }
+
         [ForeignKey("Citizen")]
-        public Citizen CitizenForeignKey { get; set; }
+        public int CitizenId { get; set; }
+        public Citizen Citizen { get; set; }
+
         [ForeignKey("Caregiver")]
-        public Caregiver CaregiverForeignKey { get; set; }
+        public int CaregiverId { get; set; }
+        public Caregiver Caregiver { get; set; }
     }
 
 }

@@ -12,9 +12,13 @@ namespace DementiaHelper.WebApi.model
     public class RelativeConnection
     {
         public int RelativeConnectionId { get; set; }
+
         [ForeignKey("Citizen")]
-        public Citizen CitizenForeignKey { get; set; }
+        public int CitizenId { get; set; }
+        public Citizen Citizen { get; set; }
+
         [ForeignKey("Relative")]
-        public Relative RelativeForeignKey { get; set; }
+        public int RelativeId { get; set; }
+        public Relative Relative { get; set; }
     }
 }

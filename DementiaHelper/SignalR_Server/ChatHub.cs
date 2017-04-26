@@ -10,22 +10,25 @@ namespace SignalR_Server
     
     public class ChatHub : Hub
     {
-        public void Hello()
-        {
-            Clients.All.hello();
-        }
+        private readonly WebService _databaService = new WebService();
 
         [HubMethodName("singleChat")]
-        public void BroadcastMessage(string name, string message)
+        public void BroadcastMessage(string sender, string message)
         {
-            var id = Context.ConnectionId;
-            Clients.All.broadcastMessage(name, message);
+            Clients.All.broadcastMessage(sender, message);
         }
 
         [HubMethodName("groupChat")]
-        public void BroadCastMessage(string name, string message, string groupName)
+        public void BroadCastMessage(string sender, string message, string groupName)
         {
-            Clients.Group(groupName, null).receiveMessage(name, message);
+            _databaService.SaveMessage(message, groupName, sender);
+            Clients.All.GetMessage(sender, message);
+            Clients.Group(groupName, null).GetMessage(sender, message);
+        }
+
+        public void JoinGroup(string groupName)
+        {
+            Groups.Add(Context.ConnectionId, groupName);
         }
     }
 }

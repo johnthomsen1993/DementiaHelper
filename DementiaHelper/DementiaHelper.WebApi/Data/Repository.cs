@@ -127,12 +127,12 @@ namespace DementiaHelper.WebApi.Data
         {
             var queryable = _context.ShoppingListDetails.AsQueryable();
 
-            Expression<Func<ShoppingListDetail, Product>> include_product = detail => detail.ProductForeignKey;
-            Expression<Func<ShoppingListDetail, ShoppingList>> include_shoppinglist = detail => detail.ShoppingListForeignKey;
+            Expression<Func<ShoppingListDetail, Product>> include_product = detail => detail.Product;
+            Expression<Func<ShoppingListDetail, ShoppingList>> include_shoppinglist = detail => detail.ShoppingList;
 
             return
                 queryable.Where(
-                    x => x.ShoppingListForeignKey.RelativeConnectionForeignKey.CitizenForeignKey.CitizenId == citizenId).Include(include_product).Include(include_shoppinglist)
+                    x => x.ShoppingList.RelativeConnection.Citizen.CitizenId == citizenId).Include(include_product).Include(include_shoppinglist)
                     .ToList();
         }
 
@@ -157,7 +157,7 @@ namespace DementiaHelper.WebApi.Data
                             select p;
                 var shoppinglist = query2.SingleOrDefault();
 
-                _context.ShoppingListDetails.Add(new ShoppingListDetail() {Bought = false, ProductForeignKey = product, Quantity = quantity, ShoppingListForeignKey = shoppinglist});
+                _context.ShoppingListDetails.Add(new ShoppingListDetail() {Bought = false, Product = product, Quantity = quantity, ShoppingList = shoppinglist});
 
                 return true;
             }
@@ -166,6 +166,24 @@ namespace DementiaHelper.WebApi.Data
                 return false;
                 throw;
             }
+        }
+
+        public void SaveChatMessage(string message, int group, string sender)
+        {
+            _context.ChatMessages.Add(new ChatMessage() {GroupId = Convert.ToInt32(group), Message = message, Sender = sender});
+            _context.SaveChanges();
+        }
+
+        public void AddMemberToGroup(int group, string email)
+        {
+            var targetUser = _context.ApplicationUsers.SingleOrDefault(user => user.Email == email);
+            targetUser.ChatGroupId = group;
+           _context.SaveChanges();
+        }
+
+        public ICollection<ChatMessage> GetChatMessagesForGroup(int groupId)
+        {
+            return _context.ChatMessages.Where(chatMessage => chatMessage.GroupId == groupId).ToList();
         }
     }
 }

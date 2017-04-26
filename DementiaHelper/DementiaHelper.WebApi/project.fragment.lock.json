@@ -5,24 +5,27 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5",
       "compile": {
-        "bin/Release/DementiaHelper.dll": {}
+        "bin/Debug/DementiaHelper.dll": {}
       },
       "runtime": {
+        "../../packages/ExifLib.PCL.1.0.1/lib/portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10/ExifLib.dll": {},
         "../../packages/FreshMvvm.2.2.0/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/FreshIOC.dll": {},
         "../../packages/FreshMvvm.2.2.0/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/FreshMvvm.dll": {},
+        "../../packages/Microsoft.AspNet.SignalR.Client.2.2.1/lib/portable-net45+sl50+win+wpa81+wp80/Microsoft.AspNet.SignalR.Client.dll": {},
         "../../packages/Microsoft.Net.Http.2.2.29/lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.dll": {},
         "../../packages/Microsoft.Net.Http.2.2.29/lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.dll": {},
         "../../packages/Newtonsoft.Json.9.0.1/lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll": {},
         "../../packages/Portable.BouncyCastle.1.8.0/lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll": {},
         "../../packages/Portable.JWT.1.0.5/lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/JWT.dll": {},
-        "../../packages/Xamarin.Forms.2.3.3.180/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.Core.dll": {},
-        "../../packages/Xamarin.Forms.2.3.3.180/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.Platform.dll": {},
-        "../../packages/Xamarin.Forms.2.3.3.180/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.Xaml.dll": {},
+        "../../packages/Syncfusion.Xamarin.SfSchedule.15.1.0.41/lib/portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Syncfusion.SfSchedule.XForms.dll": {},
+        "../../packages/Xamarin.Forms.2.3.4.224/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.Core.dll": {},
+        "../../packages/Xamarin.Forms.2.3.4.224/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.Platform.dll": {},
+        "../../packages/Xamarin.Forms.2.3.4.224/lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.Xaml.dll": {},
         "C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework/.NETPortable/v4.5/System.Net.Http.dll": {},
-        "bin/Release/DementiaHelper.dll": {}
+        "bin/Debug/DementiaHelper.dll": {}
       },
       "contentFiles": {
-        "bin/Release/DementiaHelper.pdb": {
+        "bin/Debug/DementiaHelper.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true

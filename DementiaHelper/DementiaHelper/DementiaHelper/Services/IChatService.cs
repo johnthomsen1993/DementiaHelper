@@ -11,7 +11,7 @@ namespace DementiaHelper.Services
     {
         Task Connect();
         Task Send(ChatMessage message, string roomName);
-        Task JoinRoom(string roomName);
+        Task JoinRoom(int roomId);
         event EventHandler<ChatMessage> OnMessageReceived;
     }
 

@@ -26,7 +26,7 @@ namespace DementiaHelper.Services
         public ChatServices()
         {
             _connection = new HubConnection(URL);
-            _proxy = _connection.CreateHubProxy("chatHub");
+            _proxy = _connection.CreateHubProxy("ChatHub");
         }
 
         #region IChatServices implementation
@@ -48,9 +48,9 @@ namespace DementiaHelper.Services
             _proxy.Invoke("groupChat", message.Name, message.Message, groupName);
         }
 
-        public async Task JoinRoom(string roomName)
+        public async Task JoinRoom(int roomId)
         {
-            _proxy.Invoke("JoinRoom", roomName);
+            _proxy.Invoke("JoinGroup", roomId.ToString());
         }
 
         #endregion

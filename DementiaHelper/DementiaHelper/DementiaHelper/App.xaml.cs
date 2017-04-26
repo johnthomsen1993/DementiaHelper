@@ -33,14 +33,16 @@ namespace DementiaHelper
             InitializeComponent();
             var masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
             masterDetailNav.Init("menu");
-            masterDetailNav.AddPage<AccountInformationPageModel>("Profile", null);
-            masterDetailNav.AddPage<ShoppingListPageModel>("ShoppingList", null);
             masterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
+
             masterDetailNav.AddPage<ChatPageModel>("Chat", null);
+            masterDetailNav.AddPage<CalenderPageModel>("Kalender", null);
             masterDetailNav.AddPage<ChooseCitizenPageModel>("Choose Citizen", null);
+            masterDetailNav.AddPage<ShoppingListPageModel>("Shopping list", null);
             masterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
+            masterDetailNav.AddPage<AccountInformationPageModel>("Account Information", null);
             
-            var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<ChatPageModel>();
+            var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
             var navContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
            
             DependencyService.Get<ICredentialsService>().SaveCredentials(UserName, Password+"s");

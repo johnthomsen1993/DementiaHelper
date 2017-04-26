@@ -1,9 +1,11 @@
 ﻿using DementiaHelper.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DementiaHelper.PageModels;
 using DementiaHelper.Renders;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,50 +13,31 @@ using Xamarin.Forms.Xaml;
 namespace DementiaHelper.Pages
 {
 
-    public partial class ChatPage 
+    public partial class ChatPage
     {
+        private ChatPageModel chatPageModel;
         public ChatPage()
         {
             InitializeComponent();
-            
-            MessageList.ItemTemplate = new DataTemplate(CreateMessageCell);
+            chatPageModel = new ChatPageModel();
+
+            //chatPageModel.ScrollToLast += ScrollToLast; // Subscribe to event
         }
 
         
 
-        private Cell CreateMessageCell()
-        {
-            var timestampLabel = new Label();
-            timestampLabel.SetBinding(Label.TextProperty, new Binding("Timestamp", stringFormat: "[{0:HH:mm}]"));
-            timestampLabel.TextColor = Color.Silver;
-            timestampLabel.Font = Font.SystemFontOfSize(14);
+        //public void ScrollToLast(object obj, string str)
+        //{
+        //    ObservableCollection<ChatMassagePageModel> chatMassage = MessageList.ItemsSource as ObservableCollection<ChatMassagePageModel>;
+        //    if (chatMassage != null)
+        //    {
+        //        var target = chatMassage.Count - 1;
+        //        MessageList.ScrollTo(target, ScrollToPosition.Start, true);
+        //    }
+            
+        //}
 
-            var authorLabel = new Label();
-            authorLabel.SetBinding(Label.TextProperty, new Binding("ChatMessage.Name", stringFormat: "{0}: "));
-            authorLabel.TextColor = Device.OnPlatform(Color.Blue, Color.Yellow, Color.Yellow);
-            authorLabel.Font = Font.SystemFontOfSize(14);
 
-            var messageLabel = new Label();
-            messageLabel.SetBinding(Label.TextProperty, new Binding("ChatMessage.Message"));
-            messageLabel.Font = Font.SystemFontOfSize(14);
-
-            var stack = new StackLayout
-            {
-                Orientation = StackOrientation.Horizontal,
-                Children = { authorLabel, messageLabel }
-            };
-
-            if (Device.Idiom == TargetIdiom.Tablet)
-            {
-                stack.Children.Insert(0, timestampLabel);
-            }
-
-            var view = new MessageViewCell
-            {
-                View = stack
-            };
-            return view;
-        }
 
         //protected override bool OnBackButtonPressed()
         //{

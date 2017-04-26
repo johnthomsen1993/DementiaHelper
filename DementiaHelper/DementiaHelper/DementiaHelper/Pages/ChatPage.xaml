@@ -2,28 +2,32 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:DementiaHelper.Model;assembly=DementiaHelper"
+             xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.ChatPage"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="True">
 
     <StackLayout Orientation="Vertical" Padding="5, 20, 5, 10">
-        <Button Text="Join Group" Command="{Binding JoinRoomCommand}"></Button>
-        <Entry Text="{Binding ChatMessage.Name}" Placeholder="Name"></Entry>
-        <Entry Text="{Binding ChatMessage.Message}" Placeholder="Message"></Entry>
-        <Button Text="Send Message" Command="{Binding SendMessageCommand}"></Button>
+        <Button Text="Push if testing from start url" Command="{Binding JoinRoomCommand}"></Button>
+        
 
-        <ListView x:Name="MessageList" ItemsSource="{Binding Messages}" VerticalOptions="FillAndExpand">
+        <ListView x:Name="MessageList" ItemsSource="{Binding Messages}" VerticalOptions="FillAndExpand" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding ChatMessage.Name, stringFormat= '{0}: '}"></Label>
-                            <Label Text="{Binding ChatMessage.Message}"></Label>
+                            <Label Text="{Binding Name, StringFormat= '{0:N}: '}"></Label>
+                            <Label Text="{Binding Message}"></Label>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Entry Text="{Binding ChatMessage.Name}" Placeholder="Name"></Entry>
+        <Entry Text="{Binding ChatMessage.Message}" Placeholder="Message"></Entry>
+        <Button Text="{extensions:Translate SendMessage}" Command="{Binding SendMessageCommand}"></Button>
+        
     </StackLayout>
     
 </ContentPage>

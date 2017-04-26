@@ -18,6 +18,7 @@ namespace DementiaHelper.PageModels
             CitizenCollection = new ObservableCollection<Citizen>();
             this.FilterCitizens();
             CitizenTappedCommand = new Command<Citizen>(ChooseCitizen);
+            
         }
 
         #region Filter
@@ -25,12 +26,9 @@ namespace DementiaHelper.PageModels
         public override void Init(object initData)
         {
             base.Init(initData);
-
-            
         }
 
         private string _SearchText;
-
         public string SearchText
         {
             get

@@ -9,10 +9,14 @@ namespace DementiaHelper.WebApi.model
     public class ShoppingList
     {
         public int ShoppingListId { get; set; }
+
         [ForeignKey("RelativeConnection")]
-        public RelativeConnection RelativeConnectionForeignKey { get; set; }
+        public int RelativeConnectionId { get; set; }
+        public RelativeConnection RelativeConnection { get; set; }
+
         [ForeignKey("CaregiverConnection")]
-        public CaregiverConnection CaregiverConnectionForeignKey { get; set; }
+        public int CaregiverConnectionId { get; set; }
+        public CaregiverConnection CaregiverConnection { get; set; }
     }
 
     public class ShoppingListDetail
@@ -20,10 +24,14 @@ namespace DementiaHelper.WebApi.model
         public int ShoppingListDetailId { get; set; }
         public int Quantity { get; set; }
         public bool Bought { get; set; }
+
         [ForeignKey("Product")]
-        public Product ProductForeignKey { get; set; }
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
+
         [ForeignKey("ShoppingList")]
-        public ShoppingList ShoppingListForeignKey { get; set; }
+        public int ShoppingListId { get; set; }
+        public ShoppingList ShoppingList { get; set; }
     }
 
     public class Product
