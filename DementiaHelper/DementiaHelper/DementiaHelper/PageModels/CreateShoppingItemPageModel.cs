@@ -15,19 +15,24 @@ namespace DementiaHelper.PageModels
     {
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/shoppinglist";
         public const string URI_BASE_TEST = "http://localhost:29342/api/values/shoppinglist/";
-        public ICommand SaveToDatabaseCommand { get; protected set; }
+        public ICommand SaveCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
         public string Item { get; set; }
-        public ShoppingList ShoppingList { get; set; }
+        public int CitizenId { get; set; }
         public int Quantity { get; set; }
 
 
-        public CreateShoppingItemPageModel (ShoppingList list)
+        public CreateShoppingItemPageModel ()
         {
-            ShoppingList = list;
             Quantity = 1;
-            SaveToDatabaseCommand = new Command(async () => await SaveToDatabase());
+            SaveCommand = new Command(async () => await SaveToDatabase());
             CancelCommand = new Command(async () => await Cancel());
+        }
+
+        public override void Init(object initData)
+        {
+            base.Init(initData);
+            CitizenId = (int) initData;
         }
 
         async Task SaveToDatabase()
@@ -36,7 +41,7 @@ namespace DementiaHelper.PageModels
             { 
                 try
                 {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { {"ShoppingListId", ShoppingList}, { "Item", Item }, { "Quantity", Quantity } });
+                    var encoded = JWTService.Encode(new Dictionary<string, object>() { {"CitizenId", CitizenId }, { "Item", Item }, { "Quantity", Quantity } });
                     StringContent content = new StringContent(encoded);
                     await client.PutAsync(new Uri(URI_BASE), content);
                 }

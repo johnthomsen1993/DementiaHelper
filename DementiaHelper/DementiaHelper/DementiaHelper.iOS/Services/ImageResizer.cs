@@ -1,7 +1,6 @@
 ﻿using DementiaHelper.iOS.Services;
 using DementiaHelper.Services;
 using System;
-using ImageGallery.Services;
 using UIKit;
 using CoreGraphics;
 using System.Drawing;

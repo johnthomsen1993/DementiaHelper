@@ -82,7 +82,14 @@ namespace DementiaHelper
                 Hash = User.SelectToken("Hash").ToObject<string>(),
                 RoleId = User.SelectToken("RoleId").ToObject<int>(),
             };
-            ApplicationUser.CitizenId = User.SelectToken("CitizenId") != null ? User.SelectToken("CitizenId").ToObject<int?>() : null;
+            if (ApplicationUser.RoleId == 1)
+            {
+                ApplicationUser.CitizenId = User.SelectToken("ApplicationUserId") != null ? User.SelectToken("ApplicationUserId").ToObject<int?>() : null;
+            }
+            else
+            {
+                ApplicationUser.CitizenId = User.SelectToken("CitizenId") != null ? User.SelectToken("CitizenId").ToObject<int?>() : null;
+            }
             //      ApplicationUser.ListOfCitizens = User.SelectToken("CitizenIds") != null ? User.SelectToken("CitizenId").ToObject< ObservableCollection<int?>() : null;
             App.Current.Properties["ApplicationUser"] = ApplicationUser;
             return true;
@@ -99,7 +106,7 @@ namespace DementiaHelper
                         masterDetailNav.Init("Menu");
                         masterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
                         masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
-                      //  masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
@@ -112,7 +119,7 @@ namespace DementiaHelper
                         masterDetailNav.Init("Menu");
                         masterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
                         masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
-                       // masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
@@ -124,7 +131,7 @@ namespace DementiaHelper
                         masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         masterDetailNav.Init("Menu");
                         masterDetailNav.AddPage<ChooseCitizenPageModel>(AppResources.ChooseCitizenTitle, null);
-                        //masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
