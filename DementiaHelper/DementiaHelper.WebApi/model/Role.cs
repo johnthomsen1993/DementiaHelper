@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace DementiaHelper.WebApi.model
 {
     public class Role
     {
+        [Key]
         public int RoleId { get; set; }
+        [Required]
         public string RoleName { get; set; }
-        //public ICollection<ApplicationUser> ApplicationUsers { get; set; }
     }
-
 }

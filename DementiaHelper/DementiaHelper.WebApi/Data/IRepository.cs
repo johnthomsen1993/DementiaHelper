@@ -18,11 +18,9 @@ namespace DementiaHelper.WebApi.Data
         bool SaveItemInShoppingList(int shoppinglistId, string item, int quantity);
         bool RemoveShoppingListItem(int id);
         Citizen GetCitizen(int id);
+        List<Citizen> GetCitizenList(int id);
         Relative GetRelative(int id);
         Caregiver GetCaregiver(int id);
-        RelativeConnection GetRelativeConnection(int id);
-        CaregiverConnection GetCaregiverConnection(int id);
-        List<CaregiverConnection> GetCaregiverConnections(int id);
         List<Appointment> GetAppointments(int id);
         void CreateAppointment(Appointment appointment);
         void SaveChatMessage(string message, int group, string sender);

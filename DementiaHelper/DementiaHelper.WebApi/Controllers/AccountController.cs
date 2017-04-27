@@ -77,23 +77,27 @@ namespace DementiaHelper.WebApi.Controllers
             var decoded = JWTService.Decode(token);
             var user =_repository.FetchApplicationUser(decoded["email"].ToString());
             if (user == null) return JWTService.Encode(new Dictionary<string, object>() {{"UserExists", false}});
+
             if (!ComparePasswords(decoded.SingleOrDefault(x => x.Key.Equals("password")).Value.ToString(), user.Salt, user.Hash))
                 return JWTService.Encode(new Dictionary<string, object>() {{"Password", false}});
+
             var payload = new Dictionary<string, object> {{"User", user}};
             switch (user.Role.RoleId)
             {
                 case 1:
+                    var citizen = _repository.GetCitizen(user.ApplicationUserId);
+                    if (citizen == null) break;
+                    payload.Add("ConnectionId", citizen.ConnectionId);
                     break;
                 case 2:
-                    var relativeConnection = _repository.GetRelativeConnection(user.ApplicationUserId);
-                    if (relativeConnection == null) break;
-                    payload.Add("CitizenId", relativeConnection.Citizen.CitizenId);
+                    var relative = _repository.GetRelative(user.ApplicationUserId);
+                    if (relative == null) break;
+                    payload.Add("CitizenId", relative.CitizenId);
                     break;
                 case 3:
-                    var caregiverConnection = _repository.GetCaregiverConnections(user.ApplicationUserId);
-                    if (caregiverConnection == null) break;
+                    var citizens = _repository.GetCitizenList(user.ApplicationUserId);
                     var list = new List<Citizen>();
-                    caregiverConnection.ForEach(x => list.Add(new Citizen() {CitizenId = x.Citizen.CitizenId, ApplicationUser = new ApplicationUser() {FirstName = x.Citizen.ApplicationUser.FirstName, Lastname = x.Citizen.ApplicationUser.Lastname} }));
+                    citizens.ForEach(x => list.Add(new Citizen() {CitizenId = x.CitizenId, ApplicationUser = new ApplicationUser() {FirstName = x.ApplicationUser.FirstName, Lastname = x.ApplicationUser.Lastname} }));
                     payload.Add("CitizenIds", list);
                     break;
                 default:
