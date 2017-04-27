@@ -13,7 +13,7 @@ namespace DementiaHelper.PageModels
 {
     class CreateShoppingItemPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/shoppinglist";
+        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/shoppinglist/";
         public const string URI_BASE_TEST = "http://localhost:29342/api/values/shoppinglist/";
         public ICommand SaveCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
@@ -42,7 +42,8 @@ namespace DementiaHelper.PageModels
                 try
                 {
                     var encoded = JWTService.Encode(new Dictionary<string, object>() { {"CitizenId", CitizenId }, { "Item", Item }, { "Quantity", Quantity } });
-                    StringContent content = new StringContent(encoded);
+                    var values = new Dictionary<string, string> { { "content", encoded } };
+                    var content = new FormUrlEncodedContent(values);
                     await client.PutAsync(new Uri(URI_BASE), content);
                 }
                 catch (Exception)
