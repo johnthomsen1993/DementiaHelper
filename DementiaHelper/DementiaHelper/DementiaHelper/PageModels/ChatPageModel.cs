@@ -19,10 +19,9 @@ namespace DementiaHelper.PageModels
     {
         
 		private IChatServices _chatServices;
-        private int _roomId = 1;
-        private int messageNumber = 0;
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/getMessagesForChatGroup/";
-        public const string URI_BASE_TEST = "http://localhost:29342/api/chat/getMessagesForChatGroup/";
+        private ApplicationUser user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
+        private const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/getMessagesForChatGroup/";
+        private const string URI_BASE_TEST = "http://localhost:29342/api/chat/getMessagesForChatGroup/";
 
 
         #region ViewModel Properties
@@ -61,12 +60,11 @@ namespace DementiaHelper.PageModels
 
             Device.BeginInvokeOnMainThread(async () =>
             {
-                await GetChatMessageList(_roomId);
-                
+                await GetChatMessageList(user.GroupId);
             }); 
 
             _chatServices.Connect();
-            _chatServices.JoinRoom(_roomId);
+            _chatServices.JoinRoom(user.GroupId);
             _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
         }
 
@@ -91,16 +89,22 @@ namespace DementiaHelper.PageModels
         {
             var list = dict["ChatMessageList"] as IList;
             
-            foreach (var message in list)
+            foreach (var obj in list)
             {
-                //_messages.Add(obj);
+                var jsonContainer = obj as JContainer;
+
+                var chatMessageId = jsonContainer.SelectToken("ChatMessageId");
+                var chatGroupId = jsonContainer.SelectToken("ChatGroupId");
+                var sender = jsonContainer.SelectToken("Sender");
+                var message = jsonContainer.SelectToken("Message");
+
+                _messages.Add(new ChatMassagePageModel { Name = sender.ToString(), Message = message.ToString()});
             }
         }
 
-
         void _chatServices_OnMessageReceived(object sender, ChatMessage e)
         {
-            _messages.Add(new ChatMassagePageModel {Name = e.Name, Message = e.Message, IsMine = _messages.Count%2 == 0});
+            _messages.Add(new ChatMassagePageModel {Name = e.Name, Message = e.Message});
         }
      
 
@@ -123,7 +127,7 @@ namespace DementiaHelper.PageModels
         async void ExecuteSendMessageCommand()
         {
             IsBusy = true;
-            await _chatServices.Send(new ChatMessage { Name = _chatMessage.Name, Message = _chatMessage.Message }, _roomId.ToString());
+            await _chatServices.Send(new ChatMessage { Name = _chatMessage.Name, Message = _chatMessage.Message }, user.GroupId.ToString());
             IsBusy = false;
         }
 
@@ -155,47 +159,3 @@ namespace DementiaHelper.PageModels
         #endregion
     }
 }
-
-//public class ChatPageModel : FreshMvvm.FreshBasePageModel
-//{
-//    private string _newMessage { get; set; }
-//    public string NewMessage
-//    {
-//        get { return _newMessage; }
-//        set
-//        {
-//            _newMessage = value;
-//            RaisePropertyChanged("NewMessage");
-//        }
-//    }
-//    bool test123 { get; set; }
-//    public ObservableCollection<Message> Messages { get; set; }
-//    public ICommand SemdMessageommand { get; protected set; }
-
-//    public ChatPageModel()
-//    {
-//        test123 = false;
-//        Messages = new ObservableCollection<Message>();
-//        SemdMessageommand = new Command(() => {
-//            if (test123 == false)
-//            {
-//                SendMessage();
-//                test123 = true;
-//            }
-//            else
-//            {
-//                RecievedMessage();
-//                test123 = false;
-//            }
-//        });
-//    }
-
-//    private void SendMessage()
-//    {
-//        this.Messages.Add(new Message() { MessageSent = NewMessage, MessageRecieved = "", MessageRecievedIsVisible = false });
-//    }
-//    private void RecievedMessage()
-//    {
-//        this.Messages.Add(new Message() { MessageSent = "", MessageRecieved = NewMessage, MessageSentIsVisible = false });
-//    }
-//}

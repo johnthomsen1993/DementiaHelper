@@ -10,22 +10,22 @@ namespace SignalR_Server
     {
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/saveChatMessage/";
 
-        public void SaveMessage(string message, string group, string sender)
+        public void SaveMessage(string message, string groupId, string sender)
         {
-            var values = new Dictionary<string, object>
+            var payload = new Dictionary<string, object>
             {
                 {"Message", message},
-                {"Group", group},
+                {"GroupId", groupId},
                 {"Sender", sender}
             };
 
-            var payload = JWTService.Encode(values);
+            var encoded = JWTService.Encode(payload);
 
             using (HttpClient h = new HttpClient())
             {
-                var content = new StringContent(payload);
+                var values = new Dictionary<string, string> { { "content", encoded } };
+                var content = new FormUrlEncodedContent(values);
                 var result = h.PutAsync(new Uri(URI_BASE), content).Result;
-                var response = result.Content.ReadAsStringAsync();
             }
         }
     }
