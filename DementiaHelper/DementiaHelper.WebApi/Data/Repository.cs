@@ -185,6 +185,11 @@ namespace DementiaHelper.WebApi.Data
             return _context.Citizens.Include(x => x.ApplicationUser).SingleOrDefault(x => x.CitizenId == id);
         }
 
+        public List<Citizen> GetCitizenList(int id)
+        {
+            return _context.Citizens.Include(x => x.ApplicationUser).Where(x => x.CaregiverId == id).ToList();
+        }
+
         public Relative GetRelative(int id)
         {
             return _context.Relatives.Include(x => x.ApplicationUser).SingleOrDefault(x => x.RelativeId == id);
@@ -193,21 +198,6 @@ namespace DementiaHelper.WebApi.Data
         public Caregiver GetCaregiver(int id)
         {
             return _context.Caregivers.Include(x => x.ApplicationUser).SingleOrDefault(x => x.CaregiverId == id);
-        }
-
-        public RelativeConnection GetRelativeConnection(int id)
-        {
-            return _context.RelativeConnections.Include(x => x.Citizen).SingleOrDefault(x => x.Relative.RelativeId == id);
-        }
-
-        public CaregiverConnection GetCaregiverConnection(int id)
-        {
-            return _context.CaregiverConnections.Include(x => x.Citizen).SingleOrDefault(x => x.Caregiver.CaregiverId == id);
-        }
-
-        public List<CaregiverConnection> GetCaregiverConnections(int id)
-        {
-            return _context.CaregiverConnections.Include(x => x.Citizen.ApplicationUser).Where(x => x.Caregiver.CaregiverId == id).ToList();
         }
 
         public List<Appointment> GetAppointments(int id)
@@ -223,7 +213,7 @@ namespace DementiaHelper.WebApi.Data
 
         public void SaveChatMessage(string message, int group, string sender)
         {
-            _context.ChatMessages.Add(new ChatMessage() {GroupId = Convert.ToInt32(group), Message = message, Sender = sender});
+            _context.ChatMessages.Add(new ChatMessage() {ChatGroupId = Convert.ToInt32(group), Message = message, Sender = sender});
             _context.SaveChanges();
         }
 
@@ -236,7 +226,7 @@ namespace DementiaHelper.WebApi.Data
 
         public ICollection<ChatMessage> GetChatMessagesForGroup(int groupId)
         {
-            return _context.ChatMessages.Where(chatMessage => chatMessage.GroupId == groupId).ToList();
+            return _context.ChatMessages.Where(chatMessage => chatMessage.ChatGroupId == groupId).ToList();
         }
     }
 }

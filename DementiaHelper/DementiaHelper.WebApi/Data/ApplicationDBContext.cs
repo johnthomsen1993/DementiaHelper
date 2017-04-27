@@ -15,8 +15,6 @@ namespace DementiaHelper.WebApi.Data
         public DbSet<Caregiver> Caregivers { get; set; }
         public DbSet<Citizen> Citizens { get; set; }
         public DbSet<Relative> Relatives { get; set; }
-        public DbSet<CaregiverConnection> CaregiverConnections { get; set; }
-        public DbSet<RelativeConnection> RelativeConnections { get; set; }
         public DbSet<ShoppingListItem> ShoppingListItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
@@ -27,15 +25,8 @@ namespace DementiaHelper.WebApi.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            builder.Entity<AccountInformation>()
-            .HasOne(p => p.Picture)
-            .WithOne(i => i.AccountInformation)
-            .HasForeignKey<AccountPicture>(b => b.AccountInformationForeignKey);
-
-            //builder.Entity<ApplicationUser>().HasOne(p => p.Role).WithMany(i => i.ApplicationUsers).HasForeignKey<ApplicationUser>(b => b.RolesId)
-
-
+            
+            
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

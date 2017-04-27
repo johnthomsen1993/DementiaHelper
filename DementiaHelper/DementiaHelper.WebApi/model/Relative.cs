@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,9 +12,12 @@ namespace DementiaHelper.WebApi.model
 {
     public class Relative
     {
-        [ForeignKey("ApplicationUser")]
+        [Key, ForeignKey("ApplicationUser")]
         public int RelativeId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-    }
 
+        [ForeignKey("Citizen")]
+        public int? CitizenId { get; set; }
+        public Citizen Citizen { get; set; }
+    }
 }
