@@ -13,7 +13,7 @@ namespace DementiaHelper.WebApi.Controllers
     [Route("api/[controller]")]
     public class ChatController : Controller
     {
-        private IRepository _iRepository;
+        private readonly IRepository _iRepository;
         public ChatController(IRepository iRepository)
         {
             _iRepository = iRepository;
@@ -27,7 +27,7 @@ namespace DementiaHelper.WebApi.Controllers
             _iRepository.SaveChatMessage(decoded["Message"]?.ToString(), Convert.ToInt32(decoded["Group"]), decoded["Sender"]?.ToString());
         }
 
-        [HttpGet("getMessagesForChatGroup")]
+        [HttpGet("getMessagesForChatGroup/{token}")]
         [AllowAnonymous]
         public string Get(string token)
         {

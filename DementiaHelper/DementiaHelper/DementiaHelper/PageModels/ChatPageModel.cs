@@ -77,7 +77,7 @@ namespace DementiaHelper.PageModels
                 try
                 {
                     var encoded = JWTService.Encode(new Dictionary<string, object>() {{"GroupId", id}});
-                    var result = await client.GetStringAsync(new Uri(URI_BASE_TEST + encoded));
+                    var result = await client.GetStringAsync(new Uri(URI_BASE + encoded));
                     var decoded = JWTService.Decode(result);
                     AddChatMessagesToList(decoded);
                 }
