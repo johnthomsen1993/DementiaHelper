@@ -50,7 +50,8 @@ namespace DementiaHelper.WebApi.Controllers
                 Salt = GenerateSalt()
             };
             user.Hash = GenerateHash(decoded.SingleOrDefault(x => x.Key.Equals("password")).Value.ToString(),user.Salt);
-            return JWTService.Encode(new Dictionary<string, object>() { {"UserCreated", _repository.CreateAccount(user) } });
+            var success = user.RoleId == 1 ? _repository.CreateAccount(user, GenerateConnectionId()) : _repository.CreateAccount(user);
+            return JWTService.Encode(new Dictionary<string, object>() { {"UserCreated", success } });
         }
 
         private string GenerateHash(string password, string salt)
@@ -112,6 +113,14 @@ namespace DementiaHelper.WebApi.Controllers
             var key = new byte[256 / 8];
             Random.GetBytes(key);
             return Convert.ToBase64String(key);
+        }
+
+        private string GenerateConnectionId()
+        {
+            string guidString = Convert.ToBase64String(new Guid().ToByteArray());
+            guidString = guidString.Replace("=", "");
+            guidString = guidString.Replace("+", "");
+            return guidString;
         }
     }
 }

@@ -64,11 +64,11 @@ namespace DementiaHelper.PageModels
             }); 
 
             _chatServices.Connect();
-            _chatServices.JoinRoom(user.GroupId);
+            _chatServices.JoinRoom(0);
             _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
         }
 
-        private async Task GetChatMessageList(int id)
+        private async Task GetChatMessageList(int? id)
         {
             using (var client = new HttpClient())
             {
@@ -152,7 +152,7 @@ namespace DementiaHelper.PageModels
         async void ExecuteJoinRoomCommand()
         {
             IsBusy = true;
-            await _chatServices.JoinRoom(_roomId);
+            await _chatServices.JoinRoom(0);
             IsBusy = false;
         }
 
