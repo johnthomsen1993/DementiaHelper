@@ -14,11 +14,9 @@ namespace DementiaHelper.Extensions
 
         public TranslateExtension()
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-#pragma warning disable CS0612 // Type or member is obsolete
-            if (Device.OS == TargetPlatform.iOS || Device.OS == TargetPlatform.Android)
-#pragma warning restore CS0612 // Type or member is obsolete
-#pragma warning restore CS0618 // Type or member is obsolete
+
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+
             {
                 ci = DependencyService.Get<Resx.ILocalize>().GetCurrentCultureInfo();
             }

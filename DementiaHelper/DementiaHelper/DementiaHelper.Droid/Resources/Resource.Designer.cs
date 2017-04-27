@@ -1557,6 +1557,9 @@ namespace DementiaHelper.Droid
 			// aapt resource value: 0x7f060010
 			public const int abc_text_size_title_material_toolbar = 2131099664;
 			
+			// aapt resource value: 0x7f060074
+			public const int button_font_size = 2131099764;
+			
 			// aapt resource value: 0x7f060009
 			public const int cardview_compat_inset_shadow = 2131099657;
 			
@@ -1658,6 +1661,9 @@ namespace DementiaHelper.Droid
 			
 			// aapt resource value: 0x7f060050
 			public const int disabled_alpha_material_light = 2131099728;
+			
+			// aapt resource value: 0x7f060075
+			public const int font_size = 2131099765;
 			
 			// aapt resource value: 0x7f060051
 			public const int highlight_alpha_material_colored = 2131099729;
@@ -1951,8 +1957,8 @@ namespace DementiaHelper.Droid
 			// aapt resource value: 0x7f02004d
 			public const int elderlyhands = 2130837581;
 			
-			// aapt resource value: 0x7f0200a5
-			public const int focused = 2130837669;
+			// aapt resource value: 0x7f0200a6
+			public const int focused = 2130837670;
 			
 			// aapt resource value: 0x7f02004e
 			public const int ic_add_circle_black_48dp = 2130837582;
@@ -2209,14 +2215,17 @@ namespace DementiaHelper.Droid
 			// aapt resource value: 0x7f0200a2
 			public const int mr_ic_play_light = 2130837666;
 			
-			// aapt resource value: 0x7f0200a4
-			public const int notification_template_icon_bg = 2130837668;
+			// aapt resource value: 0x7f0200a5
+			public const int notification_template_icon_bg = 2130837669;
 			
-			// aapt resource value: 0x7f0200a6
-			public const int selected = 2130837670;
+			// aapt resource value: 0x7f0200a7
+			public const int selected = 2130837671;
 			
 			// aapt resource value: 0x7f0200a3
 			public const int splash_screen = 2130837667;
+			
+			// aapt resource value: 0x7f0200a4
+			public const int updownbuttons = 2130837668;
 			
 			static Drawable()
 			{

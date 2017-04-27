@@ -10,13 +10,17 @@ using DementiaHelper.Services;
 using DementiaHelper.PageModels;
 using Xamarin.Forms;
 using DementiaHelper.Pages;
+using System.Net.Http.Headers;
+using DementiaHelper.Model;
+using Newtonsoft.Json.Linq;
 
 namespace DementiaHelper.PageModels
 {
    
    public class LoginPageModel : FreshMvvm.FreshBasePageModel
     {
-      public string Email { get; set; }
+        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/login";
+        public string Email { get; set; }
       public string Password { get; set; }
       public ICommand LoginCommand { get; protected set; }
       public ICommand GoToCreateAccountCommand { get; protected set; }
@@ -25,13 +29,20 @@ namespace DementiaHelper.PageModels
 
         public LoginPageModel()
         {
-        
-
+            Email = "";
+            Password = "";
+            Device.BeginInvokeOnMainThread(async () => {
+                if (await DependencyService.Get<ICredentialsService>().Authenticate())
+                {
+                    App.SetMasterDetailToRole();
+                    CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
+                }
+            });
         }
         public override void Init(object initData)
         {
             base.Init(initData);
-            this.LoginCommand = new Command( async() =>  LoginAsync());
+            this.LoginCommand = new Command( async() => await LoginAsync());
             this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
             this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
             this.GoToShoppingListCommand = new Command(async () => await GoToShoppingList());
@@ -39,27 +50,21 @@ namespace DementiaHelper.PageModels
 
         async Task LoginAsync()
         {
-            var values = new Dictionary<string, string>
+            if (await App.LoginAsync(Email, Password))
             {
-                {"email",Email},
-                {"password", Password}
-            };
-            App.Current.Properties["ApplicationUser"] = "Relatives";
-            
-            App.SetMasterDetailToRole();
-            CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
+                Email = "";
+                Password = "";
+                App.SetMasterDetailToRole();
+                CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
 
-            /* using (var h = new HttpClient()){
-                 var content = new FormUrlEncodedContent(values);
-                 var result = h.PostAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/"), content).Result;
-                 var response = result.Content.ReadAsStringAsync();
-                 await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
-                // await NavigationService.PushAsync(new ClockViewModel());
-             }*/
+            }else
+            {
+                await CoreMethods.DisplayAlert("Login Failed","Either your account dont exist or your password or email is incorrect","Ok");
+            }
+
         }
         async Task GoToCreateAccount()
         {
-            
             await CoreMethods.PushPageModel<CreateAccountPageModel>();
         }
         async Task GoToAccountInformation()

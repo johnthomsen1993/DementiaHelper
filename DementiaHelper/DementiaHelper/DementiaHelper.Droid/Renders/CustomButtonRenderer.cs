@@ -17,10 +17,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 
-[assembly: ExportRenderer(typeof(FacebookButtonCustomRenderer), typeof(FacebookButtonRenderer))]
+[assembly: ExportRenderer(typeof(CustomButtonRender), typeof(CustomButtonRenderer))]
 namespace DementiaHelper.Droid.Renders
 {
-    public class FacebookButtonRenderer : ButtonRenderer
+    public class CustomButtonRenderer : ButtonRenderer
     {
         private GradientDrawable _normal, _pressed;
 
@@ -36,7 +36,7 @@ namespace DementiaHelper.Droid.Renders
                 _normal = new Android.Graphics.Drawables.GradientDrawable();
 
                 if (button.BackgroundColor.R == -1.0 && button.BackgroundColor.G == -1.0 && button.BackgroundColor.B == -1.0)
-                    _normal.SetColor(Android.Graphics.Color.ParseColor("#3b5998"));
+                    _normal.SetColor(Android.Graphics.Color.ParseColor("#ffffff"));
                 else
                     _normal.SetColor(button.BackgroundColor.ToAndroid());
 
@@ -54,7 +54,7 @@ namespace DementiaHelper.Droid.Renders
                 var sld = new StateListDrawable();
                 sld.AddState(new int[] { Android.Resource.Attribute.StatePressed }, _pressed);
                 sld.AddState(new int[] { }, _normal);
-                Control.SetBackgroundDrawable(sld);
+                Control.SetBackground(sld);
             }
         }
 

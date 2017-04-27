@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.CreateAccountPage"
-             NavigationPage.HasNavigationBar="false"
+             NavigationPage.HasNavigationBar="false" 
              BackgroundColor="#ffffff">
 
     <ContentPage.Content>
@@ -14,19 +15,18 @@
                         <StackLayout  Orientation="Vertical" VerticalOptions="Start">
                             <Image x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
                         </StackLayout>
-                        <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand">
-                            <Entry Text="{Binding User.Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
-                            <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
+                        <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand" Padding="10">
+                            <Entry Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
+                            <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
-                        <Label Text="Opret konto som:" Font="Bold"></Label>
-                        <Picker SelectedItem="{Binding SelecteRoleName,Mode=TwoWay}" x:Name="rolePicker"  ItemsSource="{Binding RoleCollection}" Title="Role"  ></Picker> <!-- In code behind since functionality to do it in xaml does not exist till xamarin.forms nuget 2.3.4-pre1 and since that nuget is not stable we wont install yet-->
-                        <Button Style="{StaticResource buttonStyle}" Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
+                        <Label HorizontalTextAlignment="Center" Margin="10" Text="Opret konto som:" Font="Bold"></Label>
+                        <Picker WidthRequest="150" HorizontalOptions="Center"  SelectedItem="{Binding SelecteRoleName,Mode=TwoWay}" x:Name="rolePicker"  ItemsSource="{Binding RoleCollection}" Title="Role"  ></Picker>
+                        <customRenders:CustomButtonRender Style="{StaticResource ButtonStyle}" Command="{Binding CreateAccountCommand}" Text="Create Account" />
                     </StackLayout>
-
                     <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
-                        <Button Text="{i18n:Translate Cancel}"  Command="{Binding CancelCreateAccountCommand}" BackgroundColor="Red"></Button>
+                        <customRenders:CustomButtonRender  Style="{StaticResource CancelButtonStyle}" Text="{i18n:Translate Cancel}"  Command="{Binding CancelCreateAccountCommand}" ></customRenders:CustomButtonRender>
                     </StackLayout>
                 </StackLayout>
             </OnIdiom.Phone>
@@ -42,12 +42,12 @@
                             <!-- top controls -->
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand">
-                            <Entry Text="{Binding Email}" Placeholder="{i18n:Translate UserName}" HorizontalOptions="CenterAndExpand" />
+                            <Entry Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
                             <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
-                            <Button Command="{Binding CreateAccountCommand}" CommandParameter="{Binding User}" Text="Create Account" />
+                            <customRenders:CustomButtonRender Command="{Binding CreateAccountCommand}" Style="{StaticResource ButtonStyle}" Text="Create Account" />
                         </StackLayout>
                         <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
-                            <Button Text="{i18n:Translate Cancel}"  Command="{Binding CancelCreateAccountCommand}" BackgroundColor="Red"></Button>
+                            <customRenders:CustomButtonRender Text="{i18n:Translate Cancel}"  Style="{StaticResource CancelButtonStyle}" Command="{Binding CancelCreateAccountCommand}" ></customRenders:CustomButtonRender>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1">
@@ -55,14 +55,7 @@
                             <Label Text="Extra Information" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
                         </StackLayout>
                         <StackLayout VerticalOptions="CenterAndExpand">
-
                         </StackLayout>
-                    </StackLayout>
-                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1">
-                        <Entry Text="{Binding User.FirstName}" HorizontalOptions="CenterAndExpand"></Entry>
-                        <Entry Text="{Binding User.LastName}" HorizontalOptions="CenterAndExpand"></Entry>
-                        <Entry Text="{Binding User.Description}" HorizontalOptions="CenterAndExpand"></Entry>
-                        <Image Source="{Binding User.Picture}" HorizontalOptions="CenterAndExpand"></Image>
                     </StackLayout>
                 </Grid>
             </OnIdiom.Tablet>

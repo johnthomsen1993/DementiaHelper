@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
+             x:Class="DementiaHelper.Pages.CreateShoppingItemPage"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             Title="Tilføj vare"
+             >
+
+    <ContentPage.Content>
+        <Grid x:Name="outerGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Grid x:Name="innerGrid" Grid.Row="0" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout x:Name="DescriptionStackLayout"  Grid.Row="0" Grid.Column="0" HeightRequest="300" WidthRequest="300">
+                    <Image   x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
+                </StackLayout>
+                <Grid x:Name="controlsGrid" Grid.Row="0" Grid.Column="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Vare:" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></Label>
+                    <Entry  Text="{Binding Item}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" Placeholder="{i18n:Translate ItemToAdd}"  />
+                    <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="Mængde:"></Label>
+                    <numeric:SfNumericUpDown FontSize="10" HeightRequest="50" WidthRequest="50"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"  Value="{Binding Quantity}" />
+
+                <!--<Entry  Text="{Binding Quantity}" Placeholder="{i18n:Translate Quantity}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Keyboard="Numeric" HorizontalOptions="CenterAndExpand" />-->
+                </Grid>
+            </Grid>
+            <Grid x:Name="buttonsGrid" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <customRenders:CustomButtonRender Text="{i18n:Translate Cancel}" Style="{StaticResource CancelButtonStyle}" Command="{Binding CancelCommand}" Grid.Column="0" />
+                <customRenders:CustomButtonRender Text="Tilføj vare" Style="{StaticResource ButtonStyle}" Command="{Binding SaveCommand}" Grid.Column="1" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

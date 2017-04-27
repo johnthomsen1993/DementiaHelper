@@ -14,7 +14,7 @@ namespace DementiaHelper.PageModels
         public ChooseCitizenPageModel()
         {
             _SearchText = "";
-            CaregiversCitizenCollection = new ObservableCollection<Citizen>() { new Citizen() { Name = "John", CitizenId = 100 } }; ;
+            CaregiversCitizenCollection = new ObservableCollection<Citizen>() { new Citizen() { FirstName = "John",LastName="Thomsen", CitizenId = 100 } }; ;
             CitizenCollection = new ObservableCollection<Citizen>();
             this.FilterCitizens();
             CitizenTappedCommand = new Command<Citizen>(ChooseCitizen);
@@ -60,7 +60,7 @@ namespace DementiaHelper.PageModels
                         CitizenCollection.Add(Citizen);
                     }
                     
-                }else if (Citizen.Name.IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                }else if (Citizen.FirstName.IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     CitizenCollection.Add(Citizen);
                 }

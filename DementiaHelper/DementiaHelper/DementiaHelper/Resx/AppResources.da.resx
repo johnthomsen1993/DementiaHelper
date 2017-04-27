@@ -164,8 +164,8 @@
   <data name="Description" xml:space="preserve">
     <value>Beskrivelse</value>
   </data>
-  <data name="EditProfile" xml:space="preserve">
-    <value>Rediger brugeroplysninger</value>
+  <data name="EditProfileTitle" xml:space="preserve">
+    <value>Rediger konto</value>
     <comment>Label for edit profile view</comment>
   </data>
   <data name="EditUserInformation" xml:space="preserve">
@@ -187,11 +187,11 @@
     <value>Log ind</value>
   </data>
   <data name="LoginWithFacebook" xml:space="preserve">
-    <value>Log ind med facebook</value>
+    <value>Log ind facebook</value>
     <comment>label for button facebookbutton</comment>
   </data>
   <data name="LoginWithGoogle" xml:space="preserve">
-    <value>Log ind med google</value>
+    <value>Log ind google</value>
   </data>
   <data name="NoText" xml:space="preserve">
     <value>Nej</value>
@@ -219,7 +219,7 @@
     <value>Antal</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Gem</value>
+    <value>Gem ændringer</value>
   </data>
   <data name="ShoppingList" xml:space="preserve">
     <value>Indkøbsliste</value>
@@ -275,6 +275,13 @@
   </data>
   <data name="ErrorOnRemoveTitle" xml:space="preserve">
     <value>Fejl</value>
+  </data>
+  <data name="CitizenHomeTitle" xml:space="preserve">
+    <value>Idag</value>
+    <comment>Title for citizen home view</comment>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Forbind</value>
   </data>
   <data name="SendMessage" xml:space="preserve">
     <value>Send besked</value>

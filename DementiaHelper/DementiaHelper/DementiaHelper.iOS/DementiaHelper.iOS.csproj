@@ -93,7 +93,7 @@
     <Compile Include="Localize.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renders\CustomButtonRender.cs" />
+    <Compile Include="Renders\CustomButtonRenderer.cs" />
     <Compile Include="Services\NativeService.cs" />
     <None Include="app.config" />
     <None Include="Entitlements.plist" />
@@ -130,6 +130,15 @@
     </Reference>
     <Reference Include="Plugin.Media.Abstractions, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\Xamarin.iOS10\Plugin.Media.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericUpDown.iOS, Version=15.1451.0.41, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.IOS.15.1.0.41\lib\Xamarin.iOS10\Syncfusion.SfNumericUpDown.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=15.1451.0.41, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.15.1.0.41\lib\Xamarin.iOS10\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericUpDown.XForms.iOS, Version=15.1451.0.41, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.15.1.0.41\lib\Xamarin.iOS10\Syncfusion.SfNumericUpDown.XForms.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfSchedule.iOS, Version=15.1451.0.41, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Syncfusion.Xamarin.SfSchedule.IOS.15.1.0.41\lib\Xamarin.iOS10\Syncfusion.SfSchedule.iOS.dll</HintPath>

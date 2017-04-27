@@ -6,10 +6,10 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(FacebookButtonCustomRenderer), typeof(CustomButtonRender))]
+[assembly: ExportRenderer(typeof(CustomButtonRender), typeof(CustomButtonRenderer))]
 namespace DementiaHelper.IOS.Renders
 {
-    public class CustomButtonRender : ButtonRenderer
+    public class CustomButtonRenderer : ButtonRenderer
     {
 
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Button> e)

@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\Chat.cs" />
     <Compile Include="Model\CalenderTask.cs" />
     <Compile Include="Model\GalleryImage.cs" />
@@ -48,10 +49,10 @@
     <Compile Include="Converters\ItemTappedEventArgsConverter.cs" />
     <Compile Include="Model\Citizen.cs" />
     <Compile Include="Model\UserInformation.cs" />
-    <Compile Include="PageModels\AddItem.cs" />
-    <Compile Include="PageModels\ChatBasePageModel.cs" />
-    <Compile Include="PageModels\ChatMassagePageModel.cs" />
     <Compile Include="PageModels\CalenderPageModel.cs" />
+    <Compile Include="PageModels\CreateShoppingItemPageModel.cs" />
+	<Compile Include="PageModels\ChatBasePageModel.cs" />
+	<Compile Include="PageModels\ChatMassagePageModel.cs" />
     <Compile Include="PageModels\ChatPageModel.cs" />
     <Compile Include="PageModels\ChooseCitizenPageModel.cs" />
     <Compile Include="PageModels\CitizenHomePageModel.cs" />
@@ -59,11 +60,12 @@
     <Compile Include="PageModels\CreateCalenderAppointmentPageModel.cs" />
     <Compile Include="PageModels\EditAccountInformationPageModel.cs" />
     <Compile Include="PageModels\ImageGalleryPageModel.cs" />
+    <Compile Include="PageModels\SettingsPageModel.cs" />
     <Compile Include="Pages\CalenderPage.xaml.cs">
       <DependentUpon>CalenderPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AddItem.xaml.cs">
-      <DependentUpon>AddItem.xaml</DependentUpon>
+    <Compile Include="Pages\CreateShoppingItemPage.xaml.cs">
+      <DependentUpon>CreateShoppingItemPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
@@ -86,11 +88,13 @@
     <Compile Include="Pages\ImageGalleryPage.xaml.cs">
       <DependentUpon>ImageGalleryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Renders\CustomControlRenders\ColorPickerCustomRender.cs" />
+    <Compile Include="Renders\CustomControlRenders\CustomButtonRender.cs" />
     <Compile Include="Renders\CustomControlRenders\CustomImageGallery.cs" />
     <Compile Include="Renders\ChatListView.cs" />
-    <Compile Include="Renders\CustomControlRenders\FacebookButtonCustomRender.cs" />
-    <Compile Include="Renders\CustomControlRenders\GoogleButtonCustomRender.cs" />
     <Compile Include="Renders\MessageViewCell.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\IChatService.cs" />
@@ -126,7 +130,6 @@
       <DependentUpon>AppResources.da.resx</DependentUpon>
     </Compile>
     <Compile Include="Resx\ILocalize.cs" />
-    <Compile Include="PageModels\ClockViewModel.cs" />
     <Compile Include="Pages\ContactListPage.xaml.cs">
       <DependentUpon>ContactListPage.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,9 @@
     </Reference>
     <Reference Include="Plugin.Media.Abstractions, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\portable-net45+wp80+win8+wpa81\Plugin.Media.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=15.1451.0.41, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.15.1.0.41\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfSchedule.XForms, Version=15.1451.0.41, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Syncfusion.Xamarin.SfSchedule.15.1.0.41\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.SfSchedule.XForms.dll</HintPath>
@@ -285,7 +291,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\AddItem.xaml">
+    <EmbeddedResource Include="Pages\CreateShoppingItemPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -304,6 +310,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\ChatPage2.xaml">

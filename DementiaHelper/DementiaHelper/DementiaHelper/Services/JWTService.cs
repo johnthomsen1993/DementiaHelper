@@ -22,6 +22,7 @@ namespace DementiaHelper.Services
             IDictionary<string, object> payload = null;
             try
             {
+                if (token=="") { return null; }
                 payload = JWT.JsonWebToken.DecodeToObject(token, SecretKey) as IDictionary<string, object>;
             }
             catch (JWT.exceptions.SignatureVerificationException)

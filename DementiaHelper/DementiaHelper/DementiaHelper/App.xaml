@@ -4,10 +4,17 @@
              x:Class="DementiaHelper.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Style x:Key="buttonStyle" TargetType="Button">
+            <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#0099cc"/>
                 <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="10,0,10,5"/>
             </Style>
+            <Style x:Key="CancelButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#A9A9A9"/>
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="10,0,10,5"/>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

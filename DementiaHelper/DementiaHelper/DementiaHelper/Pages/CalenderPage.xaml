@@ -45,16 +45,15 @@
 
 
     <ContentPage Title="Month">
-
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
-
                 <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
                     <schedule:SfSchedule 
-            x:Name="MonthSchedule"
-      ScheduleView="MonthView"
-      HorizontalOptions="FillAndExpand"
-      VerticalOptions="FillAndExpand" ShowAppointmentsInline="True" >
+                        x:Name="MonthSchedule"
+                        ScheduleView="MonthView"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        ShowAppointmentsInline="True" >
                     </schedule:SfSchedule>
                 </ScrollView>
             </StackLayout>
@@ -72,8 +71,8 @@
             </Image>
         </AbsoluteLayout>
     </ContentPage>
-   
-    
+
+
     <!--<ContentPage Title="Week">
 
         <schedule:SfSchedule

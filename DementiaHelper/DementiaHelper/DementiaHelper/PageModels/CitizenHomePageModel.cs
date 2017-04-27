@@ -1,6 +1,8 @@
-﻿using Syncfusion.SfSchedule.XForms;
+﻿using PropertyChanged;
+using Syncfusion.SfSchedule.XForms;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,37 +10,35 @@ using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
 {
-   public class CitizenHomePageModel :FreshMvvm.FreshBasePageModel
+    [ImplementPropertyChanged]
+    public class CitizenHomePageModel :FreshMvvm.FreshBasePageModel
     {
-        private DateTime _currentTime { get; set; }
-        public DateTime CurrentTime { get { return _currentTime; } set {
-                _currentTime = value;
-                RaisePropertyChanged("CurrentTime");
-            }
-        }
-
-        private ScheduleAppointment _appointment { get; set; }
-        public ScheduleAppointment Appointment { get { return _appointment; } set { _appointment = value;
-                RaisePropertyChanged("Appointment");
-            }
-        }
+     
+        public DateTime CurrentTime { get; set; }
+       
+        public string Weekday { get; set; }
+        public string Month { get; set; }
+ 
+        public ScheduleAppointment Appointment { get; set; }
+        
 
         public CitizenHomePageModel()
         {
+            var test = DateTime.Now;
+            Weekday = test.ToString("dddd", new CultureInfo("da-DK"));
+            Month = test.ToString("MMMM", new CultureInfo("da-DK"));
             Appointment = GetNextAppointment();
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
-                Device.BeginInvokeOnMainThread(() => CurrentTime = DateTime.Now);
+                Device.BeginInvokeOnMainThread(() => {
+                    CurrentTime = DateTime.Now;
+                });
                 return true;
             });
+           
         }
 
         private ScheduleAppointment GetNextAppointment() {
             return new ScheduleAppointment() {Subject="Ole (Barnebarn) kommer til frokost",StartTime= new DateTime(2017,4,18,10,15,0), EndTime= new DateTime(2017, 4, 18, 12, 15, 0) };
         }
-        private string GetCorrectLanguageWeekDay()
-        {
-            return "";
-        }
-
     }
 }
