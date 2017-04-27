@@ -15,12 +15,9 @@ namespace DementiaHelper.Pages
 
     public partial class ChatPage
     {
-        private ChatPageModel chatPageModel;
         public ChatPage()
         {
             InitializeComponent();
-            chatPageModel = new ChatPageModel();
-          
         }
 
         protected override void OnAppearing()

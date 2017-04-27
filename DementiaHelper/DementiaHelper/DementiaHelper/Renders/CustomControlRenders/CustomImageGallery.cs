@@ -9,7 +9,7 @@
 
 //namespace DementiaHelper.Renders.CustomControlRenders
 //{
-//   public class CustomImageGallery : ScrollView
+//    public class CustomImageGallery : ScrollView
 //    {
 //        readonly StackLayout _imageStack;
 
@@ -44,11 +44,11 @@
 //                    ((CustomImageGallery)bindableObject).ItemsSourceChanged(bindableObject, (IList)oldValue, (IList)newValue);
 //                });
 
-        public IList ItemsSource
-        {
-            get { return (IList)GetValue(ItemsSourceProperty); }
-            set { SetValue(ItemsSourceProperty, value); }
-        }
+//        public IList ItemsSource
+//        {
+//            get { return (IList)GetValue(ItemsSourceProperty); }
+//            set { SetValue(ItemsSourceProperty, value); }
+//        }
 
 //        void ItemsSourceChanging()
 //        {
@@ -61,29 +61,29 @@
 //            if (ItemsSource == null)
 //                return;
 
-            if (newValue is INotifyCollectionChanged notifyCollection)
-            {
-                notifyCollection.CollectionChanged += (sender, args) =>
-                {
-                    if (args.NewItems != null)
-                    {
-                        foreach (var newItem in args.NewItems)
-                        {
+//            if (newValue is INotifyCollectionChanged notifyCollection)
+//            {
+//                notifyCollection.CollectionChanged += (sender, args) =>
+//                {
+//                    if (args.NewItems != null)
+//                    {
+//                        foreach (var newItem in args.NewItems)
+//                        {
 
-                            var view = (View)ItemTemplate.CreateContent();
-                            var bindableObject = (BindableObject)view;
-                            if (bindableObject != null)
-                                bindableObject.BindingContext = newItem;
-                            _imageStack.Children.Add(view);
-                        }
-                    }
-                    if (args.OldItems != null)
-                    {
-                        // not supported
-                        _imageStack.Children.RemoveAt(args.OldStartingIndex);
-                    }
-                };
-            }
+//                            var view = (View)ItemTemplate.CreateContent();
+//                            var bindableObject = (BindableObject)view;
+//                            if (bindableObject != null)
+//                                bindableObject.BindingContext = newItem;
+//                            _imageStack.Children.Add(view);
+//                        }
+//                    }
+//                    if (args.OldItems != null)
+//                    {
+//                        not supported
+//                        _imageStack.Children.RemoveAt(args.OldStartingIndex);
+//                    }
+//                };
+//            }
 
 //        }
 
@@ -100,7 +100,8 @@
 //                  typeof(CustomImageGallery),
 //                  null,
 //                  BindingMode.TwoWay,
-//                  propertyChanged: (bindable, oldValue, newValue) => {
+//                  propertyChanged: (bindable, oldValue, newValue) =>
+//                  {
 //                      ((CustomImageGallery)bindable).UpdateSelectedIndex();
 //                  }
 //              );
@@ -109,7 +110,7 @@
 //        {
 //            get => GetValue(SelectedItemProperty);
 //            set => SetValue(SelectedItemProperty, value);
-//        }
+//            }
 
 //        void UpdateSelectedIndex()
 //        {
@@ -135,11 +136,11 @@
 //                    ((CustomImageGallery)bindable).UpdateSelectedItem();
 //                });
 
-        public int SelectedIndex
-        {
-            get { return (int)GetValue(SelectedIndexProperty); }
-            set { SetValue(SelectedIndexProperty, value); }
-        }
+//        public int SelectedIndex
+//        {
+//            get { return (int)GetValue(SelectedIndexProperty); }
+//            set { SetValue(SelectedIndexProperty, value); }
+//        }
 
 //        void UpdateSelectedItem() =>
 //            SelectedItem = SelectedIndex > -1 ? Children[SelectedIndex].BindingContext : null;
