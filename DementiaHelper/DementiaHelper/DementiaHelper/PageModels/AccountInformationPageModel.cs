@@ -17,6 +17,8 @@ namespace DementiaHelper.PageModels
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/getspecific/";
         public const string URI_BASE_TEST = "http://localhost:29342/api/values/getspecific/";
         public UserInformation User { get; set; }
+        public bool IsCitizen { get; set; }
+        public int CitizenId { get; set; }
         public bool EditButton { get; set ; }
         public ICommand GoToEditAccountInformationCommand { get; protected set; }
         public ICommand BackCommand { get; protected set; }
@@ -29,11 +31,22 @@ namespace DementiaHelper.PageModels
                 User  = await GetProfile("test@email.com");
                 EditButton = User.Id == "test@email.com";
             });
-            
+            CheckIfCitizen((ApplicationUser)App.Current.Properties["ApplicationUser"]);
             GoToEditAccountInformationCommand = new Command(async () => await GoToEditAccountInformation());
             BackCommand = new Command(async () => await Back());
         }
-
+        private void CheckIfCitizen(ApplicationUser user)
+        {
+            if (user.RoleId == 1)
+            {
+                IsCitizen = true;
+                CitizenId = 20000;
+            }
+            else
+            {
+                IsCitizen = false;
+            }
+        }
         async Task GoToEditAccountInformation()
         {
             await CoreMethods.PushPageModel<EditAccountInformationPageModel>(User);

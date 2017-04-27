@@ -29,7 +29,6 @@ namespace DementiaHelper.Pages
                     }
                 } 
             });
-
             return true;
         }
         protected override void OnSizeAllocated(double width, double height)

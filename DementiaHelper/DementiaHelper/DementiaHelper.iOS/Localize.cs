@@ -4,8 +4,9 @@ using System.Threading;
 using Foundation;
 using Xamarin.Forms;
 using DementiaHelper.Resx;
+using DementiaHelper.iOS;
 
-[assembly: Dependency(typeof(DementiaHelper.iOS.Localize))]
+[assembly: Dependency(typeof(Localize))]
 
 namespace DementiaHelper.iOS
 {

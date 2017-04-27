@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Collections.ObjectModel;
 using DementiaHelper.Resx;
 using PropertyChanged;
+using System.Text.RegularExpressions;
 
 namespace DementiaHelper.PageModels
 {
@@ -39,7 +40,7 @@ namespace DementiaHelper.PageModels
         async Task CreateAccountAsync()
         {
             var RoleId = GetIntegerValueForDatabase();
-            if (RoleId == 0) { return; }
+            if (RoleId == 0 || !IsValidEmail(Email) || Password.Length<8) { return; }
             using (var client = new HttpClient())
             {
                 var encoded = JWTService.Encode(new Dictionary<string, object>
@@ -65,6 +66,18 @@ namespace DementiaHelper.PageModels
                     }
                 }
             };
+        }
+
+        private bool IsValidEmail(string inputEmail)
+        {
+            string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                  @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                  @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(inputEmail))
+                return (true);
+            else
+                return (false);
         }
 
         private bool UserCreated(IDictionary<string, object> dict)
