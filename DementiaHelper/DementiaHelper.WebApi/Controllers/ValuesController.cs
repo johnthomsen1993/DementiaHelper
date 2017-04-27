@@ -84,6 +84,7 @@ namespace DementiaHelper.WebApi.Controllers
             var decoded = JWTService.Decode(token);
             var id = Convert.ToInt32(decoded["citizenId"]);
             var shoppingList = _iRepository.GetShoppingList(id);
+            if (shoppingList == null) return JWTService.Encode(new Dictionary<string, object>() {{"List", false}});
             var payload = new Dictionary<string, object>()
             {
                 {"ShoppingList", shoppingList}

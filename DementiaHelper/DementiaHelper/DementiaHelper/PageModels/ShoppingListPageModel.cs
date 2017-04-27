@@ -34,17 +34,17 @@ namespace DementiaHelper.PageModels
             var User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
             Device.BeginInvokeOnMainThread(async () =>
             {
-                var shoppinglist = await GetShoppingList(8); //TODO: Make citizenid accessible and change this
-                ShoppingList.ShoppingListDetails = shoppinglist.ShoppingListDetails;
-                ShoppingList.ShoppingListId = shoppinglist.ShoppingListId;
-                ShoppingListDetails = ShoppingList.ShoppingListDetails;
+                var shoppinglist = await GetShoppingList(User.CitizenId);
+                ShoppingList.ShoppingListDetails = shoppinglist?.ShoppingListDetails;
+                ShoppingList.ShoppingListId = shoppinglist?.ShoppingListId;
+                ShoppingListDetails = ShoppingList?.ShoppingListDetails;
             });
-            CreateShoppingItemCommand = new Command(async () => await GoToCreateShoppingItem());
+            CreateShoppingItemCommand = new Command(async (id) => await GoToCreateShoppingItem(User.CitizenId));
             RemoveFromDatabaseCommand = new Command(async (obj) => await RemoveFromDatabase((ShoppingListDetail) obj));
         }
-        private async Task GoToCreateShoppingItem()
+        private async Task GoToCreateShoppingItem(int? id)
         {
-            await CoreMethods.PushPageModel<CreateShoppingItemPageModel>();
+            await CoreMethods.PushPageModel<CreateShoppingItemPageModel>(id);
         }
         private async Task RemoveFromDatabase(ShoppingListDetail item)
         {
@@ -83,7 +83,7 @@ namespace DementiaHelper.PageModels
                     var encoded = JWTService.Encode(new Dictionary<string, object>() { { "citizenId", id } });
                     var result =  await client.GetStringAsync(new Uri(URI_BASE + encoded));
                     var decoded = JWTService.Decode(result);
-                    return MapToShoppingListModel(decoded);
+                    return decoded.ContainsKey("List") ? null : MapToShoppingListModel(decoded);
                 }
                 catch (Exception)
                 {
