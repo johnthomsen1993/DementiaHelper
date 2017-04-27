@@ -22,7 +22,6 @@ namespace SignalR_Server
         public void BroadCastMessage(string sender, string message, string groupName)
         {
             _databaService.SaveMessage(message, groupName, sender);
-            Clients.All.GetMessage(sender, message);
             Clients.Group(groupName, null).GetMessage(sender, message);
         }
 

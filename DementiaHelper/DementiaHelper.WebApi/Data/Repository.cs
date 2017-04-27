@@ -212,9 +212,9 @@ namespace DementiaHelper.WebApi.Data
             _context.SaveChanges();
         }
 
-        public void SaveChatMessage(string message, int group, string sender)
+        public void SaveChatMessage(string message, int groupId, string sender)
         {
-            _context.ChatMessages.Add(new ChatMessage() {ChatGroupId = Convert.ToInt32(group), Message = message, Sender = sender});
+            _context.ChatMessages.Add(new ChatMessage() {ChatGroupId = groupId, Message = message, Sender = sender});
             _context.SaveChanges();
         }
 
