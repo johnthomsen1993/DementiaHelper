@@ -60,9 +60,10 @@ namespace DementiaHelper.Renders.CustomControlRenders
         {
             if (ItemsSource == null)
                 return;
-
-            if (newValue is INotifyCollectionChanged notifyCollection)
+            var notifyCollection = (INotifyCollectionChanged)newValue;
+            if (notifyCollection != null)
             {
+                
                 notifyCollection.CollectionChanged += (sender, args) =>
                 {
                     if (args.NewItems != null)
@@ -107,8 +108,8 @@ namespace DementiaHelper.Renders.CustomControlRenders
 
         public object SelectedItem
         {
-            get => GetValue(SelectedItemProperty);
-            set => SetValue(SelectedItemProperty, value);
+            get {return GetValue(SelectedItemProperty); }
+            set { SetValue(SelectedItemProperty, value); }
         }
 
         void UpdateSelectedIndex()
