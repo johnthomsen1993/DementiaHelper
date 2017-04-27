@@ -60,7 +60,7 @@ namespace DementiaHelper.WebApi.Controllers
         public string DeleteItemFromList(string token)
         {
             var decoded = JWTService.Decode(token);
-            var id = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("shoppingListDetailId")).Value);
+            var id = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("shoppingListItemId")).Value);
             var removed = _iRepository.RemoveShoppingListItem(id);
             string encoded;
             if (removed)
@@ -96,11 +96,10 @@ namespace DementiaHelper.WebApi.Controllers
         // PUT api/values/5
         [HttpPut("shoppinglist")]
         [AllowAnonymous]
-        public bool Put(string content)
+        public void Put(string content)
         {
             var decoded = JWTService.Decode(content);
-            var sucess = _iRepository.SaveItemInShoppingList(Convert.ToInt32(decoded["ShoppingListId"]), decoded["Item"]?.ToString(), Convert.ToInt32(decoded["Quantity"]));
-            return sucess;
+            var sucess = _iRepository.SaveItemInShoppingList(Convert.ToInt32(decoded["CitizenId"]), decoded["Item"]?.ToString(), Convert.ToInt32(decoded["Quantity"]));
         }
 
         [HttpGet("calendar/{token}")]

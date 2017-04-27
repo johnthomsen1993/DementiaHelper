@@ -144,12 +144,12 @@ namespace DementiaHelper.WebApi.Data
                     .ToList();
         }
 
-        public bool SaveItemInShoppingList(int shoppinglistId, string item, int quantity)
+        public bool SaveItemInShoppingList(int citizenId, string item, int quantity)
         {
             try
             {
                 var query = from p in _context.Products
-                            where p.ProductName == item.Trim()
+                            where p.ProductName.ToUpper().Trim() == item.ToUpper().Trim()
                             select p;
 
                 Product product = query.SingleOrDefault();
@@ -160,7 +160,8 @@ namespace DementiaHelper.WebApi.Data
                     _context.SaveChanges();
                 }
 
-                _context.ShoppingListItems.Add(new ShoppingListItem() {Bought = false, Product = product, Quantity = quantity});
+                _context.ShoppingListItems.Add(new ShoppingListItem() {CitizenId = citizenId, Bought = false, Product = product, Quantity = quantity});
+                _context.SaveChanges();
 
                 return true;
             }

@@ -12,16 +12,16 @@ namespace DementiaHelper.Model
     [JsonObject]
     public class ShoppingList
     {
-        [JsonProperty]
-        public int? ShoppingListId { get; set; }
         [JsonExtensionData]
-        public ObservableCollection<ShoppingListDetail> ShoppingListDetails { get; set; }
+        public ObservableCollection<ShoppingListItem> ShoppingListItems { get; set; }
     }
     
-    public class ShoppingListDetail
+    public class ShoppingListItem
     {
         [JsonProperty]
-        public int? ShoppingListDetailId { get; set; }
+        public int? ShoppingListItemId { get; set; }
+        [JsonProperty]
+        public int? CitizenId { get; set; }
         [JsonProperty]
         public int? Quantity { get; set; }
         [JsonProperty]
