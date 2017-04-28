@@ -18,6 +18,8 @@ namespace DementiaHelper.PageModels
     public class CreateAccountPageModel : FreshMvvm.FreshBasePageModel
     {
         public ObservableCollection<string> RoleCollection { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public ICommand CancelCreateAccountCommand { get; protected set; }
@@ -47,7 +49,9 @@ namespace DementiaHelper.PageModels
             {
                 {"email",Email},
                 {"password", Password},
-                {"role", RoleId}
+                {"role", RoleId},
+                {"firstName", FirstName},
+                {"lastName", LastName}
             });
                 var values = new Dictionary<string, string> { { "content", encoded } };
                 var content = new FormUrlEncodedContent(values);

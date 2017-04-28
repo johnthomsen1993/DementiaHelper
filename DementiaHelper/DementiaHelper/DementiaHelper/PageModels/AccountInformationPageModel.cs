@@ -18,7 +18,7 @@ namespace DementiaHelper.PageModels
         public const string URI_BASE_TEST = "http://localhost:29342/api/values/getspecific/";
         public UserInformation User { get; set; }
         public bool IsCitizen { get; set; }
-        public int CitizenId { get; set; }
+        public string CitizenId { get; set; }
         public bool EditButton { get; set ; }
         public ICommand GoToEditAccountInformationCommand { get; protected set; }
         public ICommand BackCommand { get; protected set; }
@@ -40,7 +40,7 @@ namespace DementiaHelper.PageModels
             if (user.RoleId == 1)
             {
                 IsCitizen = true;
-                CitizenId = 20000;
+                CitizenId = "abcdefg";
             }
             else
             {

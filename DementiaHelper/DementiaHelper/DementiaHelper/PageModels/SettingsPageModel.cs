@@ -18,6 +18,7 @@ namespace DementiaHelper.PageModels
         public void LogOut()
         {
             DependencyService.Get<ICredentialsService>().DeleteCredentials();
+            App.SetLoginPageContainer();
             CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.LoginNavigationStack);
         }
     }

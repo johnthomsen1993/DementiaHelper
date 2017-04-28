@@ -7,44 +7,51 @@
              Title="{i18n:Translate ImageGalleryTitle}"
              x:Class="DementiaHelper.Pages.ImageGalleryPage">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  >
+
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
 					Height="*">
-                </RowDefinition>
-                <RowDefinition
+                        </RowDefinition>
+                        <RowDefinition
 					Height="128">
-                </RowDefinition>
-                <RowDefinition
-					Height="Auto">
-                </RowDefinition>
-            </Grid.RowDefinitions>
-            <Image
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Image
 				Source="{Binding PreviewImage}"
 				Grid.Row="0">
-            </Image>
-            <customRenders:CustomImageGallery  
+                    </Image>
+                    <customRenders:CustomImageGallery  
 				ItemsSource="{Binding Images}" 
 				Grid.Row="1">
-                <customRenders:CustomImageGallery.ItemTemplate>
-                    <DataTemplate>
-                        <Image
+                        <customRenders:CustomImageGallery.ItemTemplate>
+                            <DataTemplate>
+                                <Image
 							Source="{Binding Source}"
 							Aspect="AspectFit">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
 									Command="{Binding Path=BindingContext.PreviewImageCommand, Source={x:Reference ThePage}}"
 									CommandParameter="{Binding ImageId}" />
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </DataTemplate>
-                </customRenders:CustomImageGallery.ItemTemplate>
-            </customRenders:CustomImageGallery>
-            <Button
-				Grid.Row="2"
-				Text="Photo"
-				Command="{Binding CameraCommand}">
-            </Button>
-        </Grid>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </DataTemplate>
+                        </customRenders:CustomImageGallery.ItemTemplate>
+                    </customRenders:CustomImageGallery>
+                </Grid>
+            </StackLayout>
+            <Image Source="ic_camera_black_48dp.png"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              AbsoluteLayout.LayoutBounds="1,.99, 65, 65"
+              AbsoluteLayout.LayoutFlags="PositionProportional" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+              Command="{Binding CameraCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

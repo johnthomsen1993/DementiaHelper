@@ -188,7 +188,7 @@ namespace DementiaHelper.WebApi.Data
 
         public List<Citizen> GetCitizenList(int id)
         {
-            return _context.Citizens.Include(x => x.ApplicationUser).Where(x => x.CaregiverId == id).ToList();
+            return _context.Citizens.Include(x => x.ApplicationUser).Where(x => x.CaregiverCenterId == id).ToList();
         }
 
         public Relative GetRelative(int id)
@@ -228,6 +228,23 @@ namespace DementiaHelper.WebApi.Data
         public ICollection<ChatMessage> GetChatMessagesForGroup(int groupId)
         {
             return _context.ChatMessages.Where(chatMessage => chatMessage.ChatGroupId == groupId).ToList();
+        }
+
+        public bool ConnectToCitizen(int relativeId, string connectionId)
+        {
+            var citizen = _context.Citizens.SingleOrDefault(x => x.ConnectionId == connectionId);
+            if (citizen == null) return false;
+            var relative = _context.Relatives.SingleOrDefault(x => x.RelativeId == relativeId);
+            if (relative == null) return false;
+            relative.CitizenId = citizen.CitizenId;
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool ConnectToCaregiver(int citizenId, string connectionId)
+        {
+            //var caregiver = _context.Caregivers.
+            return false;
         }
     }
 }

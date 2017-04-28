@@ -19,8 +19,8 @@ namespace DementiaHelper.WebApi.model
         [Required]
         public string ConnectionId { get; set; }
 
-        [ForeignKey("Caregiver")]
-        public int? CaregiverId { get; set; }
-        public Caregiver Caregiver { get; set; }
+        [ForeignKey("CaregiverCenter")]
+        public int? CaregiverCenterId { get; set; }
+        public CaregiverCenter CaregiverCenter { get; set; }
     }
 }

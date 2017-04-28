@@ -19,7 +19,7 @@
                     </StackLayout>
                     <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand">
                         <StackLayout Margin="10" Padding="1" BackgroundColor="#0099cc">
-                            <Entry BackgroundColor="White" Placeholder="{i18n:Translate CitizenId}" Text="{Binding CitizenId}" ></Entry>
+                            <Entry BackgroundColor="White" Placeholder="{i18n:Translate CitizenId}" Text="{Binding ConnectionId}" ></Entry>
                         </StackLayout>
 
                         <Label  Margin="10" TextColor="#0099cc" Font="Bold" Text="Indtast dement id, se Idet i den dementes account information"></Label>

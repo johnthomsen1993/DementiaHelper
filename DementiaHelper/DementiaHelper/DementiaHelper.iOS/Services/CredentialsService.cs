@@ -17,12 +17,12 @@ namespace DementiaHelper.iOS.Services
     public class CredentialsService : ICredentialsService
     {
 
-        public async Task<bool> Authenticate()
+        public bool Authenticate()
         {
             var account = AccountStore.Create().FindAccountsForService(App.AppName).FirstOrDefault();
             if (account != null && account.Username != null && account.Properties["Password"] != null)
             {
-                if (await App.LoginAsync(account.Username, account.Properties["Password"]))
+                if ( App.Login(account.Username, account.Properties["Password"]))
                 {
                     return true;
                 }
