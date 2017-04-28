@@ -229,5 +229,22 @@ namespace DementiaHelper.WebApi.Data
         {
             return _context.ChatMessages.Where(chatMessage => chatMessage.ChatGroupId == groupId).ToList();
         }
+
+        public bool ConnectToCitizen(int relativeId, string connectionId)
+        {
+            var citizen = _context.Citizens.SingleOrDefault(x => x.ConnectionId == connectionId);
+            if (citizen == null) return false;
+            var relative = _context.Relatives.SingleOrDefault(x => x.RelativeId == relativeId);
+            if (relative == null) return false;
+            relative.CitizenId = citizen.CitizenId;
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool ConnectToCaregiver(int citizenId, string connectionId)
+        {
+            //var caregiver = _context.Caregivers.
+            return false;
+        }
     }
 }

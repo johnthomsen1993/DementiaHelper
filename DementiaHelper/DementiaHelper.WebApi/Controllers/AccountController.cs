@@ -117,10 +117,25 @@ namespace DementiaHelper.WebApi.Controllers
 
         private string GenerateConnectionId()
         {
-            string guidString = Convert.ToBase64String(new Guid().ToByteArray());
+            var g = Guid.NewGuid();
+            var guidString = Convert.ToBase64String(g.ToByteArray());
             guidString = guidString.Replace("=", "");
             guidString = guidString.Replace("+", "");
-            return guidString;
+            return guidString.Substring(0, 8);
+        }
+
+        [HttpPut("connecttocitizen")]
+        [AllowAnonymous]
+        public string ConnectToCitizen(string content)
+        {
+            var decoded = JWTService.Decode(content);
+            return JWTService.Encode(new Dictionary<string, object>()
+            {
+                {
+                    "Connected", _repository.ConnectToCitizen(Convert.ToInt32(
+                        decoded.SingleOrDefault(x => x.Key.Equals("RelativeId")).Value), decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString())
+                } 
+            });
         }
     }
 }
