@@ -16,6 +16,7 @@
     <input type="text" id="message"/>
     <input type="button" id="sendmessage" value="Send"/>
     <input type="hidden" id="displayname"/>
+    <input type="hidden" id="groupId" value="5"/>
     <ul id="discussion"></ul>
 </div>
 
@@ -36,10 +37,11 @@
         $('#displayname').val(prompt('Enter your name:', ''));
         $('#message').focus();
 
+        
+
         $.connection.hub.start().done(function() {
             $('#sendmessage').click(function () {
-                chat.server.groupChat($('#displayname').val(), $('#message').val(), '');
-
+                chat.server.groupChat($('#displayname').val(), $('#message').val(), $('#groupId').val());
                 $('#message').val('').focus();
             });
         });

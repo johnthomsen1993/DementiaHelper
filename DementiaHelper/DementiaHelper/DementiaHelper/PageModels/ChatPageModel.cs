@@ -22,6 +22,7 @@ namespace DementiaHelper.PageModels
         private ApplicationUser user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         private const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/getMessagesForChatGroup/";
         private const string URI_BASE_TEST = "http://localhost:29342/api/chat/getMessagesForChatGroup/";
+        private readonly int groupId;
 
 
         #region ViewModel Properties
@@ -57,18 +58,42 @@ namespace DementiaHelper.PageModels
             _chatServices = DependencyService.Get<IChatServices>();
             _chatMessage = new ChatMassagePageModel();
             _messages = new ObservableCollection<ChatMassagePageModel>();
+            groupId = user.GroupId ?? 0;
 
             Device.BeginInvokeOnMainThread(async () =>
             {
-                await GetChatMessageList(user.GroupId);
-            }); 
-
+                await GetChatMessageList(groupId);
+            });
+            
             _chatServices.Connect();
-            _chatServices.JoinRoom(0);
+            _chatServices.JoinRoom(groupId);
             _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
+
+            SaveMessage("hej", "1", "Claus");
         }
 
-        private async Task GetChatMessageList(int? id)
+        public const string URI_BASE2 = "http://dementiahelper.azurewebsites.net/api/chat/saveChatMessage/";
+
+        public void SaveMessage(string message, string groupId, string sender)
+        {
+            var payload = new Dictionary<string, object>
+            {
+                {"Message", message},
+                {"GroupId", groupId},
+                {"Sender", sender}
+            };
+
+            var encoded = JWTService.Encode(payload);
+
+            using (HttpClient h = new HttpClient())
+            {
+                var values = new Dictionary<string, string> { { "content", encoded } };
+                var content = new FormUrlEncodedContent(values);
+                h.PutAsync(new Uri(URI_BASE2), content);
+            }
+        }
+
+        private async Task GetChatMessageList(int id)
         {
             using (var client = new HttpClient())
             {
@@ -127,7 +152,7 @@ namespace DementiaHelper.PageModels
         async void ExecuteSendMessageCommand()
         {
             IsBusy = true;
-            await _chatServices.Send(new ChatMessage { Name = _chatMessage.Name, Message = _chatMessage.Message }, user.GroupId.ToString());
+            await _chatServices.Send(new ChatMessage { Name = _chatMessage.Name, Message = _chatMessage.Message }, groupId);
             IsBusy = false;
         }
 
@@ -152,7 +177,7 @@ namespace DementiaHelper.PageModels
         async void ExecuteJoinRoomCommand()
         {
             IsBusy = true;
-            await _chatServices.JoinRoom(0);
+            await _chatServices.JoinRoom(groupId);
             IsBusy = false;
         }
 
