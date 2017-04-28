@@ -41,10 +41,7 @@
 
         $.connection.hub.start().done(function() {
             $('#sendmessage').click(function () {
-                
                 chat.server.groupChat($('#displayname').val(), $('#message').val(), $('#groupId').val());
-                
-
                 $('#message').val('').focus();
             });
         });
