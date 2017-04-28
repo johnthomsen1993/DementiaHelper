@@ -22,7 +22,7 @@ namespace SignalR_Server
         [HubMethodName("groupChat")]
         public async Task BroadCastMessage(string sender, string message, string groupName)
         {
-            JoinGroup("5");
+            JoinGroup(groupName);
             await _databaService.SaveMessage(message, groupName, sender);
             Clients.All.GetMessage(sender, message);
             Clients.Group(groupName).GetMessage(sender, message);

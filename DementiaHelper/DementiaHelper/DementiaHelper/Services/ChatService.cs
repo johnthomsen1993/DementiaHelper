@@ -42,10 +42,10 @@ namespace DementiaHelper.Services
             }));
         }
 
-        public async Task Send(ChatMessage message, int groupId)
+        public async Task Send(string sender, string message, int groupId)
         {
             await _connection.Start();
-            _proxy.Invoke("groupChat", message.Name, message.Message, groupId.ToString());
+            _proxy.Invoke("groupChat", sender, message, groupId.ToString());
         }
 
         public async Task JoinRoom(int groupId)

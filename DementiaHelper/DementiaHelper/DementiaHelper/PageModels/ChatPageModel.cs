@@ -66,31 +66,14 @@ namespace DementiaHelper.PageModels
             });
             
             _chatServices.Connect();
-            _chatServices.JoinRoom(groupId);
             _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
-
-            SaveMessage("hej", "1", "Claus");
+            
         }
 
-        public const string URI_BASE2 = "http://dementiahelper.azurewebsites.net/api/chat/saveChatMessage/";
-
-        public void SaveMessage(string message, string groupId, string sender)
+        protected override void ViewIsAppearing(object sender, EventArgs e)
         {
-            var payload = new Dictionary<string, object>
-            {
-                {"Message", message},
-                {"GroupId", groupId},
-                {"Sender", sender}
-            };
-
-            var encoded = JWTService.Encode(payload);
-
-            using (HttpClient h = new HttpClient())
-            {
-                var values = new Dictionary<string, string> { { "content", encoded } };
-                var content = new FormUrlEncodedContent(values);
-                h.PutAsync(new Uri(URI_BASE2), content);
-            }
+            base.ViewIsAppearing(sender, e);
+            _chatServices.JoinRoom(groupId);
         }
 
         private async Task GetChatMessageList(int id)
@@ -151,8 +134,9 @@ namespace DementiaHelper.PageModels
 
         async void ExecuteSendMessageCommand()
         {
+            var sender = user.FirstName +  " " + user.LastName;
             IsBusy = true;
-            await _chatServices.Send(new ChatMessage { Name = _chatMessage.Name, Message = _chatMessage.Message }, groupId);
+            await _chatServices.Send(sender, _chatMessage.Message, groupId);
             IsBusy = false;
         }
 

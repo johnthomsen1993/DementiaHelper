@@ -8,9 +8,7 @@
              NavigationPage.HasNavigationBar="True">
 
     <StackLayout Orientation="Vertical" Padding="5, 20, 5, 10">
-        <Button Text="Push if testing from start url" Command="{Binding JoinRoomCommand}"></Button>
         
-
         <ListView x:Name="MessageList" ItemsSource="{Binding Messages}" VerticalOptions="FillAndExpand" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -24,7 +22,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Entry Text="{Binding ChatMessage.Name}" Placeholder="Name"></Entry>
         <Entry Text="{Binding ChatMessage.Message}" Placeholder="Message"></Entry>
         <Button Text="{extensions:Translate SendMessage}" Command="{Binding SendMessageCommand}"></Button>
         
