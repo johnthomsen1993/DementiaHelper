@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace SignalR_Server
@@ -10,7 +11,7 @@ namespace SignalR_Server
     {
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/saveChatMessage/";
 
-        public void SaveMessage(string message, string groupId, string sender)
+        public async Task SaveMessage(string message, string groupId, string sender)
         {
             var payload = new Dictionary<string, object>
             {
@@ -23,9 +24,9 @@ namespace SignalR_Server
 
             using (HttpClient h = new HttpClient())
             {
-                var values = new Dictionary<string, string> { { "content", encoded } };
+                var values = new Dictionary<string, string> {{"content", encoded}};
                 var content = new FormUrlEncodedContent(values);
-                var result = h.PutAsync(new Uri(URI_BASE), content).Result;
+                await h.PutAsync(new Uri(URI_BASE), content);
             }
         }
     }

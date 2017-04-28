@@ -10,7 +10,7 @@ namespace DementiaHelper.Services
     public interface IChatServices
     {
         Task Connect();
-        Task Send(ChatMessage message, string groupId);
+        Task Send(ChatMessage message, int groupId);
         Task JoinRoom(int groupId);
         event EventHandler<ChatMessage> OnMessageReceived;
     }

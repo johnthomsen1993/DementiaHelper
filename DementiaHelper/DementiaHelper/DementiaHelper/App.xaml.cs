@@ -81,7 +81,7 @@ namespace DementiaHelper
                 Salt = User.SelectToken("Salt").ToObject<string>(),
                 Hash = User.SelectToken("Hash").ToObject<string>(),
                 RoleId = User.SelectToken("RoleId").ToObject<int>(),
-                GroupId = User.SelectToken("ChatGroupId").ToObject<int>()
+                GroupId = User.SelectToken("ChatGroupId").ToObject<int?>()
             };
             if (ApplicationUser.RoleId == 1)
             {

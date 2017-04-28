@@ -42,15 +42,15 @@ namespace DementiaHelper.Services
             }));
         }
 
-        public async Task Send(ChatMessage message, string groupId)
+        public async Task Send(ChatMessage message, int groupId)
         {
             await _connection.Start();
-            _proxy.Invoke("groupChat", message.Name, message.Message, groupId);
+            _proxy.Invoke("groupChat", message.Name, message.Message, groupId.ToString());
         }
 
         public async Task JoinRoom(int groupId)
         {
-            _proxy.Invoke("JoinGroup", groupId.ToString());
+            _proxy.Invoke("joinGroup", groupId.ToString());
         }
 
         #endregion

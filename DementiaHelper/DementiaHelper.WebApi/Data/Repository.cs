@@ -94,7 +94,7 @@ namespace DementiaHelper.WebApi.Data
             }
         }
 
-        public bool CreateAccount(ApplicationUser user)
+        public bool CreateAccount(ApplicationUser user, string connectionId = null)
         {
             if (CheckIfUserExists(user.Email))
             {
@@ -103,17 +103,17 @@ namespace DementiaHelper.WebApi.Data
             switch (user.RoleId)
             {
                 case 1:
-                    var citizen = new Citizen() {ApplicationUser = user/*, ApplicationUserForeignKey = 1*/}; //TODO: Remove ApplicationUserForeignKey from DB
+                    var citizen = new Citizen() {ApplicationUser = user, ConnectionId = connectionId};
                     _context.Add(citizen);
                     _context.SaveChanges();
                     return true;
                 case 2:
-                    var relative = new Relative() {ApplicationUser = user/*, ApplicationUserForeignKey = 1*/}; //TODO: Remove ApplicationUserForeignKey from DB
+                    var relative = new Relative() {ApplicationUser = user};
                     _context.Add(relative);
                     _context.SaveChanges();
                     return true;
                 case 3:
-                    var caregiver = new Caregiver() {ApplicationUser = user/*, ApplicationUserForeignKey = 1 */}; //TODO: Remove ApplicationUserForeignKey from DB
+                    var caregiver = new Caregiver() {ApplicationUser = user};
                     _context.Add(caregiver);
                     _context.SaveChanges();
                     return true;
