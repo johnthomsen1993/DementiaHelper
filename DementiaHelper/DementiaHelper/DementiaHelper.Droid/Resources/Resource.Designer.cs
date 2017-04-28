@@ -28,6 +28,9 @@ namespace DementiaHelper.Droid
 		{
 			global::Xamarin.Auth.Resource.Id.webview = global::DementiaHelper.Droid.Resource.Id.webview;
 			global::Xamarin.Auth.Resource.Layout.activity_webview = global::DementiaHelper.Droid.Resource.Layout.activity_webview;
+			global::Xamarin.Auth.Resource.String.ApplicationName = global::DementiaHelper.Droid.Resource.String.ApplicationName;
+			global::Xamarin.Auth.Resource.String.Hello = global::DementiaHelper.Droid.Resource.String.Hello;
+			global::Xamarin.Auth.Resource.String.library_name = global::DementiaHelper.Droid.Resource.String.library_name;
 			global::Xamarin.Auth.Resource.String.title_activity_webview = global::DementiaHelper.Droid.Resource.String.title_activity_webview;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::DementiaHelper.Droid.Resource.Attribute.actionBarSize;
 		}
@@ -2973,6 +2976,12 @@ namespace DementiaHelper.Droid
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f08002b
+			public const int ApplicationName = 2131230763;
+			
+			// aapt resource value: 0x7f08002a
+			public const int Hello = 2131230762;
+			
 			// aapt resource value: 0x7f080027
 			public const int No_Appointments = 2131230759;
 			
@@ -3047,6 +3056,9 @@ namespace DementiaHelper.Droid
 			
 			// aapt resource value: 0x7f080025
 			public const int character_counter_pattern = 2131230757;
+			
+			// aapt resource value: 0x7f08002c
+			public const int library_name = 2131230764;
 			
 			// aapt resource value: 0x7f080000
 			public const int mr_button_content_description = 2131230720;

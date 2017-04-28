@@ -96,7 +96,10 @@ namespace DementiaHelper.WebApi.Controllers
                     payload.Add("CitizenId", relative.CitizenId);
                     break;
                 case 3:
-                    var citizens = _repository.GetCitizenList(user.ApplicationUserId);
+                    var caregiver = _repository.GetCaregiver(user.ApplicationUserId);
+                    if (caregiver?.CaregiverCenterId == null)
+                        return JWTService.Encode(new Dictionary<string, object>() {{"Citizens", false}});
+                    var citizens = _repository.GetCitizenList(caregiver.CaregiverCenterId.Value);
                     var list = new List<Citizen>();
                     citizens.ForEach(x => list.Add(new Citizen() {CitizenId = x.CitizenId, ApplicationUser = new ApplicationUser() {FirstName = x.ApplicationUser.FirstName, Lastname = x.ApplicationUser.Lastname} }));
                     payload.Add("CitizenIds", list);
@@ -117,10 +120,25 @@ namespace DementiaHelper.WebApi.Controllers
 
         private string GenerateConnectionId()
         {
-            string guidString = Convert.ToBase64String(new Guid().ToByteArray());
+            var g = Guid.NewGuid();
+            var guidString = Convert.ToBase64String(g.ToByteArray());
             guidString = guidString.Replace("=", "");
             guidString = guidString.Replace("+", "");
-            return guidString;
+            return guidString.Substring(0, 7);
+        }
+
+        [HttpPut("connecttocitizen")]
+        [AllowAnonymous]
+        public string ConnectToCitizen(string content)
+        {
+            var decoded = JWTService.Decode(content);
+            return JWTService.Encode(new Dictionary<string, object>()
+            {
+                {
+                    "Connected", _repository.ConnectToCitizen(Convert.ToInt32(
+                        decoded.SingleOrDefault(x => x.Key.Equals("RelativeId")).Value), decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString())
+                } 
+            });
         }
     }
 }
