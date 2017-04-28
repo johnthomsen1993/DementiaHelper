@@ -31,13 +31,6 @@ namespace DementiaHelper.PageModels
         {
             Email = "";
             Password = "";
-            Device.BeginInvokeOnMainThread(async () => {
-                if (await DependencyService.Get<ICredentialsService>().Authenticate())
-                {
-                    App.SetMasterDetailToRole();
-                    CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
-                }
-            });
         }
         public override void Init(object initData)
         {

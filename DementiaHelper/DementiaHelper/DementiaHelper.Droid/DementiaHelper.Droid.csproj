@@ -195,12 +195,6 @@
     <AndroidResource Include="Resources\values-da\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="xamarin.auth">
-      <Visible>False</Visible>
-      <Version>1.2.3.1</Version>
-    </XamarinComponentReference>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>

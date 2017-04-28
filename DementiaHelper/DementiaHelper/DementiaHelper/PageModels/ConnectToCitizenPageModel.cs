@@ -20,6 +20,8 @@ namespace DementiaHelper.PageModels
 
         }
 
-        async Task ConnectToCitizen() { }
+        async Task ConnectToCitizen() {
+            
+        }
     }
 }

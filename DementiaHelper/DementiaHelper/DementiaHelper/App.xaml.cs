@@ -31,13 +31,11 @@ namespace DementiaHelper
        // public static string UserName { get { return "John"; } }
         public ApplicationUser ApplicationUser { get; set; }
       //  public static string Password { get { return "password"; } }
-        static FreshMvvm.FreshMasterDetailNavigationContainer masterDetailNav { get; set; }
+        static FreshMvvm.FreshMasterDetailNavigationContainer MasterDetailNav { get; set; }
+        static FreshMvvm.FreshNavigationContainer LoginNavigationContainer { get; set; }
         public App()
         {
             InitializeComponent();
-            var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
-            var navContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
-            MainPage = navContainer;
         }
         static public async Task<bool> LoginAsync(string Email, string Password)
         {
@@ -67,7 +65,35 @@ namespace DementiaHelper
                 }
             }
         }
-     
+        static public bool Login(string Email, string Password)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var encoded = JWTService.Encode(new Dictionary<string, object>
+                      {
+                        {"email",Email},
+                       {"password", Password}
+                     });
+                    client.DefaultRequestHeaders.Add("token", encoded);
+                    var result =  client.GetAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/login")).Result;
+                    var decoded = JWTService.Decode(result.Content.ReadAsStringAsync().Result);
+                    if (App.MapToApplicationUser(decoded))
+                    {
+                        DependencyService.Get<ICredentialsService>().DeleteCredentials();
+                        DependencyService.Get<ICredentialsService>().SaveCredentials(Email, Password);
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
 
         static public bool MapToApplicationUser(IDictionary<string, object> dict)
         {
@@ -95,6 +121,13 @@ namespace DementiaHelper
             App.Current.Properties["ApplicationUser"] = ApplicationUser;
             return true;
         }
+
+        static public void SetLoginPageContainer()
+        {
+            var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
+            LoginNavigationContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
+        }
+
         static public void SetMasterDetailToRole()
         {
 
@@ -103,7 +136,7 @@ namespace DementiaHelper
             {
                 case 1:
                     {
-                        masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        var masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         masterDetailNav.Init("Menu");
                         masterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
                         masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
@@ -112,31 +145,32 @@ namespace DementiaHelper
                         masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
                         masterDetailNav.AddPage<SettingsPageModel>("Settings", null);
+
                         break;
                     }
                 case 2:
                     {
-                        masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
-                        masterDetailNav.Init("Menu");
-                        masterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
-                        masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
-                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
-                        masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
-                        masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
-                        masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
-                        masterDetailNav.AddPage<SettingsPageModel>("Settings", null);
+                        MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        MasterDetailNav.Init("Menu");
+                        MasterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
+                        MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
+                        MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
+                        MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        MasterDetailNav.AddPage<SettingsPageModel>("Settings", null);
                         break;
                     }
                 case 3:
                     {
-                        masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
-                        masterDetailNav.Init("Menu");
-                        masterDetailNav.AddPage<ChooseCitizenPageModel>(AppResources.ChooseCitizenTitle, null);
-                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
-                        masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
-                        masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
-                        masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
-                        masterDetailNav.AddPage<SettingsPageModel>("Settings", null);
+                        MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        MasterDetailNav.Init("Menu");
+                        MasterDetailNav.AddPage<ChooseCitizenPageModel>(AppResources.ChooseCitizenTitle, null);
+                        MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
+                        MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        MasterDetailNav.AddPage<SettingsPageModel>("Settings", null);
                         break;
                     }
 
@@ -152,7 +186,19 @@ namespace DementiaHelper
 
         protected override void OnStart()
         {
+              if ( DependencyService.Get<ICredentialsService>().Authenticate())
+                {
+                    App.SetMasterDetailToRole();
+                    MainPage = MasterDetailNav;
+                // CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
+            }
+            else
+            {
+                SetLoginPageContainer();
+                MainPage = LoginNavigationContainer;
 
+            }
+     
         }
 
         protected override void OnSleep()
