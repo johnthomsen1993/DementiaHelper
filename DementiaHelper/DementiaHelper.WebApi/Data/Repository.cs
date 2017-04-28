@@ -188,7 +188,7 @@ namespace DementiaHelper.WebApi.Data
 
         public List<Citizen> GetCitizenList(int id)
         {
-            return _context.Citizens.Include(x => x.ApplicationUser).Where(x => x.CaregiverId == id).ToList();
+            return _context.Citizens.Include(x => x.ApplicationUser).Where(x => x.CaregiverCenterId == id).ToList();
         }
 
         public Relative GetRelative(int id)
