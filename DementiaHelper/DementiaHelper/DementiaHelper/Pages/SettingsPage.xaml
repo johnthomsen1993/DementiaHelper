@@ -23,7 +23,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <customRenders:CustomButtonRender Grid.Column="1" Command="{Binding LogOutCommand}"  Style="{StaticResource ButtonStyle}" HeightRequest="40"  TextColor="White" Text="LogOut" />
+                <customRenders:CustomButtonRender Grid.Column="0" Command="{Binding LogOutCommand}"  Style="{StaticResource ButtonStyle}" HeightRequest="40"  TextColor="White" Text="LogOut" />
+                <customRenders:CustomButtonRender Grid.Column="1" Command="{Binding LogOutCommand}"  Style="{StaticResource ButtonStyle}" HeightRequest="40"  TextColor="White" Text="{i18n:Translate Save}" />
             </Grid>
         </StackLayout>
     </StackLayout>

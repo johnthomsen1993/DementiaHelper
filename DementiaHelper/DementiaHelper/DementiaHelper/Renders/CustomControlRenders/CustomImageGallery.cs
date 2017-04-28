@@ -63,7 +63,7 @@ namespace DementiaHelper.Renders.CustomControlRenders
             var notifyCollection = (INotifyCollectionChanged)newValue;
             if (notifyCollection != null)
             {
-                
+
                 notifyCollection.CollectionChanged += (sender, args) =>
                 {
                     if (args.NewItems != null)
@@ -80,7 +80,7 @@ namespace DementiaHelper.Renders.CustomControlRenders
                     }
                     if (args.OldItems != null)
                     {
-                    //    not supported                        _imageStack.Children.RemoveAt(args.OldStartingIndex);
+                        //    not supported                        _imageStack.Children.RemoveAt(args.OldStartingIndex);
                     }
                 };
             }
@@ -108,7 +108,7 @@ namespace DementiaHelper.Renders.CustomControlRenders
 
         public object SelectedItem
         {
-            get {return GetValue(SelectedItemProperty); }
+            get { return GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
         }
 
