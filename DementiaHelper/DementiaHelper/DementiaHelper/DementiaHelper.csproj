@@ -52,8 +52,6 @@
     <Compile Include="PageModels\CalenderPageModel.cs" />
     <Compile Include="PageModels\ConnectToCitizenPageModel.cs" />
     <Compile Include="PageModels\CreateShoppingItemPageModel.cs" />
-    <Compile Include="PageModels\ChatBasePageModel.cs" />
-    <Compile Include="PageModels\ChatMassagePageModel.cs" />
     <Compile Include="PageModels\ChatPageModel.cs" />
     <Compile Include="PageModels\ChooseCitizenPageModel.cs" />
     <Compile Include="PageModels\CitizenHomePageModel.cs" />
