@@ -84,7 +84,6 @@ namespace DementiaHelper.Renders.CustomControlRenders
                     }
                 };
             }
-
         }
 
         public DataTemplate ItemTemplate

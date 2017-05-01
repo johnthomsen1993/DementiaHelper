@@ -19,5 +19,7 @@ namespace DementiaHelper.Model
         [JsonProperty("MessageRecievedIsVisible")]
         public bool MessageRecievedIsVisible { get; set; }
 
+        public string Name { get; set; }
+
     }
 }

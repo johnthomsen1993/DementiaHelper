@@ -26,8 +26,8 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Text="First name" Grid.Column="0"></Label>
-                        <Label Text="Last name" Grid.Column="1"></Label>
+                        <Label Text="{i18n:Translate FirstName}" Grid.Column="0"></Label>
+                        <Label Text="{i18n:Translate LastName}" Grid.Column="1"></Label>
                     </Grid>
                 </ListView.Header>
                 <ListView.Behaviors>
@@ -35,7 +35,7 @@
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell IsEnabled="False">
+                        <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
