@@ -24,7 +24,6 @@ namespace SignalR_Server
         {
             JoinGroup(groupName);
             await _databaService.SaveMessage(message, groupName, sender);
-            Clients.All.GetMessage(sender, message);
             Clients.Group(groupName).GetMessage(sender, message);
         }
 

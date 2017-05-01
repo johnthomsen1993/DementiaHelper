@@ -20,40 +20,6 @@ namespace DementiaHelper.WebApi.Controllers
             _iRepository = iRepository;
         }
 
-        // POST api/values
-        [HttpGet("getspecific/{token}")]
-        [AllowAnonymous]
-        public string GetUserAccount(string token)
-        {
-            var decoded = JWTService.Decode(token);
-            var userAccount = _iRepository.GetAccount(decoded["Email"]?.ToString());
-            var encoded = JWTService.Encode(userAccount);
-            return encoded;
-        }
-
-        [HttpPost("save")]
-        [AllowAnonymous]
-        public string Post(string token)
-        {
-            var decoded = JWTService.Decode(token);
-            if (_iRepository.CheckIfUserExists(decoded["Email"]?.ToString()))
-            {
-                bool succes = _iRepository.UpdateAccount(decoded["FirstName"]?.ToString(),
-                    decoded["LastName"]?.ToString(), decoded["Email"]?.ToString(), decoded["Description"]?.ToString());
-                if (succes)
-                {
-                    return "The data is saved";
-                }
-                return "Mistakes were made";
-            }
-            else
-            {
-                _iRepository.CreateAccountInformation(decoded["FirstName"]?.ToString(),
-                    decoded["LastName"]?.ToString(), decoded["Email"]?.ToString(), decoded["Description"]?.ToString());
-                return "New user saved in the database";
-            }
-        }
-
         // DELETE api/values/shoppinglist/{token}
         [HttpDelete("shoppinglist/{token}")]
         [AllowAnonymous]

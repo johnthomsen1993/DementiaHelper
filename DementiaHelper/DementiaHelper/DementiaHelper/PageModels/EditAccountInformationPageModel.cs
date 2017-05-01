@@ -17,36 +17,47 @@ namespace DementiaHelper.PageModels
 {
     class EditAccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/save/";
-        public const string URI_BASE_TEST = "http://localhost:29342/api/values/save/";
-        public UserInformation User { get; set; }
+        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/save/";
+        public const string URI_BASE_TEST = "http://localhost:29342/api/account/save/";
+        public UserInformation UpdatedUser { get; set; }
+        private ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public ICommand SaveCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
 
         public EditAccountInformationPageModel(UserInformation user)
         {
-            User = user;
+            UpdatedUser = user;
             this.SaveCommand = new Command(async () => await Save());
             this.CancelCommand = new Command(async () => await Cancel());
         }
         async Task Save()
         {
-            var values = new Dictionary<string, object>
+            var payload = new Dictionary<string, object>
             {
-                {"FirstName", User.FirstName},
-                {"LastName", User.LastName},
-                {"Email", User.Email},
-                {"Description", User.Description}
+                {"firstName", UpdatedUser.FirstName},
+                {"lastName", UpdatedUser.LastName},
+                {"email", UpdatedUser.Email},
+                {"description", UpdatedUser.Description}
             };
 
-            var payload = JWTService.Encode(values);
+            var encoded = JWTService.Encode(payload);
 
             using (HttpClient h = new HttpClient())
             {
-                var content = new StringContent(payload);
-                var result = h.PostAsync(new Uri(URI_BASE), content).Result;
-                var response = result.Content.ReadAsStringAsync();
-                await App.Current.MainPage.DisplayAlert(response.Result, "Test", "OK");
+                var values = new Dictionary<string, string> {{"token", encoded}};
+                var content = new FormUrlEncodedContent(values);
+                var result = h.PutAsync(new Uri(URI_BASE), content).Result;
+                var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
+                if (decoded != null)
+                {
+                    if (Convert.ToBoolean(decoded["UserUpdated"]))
+                    {
+                        User.FirstName = UpdatedUser.FirstName;
+                        User.LastName = UpdatedUser.LastName;
+                        //User.Description = UpdatedUser.Description;
+                        User.Email = UpdatedUser.Email;
+                    }
+                }
             }
 
             await CoreMethods.PopPageModel();

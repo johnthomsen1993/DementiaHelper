@@ -21,42 +21,16 @@ namespace DementiaHelper.WebApi.Data
             this._context = context;
         }
 
-        public void CreateAccountInformation(string firstName, string lastName, string email, string description)
+        public bool UpdateAccount(ApplicationUser user)
         {
             try
             {
-                _context.ApplicationUsers.Add(new ApplicationUser()
-                {
-                    FirstName = firstName,
-                    Lastname = lastName,
-                    Email = email,
-                    Description = description
-                });
-                _context.SaveChanges();
+                var target = _context.ApplicationUsers.SingleOrDefault(x => x.Email == user.Email);
 
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Exception were thrown when creating AccountInformation in database");
-                throw;
-            }
-        }
-
-        public bool UpdateAccount(string firstName, string lastName, string email, string description)
-        {
-            try
-            {
-                //AccountInformation target = _context.AccountInformations.Find(email);
-                var query = from p in _context.ApplicationUsers
-                    where p.Email == email
-                    select p;
-
-                var target = query.SingleOrDefault();
-
-                target.FirstName = firstName;
-                target.Lastname = lastName;
-                target.Email = email;
-                target.Description = description;
+                target.FirstName = user.FirstName;
+                target.LastName = user.LastName;
+                target.Email = user.Email;
+                target.Description = user.Description;
 
                 _context.ApplicationUsers.Update(target);
                 _context.SaveChanges();
@@ -67,25 +41,14 @@ namespace DementiaHelper.WebApi.Data
                 Console.WriteLine("Exception were thrown when trying to update AccountInformation in database");
                 return false;
             }
-
         }
 
-        public Dictionary<string, object> GetAccount(string email)
+        public ApplicationUser GetApplicationUser(string email)
         {
             try
             {
                 var target = _context.ApplicationUsers.First(i=> i.Email == email);
-                
-
-                var values = new Dictionary<string, object>
-            {
-                {"FirstName", target.FirstName},
-                {"LastName", target.Lastname},
-                {"Email", target.Email},
-                {"Description", target.Description}
-            };
-                
-                return values;
+                return target;
             }
             catch (Exception)
             {

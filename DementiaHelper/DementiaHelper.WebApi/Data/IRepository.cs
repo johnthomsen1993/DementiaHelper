@@ -8,9 +8,8 @@ namespace DementiaHelper.WebApi.Data
 {
     public interface IRepository
     {
-        void CreateAccountInformation(string firstName, string lastName, string email, string description);
-        bool UpdateAccount(string firstName, string lastName, string email, string description);
-        Dictionary<string, object> GetAccount(string email);
+        bool UpdateAccount(ApplicationUser user);
+        ApplicationUser GetApplicationUser(string email);
         bool CreateAccount(ApplicationUser user, string connectionId = null);
         ApplicationUser FetchApplicationUser(string email);
         bool CheckIfUserExists(string email);
