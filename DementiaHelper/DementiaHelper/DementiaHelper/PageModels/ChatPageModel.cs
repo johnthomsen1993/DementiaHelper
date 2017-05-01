@@ -12,10 +12,12 @@ using FreshMvvm;
 using Xamarin.Forms;
 using System.Windows.Input;
 using Newtonsoft.Json.Linq;
+using PropertyChanged;
 
 namespace DementiaHelper.PageModels
 {
-    public class ChatPageModel : ChatBasePageModel 
+    [ImplementPropertyChanged]
+    public class ChatPageModel : FreshMvvm.FreshBasePageModel 
     {
         
 		private IChatServices _chatServices;
@@ -27,28 +29,10 @@ namespace DementiaHelper.PageModels
 
         #region ViewModel Properties
 
-        private ObservableCollection<ChatMassagePageModel> _messages;
 
-        public ObservableCollection<ChatMassagePageModel> Messages
-        {
-            get { return _messages; }
-            set
-            {
-                _messages = value;
-                OnPropertyChanged("Messages");
-            }
-        }
+        public ObservableCollection<ChatMessage> Messages { get; set; }
 
-        private ChatMassagePageModel _chatMessage;
-        public ChatMassagePageModel ChatMessage
-        {
-            get { return _chatMessage; }
-            set
-            {
-                _chatMessage = value;
-                OnPropertyChanged("ChatMessage");
-            }
-        }
+        public ChatMessage ChatMessage { get; set; }
 
 
         #endregion
@@ -56,8 +40,8 @@ namespace DementiaHelper.PageModels
         public ChatPageModel()
         {
             _chatServices = DependencyService.Get<IChatServices>();
-            _chatMessage = new ChatMassagePageModel();
-            _messages = new ObservableCollection<ChatMassagePageModel>();
+            ChatMessage = new ChatMessage();
+            Messages = new ObservableCollection<ChatMessage>();
             groupId = user.GroupId ?? 0;
 
             Device.BeginInvokeOnMainThread(async () =>
@@ -66,31 +50,14 @@ namespace DementiaHelper.PageModels
             });
             
             _chatServices.Connect();
-            _chatServices.JoinRoom(groupId);
             _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
-
-            SaveMessage("hej", "1", "Claus");
+            
         }
 
-        public const string URI_BASE2 = "http://dementiahelper.azurewebsites.net/api/chat/saveChatMessage/";
-
-        public void SaveMessage(string message, string groupId, string sender)
+        protected override void ViewIsAppearing(object sender, EventArgs e)
         {
-            var payload = new Dictionary<string, object>
-            {
-                {"Message", message},
-                {"GroupId", groupId},
-                {"Sender", sender}
-            };
-
-            var encoded = JWTService.Encode(payload);
-
-            using (HttpClient h = new HttpClient())
-            {
-                var values = new Dictionary<string, string> { { "content", encoded } };
-                var content = new FormUrlEncodedContent(values);
-                h.PutAsync(new Uri(URI_BASE2), content);
-            }
+            base.ViewIsAppearing(sender, e);
+            _chatServices.JoinRoom(groupId);
         }
 
         private async Task GetChatMessageList(int id)
@@ -123,13 +90,13 @@ namespace DementiaHelper.PageModels
                 var sender = jsonContainer.SelectToken("Sender");
                 var message = jsonContainer.SelectToken("Message");
 
-                _messages.Add(new ChatMassagePageModel { Name = sender.ToString(), Message = message.ToString()});
+                Messages.Add(new ChatMessage { Name = sender.ToString(), Message = message.ToString()});
             }
         }
 
         void _chatServices_OnMessageReceived(object sender, ChatMessage e)
         {
-            _messages.Add(new ChatMassagePageModel {Name = e.Name, Message = e.Message});
+            Messages.Add(new ChatMessage { Name = e.Name, Message = e.Message});
         }
      
 
@@ -151,9 +118,10 @@ namespace DementiaHelper.PageModels
 
         async void ExecuteSendMessageCommand()
         {
-            IsBusy = true;
-            await _chatServices.Send(new ChatMessage { Name = _chatMessage.Name, Message = _chatMessage.Message }, groupId);
-            IsBusy = false;
+            var sender = user.FirstName +  " hey " + user.LastName;
+           // IsBusy = true;
+            await _chatServices.Send(sender, ChatMessage.Message, groupId);
+         //   IsBusy = false;
         }
 
         #endregion
@@ -176,9 +144,9 @@ namespace DementiaHelper.PageModels
 
         async void ExecuteJoinRoomCommand()
         {
-            IsBusy = true;
+            //IsBusy = true;
             await _chatServices.JoinRoom(groupId);
-            IsBusy = false;
+            //IsBusy = false;
         }
 
         #endregion

@@ -39,8 +39,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ApplicationUser.cs" />
-    <Compile Include="Model\Chat.cs" />
     <Compile Include="Model\CalenderTask.cs" />
+    <Compile Include="Model\ChatMessage.cs" />
     <Compile Include="Model\GalleryImage.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\ShoppingList.cs" />

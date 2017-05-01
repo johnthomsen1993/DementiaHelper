@@ -3,31 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:DementiaHelper.Model;assembly=DementiaHelper"
              xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.ChatPage"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="True">
 
     <StackLayout Orientation="Vertical" Padding="5, 20, 5, 10">
-        <Button Text="Push if testing from start url" Command="{Binding JoinRoomCommand}"></Button>
-        
 
-        <ListView x:Name="MessageList" ItemsSource="{Binding Messages}" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+        <ListView SeparatorVisibility="None" HasUnevenRows="True" x:Name="MessageList" ItemsSource="{Binding Messages}" VerticalOptions="FillAndExpand" >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
+                    <ViewCell IsEnabled="False">
+                        <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Orientation="Vertical">
                             <Label Text="{Binding Name, StringFormat= '{0:N}: '}"></Label>
-                            <Label Text="{Binding Message}"></Label>
+                            <Frame HasShadow="False" BackgroundColor="#dcdcdc" CornerRadius="10">
+                                <Label Text="{Binding Message}"></Label>
+                            </Frame>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Entry Text="{Binding ChatMessage.Name}" Placeholder="Name"></Entry>
-        <Entry Text="{Binding ChatMessage.Message}" Placeholder="Message"></Entry>
-        <Button Text="{extensions:Translate SendMessage}" Command="{Binding SendMessageCommand}"></Button>
-        
+        <StackLayout BackgroundColor="#0099cc" Padding="1">
+            <Entry Text="{Binding ChatMessage.Message}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Placeholder="Message"></Entry>
+        </StackLayout>
+
+        <customRenders:CustomButtonRender  Style="{StaticResource ButtonStyle}" Text="{extensions:Translate SendMessage}" Command="{Binding SendMessageCommand}"/>
+
     </StackLayout>
     
 </ContentPage>
