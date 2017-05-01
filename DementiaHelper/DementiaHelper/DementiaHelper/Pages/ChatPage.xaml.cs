@@ -26,12 +26,23 @@ namespace DementiaHelper.Pages
         {
             base.OnAppearing();
 
-                var last = MessageList.ItemsSource.Cast<object>().LastOrDefault();
+            var last = MessageList.ItemsSource.Cast<object>().LastOrDefault();
             if (last != null)
             {
-                MessageList.ScrollTo(last, ScrollToPosition.MakeVisible, false);
+                MessageList.ScrollTo(last, ScrollToPosition.MakeVisible, true);
             }
-            
+            MessagingCenter.Subscribe<ChatPageModel>(this, "New Messages", (sender) => {
+                var lastItem = MessageList.ItemsSource.Cast<object>().LastOrDefault();
+                if (lastItem != null)
+                {
+                    MessageList.ScrollTo(lastItem, ScrollToPosition.MakeVisible, true);
+                }
+            });
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<ChatPageModel>(this, "New Messages");
         }
         protected override bool OnBackButtonPressed()
         {

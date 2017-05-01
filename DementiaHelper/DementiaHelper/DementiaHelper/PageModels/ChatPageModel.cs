@@ -105,9 +105,11 @@ namespace DementiaHelper.PageModels
             if (e.Name == user.FirstName + " " + user.LastName)
             {
                 Messages.Add(new Message { Name = e.Name, MessageSent = e.Message, MessageRecievedIsVisible = false, MessageSentIsVisible = true });
+                MessagingCenter.Send<ChatPageModel>(this, "New Messages");
             }
             else {
                 Messages.Add(new Message { Name = e.Name, MessageRecieved = e.Message, MessageRecievedIsVisible=true,MessageSentIsVisible=false });
+                MessagingCenter.Send<ChatPageModel>(this, "New Messages");
             }
         }
      
