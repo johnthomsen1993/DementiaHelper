@@ -113,7 +113,7 @@ namespace DementiaHelper
             };
             if (ApplicationUser.RoleId == 1)
             {
-                ApplicationUser.CitizenId = User.SelectToken("ConnectionId") != null ? User.SelectToken("ConnectionId").ToObject<int?>() : null;
+              //  ApplicationUser.CitizenId = User.SelectToken("ConnectionId") != null ? User.SelectToken("ConnectionId").ToObject<int?>() : null;
             }
             else
             {
@@ -138,15 +138,15 @@ namespace DementiaHelper
             {
                 case 1:
                     {
-                        var masterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
-                        masterDetailNav.Init("Menu");
-                        masterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
-                        masterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
-                        masterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
-                        masterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
-                        masterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
-                        masterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
-                        masterDetailNav.AddPage<SettingsPageModel>("Settings", null);
+                        MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        MasterDetailNav.Init("Menu");
+                        MasterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
+                        MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
+                        MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
+                        MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
+                        MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        MasterDetailNav.AddPage<SettingsPageModel>("Settings", null);
 
                         break;
                     }

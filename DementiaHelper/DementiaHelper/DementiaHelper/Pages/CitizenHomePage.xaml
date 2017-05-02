@@ -6,7 +6,7 @@
              Title="{i18n:Translate CitizenHomeTitle}">
 
     <StackLayout Orientation="Vertical">
-        <StackLayout Spacing="0" Padding="3" Orientation="Horizontal">
+        <!--<StackLayout Spacing="0" Padding="3" Orientation="Horizontal">
             <Label FontSize="Large" Text="{Binding Weekday}"></Label>
             <Label FontSize="Large" Text=" d. "></Label>
             <Label FontSize="Large" Text="{Binding CurrentTime.Day}" x:Name="yourLabel"></Label>
@@ -17,7 +17,7 @@
             <Label FontSize="Large" Text="{Binding CurrentTime.Minute}"></Label>
         </StackLayout>
         <Label FontSize="Medium"  Text="Næste aftale:"></Label>
-        <Label FontSize="Medium" Text="{Binding Appointment.Subject}"></Label>
+        <Label FontSize="Medium" Text="{Binding Appointment.Subject}"></Label>-->
 
     </StackLayout>
 </ContentPage>

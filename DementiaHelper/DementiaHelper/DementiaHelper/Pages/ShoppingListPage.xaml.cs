@@ -13,6 +13,16 @@ namespace DementiaHelper.Pages
         public ShoppingListPage()
         {
             InitializeComponent();
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                ShoppingListViewPhone.ItemSelected += (sender, e) => {
+                    ((ListView)sender).SelectedItem = null;
+                };
+            }else if(Device.Idiom==TargetIdiom.Tablet){
+                ShoppingListViewTablet.ItemSelected += (sender, e) => {
+                    ((ListView)sender).SelectedItem = null;
+                };
+            }
         }
     }
 }

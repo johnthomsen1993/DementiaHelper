@@ -38,7 +38,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Behaviors\ScrollToBottomBehavior.cs" />
     <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\CalenderTask.cs" />
     <Compile Include="Model\ChatMessage.cs" />

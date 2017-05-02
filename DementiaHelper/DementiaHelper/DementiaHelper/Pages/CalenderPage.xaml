@@ -4,19 +4,22 @@
              x:Class="DementiaHelper.Pages.CalenderPage"
              xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
-             Title="{i18n:Translate CalenderTitle}">
+             Title="{i18n:Translate CalenderTitle}"
+            x:Name="CalenderPage"
+            >
 
 
-    <ContentPage Title="Day">
+    <ContentPage  Title="Day" >
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  >
-
                 <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
                     <schedule:SfSchedule
-            x:Name="DaySchedule"
-     ScheduleView="DayView" 
-      HorizontalOptions="FillAndExpand"
-      VerticalOptions="FillAndExpand"  >
+                         BindingContext="{Binding BindingContext,Source={x:Reference CalenderPage}}"
+                         DataSource="{Binding Appointments}"
+                         x:Name="DaySchedule"
+                         ScheduleView="DayView" 
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"  >
                         <schedule:SfSchedule.DayViewSettings>
                             <schedule:DayViewSettings >
                                 <schedule:DayViewSettings.DayLabelSettings>
@@ -48,6 +51,8 @@
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
                 <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
                     <schedule:SfSchedule 
+                        BindingContext="{Binding BindingContext,Source={x:Reference CalenderPage}}"
+                        DataSource="{Binding Appointments}"
                         x:Name="MonthSchedule"
                         ScheduleView="MonthView"
                         HorizontalOptions="FillAndExpand"
@@ -65,7 +70,7 @@
               AbsoluteLayout.LayoutFlags="PositionProportional" >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer
-              Command="{Binding AddAppointmentCommand}"/>
+                       Command="{Binding AddAppointmentCommand}"/>
                 </Image.GestureRecognizers>
             </Image>
         </AbsoluteLayout>

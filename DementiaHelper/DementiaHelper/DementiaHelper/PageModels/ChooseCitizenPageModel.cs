@@ -35,7 +35,7 @@ namespace DementiaHelper.PageModels
 
         private async Task<ObservableCollection<Citizen>> GetCaregiverCitizenCollection(int? id)
         {
-            if (id == null) { return new ObservableCollection<Citizen>() { new Citizen() { FirstName = "John", LastName = "Thomsen", CitizenId = "Greetings" } }; }
+            if (id == null) { return new ObservableCollection<Citizen>() {}; }
             using (var client = new HttpClient())
             {
                 try
