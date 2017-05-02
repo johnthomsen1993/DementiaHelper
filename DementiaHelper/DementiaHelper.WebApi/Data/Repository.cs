@@ -9,6 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using DementiaHelper.WebApi.model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Remotion.Linq.Clauses;
 
 namespace DementiaHelper.WebApi.Data
 {
@@ -21,16 +22,17 @@ namespace DementiaHelper.WebApi.Data
             this._context = context;
         }
 
-        public bool UpdateAccount(ApplicationUser user)
+        public bool UpdateAccount(ApplicationUser user, string email)
         {
             try
             {
-                var target = _context.ApplicationUsers.SingleOrDefault(x => x.Email == user.Email);
+                var target = _context.ApplicationUsers.SingleOrDefault(x => x.Email == email);
 
                 target.FirstName = user.FirstName;
                 target.LastName = user.LastName;
                 target.Email = user.Email;
                 target.Description = user.Description;
+                target.Phone = user.Phone;
 
                 _context.ApplicationUsers.Update(target);
                 _context.SaveChanges();
@@ -208,6 +210,17 @@ namespace DementiaHelper.WebApi.Data
         {
             //var caregiver = _context.Caregivers.
             return false;
+        }
+
+        public List<Relative> GetRelativesConnectedToId(int id)
+        {
+            return _context.Relatives.Include(x => x.ApplicationUser).Where(x => x.CitizenId == id).ToList();
+        }
+
+        public CaregiverCenter GetCaregiverCenterForCitizen(int id)
+        {
+            var citizen = _context.Citizens.SingleOrDefault(x => x.CitizenId == id);
+            return _context.CaregiverCenters.SingleOrDefault(x => x.CaregiverCenterId == citizen.CaregiverCenterId);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace DementiaHelper.Model
         public string LastName { get; set; }
         public string Description { get; set; }
         public string Picture { get; set; }
-        public string Phone { get; set; }
+        public int? Phone { get; set; }
     }
 
     public class AddToShoppingList

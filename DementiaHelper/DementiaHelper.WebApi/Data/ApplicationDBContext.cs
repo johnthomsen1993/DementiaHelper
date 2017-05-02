@@ -20,6 +20,7 @@ namespace DementiaHelper.WebApi.Data
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<ChatGroup> ChatGroups { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<CaregiverCenter> CaregiverCenters { get; set; } 
 
 
         protected override void OnModelCreating(ModelBuilder builder)

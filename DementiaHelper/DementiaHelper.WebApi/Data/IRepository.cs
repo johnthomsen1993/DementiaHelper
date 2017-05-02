@@ -8,7 +8,7 @@ namespace DementiaHelper.WebApi.Data
 {
     public interface IRepository
     {
-        bool UpdateAccount(ApplicationUser user);
+        bool UpdateAccount(ApplicationUser user, string email);
         ApplicationUser GetApplicationUser(string email);
         bool CreateAccount(ApplicationUser user, string connectionId = null);
         ApplicationUser FetchApplicationUser(string email);
@@ -27,5 +27,7 @@ namespace DementiaHelper.WebApi.Data
         ICollection<ChatMessage> GetChatMessagesForGroup(int groupId);
         bool ConnectToCitizen(int relativeId, string connectionId);
         bool ConnectToCaregiver(int citizenId, string connectionId);
+        List<Relative> GetRelativesConnectedToId(int id);
+        CaregiverCenter GetCaregiverCenterForCitizen(int id);
     }
 }

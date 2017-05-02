@@ -120,19 +120,20 @@ namespace DementiaHelper.WebApi.Controllers
             return JWTService.Encode(payload);
         }
 
-        [HttpPut("save")]
+        [HttpPut("update")]
         [AllowAnonymous]
         public string Put(string token)
         {
             var decoded = JWTService.Decode(token);
             var user = new ApplicationUser()
             {
-                Email = decoded["email"].ToString(),
-                FirstName = decoded["firstName"].ToString(),
-                LastName = decoded["lastName"].ToString(),
-                Description = decoded["description"].ToString()
+                Email = decoded["email"]?.ToString(),
+                FirstName = decoded["firstName"]?.ToString(),
+                LastName = decoded["lastName"]?.ToString(),
+                Description = decoded["description"]?.ToString(),
+                Phone = Convert.ToInt32(decoded["phone"])
             };
-            var success = _repository.UpdateAccount(user);
+            var success = _repository.UpdateAccount(user, decoded["oldEmail"].ToString());
             return JWTService.Encode(new Dictionary<string, object>() { { "UserUpdated", success } });
         }
 
@@ -149,8 +150,26 @@ namespace DementiaHelper.WebApi.Controllers
                 {"email", user.Email},
                 {"description", user.Description},
                 {"roleId", user.RoleId },
-                {"chatGroupId", user.ChatGroupId }
+                {"chatGroupId", user.ChatGroupId },
+                {"phone", user.Phone}
             };
+            var encoded = JWTService.Encode(payload);
+            return encoded;
+        }
+
+        [HttpGet("contactlist/{token}")]
+        public string GetListOfConnectedUsers(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var users = _repository.GetRelativesConnectedToId(Convert.ToInt32(decoded["CitizenId"]));
+            var caregiverCenter = _repository.GetCaregiverCenterForCitizen(Convert.ToInt32(decoded["CitizenId"]));
+
+            var payload = new Dictionary<string, object>
+            {
+                {"userList", users},
+                {"caregiverCenter", caregiverCenter}
+            };
+
             var encoded = JWTService.Encode(payload);
             return encoded;
         }

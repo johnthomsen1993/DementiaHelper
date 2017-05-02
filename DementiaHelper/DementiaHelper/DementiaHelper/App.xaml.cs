@@ -109,7 +109,9 @@ namespace DementiaHelper
                 FirstName = User.SelectToken("FirstName").ToObject<string>(),
                 LastName = User.SelectToken("LastName").ToObject<string>(),
                 RoleId = User.SelectToken("RoleId").ToObject<int>(),
-                GroupId = User.SelectToken("ChatGroupId").ToObject<int?>()
+                GroupId = User.SelectToken("ChatGroupId").ToObject<int?>(),
+                Description = User.SelectToken("Description").ToObject<string>(),
+                Phone = User.SelectToken("Phone").ToObject<int?>()
             };
             if (ApplicationUser.RoleId == 1)
             {
@@ -185,7 +187,7 @@ namespace DementiaHelper
                 
         }
 
-
+        
         protected override void OnStart()
         {
               if ( DependencyService.Get<ICredentialsService>().Authenticate())
