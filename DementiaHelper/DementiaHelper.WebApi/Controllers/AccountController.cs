@@ -45,8 +45,10 @@ namespace DementiaHelper.WebApi.Controllers
             var decoded = JWTService.Decode(content);
             var user = new ApplicationUser()
             {
-                Email = decoded.SingleOrDefault(x => x.Key.Equals("email")).Value.ToString(),
-                RoleId = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("role")).Value),
+                Email = decoded["email"].ToString(),
+                RoleId = Convert.ToInt32(decoded["role"]),
+                FirstName = decoded["firstName"].ToString(),
+                LastName = decoded["lastName"].ToString(),
                 Salt = GenerateSalt()
             };
             user.Hash = GenerateHash(decoded.SingleOrDefault(x => x.Key.Equals("password")).Value.ToString(),user.Salt);
@@ -98,18 +100,79 @@ namespace DementiaHelper.WebApi.Controllers
                 case 3:
                     var caregiver = _repository.GetCaregiver(user.ApplicationUserId);
                     if (caregiver?.CaregiverCenterId == null)
-                        return JWTService.Encode(new Dictionary<string, object>() {{"Citizens", false}});
-                    var citizens = _repository.GetCitizenList(caregiver.CaregiverCenterId.Value);
-                    var list = new List<Citizen>();
-                    citizens.ForEach(x => list.Add(new Citizen() {CitizenId = x.CitizenId, ApplicationUser = new ApplicationUser() {FirstName = x.ApplicationUser.FirstName, Lastname = x.ApplicationUser.Lastname} }));
-                    payload.Add("CitizenIds", list);
+                    {
+                        payload.Add("Citizens", false);
+                    }
+                    else
+                    {
+                        var citizens = _repository.GetCitizenList(caregiver.CaregiverCenterId.Value);
+                        var list = new List<Citizen>();
+                        citizens.ForEach(x => list.Add(new Citizen() {CitizenId = x.CitizenId, ApplicationUser = new ApplicationUser() {FirstName = x.ApplicationUser.FirstName, LastName = x.ApplicationUser.LastName} }));
+                        payload.Add("CitizenIds", list);
+                    }
+                        //return JWTService.Encode(new Dictionary<string, object>() {{"Citizens", false}});
+
+                    
                     break;
                 default:
                     return JWTService.Encode(new Dictionary<string, object>() {{"ErrorRole", false}});
             }
             return JWTService.Encode(payload);
         }
-        
+
+        [HttpPut("update")]
+        [AllowAnonymous]
+        public string Put(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var user = new ApplicationUser()
+            {
+                Email = decoded["email"]?.ToString(),
+                FirstName = decoded["firstName"]?.ToString(),
+                LastName = decoded["lastName"]?.ToString(),
+                Description = decoded["description"]?.ToString(),
+                Phone = Convert.ToInt32(decoded["phone"])
+            };
+            var success = _repository.UpdateAccount(user, decoded["oldEmail"].ToString());
+            return JWTService.Encode(new Dictionary<string, object>() { { "UserUpdated", success } });
+        }
+
+        [HttpGet("getuser/{token}")]
+        [AllowAnonymous]
+        public string GetApplicationUser(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var user = _repository.GetApplicationUser(decoded["email"]?.ToString());
+            var payload = new Dictionary<string, object>
+            {
+                {"firstName", user.FirstName},
+                {"lastName", user.LastName},
+                {"email", user.Email},
+                {"description", user.Description},
+                {"roleId", user.RoleId },
+                {"chatGroupId", user.ChatGroupId },
+                {"phone", user.Phone}
+            };
+            var encoded = JWTService.Encode(payload);
+            return encoded;
+        }
+
+        [HttpGet("contactlist/{token}")]
+        public string GetListOfConnectedUsers(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var users = _repository.GetRelativesConnectedToId(Convert.ToInt32(decoded["CitizenId"]));
+            var caregiverCenter = _repository.GetCaregiverCenterForCitizen(Convert.ToInt32(decoded["CitizenId"]));
+
+            var payload = new Dictionary<string, object>
+            {
+                {"userList", users},
+                {"caregiverCenter", caregiverCenter}
+            };
+
+            var encoded = JWTService.Encode(payload);
+            return encoded;
+        }
 
         private string GenerateSalt()
         {

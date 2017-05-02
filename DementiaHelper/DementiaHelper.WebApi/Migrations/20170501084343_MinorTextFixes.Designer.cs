@@ -8,9 +8,10 @@ using DementiaHelper.WebApi.Data;
 namespace DementiaHelper.WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170501084343_MinorTextFixes")]
+    partial class MinorTextFixes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -36,8 +37,6 @@ namespace DementiaHelper.WebApi.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired();
-
-                    b.Property<int?>("Phone");
 
                     b.Property<int>("RoleId");
 

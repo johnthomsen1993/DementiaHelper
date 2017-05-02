@@ -15,6 +15,8 @@ namespace DementiaHelper.Model
         public string Hash { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Description { get; set; }
+        public int? Phone { get; set; }
         public int? CitizenId { get; set; }
         public ObservableCollection<int?> ListOfCitizens {get;set;}
         public int? RoleId { get; set; }

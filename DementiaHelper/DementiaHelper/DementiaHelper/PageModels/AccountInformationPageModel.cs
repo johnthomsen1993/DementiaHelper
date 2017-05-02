@@ -8,70 +8,82 @@ using System.Windows.Input;
 using DementiaHelper.Extensions;
 using DementiaHelper.Model;
 using DementiaHelper.Services;
+using PropertyChanged;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
 {
+    [ImplementPropertyChanged]
     public class AccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/getspecific/";
-        public const string URI_BASE_TEST = "http://localhost:29342/api/values/getspecific/";
-        public UserInformation User { get; set; }
+        private const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/getuser/";
+        private const string URI_BASE_TEST = "http://localhost:29342/api/account/getuser/";
+        public UserInformation ShowedUser { get; set; }
+        private readonly ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public bool IsCitizen { get; set; }
-        public string CitizenId { get; set; }
-        public bool EditButton { get; set ; }
-        public ICommand GoToEditAccountInformationCommand { get; protected set; }
-        public ICommand BackCommand { get; protected set; }
+        public int? CitizenId { get; set; }
+        public bool Editbutton { get; set ; }
+        public ICommand GoToEditCommand { get; set; }
+        public ICommand BackCommand { get; set; }
 
 
         public AccountInformationPageModel()
         {
-            Device.BeginInvokeOnMainThread(async() =>
+            Device.BeginInvokeOnMainThread(async () =>
             {
-                User  = await GetProfile("test@email.com");
-                EditButton = User.Id == "test@email.com";
+                ShowedUser = await GetProfile(User.Email);
+                Editbutton = ShowedUser.Email == User.Email;
             });
             CheckIfCitizen((ApplicationUser)App.Current.Properties["ApplicationUser"]);
-            GoToEditAccountInformationCommand = new Command(async () => await GoToEditAccountInformation());
+            GoToEditCommand = new Command(async () => await GoToEdit());
             BackCommand = new Command(async () => await Back());
         }
+
         private void CheckIfCitizen(ApplicationUser user)
         {
             if (user.RoleId == 1)
             {
                 IsCitizen = true;
-                CitizenId = "abcdefg";
+                CitizenId = user.CitizenId; //TODO: change to use connectionId
             }
             else
             {
                 IsCitizen = false;
             }
         }
-        async Task GoToEditAccountInformation()
+
+        private async Task GoToEdit()
         {
-            await CoreMethods.PushPageModel<EditAccountInformationPageModel>(User);
+            await CoreMethods.PushPageModel<EditAccountInformationPageModel>(ShowedUser);
         }
-        async Task Back()
+        private async Task Back()
         {
             await CoreMethods.PopPageModel();
         }
 
-        async Task<UserInformation> GetProfile(string email)
+        private async Task<UserInformation> GetProfile(string email)
         {
-            var values = new Dictionary<string, object>
+            var payload = new Dictionary<string, object>
             {
-                {"Email", email}
+                {"email", email}
             };
             
             using (HttpClient h = new HttpClient())
             {
                 try
                 {
-                    var encoded = JWTService.Encode(values);
+                    var encoded = JWTService.Encode(payload);
                     var result = await h.GetStringAsync(new Uri(URI_BASE + encoded));
                     var decoded = JWTService.Decode(result);
 
-                    return new UserInformation() { FirstName = decoded["FirstName"]?.ToString(), LastName = decoded["LastName"]?.ToString(), Email = decoded["Email"]?.ToString(), Description = decoded["Description"]?.ToString() };
+                    return new UserInformation()
+                    {
+                        FirstName = decoded["firstName"]?.ToString(),
+                        LastName = decoded["lastName"]?.ToString(),
+                        Email = decoded["email"]?.ToString(),
+                        Description = decoded["description"]?.ToString(),
+                        Phone = Convert.ToInt32(decoded["phone"])
+                    };
                 }
                 catch (Exception)
                 {
@@ -81,7 +93,14 @@ namespace DementiaHelper.PageModels
             }
         }
 
-
-
+        protected override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                ShowedUser = await GetProfile(User.Email);
+                Editbutton = ShowedUser.Email == User.Email;
+            });
+        }
     }
 }

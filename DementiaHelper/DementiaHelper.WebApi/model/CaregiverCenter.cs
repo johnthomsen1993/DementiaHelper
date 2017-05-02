@@ -11,6 +11,10 @@ namespace DementiaHelper.WebApi.model
     {
         [Key]
         public int CaregiverCenterId { get; set; }
+
+        public string Name { get; set; }
+        public int Phone { get; set; }
+
         [Required]
         public string CitizenConnectionId { get; set; }
         [Required]
