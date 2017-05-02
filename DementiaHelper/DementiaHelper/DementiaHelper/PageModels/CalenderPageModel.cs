@@ -73,7 +73,7 @@ namespace DementiaHelper.PageModels
 
         private async Task<ObservableCollection<ScheduleAppointment>> GetAppointments(int? id)
         {
-            if (id == null) { return new ObservableCollection<ScheduleAppointment>();}
+            if (id == null) { return new ObservableCollection<ScheduleAppointment>(); }
             using (var client = new HttpClient())
             {
                 try
