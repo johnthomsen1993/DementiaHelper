@@ -26,7 +26,7 @@ namespace DementiaHelper.PageModels
             {
                 CaregiversCitizenCollection = await GetCaregiverCitizenCollection(User.CitizenId);
             });
-            CaregiversCitizenCollection = new ObservableCollection<Citizen>() { new Citizen() { FirstName = "John",LastName="Thomsen", CitizenId = "Greetings" } }; ;
+            CaregiversCitizenCollection = new ObservableCollection<Citizen>() {  }; ;
             CitizenCollection = new ObservableCollection<Citizen>();
             this.FilterCitizens();
             CitizenTappedCommand = new Command<Citizen>(ChooseCitizen);
@@ -35,7 +35,7 @@ namespace DementiaHelper.PageModels
 
         private async Task<ObservableCollection<Citizen>> GetCaregiverCitizenCollection(int? id)
         {
-            if (id == null) { return null; }
+            if (id == null) { return new ObservableCollection<Citizen>() { new Citizen() { FirstName = "John", LastName = "Thomsen", CitizenId = "Greetings" } }; }
             using (var client = new HttpClient())
             {
                 try
@@ -109,7 +109,7 @@ namespace DementiaHelper.PageModels
                         CitizenCollection.Add(Citizen);
                     }
                     
-                }else if (Citizen.FirstName.IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                }else if (Citizen.FirstName.IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0 || Citizen.LastName.IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0 || (Citizen.FirstName+" "+ Citizen.LastName).IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     CitizenCollection.Add(Citizen);
                 }

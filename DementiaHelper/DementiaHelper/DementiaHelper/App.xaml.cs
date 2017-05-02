@@ -106,12 +106,14 @@ namespace DementiaHelper
                 Email = User.SelectToken("Email").ToObject<string>(),
                 Salt = User.SelectToken("Salt").ToObject<string>(),
                 Hash = User.SelectToken("Hash").ToObject<string>(),
+                FirstName = User.SelectToken("FirstName").ToObject<string>(),
+                LastName = User.SelectToken("LastName").ToObject<string>(),
                 RoleId = User.SelectToken("RoleId").ToObject<int>(),
                 GroupId = User.SelectToken("ChatGroupId").ToObject<int?>()
             };
             if (ApplicationUser.RoleId == 1)
             {
-                ApplicationUser.CitizenId = User.SelectToken("ApplicationUserId") != null ? User.SelectToken("ApplicationUserId").ToObject<int?>() : null;
+                ApplicationUser.CitizenId = User.SelectToken("ConnectionId") != null ? User.SelectToken("ConnectionId").ToObject<int?>() : null;
             }
             else
             {

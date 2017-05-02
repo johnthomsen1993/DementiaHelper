@@ -9,6 +9,7 @@ using DementiaHelper.PageModels;
 using DementiaHelper.Renders;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DementiaHelper.Model;
 
 namespace DementiaHelper.Pages
 {
@@ -18,18 +19,30 @@ namespace DementiaHelper.Pages
         public ChatPage()
         {
             InitializeComponent();
+
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-                var last = MessageList.ItemsSource.Cast<object>().LastOrDefault();
+            var last = MessageList.ItemsSource.Cast<object>().LastOrDefault();
             if (last != null)
             {
                 MessageList.ScrollTo(last, ScrollToPosition.MakeVisible, true);
             }
-            
+            MessagingCenter.Subscribe<ChatPageModel>(this, "New Messages", (sender) => {
+                var lastItem = MessageList.ItemsSource.Cast<object>().LastOrDefault();
+                if (lastItem != null)
+                {
+                    MessageList.ScrollTo(lastItem, ScrollToPosition.MakeVisible, true);
+                }
+            });
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<ChatPageModel>(this, "New Messages");
         }
         protected override bool OnBackButtonPressed()
         {
@@ -45,8 +58,8 @@ namespace DementiaHelper.Pages
                     }
                 } // or anything else
             });
-
             return true;
         }
+
     }
 }
