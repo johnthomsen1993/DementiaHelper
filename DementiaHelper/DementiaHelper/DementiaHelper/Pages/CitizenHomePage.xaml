@@ -2,22 +2,61 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DementiaHelper.Pages.CitizenHomePage"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              Title="{i18n:Translate CitizenHomeTitle}">
 
-    <StackLayout Orientation="Vertical">
-        <!--<StackLayout Spacing="0" Padding="3" Orientation="Horizontal">
-            <Label FontSize="Large" Text="{Binding Weekday}"></Label>
-            <Label FontSize="Large" Text=" d. "></Label>
-            <Label FontSize="Large" Text="{Binding CurrentTime.Day}" x:Name="yourLabel"></Label>
-            <Label FontSize="Large" Text="{Binding Month}" ></Label>
-            <Label FontSize="Large" Text=" kl. "></Label>
-            <Label FontSize="Large" Text="{Binding CurrentTime.Hour}"></Label>
-            <Label FontSize="Large" Text=":"></Label>
-            <Label FontSize="Large" Text="{Binding CurrentTime.Minute}"></Label>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SeeListOfDayAppointmentsButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="#0099cc" />
+                <Setter Property="BorderColor" Value="#0099cc" />
+                <Setter Property="BorderRadius" Value="5" />
+                <Setter Property="BorderWidth" Value="5" />
+                <Setter Property="Margin" Value="10,0,10,5"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="Start">
+                <StackLayout Spacing="0" Padding="10" Orientation="Horizontal">
+                    <Label FontSize="Large" Text="{Binding Weekday, StringFormat='{0}'}"></Label>
+                    <Label FontSize="Large" Text="{Binding CurrentTime.Day, StringFormat=' d. {0}.'}" x:Name="yourLabel"></Label>
+                    <Label FontSize="Large" Text="{Binding Month, StringFormat=' {0}'}" ></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+            </StackLayout>
+            <StackLayout  HorizontalOptions="End">
+                <StackLayout Spacing="0" Padding="10" Orientation="Horizontal">
+                    <Label FontSize="Large" Text=" kl. "></Label>
+                    <Label FontSize="Large" Text="{Binding CurrentTime, StringFormat='{0:HH:mm:ss}'}"></Label>
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
-        <Label FontSize="Medium"  Text="Næste aftale:"></Label>
-        <Label FontSize="Medium" Text="{Binding Appointment.Subject}"></Label>-->
+
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="Start">
+                <StackLayout Spacing="0" Padding="10" Orientation="Vertical">
+                    <Label  FontSize="Medium"  Text="Næste aftale:"></Label>
+                    <Label FontSize="Medium" Text="{Binding Appointment.Subject,StringFormat='{0}'}"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand">
+            </StackLayout>
+            <StackLayout  VerticalOptions="End">
+                <StackLayout Spacing="0" Padding="10" Orientation="Vertical">
+                        <customRenders:CustomButtonRender  Style="{StaticResource SeeListOfDayAppointmentsButtonStyle}" Text="Se liste over dagens aftaler"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
 
     </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

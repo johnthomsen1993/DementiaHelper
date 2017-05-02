@@ -73,7 +73,7 @@
                                             <customRenders:CustomButtonRender Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewPhone},Path=BindingContext}" Style="{StaticResource DeleteItemStylePhone}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
                                             <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
                                             <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
-                                            <CheckBox  IsToggled="{Binding Bought}" Grid.Column="6" Grid.ColumnSpan="2" ></CheckBox>
+                                            <Switch  IsToggled="{Binding Bought}" Grid.Column="6" Grid.ColumnSpan="2" ></Switch>
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>

@@ -25,16 +25,24 @@ namespace DementiaHelper.PageModels
         public CitizenHomePageModel()
         {
             var test = DateTime.Now;
-            Weekday = test.ToString("dddd", new CultureInfo("da-DK"));
-            Month = test.ToString("MMMM", new CultureInfo("da-DK"));
+            Weekday = FirstLetterToUpper(test.ToString("dddd", new CultureInfo("da-DK")));
+            Month = FirstLetterToUpper( test.ToString("MMMM", new CultureInfo("da-DK")));
+       
             Appointment = GetNextAppointment();
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
-                Device.BeginInvokeOnMainThread(() => {
                     CurrentTime = DateTime.Now;
+                    return true;
                 });
-                return true;
-            });
-           
+        }
+        private string FirstLetterToUpper(string str)  // made this one since CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower()); does not exist in xamarin.forms pcl yet, which would have been the proper way to do it
+        {
+            if (str == null)
+                return null;
+
+            if (str.Length > 1)
+                return char.ToUpper(str[0]) + str.Substring(1);
+
+            return str.ToUpper();
         }
 
         private ScheduleAppointment GetNextAppointment() {

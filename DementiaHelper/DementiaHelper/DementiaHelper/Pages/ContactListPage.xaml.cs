@@ -16,7 +16,11 @@ namespace DementiaHelper.Pages
         public ContactListPage()
         {
             InitializeComponent();
-        }
+            ContactListView.ItemSelected += (sender, e) =>
+            {
+                ((ListView)sender).SelectedItem = null;
+            };
+            }
         protected override bool OnBackButtonPressed()
         {
             Device.BeginInvokeOnMainThread(async () => {

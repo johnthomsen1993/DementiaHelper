@@ -19,5 +19,7 @@ namespace DementiaHelper.Model
         public ObservableCollection<int?> ListOfCitizens {get;set;}
         public int? RoleId { get; set; }
         public int? GroupId { get; set; }
+        public string ConnectionId { get; internal set; }
+        public ObservableCollection<Citizen> CitizenList { get; set; }
     }
 }

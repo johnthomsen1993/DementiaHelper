@@ -287,4 +287,10 @@
     <value>Send besked</value>
     <comment>Label to send messages</comment>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Telefon nr.</value>
+  </data>
 </root>

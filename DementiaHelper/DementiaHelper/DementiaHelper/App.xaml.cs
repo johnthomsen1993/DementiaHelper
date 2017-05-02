@@ -12,6 +12,8 @@ using DementiaHelper.Pages;
 using DementiaHelper.Resx;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
+using System.Collections.ObjectModel;
+using System.Collections;
 
 namespace DementiaHelper
 {
@@ -28,9 +30,9 @@ namespace DementiaHelper
             public static string MainAppStack = "MainAppStack";
         }
         public static string AppName { get { return "Dementia Helper"; } }
-       // public static string UserName { get { return "John"; } }
+        // public static string UserName { get { return "John"; } }
         public ApplicationUser ApplicationUser { get; set; }
-      //  public static string Password { get { return "password"; } }
+        //  public static string Password { get { return "password"; } }
         static FreshMvvm.FreshMasterDetailNavigationContainer MasterDetailNav { get; set; }
         static FreshMvvm.FreshNavigationContainer LoginNavigationContainer { get; set; }
         public App()
@@ -54,7 +56,7 @@ namespace DementiaHelper
                     if (App.MapToApplicationUser(decoded))
                     {
                         DependencyService.Get<ICredentialsService>().DeleteCredentials();
-                        DependencyService.Get<ICredentialsService>().SaveCredentials(Email, Password );
+                        DependencyService.Get<ICredentialsService>().SaveCredentials(Email, Password);
                         return true;
                     }
                     return false;
@@ -77,7 +79,7 @@ namespace DementiaHelper
                        {"password", Password}
                      });
                     client.DefaultRequestHeaders.Add("token", encoded);
-                    var result =  client.GetAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/login")).Result;
+                    var result = client.GetAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/login")).Result;
                     var decoded = JWTService.Decode(result.Content.ReadAsStringAsync().Result);
                     if (App.MapToApplicationUser(decoded))
                     {
@@ -113,15 +115,33 @@ namespace DementiaHelper
             };
             if (ApplicationUser.RoleId == 1)
             {
-              //  ApplicationUser.CitizenId = User.SelectToken("ConnectionId") != null ? User.SelectToken("ConnectionId").ToObject<int?>() : null;
+                ApplicationUser.ConnectionId = User.SelectToken("ConnectionId") != null ? User.SelectToken("ConnectionId").ToObject<string>() : null;
+                ApplicationUser.CitizenId = ApplicationUser.ApplicationUserId;
             }
-            else
+            else if (ApplicationUser.RoleId == 2)
             {
                 ApplicationUser.CitizenId = User.SelectToken("CitizenId") != null ? User.SelectToken("CitizenId").ToObject<int?>() : null;
+            } else if (ApplicationUser.RoleId == 3)
+            {
+                var list = dict["CitizenIds"] as IList;
+                ApplicationUser.CitizenList = MapToCitizenList(list);
+           
             }
-            //      ApplicationUser.ListOfCitizens = User.SelectToken("CitizenIds") != null ? User.SelectToken("CitizenId").ToObject< ObservableCollection<int?>() : null;
+
             App.Current.Properties["ApplicationUser"] = ApplicationUser;
             return true;
+        }
+
+        private static ObservableCollection<Citizen> MapToCitizenList(IList list)
+        {
+            var tempCitizenList = new ObservableCollection<Citizen>();
+            foreach (var obj in list)
+            {
+                var jsonContainer = obj as JContainer;
+                tempCitizenList.Add(new Citizen() {CitizenId= jsonContainer.SelectToken("CitizenId").ToObject<int>(), FirstName= jsonContainer.SelectToken("ApplicationUser").SelectToken("FirstName").ToObject<string>(),LastName= jsonContainer.SelectToken("ApplicationUser").SelectToken("LastName").ToObject<string>()});
+
+            }
+            return tempCitizenList;
         }
 
         static public void SetLoginPageContainer()
@@ -141,6 +161,7 @@ namespace DementiaHelper
                         MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
+                        MasterDetailNav.AddPage<ContactListPageModel>("Contacts", null);
                         MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
@@ -155,6 +176,7 @@ namespace DementiaHelper
                         MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
+                        MasterDetailNav.AddPage<ContactListPageModel>("Contacts", null);
                         MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
@@ -168,6 +190,7 @@ namespace DementiaHelper
                         MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<ChooseCitizenPageModel>(AppResources.ChooseCitizenTitle, null);
+                        MasterDetailNav.AddPage<ContactListPageModel>("Contacts", null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
