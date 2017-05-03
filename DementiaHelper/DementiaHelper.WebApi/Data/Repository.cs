@@ -194,21 +194,39 @@ namespace DementiaHelper.WebApi.Data
             return _context.ChatMessages.Include(x => x.Sender).Where(chatMessage => chatMessage.ChatGroupId == groupId).ToList();
         }
 
-        public bool ConnectToCitizen(int relativeId, string connectionId)
+        public Relative ConnectToCitizen(int relativeId, string connectionId)
         {
             var citizen = _context.Citizens.SingleOrDefault(x => x.ConnectionId == connectionId);
-            if (citizen == null) return false;
-            var relative = _context.Relatives.SingleOrDefault(x => x.RelativeId == relativeId);
-            if (relative == null) return false;
+            if (citizen == null) return null;
+            var relative = _context.Relatives.Include(x => x.ApplicationUser).SingleOrDefault(x => x.RelativeId == relativeId);
+            if (relative == null) return null;
             relative.CitizenId = citizen.CitizenId;
+            _context.SaveChanges();
+            return relative;
+        }
+
+        public bool CitizenConnectToCaregiverCenter(int citizenId, string connectionId)
+        {
+            var citizen = _context.Citizens.SingleOrDefault(x => x.CitizenId == citizenId);
+            if (citizen == null) return false;
+            var center = _context.CaregiverCenters.SingleOrDefault(x => x.CitizenConnectionId == connectionId);
+            if (center == null) return false;
+            citizen.CaregiverCenterId = center.CaregiverCenterId;
+
             _context.SaveChanges();
             return true;
         }
 
-        public bool ConnectToCaregiver(int citizenId, string connectionId)
+        public bool CaregiverConnectToCaregiverCenter(int caregiverId, string connectionId)
         {
-            //var caregiver = _context.Caregivers.
-            return false;
+            var caregiver = _context.Caregivers.SingleOrDefault(x => x.CaregiverId == caregiverId);
+            if (caregiver == null) return false;
+            var center = _context.CaregiverCenters.SingleOrDefault(x => x.CaregiverConnectionId == connectionId);
+            if (center == null) return false;
+            caregiver.CaregiverCenterId = center.CaregiverCenterId;
+
+            _context.SaveChanges();
+            return true;
         }
 
         public List<Relative> GetRelativesConnectedToId(int id)
@@ -220,6 +238,36 @@ namespace DementiaHelper.WebApi.Data
         {
             var citizen = _context.Citizens.SingleOrDefault(x => x.CitizenId == id);
             return _context.CaregiverCenters.SingleOrDefault(x => x.CaregiverCenterId == citizen.CaregiverCenterId);
+        }
+
+        public bool DeleteAppointment(int id)
+        {
+            var appointment = _context.Appointments.SingleOrDefault(x => x.AppointmentId == id);
+            if (appointment == null) return false;
+            _context.Appointments.Remove(appointment);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public void CreateNote(Note note)
+        {
+            _context.Notes.Add(note);
+            _context.SaveChanges();
+        }
+
+        public List<Note> GetNotes(int id)
+        {
+            return _context.Notes.Where(x => x.CitizenId == id).ToList();
+        }
+
+        public bool DeleteNote(int id)
+        {
+            var note = _context.Notes.SingleOrDefault(x => x.NoteId == id);
+            if (note == null) return false;
+
+            _context.Notes.Remove(note);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

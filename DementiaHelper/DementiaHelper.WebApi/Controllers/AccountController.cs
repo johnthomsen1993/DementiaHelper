@@ -188,6 +188,14 @@ namespace DementiaHelper.WebApi.Controllers
             var guidString = Convert.ToBase64String(g.ToByteArray());
             guidString = guidString.Replace("=", "");
             guidString = guidString.Replace("+", "");
+            guidString = guidString.Replace("/" +
+                                            "" +
+                                            "" +
+                                            "" +
+                                            "" +
+                                            "" +
+                                            "" +
+                                            "", "");
             return guidString.Substring(0, 7);
         }
 
@@ -199,9 +207,23 @@ namespace DementiaHelper.WebApi.Controllers
             return JWTService.Encode(new Dictionary<string, object>()
             {
                 {
-                    "Connected", _repository.ConnectToCitizen(Convert.ToInt32(
+                    "Relative", _repository.ConnectToCitizen(Convert.ToInt32(
                         decoded.SingleOrDefault(x => x.Key.Equals("RelativeId")).Value), decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString())
                 } 
+            });
+        }
+
+        [HttpPut("connectcitizentocenter")]
+        [AllowAnonymous]
+        public string ConnectToCaregiverCenter(string content)
+        {
+            var decoded = JWTService.Decode(content);
+            return JWTService.Encode(new Dictionary<string, object>()
+            {
+                {
+                    "Connected", _repository.CitizenConnectToCaregiverCenter(Convert.ToInt32(
+                        decoded.SingleOrDefault(x => x.Key.Equals("CitizenId")).Value), decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString())
+                }
             });
         }
     }
