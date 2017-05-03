@@ -196,11 +196,12 @@ namespace DementiaHelper.WebApi.Data
 
         public Relative ConnectToCitizen(int relativeId, string connectionId)
         {
-            var citizen = _context.Citizens.SingleOrDefault(x => x.ConnectionId == connectionId);
+            var citizen = _context.Citizens.Include(x => x.ApplicationUser).SingleOrDefault(x => x.ConnectionId == connectionId);
             if (citizen == null) return null;
             var relative = _context.Relatives.Include(x => x.ApplicationUser).SingleOrDefault(x => x.RelativeId == relativeId);
             if (relative == null) return null;
             relative.CitizenId = citizen.CitizenId;
+            relative.ApplicationUser.ChatGroupId = citizen.ApplicationUser.ChatGroupId;
             _context.SaveChanges();
             return relative;
         }
@@ -268,6 +269,13 @@ namespace DementiaHelper.WebApi.Data
             _context.Notes.Remove(note);
             _context.SaveChanges();
             return true;
+        }
+
+        public ChatGroup CreateChatGroup(string name)
+        {
+            var chatGroup = _context.ChatGroups.Add(new ChatGroup() {GroupName = name}).Entity;
+            _context.SaveChanges();
+            return chatGroup;
         }
     }
 }

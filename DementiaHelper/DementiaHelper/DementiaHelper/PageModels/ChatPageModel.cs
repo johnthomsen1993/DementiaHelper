@@ -88,10 +88,10 @@ namespace DementiaHelper.PageModels
                 var senderId = jsonContainer.SelectToken("Sender").SelectToken("ApplicationUserId");
                 var message = jsonContainer.SelectToken("Message");
                 var firstName = jsonContainer.SelectToken("Sender").SelectToken("FirstName");
-                var lastName = jsonContainer.SelectToken("Sender").SelectToken("FirstName");
+                var lastName = jsonContainer.SelectToken("Sender").SelectToken("LastName");
 
 
-                if (Convert.ToInt32(senderId) == user.ApplicationUserId)
+                if (senderId.ToObject<int>() == user.ApplicationUserId)
                 {
                     Messages.Add(new Message { Name = firstName + " " + lastName, MessageSent = message.ToString(), MessageRecievedIsVisible = false, MessageSentIsVisible = true });
                 }

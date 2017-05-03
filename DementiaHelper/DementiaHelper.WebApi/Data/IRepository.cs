@@ -34,5 +34,6 @@ namespace DementiaHelper.WebApi.Data
         void CreateNote(Note note);
         List<Note> GetNotes(int id);
         bool DeleteNote(int id);
+        ChatGroup CreateChatGroup(string name);
     }
 }
