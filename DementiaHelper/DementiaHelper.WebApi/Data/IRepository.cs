@@ -25,7 +25,7 @@ namespace DementiaHelper.WebApi.Data
         void SaveChatMessage(string message, int group, string sender);
         void AddMemberToGroup(int group, string email);
         ICollection<ChatMessage> GetChatMessagesForGroup(int groupId);
-        bool ConnectToCitizen(int relativeId, string connectionId);
+        Relative ConnectToCitizen(int relativeId, string connectionId);
         bool CitizenConnectToCaregiverCenter(int citizenId, string connectionId);
         bool CaregiverConnectToCaregiverCenter(int caregiverId, string connectionId);
         List<Relative> GetRelativesConnectedToId(int id);

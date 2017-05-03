@@ -207,7 +207,7 @@ namespace DementiaHelper.WebApi.Controllers
             return JWTService.Encode(new Dictionary<string, object>()
             {
                 {
-                    "Connected", _repository.ConnectToCitizen(Convert.ToInt32(
+                    "Relative", _repository.ConnectToCitizen(Convert.ToInt32(
                         decoded.SingleOrDefault(x => x.Key.Equals("RelativeId")).Value), decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString())
                 } 
             });

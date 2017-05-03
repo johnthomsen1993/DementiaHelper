@@ -195,15 +195,15 @@ namespace DementiaHelper.WebApi.Data
             return _context.ChatMessages.Where(chatMessage => chatMessage.ChatGroupId == groupId).ToList();
         }
 
-        public bool ConnectToCitizen(int relativeId, string connectionId)
+        public Relative ConnectToCitizen(int relativeId, string connectionId)
         {
             var citizen = _context.Citizens.SingleOrDefault(x => x.ConnectionId == connectionId);
-            if (citizen == null) return false;
+            if (citizen == null) return null;
             var relative = _context.Relatives.SingleOrDefault(x => x.RelativeId == relativeId);
-            if (relative == null) return false;
+            if (relative == null) return null;
             relative.CitizenId = citizen.CitizenId;
             _context.SaveChanges();
-            return true;
+            return relative;
         }
 
         public bool CitizenConnectToCaregiverCenter(int citizenId, string connectionId)
