@@ -1,4 +1,5 @@
-﻿using DementiaHelper.Extensions;
+﻿using DementiaHelper.Model;
+using DementiaHelper.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,29 +7,28 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using DementiaHelper.Model;
-using DementiaHelper.Services;
-using DementiaHelper.PageModels;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
 {
-    public class ConnectToCitizenPageModel : FreshMvvm.FreshBasePageModel
+   public class ConnectToNursingHomePageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/connecttocitizen/";
+
+        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/connectcitizentocenter/";
         public string ConnectionId { get; set; }
-        public ICommand ConnectToCitizenCommand { get; protected set; }
-        public ConnectToCitizenPageModel() {
-            ConnectToCitizenCommand = new Command(async () => await ConnectToCitizen());
+        public ICommand ConnectToNursingHomeCommand { get; protected set; }
+        public ConnectToNursingHomePageModel()
+        {
+            ConnectToNursingHomeCommand = new Command(async () => await ConnectToNursingHome());
 
         }
 
-        private async Task ConnectToCitizen()
+        private async Task ConnectToNursingHome()
         {
             using (var client = new HttpClient())
             {
                 var user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
-                var encoded = JWTService.Encode(new Dictionary<string, object>() { { "RelativeId", user.ApplicationUserId }, { "ConnectionId", ConnectionId } });
+                var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", user.ApplicationUserId }, { "ConnectionId", ConnectionId } });
                 var values = new Dictionary<string, string> { { "content", encoded } };
                 var content = new FormUrlEncodedContent(values);
                 var result = await client.PutAsync(new Uri(URI_BASE), content);
@@ -36,8 +36,6 @@ namespace DementiaHelper.PageModels
                 if ((bool)decoded["Connected"])
                 {
                     ConnectionId = "";
-                    App.SetMasterDetailToRole();
-                    CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
                     await CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
                 }
             }

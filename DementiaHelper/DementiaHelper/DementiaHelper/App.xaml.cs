@@ -105,19 +105,19 @@ namespace DementiaHelper
             var ApplicationUser = new ApplicationUser()
             {
                 ApplicationUserId = User.SelectToken("ApplicationUserId").ToObject<int>(),
-                Email = User.SelectToken("Email").ToObject<string>(),
-                Salt = User.SelectToken("Salt").ToObject<string>(),
-                Hash = User.SelectToken("Hash").ToObject<string>(),
-                FirstName = User.SelectToken("FirstName").ToObject<string>(),
-                LastName = User.SelectToken("LastName").ToObject<string>(),
+                Email = User.SelectToken("Email")?.ToObject<string>(),
+                Salt = User.SelectToken("Salt")?.ToObject<string>(),
+                Hash = User.SelectToken("Hash")?.ToObject<string>(),
+                FirstName = User.SelectToken("FirstName")?.ToObject<string>(),
+                LastName = User.SelectToken("LastName")?.ToObject<string>(),
                 RoleId = User.SelectToken("RoleId").ToObject<int>(),
                 GroupId = User.SelectToken("ChatGroupId").ToObject<int?>(),
-                Description = User.SelectToken("Description").ToObject<string>(),
+                Description = User.SelectToken("Description")?.ToObject<string>(),
                 Phone = User.SelectToken("Phone").ToObject<int?>()
             };
             if (ApplicationUser.RoleId == 1)
             {
-                ApplicationUser.ConnectionId = User.SelectToken("ConnectionId") != null ? User.SelectToken("ConnectionId").ToObject<string>() : null;
+                ApplicationUser.ConnectionId = dict["ConnectionId"].ToString();
                 ApplicationUser.CitizenId = ApplicationUser.ApplicationUserId;
             }
             else if (ApplicationUser.RoleId == 2)
@@ -169,6 +169,7 @@ namespace DementiaHelper
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        MasterDetailNav.AddPage<ConnectToNursingHomePageModel>("Connect to nursing home", null);
                         MasterDetailNav.AddPage<SettingsPageModel>("Settings", null);
 
                         break;
@@ -196,7 +197,9 @@ namespace DementiaHelper
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
+                        MasterDetailNav.AddPage<NotePageModel>("test", null);
                         MasterDetailNav.AddPage<SettingsPageModel>("Settings", null);
                         break;
                     }
