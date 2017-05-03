@@ -288,4 +288,7 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
   </data>
+  <data name="NursingHomeId" xml:space="preserve">
+    <value>Caregiver center id</value>
+  </data>
 </root>

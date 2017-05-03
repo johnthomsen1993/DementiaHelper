@@ -20,9 +20,10 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class CalenderPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/calender/";
+        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/calendar/";
+        private ApplicationUser user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public ICommand AddAppointmentCommand { get; protected set; }
-        public bool CreatedNewItem { get; set; }
+        public bool RedrawView { get; set; }
         #region Properties
 
         public ObservableCollection<ScheduleAppointment> Appointments { get; set; }
@@ -31,7 +32,7 @@ namespace DementiaHelper.PageModels
         public override void Init(object initData)
         {
             base.Init(initData);
-            CreatedNewItem = false;
+            RedrawView = true;
             CopyOfAppointments = new ObservableCollection<ScheduleAppointment>();
             Appointments = new ObservableCollection<ScheduleAppointment>();
             //MessagingCenter.Subscribe<CreateCalenderAppointmentPageModel, ScheduleAppointment>(this, "CreatedNewAppointment", (sender, arg) => {
@@ -47,27 +48,32 @@ namespace DementiaHelper.PageModels
         #region Constructor
         public CalenderPageModel()
         {
-            this.AddAppointmentCommand = new Command(async () => await GoToCreateAppointment());
-            var User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                Appointments = await GetAppointments(User.CitizenId);
-            });
+            this.AddAppointmentCommand = new Command(async (id) => await GoToCreateAppointment(user.CitizenId));
+          
+            //Device.BeginInvokeOnMainThread(async () =>
+            //{
+            //    Appointments = await GetAppointments(user.CitizenId);
+            //});
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
-            Appointments = new ObservableCollection<ScheduleAppointment>();
-                foreach (var Appointment in CopyOfAppointments)
-                {
-                    Appointments.Add(Appointment);
-                }
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                Appointments = await GetAppointments(user.CitizenId);
+                MessagingCenter.Send<CalenderPageModel>(this, "New Appointments");
+            });
+            //Appointments = new ObservableCollection<ScheduleAppointment>();
+            //    foreach (var Appointment in CopyOfAppointments)
+            //    {
+            //        Appointments.Add(Appointment);
+            //    }
         }
         protected override void ViewIsDisappearing(object sender, EventArgs e)
         {
             base.ViewIsDisappearing(sender, e);
-            CreatedNewItem = false;
+            
         }
 
 
@@ -78,10 +84,10 @@ namespace DementiaHelper.PageModels
             {
                 try
                 {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "citizenId", id } });
+                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", id } });
                     var result = await client.GetStringAsync(new Uri(URI_BASE + encoded));
                     var decoded = JWTService.Decode(result);
-                    return decoded.ContainsKey("CalenderAppointments") ? null : MapToCalenderAppointments(decoded);
+                    return MapToCalenderAppointments(decoded);
                 }
                 catch (Exception)
                 {
@@ -94,7 +100,7 @@ namespace DementiaHelper.PageModels
         {
             ObservableCollection<ScheduleAppointment> tempCalenderAppointmentsList = new ObservableCollection<ScheduleAppointment>();
 
-            var list = decoded.SingleOrDefault(x => x.Key.Equals("CalenderAppointments")).Value as IEnumerable<object>;
+            var list = decoded.SingleOrDefault(x => x.Key.Equals("Appointments")).Value as IEnumerable<object>;
             foreach (var obj in list)
             {
                 var jsonContainer = obj as JContainer;
@@ -102,17 +108,17 @@ namespace DementiaHelper.PageModels
                 {
                     Subject = jsonContainer.SelectToken("Subject").ToString(),
                     Color = Color.FromHex(jsonContainer.SelectToken("Color").ToString()),
-                    StartTime = jsonContainer.SelectToken("StartTime").ToObject<DateTime>(),
-                    EndTime = jsonContainer.SelectToken("EndTime").ToObject<DateTime>()
+                    StartTime = jsonContainer.SelectToken("StartTime").ToObject<DateTime>().ToLocalTime(),
+                    EndTime = jsonContainer.SelectToken("EndTime").ToObject<DateTime>().ToLocalTime()
                 });
             }
             return tempCalenderAppointmentsList;
         }
     
 
-        async Task GoToCreateAppointment()
+        async Task GoToCreateAppointment(int? id)
         {
-            await CoreMethods.PushPageModel<CreateCalenderAppointmentPageModel>();
+            await CoreMethods.PushPageModel<CreateCalenderAppointmentPageModel>(id);
         }
         #endregion Constructor
     }

@@ -386,6 +386,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Caregiver center id.
+        /// </summary>
+        public static string NursingHomeId {
+            get {
+                return ResourceManager.GetString("NursingHomeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {

@@ -21,7 +21,7 @@ namespace DementiaHelper.PageModels
         public UserInformation ShowedUser { get; set; }
         private readonly ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public bool IsCitizen { get; set; }
-        public int? CitizenId { get; set; }
+        public string CitizenId { get; set; }
         public bool Editbutton { get; set ; }
         public ICommand GoToEditCommand { get; set; }
         public ICommand BackCommand { get; set; }
@@ -44,7 +44,7 @@ namespace DementiaHelper.PageModels
             if (user.RoleId == 1)
             {
                 IsCitizen = true;
-                CitizenId = user.CitizenId; //TODO: change to use connectionId
+                CitizenId = user.ConnectionId; //TODO: change to use connectionId
             }
             else
             {

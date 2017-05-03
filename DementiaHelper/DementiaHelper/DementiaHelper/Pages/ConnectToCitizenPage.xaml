@@ -10,8 +10,6 @@
 
 
 
-    <OnIdiom x:TypeArguments="View">
-        <OnIdiom.Phone>
             <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <StackLayout x:Name="outerStack" VerticalOptions="Start" >
                     <StackLayout Orientation="Vertical" VerticalOptions="Start" >
@@ -31,6 +29,6 @@
                 <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
                 </StackLayout>
             </StackLayout>
-        </OnIdiom.Phone>
-    </OnIdiom>
+
+
 </ContentPage>

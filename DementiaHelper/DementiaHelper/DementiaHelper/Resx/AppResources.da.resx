@@ -293,4 +293,7 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Telefon nr.</value>
   </data>
+  <data name="NursingHomeId" xml:space="preserve">
+    <value>Plejepersonale center id</value>
+  </data>
 </root>

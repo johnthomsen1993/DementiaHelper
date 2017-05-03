@@ -26,11 +26,13 @@ namespace DementiaHelper.Pages
 //            set { SetValue(AppointmentsProperty, value);}
             
 //}
+
         public CalenderPage()
         {
        //     SetBinding(AppointmentsProperty, new Binding("Appointments"));
            
             InitializeComponent();
+           
          //   DaySchedule.DataSource = Appointments;
             //     WeekSchedule.SetBinding(SfSchedule.DataSourceProperty, new Binding("Appointments"));
            // MonthSchedule.DataSource = Appointments;
@@ -38,14 +40,24 @@ namespace DementiaHelper.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            
+            UpdateChildrenLayout();
+            MessagingCenter.Subscribe<CalenderPageModel>(this, "New Appointments", (sender) => {
+                UpdateChildrenLayout();
+            });
             //SetBinding(AppointmentsProperty, new Binding("Appointments"));
 
-        //    InitializeComponent();
+            //    InitializeComponent();
             //DaySchedule.DataSource = Appointments;
             //     WeekSchedule.SetBinding(SfSchedule.DataSourceProperty, new Binding("Appointments"));
             //MonthSchedule.DataSource = Appointments;
         }
-     
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<CalenderPageModel>(this, "New Appointments");
+        }
         protected override bool OnBackButtonPressed()
         {
             Device.BeginInvokeOnMainThread(async () => {
