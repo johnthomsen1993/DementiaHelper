@@ -33,7 +33,7 @@ namespace DementiaHelper.PageModels
                 var content = new FormUrlEncodedContent(values);
                 var result = await client.PutAsync(new Uri(URI_BASE), content);
                 var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
-                if ((bool)decoded["Connected"])
+                if (App.MapToApplicationUser(decoded))
                 {
                     ConnectionId = "";
                     App.SetMasterDetailToRole();

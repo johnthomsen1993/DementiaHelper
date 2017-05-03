@@ -110,9 +110,6 @@ namespace DementiaHelper.WebApi.Controllers
                         citizens.ForEach(x => list.Add(new Citizen() {CitizenId = x.CitizenId, ApplicationUser = new ApplicationUser() {FirstName = x.ApplicationUser.FirstName, LastName = x.ApplicationUser.LastName} }));
                         payload.Add("CitizenIds", list);
                     }
-                        //return JWTService.Encode(new Dictionary<string, object>() {{"Citizens", false}});
-
-                    
                     break;
                 default:
                     return JWTService.Encode(new Dictionary<string, object>() {{"ErrorRole", false}});
@@ -204,13 +201,15 @@ namespace DementiaHelper.WebApi.Controllers
         public string ConnectToCitizen(string content)
         {
             var decoded = JWTService.Decode(content);
-            return JWTService.Encode(new Dictionary<string, object>()
+            var relative = _repository.ConnectToCitizen(Convert.ToInt32(
+                decoded.SingleOrDefault(x => x.Key.Equals("RelativeId")).Value),
+                decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString());
+            var payload = new Dictionary<string, object>()
             {
-                {
-                    "Relative", _repository.ConnectToCitizen(Convert.ToInt32(
-                        decoded.SingleOrDefault(x => x.Key.Equals("RelativeId")).Value), decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString())
-                } 
-            });
+                {"User", relative.ApplicationUser},
+                {"CitizenId", relative.CitizenId}
+            };
+            return JWTService.Encode(payload);
         }
 
         [HttpPut("connectcitizentocenter")]
