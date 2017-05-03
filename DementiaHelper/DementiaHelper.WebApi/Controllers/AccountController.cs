@@ -204,6 +204,7 @@ namespace DementiaHelper.WebApi.Controllers
             var relative = _repository.ConnectToCitizen(Convert.ToInt32(
                 decoded.SingleOrDefault(x => x.Key.Equals("RelativeId")).Value),
                 decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString());
+            if (relative == null) return JWTService.Encode(new Dictionary<string, object>() {{"Connected", false}});
             var payload = new Dictionary<string, object>()
             {
                 {"User", relative.ApplicationUser},
