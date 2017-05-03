@@ -21,9 +21,6 @@
                 <Setter Property="BorderColor" Value="Transparent"></Setter>
                 <Setter Property="FontSize" Value="22"></Setter>
             </Style>
-            <Style x:Key="ListLabelStyleTablet" TargetType="Label">
-                <Setter Property="FontSize" Value="22"></Setter>
-            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <OnIdiom x:TypeArguments="View">
@@ -153,11 +150,11 @@
                 <Image Source="ic_add_circle_black_48dp.png"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand"
-              AbsoluteLayout.LayoutBounds="1,.99, 65, 65"
+              AbsoluteLayout.LayoutBounds="1,.99, 130, 130"
               AbsoluteLayout.LayoutFlags="PositionProportional" >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-              Command="{Binding CreateShoppingItemCommand}"/>
+                              Command="{Binding CreateShoppingItemCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
             </AbsoluteLayout>
