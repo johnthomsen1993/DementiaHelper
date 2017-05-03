@@ -22,7 +22,7 @@ namespace DementiaHelper.WebApi.Data
         Caregiver GetCaregiver(int id);
         List<Appointment> GetAppointments(int id);
         void CreateAppointment(Appointment appointment);
-        void SaveChatMessage(string message, int group, string sender);
+        void SaveChatMessage(string message, int group, int sender);
         void AddMemberToGroup(int group, string email);
         ICollection<ChatMessage> GetChatMessagesForGroup(int groupId);
         bool ConnectToCitizen(int relativeId, string connectionId);

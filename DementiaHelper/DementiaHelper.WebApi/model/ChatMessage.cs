@@ -13,9 +13,12 @@ namespace DementiaHelper.WebApi.model
         [Key]
         public int ChatMessageId { get; set; }
         [Required]
-        public string Sender { get; set; }
-        [Required]
         public string Message { get; set; }
+
+        [Required]
+        [ForeignKey("Sender")]
+        public int SenderId { get; set; }
+        public ApplicationUser Sender { get; set; }
 
         [ForeignKey("ChatGroup")]
         public int ChatGroupId { get; set; }

@@ -9,7 +9,7 @@ namespace DementiaHelper.Model
 {
     public class ApplicationUser
     {
-        public int? ApplicationUserId { get; set; }
+        public int ApplicationUserId { get; set; }
         public string Email { get; set; }
         public string Salt { get; set; }
         public string Hash { get; set; }
