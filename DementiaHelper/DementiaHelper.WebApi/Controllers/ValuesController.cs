@@ -101,6 +101,56 @@ namespace DementiaHelper.WebApi.Controllers
             }
         }
 
+        [HttpDelete("calendar")]
+        [AllowAnonymous]
+        public string DeleteAppointment(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var removed = _iRepository.DeleteAppointment(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("AppointmentId")).Value));
+            return JWTService.Encode(new Dictionary<string, object>() { { "Removed", removed } });
+        }
 
+        [HttpPut("note")]
+        [AllowAnonymous]
+        public string CreateNote(string content)
+        {
+            var decoded = JWTService.Decode(content);
+            try
+            {
+                var note = new Note()
+                {
+                    CitizenId = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("CitizenId")).Value),
+                    Subject = decoded.SingleOrDefault(x => x.Key.Equals("Subject")).Value.ToString(),
+                    CreatedTime = DateTime.Parse(decoded.SingleOrDefault(x => x.Key.Equals("Subject")).Value.ToString())
+                };
+                _iRepository.CreateNote(note);
+                return JWTService.Encode(new Dictionary<string, object>() {{"NoteCreated", true}});
+            }
+            catch (Exception)
+            {
+                return JWTService.Encode(new Dictionary<string, object>() {{"NoteCreated", false}});
+            }
+            
+        }
+
+        [HttpGet("note/{token}")]
+        [AllowAnonymous]
+        public string GetNotes(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var notes =
+                _iRepository.GetNotes(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("CitizenId")).Value));
+            return JWTService.Encode(new Dictionary<string, object>() { {"Notes", notes} });
+        }
+
+        [HttpDelete("note")]
+        [AllowAnonymous]
+        public string DeleteNote(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var deleted =
+                _iRepository.DeleteNote(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("NoteId")).Value));
+            return JWTService.Encode(new Dictionary<string, object>() { {"Deleted", deleted} });
+        }
     }
 }
