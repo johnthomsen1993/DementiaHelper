@@ -6,22 +6,28 @@
              >
 
     <ContentPage.Content>
-
+        <OnIdiom x:TypeArguments="View">
+            <OnIdiom.Phone>
 
         <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
             <SearchBar Placeholder="søg" Text="{Binding SearchText}" HeightRequest="50">
             </SearchBar>
             <ListView x:Name="ContactListView" ItemsSource="{Binding ContactCollection}">
                 <ListView.Header>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{i18n:Translate Name}" Grid.Column="0"></Label>
-                        <Label Text="{i18n:Translate PhoneNumber}" Grid.Column="1"></Label>
-                    </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions >
+                                    <RowDefinition  Height="*"></RowDefinition>
+                                    <RowDefinition  Height="1"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Text="{i18n:Translate Name}" Grid.Row="0" Grid.Column="0"></Label>
+                                <Label Text="{i18n:Translate PhoneNumber}" Grid.Row="0" Grid.Column="1"></Label>
+                                <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"></BoxView>
+                            </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -32,8 +38,8 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label VerticalTextAlignment="Center" Text="{Binding Name}" Grid.Column="0"></Label>
-                                <Label VerticalTextAlignment="Center"  Text="{Binding Phone}" Grid.Column="1"></Label>
+                                        <Label VerticalTextAlignment="Center" Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0"></Label>
+                                        <Label VerticalTextAlignment="Center"  Text="{Binding Phone}" FontAttributes="Bold" Grid.Column="1"></Label>
                                 <Button BindingContext="{Binding Source={x:Reference ContactListView},Path=BindingContext}" Command="{Binding CallContactCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Text="Call" Grid.Column="2"></Button>
                             </Grid>
                         </ViewCell>
@@ -41,5 +47,49 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
+            </OnIdiom.Phone>
+            <OnIdiom.Tablet>
+                <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
+                    <SearchBar Placeholder="søg" Text="{Binding SearchText}" HeightRequest="50">
+                    </SearchBar>
+                    <ListView x:Name="ContactListViewTablet" ItemsSource="{Binding ContactCollection}">
+                        <ListView.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions >
+                                    <RowDefinition  Height="*"></RowDefinition>
+                                    <RowDefinition  Height="1"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Text="{i18n:Translate Name}" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"></Label>
+                                <Label Text="{i18n:Translate PhoneNumber}" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"></Label>
+                                <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"></BoxView>
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid x:Name="Item">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label VerticalTextAlignment="Center" Text="{Binding Name}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="0"></Label>
+                                        <Label VerticalTextAlignment="Center"  Text="{Binding Phone}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="1"></Label>
+                                        <Button BindingContext="{Binding Source={x:Reference ContactListView},Path=BindingContext}" Command="{Binding CallContactCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"  Text="Call" Grid.Column="2"></Button>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+
+            </OnIdiom.Tablet>
+        </OnIdiom>
     </ContentPage.Content>
 </ContentPage>

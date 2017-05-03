@@ -20,40 +20,30 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class CalenderPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region Properties
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/calendar/";
         private ApplicationUser user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public ICommand AddAppointmentCommand { get; protected set; }
         public bool RedrawView { get; set; }
-        #region Properties
-
         public ObservableCollection<ScheduleAppointment> Appointments { get; set; }
-        public ObservableCollection<ScheduleAppointment> CopyOfAppointments { get; set; }
-
+        #endregion Properties
         public override void Init(object initData)
         {
             base.Init(initData);
             RedrawView = true;
-            CopyOfAppointments = new ObservableCollection<ScheduleAppointment>();
-            Appointments = new ObservableCollection<ScheduleAppointment>();
-            //MessagingCenter.Subscribe<CreateCalenderAppointmentPageModel, ScheduleAppointment>(this, "CreatedNewAppointment", (sender, arg) => {
-            //    Appointments.Add(arg);
-            //    CopyOfAppointments.Add(arg);
-            //    CreatedNewItem = true;
-            //});
+      
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                Appointments = await GetAppointments(user.CitizenId);
+            });
         }
         
 
-        #endregion Properties
 
         #region Constructor
         public CalenderPageModel()
         {
             this.AddAppointmentCommand = new Command(async (id) => await GoToCreateAppointment(user.CitizenId));
-          
-            //Device.BeginInvokeOnMainThread(async () =>
-            //{
-            //    Appointments = await GetAppointments(user.CitizenId);
-            //});
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
@@ -62,13 +52,7 @@ namespace DementiaHelper.PageModels
             Device.BeginInvokeOnMainThread(async () =>
             {
                 Appointments = await GetAppointments(user.CitizenId);
-                MessagingCenter.Send<CalenderPageModel>(this, "New Appointments");
             });
-            //Appointments = new ObservableCollection<ScheduleAppointment>();
-            //    foreach (var Appointment in CopyOfAppointments)
-            //    {
-            //        Appointments.Add(Appointment);
-            //    }
         }
         protected override void ViewIsDisappearing(object sender, EventArgs e)
         {
