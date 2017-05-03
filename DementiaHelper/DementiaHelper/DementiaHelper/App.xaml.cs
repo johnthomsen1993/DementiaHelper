@@ -163,14 +163,14 @@ namespace DementiaHelper
                         MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
-                        MasterDetailNav.AddPage<ContactListPageModel>("Contacts", null);
+                        MasterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
                         MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
-                        MasterDetailNav.AddPage<ConnectToNursingHomePageModel>("Connect to nursing home", null);
-                        MasterDetailNav.AddPage<SettingsPageModel>("Settings", null);
+                        MasterDetailNav.AddPage<ConnectToNursingHomePageModel>(AppResources.ConnectToNursingHomeTitle, null);
+                        MasterDetailNav.AddPage<SettingsPageModel>(AppResources.SettingsTitle, null);
 
                         break;
                     }
@@ -179,13 +179,13 @@ namespace DementiaHelper
                         MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
-                        MasterDetailNav.AddPage<ContactListPageModel>("Contacts", null);
+                        MasterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
                         MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
-                        MasterDetailNav.AddPage<SettingsPageModel>("Settings", null);
+                        MasterDetailNav.AddPage<SettingsPageModel>(AppResources.SettingsTitle, null);
                         break;
                     }
                 case 3:
@@ -193,14 +193,14 @@ namespace DementiaHelper
                         MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<ChooseCitizenPageModel>(AppResources.ChooseCitizenTitle, null);
-                        MasterDetailNav.AddPage<ContactListPageModel>("Contacts", null);
+                        MasterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
 
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
-                        MasterDetailNav.AddPage<NotePageModel>("test", null);
-                        MasterDetailNav.AddPage<SettingsPageModel>("Settings", null);
+                        MasterDetailNav.AddPage<NotePageModel>(AppResources.NoteTitle, null);
+                        MasterDetailNav.AddPage<SettingsPageModel>(AppResources.SettingsTitle, null);
                         break;
                     }
 

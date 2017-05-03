@@ -35,7 +35,7 @@
             <Entry Text="{Binding Subject}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Placeholder="Message"></Entry>
         </StackLayout>
 
-        <customRenders:CustomButtonRender  Style="{StaticResource ButtonStyle}" Text="{i18n:Translate SendMessage}" Command="{Binding NewNoteCommand}"/>
+        <customRenders:CustomButtonRender  Style="{StaticResource ButtonStyle}" Text="{i18n:Translate NewNote}" Command="{Binding NewNoteCommand}"/>
 
     </StackLayout>
 

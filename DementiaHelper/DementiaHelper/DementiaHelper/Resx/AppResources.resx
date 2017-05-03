@@ -199,12 +199,15 @@
   </data>
   <data name="PersonalDetails" xml:space="preserve">
     <value>Personal Details</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="Picture" xml:space="preserve">
     <value>Picture</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="ProfileSettings" xml:space="preserve">
     <value>Profile Settings</value>
@@ -212,12 +215,15 @@
   </data>
   <data name="ProductName" xml:space="preserve">
     <value>Product</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="Quantity" xml:space="preserve">
     <value>Quantity</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save changes</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="ShoppingList" xml:space="preserve">
     <value>Shopping List</value>
@@ -225,16 +231,19 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Username</value>
-    <comment>Label for textbox</comment>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="YesText" xml:space="preserve">
     <value>Yes</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="RelativesRole" xml:space="preserve">
     <value>Relatives</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="ItemToAdd" xml:space="preserve">
     <value>Item</value>
@@ -281,14 +290,40 @@
   </data>
   <data name="SendMessage" xml:space="preserve">
     <value>Send message</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
+    <comment>Label for Textfield</comment>
   </data>
   <data name="NursingHomeId" xml:space="preserve">
     <value>Caregiver center id</value>
+  </data>
+  <data name="ConnectToNursingHomePlaceholderText" xml:space="preserve">
+    <value>Caregivers nursing home id</value>
+    <comment>Placeholder text</comment>
+  </data>
+  <data name="ConnectToNursingHomeTitle" xml:space="preserve">
+    <value>Connect to nursing home</value>
+    <comment>Title for Connect to nursing home View</comment>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Logout</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="NewNote" xml:space="preserve">
+    <value>New note</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="NoteTitle" xml:space="preserve">
+    <value>Notes</value>
+    <comment>Title for note view</comment>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Title for settings view</comment>
   </data>
 </root>

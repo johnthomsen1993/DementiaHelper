@@ -197,6 +197,24 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Caregivers nursing home id.
+        /// </summary>
+        public static string ConnectToNursingHomePlaceholderText {
+            get {
+                return ResourceManager.GetString("ConnectToNursingHomePlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect to nursing home.
+        /// </summary>
+        public static string ConnectToNursingHomeTitle {
+            get {
+                return ResourceManager.GetString("ConnectToNursingHomeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Details.
         /// </summary>
         public static string ContactDetails {
@@ -368,11 +386,38 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New note.
+        /// </summary>
+        public static string NewNote {
+            get {
+                return ResourceManager.GetString("NewNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string NoteTitle {
+            get {
+                return ResourceManager.GetString("NoteTitle", resourceCulture);
             }
         }
         
@@ -490,6 +535,15 @@ namespace DementiaHelper.Resx {
         public static string SendMessage {
             get {
                 return ResourceManager.GetString("SendMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsTitle {
+            get {
+                return ResourceManager.GetString("SettingsTitle", resourceCulture);
             }
         }
         
