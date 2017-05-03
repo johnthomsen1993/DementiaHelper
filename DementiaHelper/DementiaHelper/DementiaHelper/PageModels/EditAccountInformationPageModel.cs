@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DementiaHelper.Extensions;
@@ -39,44 +40,60 @@ namespace DementiaHelper.PageModels
         }
         async Task Save()
         {
-            var payload = new Dictionary<string, object>
+            if (IsValidEmail(UpdatedUser.Email))
             {
-                {"firstName", UpdatedUser.FirstName},
-                {"lastName", UpdatedUser.LastName},
-                {"email", UpdatedUser.Email},
-                {"description", UpdatedUser.Description},
-                {"phone", UpdatedUser.Phone},
-                {"oldEmail", User.Email }
-            };
-
-            var encoded = JWTService.Encode(payload);
-
-            using (HttpClient h = new HttpClient())
-            {
-                var values = new Dictionary<string, string> {{"token", encoded}};
-                var content = new FormUrlEncodedContent(values);
-                var result = h.PutAsync(new Uri(URI_BASE), content).Result;
-                var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
-                if (decoded != null)
+                var payload = new Dictionary<string, object>
                 {
-                    if (Convert.ToBoolean(decoded["UserUpdated"]))
+                    {"firstName", UpdatedUser.FirstName},
+                    {"lastName", UpdatedUser.LastName},
+                    {"email", UpdatedUser.Email},
+                    {"description", UpdatedUser.Description},
+                    {"phone", UpdatedUser.Phone},
+                    {"oldEmail", User.Email}
+                };
+
+                var encoded = JWTService.Encode(payload);
+
+                using (HttpClient h = new HttpClient())
+                {
+                    var values = new Dictionary<string, string> {{"token", encoded}};
+                    var content = new FormUrlEncodedContent(values);
+                    var result = h.PutAsync(new Uri(URI_BASE), content).Result;
+                    var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
+                    if (decoded != null)
                     {
-                        User.FirstName = UpdatedUser.FirstName;
-                        User.LastName = UpdatedUser.LastName;
-                        User.Description = UpdatedUser.Description;
-                        User.Email = UpdatedUser.Email;
-                        User.Phone = UpdatedUser.Phone;
+                        if (Convert.ToBoolean(decoded["UserUpdated"]))
+                        {
+                            User.FirstName = UpdatedUser.FirstName;
+                            User.LastName = UpdatedUser.LastName;
+                            User.Description = UpdatedUser.Description;
+                            User.Email = UpdatedUser.Email;
+                            User.Phone = UpdatedUser.Phone;
+                        }
                     }
                 }
-            }
+                await CoreMethods.PopPageModel();
 
-            await CoreMethods.PopPageModel();
+            }else{ await CoreMethods.DisplayAlert("Invalid email", "Please enter a valid email", "Ok"); }
         }
+
         async Task Cancel()
         {
             await CoreMethods.PopPageModel();
         }
 
-        
+        private bool IsValidEmail(string inputEmail)
+        {
+            string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                  @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                  @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(inputEmail))
+                return (true);
+            else
+                return (false);
+        }
+
+
     }
 }
