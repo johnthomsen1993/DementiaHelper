@@ -8,10 +8,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using PropertyChanged;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
 {
+    [ImplementPropertyChanged]
     public class ContactListPageModel : FreshMvvm.FreshBasePageModel
     {
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/contactlist/";
@@ -22,11 +24,8 @@ namespace DementiaHelper.PageModels
         public ContactListPageModel()
         {
             _SearchText = "";
-           // var User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
-
-            ApplicationUserContactCollection = new ObservableCollection<Contact>() {  }; ; ;
+            ApplicationUserContactCollection = new ObservableCollection<Contact>() { }; ; ;
             ContactCollection = new ObservableCollection<Contact>() { new Contact() { } };
-            this.FilterContacts();
             CallContactCommand = new Command<Contact>(CallNumber);
 
         }
@@ -42,7 +41,7 @@ namespace DementiaHelper.PageModels
                     var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", id } });
                     var result = await client.GetStringAsync(new Uri(URI_BASE + encoded));
                     var decoded = JWTService.Decode(result);
-                    return decoded.ContainsKey("List") ? null : MapToContactsCollection(decoded);
+                    return MapToContactsCollection(decoded);
                 }
                 catch (Exception)
                 {
@@ -57,25 +56,26 @@ namespace DementiaHelper.PageModels
             Device.BeginInvokeOnMainThread(async () =>
             {
                 ApplicationUserContactCollection = await GetApplicationUserContactCollection(User.CitizenId);
+                FilterContacts();
             });
         }
 
         private ObservableCollection<Contact> MapToContactsCollection(IDictionary<string, object> dict)
         {
             var tempCaregiversCitizenCollection = new ObservableCollection<Contact>();
-            var list = dict.SingleOrDefault(x => x.Key.Equals("userList")).Value as IEnumerable<object>;
-            //var list = dict.Where(x => x.Key.Contains("ShoppingList")).Select(x => x.Value).ToList().FirstOrDefault() as IEnumerable<object>;
+            var list = dict.SingleOrDefault(x => x.Key.Equals("contactList")).Value as IEnumerable<object>;
+            
             foreach (var obj in list)
             {
                 var jsonContainer = obj as JContainer;
-                tempCaregiversCitizenCollection.Add(new Contact()
+                tempCaregiversCitizenCollection.Add(item: new Contact()
                 {
                     Phone = jsonContainer.SelectToken("ApplicationUser").SelectToken("Phone").ToObject<int>(),
                     Name = jsonContainer.SelectToken("ApplicationUser").SelectToken("FirstName").ToObject<string>() + " " + jsonContainer.SelectToken("ApplicationUser").SelectToken("LastName").ToObject<string>()
                 });
             }
 
-            var jContainer = dict["careGiverCenter"] as JContainer;
+            var jContainer = dict["caregiverCenter"] as JContainer;
             tempCaregiversCitizenCollection.Add(new Contact()
             {
                 Phone = jContainer.SelectToken("Phone").ToObject<int>(),

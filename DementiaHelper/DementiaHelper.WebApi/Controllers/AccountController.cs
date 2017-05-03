@@ -166,7 +166,7 @@ namespace DementiaHelper.WebApi.Controllers
 
             var payload = new Dictionary<string, object>
             {
-                {"userList", users},
+                {"contactList", users},
                 {"caregiverCenter", caregiverCenter}
             };
 
