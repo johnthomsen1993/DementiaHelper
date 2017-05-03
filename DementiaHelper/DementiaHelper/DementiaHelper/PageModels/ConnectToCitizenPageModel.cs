@@ -33,12 +33,17 @@ namespace DementiaHelper.PageModels
                 var content = new FormUrlEncodedContent(values);
                 var result = await client.PutAsync(new Uri(URI_BASE), content);
                 var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
-                if ((bool)decoded["Connected"])
+                if (!decoded.ContainsKey("Connected"))
                 {
+                    App.MapToApplicationUser(decoded);
                     ConnectionId = "";
                     App.SetMasterDetailToRole();
                     CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
                     await CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
+                }
+                else
+                {
+                    //TODO: Do something here to tell user connection didn't happen!
                 }
             }
         }

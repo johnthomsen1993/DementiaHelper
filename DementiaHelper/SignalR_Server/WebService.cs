@@ -11,7 +11,7 @@ namespace SignalR_Server
     {
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/saveChatMessage/";
 
-        public async Task SaveMessage(string message, string groupId, string sender)
+        public async Task SaveMessage(string message, int groupId, int sender)
         {
             var payload = new Dictionary<string, object>
             {

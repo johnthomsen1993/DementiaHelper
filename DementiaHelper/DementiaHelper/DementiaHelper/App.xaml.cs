@@ -115,19 +115,19 @@ namespace DementiaHelper
                 Description = User.SelectToken("Description")?.ToObject<string>(),
                 Phone = User.SelectToken("Phone").ToObject<int?>()
             };
-            if (ApplicationUser.RoleId == 1)
+            switch (ApplicationUser.RoleId)
             {
-                ApplicationUser.ConnectionId = dict["ConnectionId"].ToString();
-                ApplicationUser.CitizenId = ApplicationUser.ApplicationUserId;
-            }
-            else if (ApplicationUser.RoleId == 2)
-            {
-                ApplicationUser.CitizenId = User.SelectToken("CitizenId") != null ? User.SelectToken("CitizenId").ToObject<int?>() : null;
-            } else if (ApplicationUser.RoleId == 3)
-            {
-                var list = dict["CitizenIds"] as IList;
-                ApplicationUser.CitizenList = MapToCitizenList(list);
-           
+                case 1:
+                    ApplicationUser.ConnectionId = dict["ConnectionId"].ToString();
+                    ApplicationUser.CitizenId = ApplicationUser.ApplicationUserId;
+                    break;
+                case 2:
+                    ApplicationUser.CitizenId = User.SelectToken("CitizenId") != null ? User.SelectToken("CitizenId").ToObject<int?>() : null;
+                    break;
+                case 3:
+                    var list = dict["CitizenIds"] as IList;
+                    ApplicationUser.CitizenList = MapToCitizenList(list);
+                    break;
             }
 
             App.Current.Properties["ApplicationUser"] = ApplicationUser;

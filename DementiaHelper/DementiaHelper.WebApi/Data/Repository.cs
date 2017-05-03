@@ -49,8 +49,7 @@ namespace DementiaHelper.WebApi.Data
         {
             try
             {
-                var target = _context.ApplicationUsers.First(i=> i.Email == email);
-                return target;
+                return _context.ApplicationUsers.First(i=> i.Email == email);
             }
             catch (Exception)
             {
@@ -177,9 +176,9 @@ namespace DementiaHelper.WebApi.Data
             _context.SaveChanges();
         }
 
-        public void SaveChatMessage(string message, int groupId, string sender)
+        public void SaveChatMessage(string message, int groupId, int sender)
         {
-            _context.ChatMessages.Add(new ChatMessage() {ChatGroupId = groupId, Message = message, Sender = sender});
+            _context.ChatMessages.Add(new ChatMessage() {ChatGroupId = groupId, Message = message, SenderId = sender});
             _context.SaveChanges();
         }
 
@@ -192,7 +191,7 @@ namespace DementiaHelper.WebApi.Data
 
         public ICollection<ChatMessage> GetChatMessagesForGroup(int groupId)
         {
-            return _context.ChatMessages.Where(chatMessage => chatMessage.ChatGroupId == groupId).ToList();
+            return _context.ChatMessages.Include(x => x.Sender).Where(chatMessage => chatMessage.ChatGroupId == groupId).ToList();
         }
 
         public Relative ConnectToCitizen(int relativeId, string connectionId)

@@ -20,11 +20,11 @@ namespace SignalR_Server
         }
 
         [HubMethodName("groupChat")]
-        public async Task BroadCastMessage(string sender, string message, string groupName)
+        public async Task BroadCastMessage(int sender, string message, int groupId, string senderName)
         {
-            JoinGroup(groupName);
-            await _databaService.SaveMessage(message, groupName, sender);
-            Clients.Group(groupName).GetMessage(sender, message);
+            JoinGroup(groupId.ToString());
+            await _databaService.SaveMessage(message, groupId, sender);
+            Clients.Group(groupId.ToString()).GetMessage(sender, message, senderName);
         }
 
         [HubMethodName("joinGroup")]

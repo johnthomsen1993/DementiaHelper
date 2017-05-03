@@ -85,15 +85,19 @@ namespace DementiaHelper.PageModels
 
                 var chatMessageId = jsonContainer.SelectToken("ChatMessageId");
                 var chatGroupId = jsonContainer.SelectToken("ChatGroupId");
-                var sender = jsonContainer.SelectToken("Sender");
+                var senderId = jsonContainer.SelectToken("Sender").SelectToken("ApplicationUserId");
                 var message = jsonContainer.SelectToken("Message");
-                if (sender.ToString() == user.FirstName + " " + user.LastName)
+                var firstName = jsonContainer.SelectToken("Sender").SelectToken("FirstName");
+                var lastName = jsonContainer.SelectToken("Sender").SelectToken("FirstName");
+
+
+                if (Convert.ToInt32(senderId) == user.ApplicationUserId)
                 {
-                    Messages.Add(new Message { Name = sender.ToString(), MessageSent = message.ToString(), MessageRecievedIsVisible = false, MessageSentIsVisible = true });
+                    Messages.Add(new Message { Name = firstName + " " + lastName, MessageSent = message.ToString(), MessageRecievedIsVisible = false, MessageSentIsVisible = true });
                 }
                 else
                 {
-                    Messages.Add(new Message { Name = sender.ToString(), MessageRecieved = message.ToString(), MessageRecievedIsVisible = true, MessageSentIsVisible = false });
+                    Messages.Add(new Message { Name = firstName + " " + lastName, MessageRecieved = message.ToString(), MessageRecievedIsVisible = true, MessageSentIsVisible = false });
                 }
             }
         }
@@ -130,9 +134,9 @@ namespace DementiaHelper.PageModels
 
         async void ExecuteSendMessageCommand()
         {
-            var sender = user.FirstName +  " " + user.LastName;
+            var sender = user.ApplicationUserId;
            // IsBusy = true;
-            await _chatServices.Send(sender, ChatMessage.Message, groupId);
+            await _chatServices.Send(sender, ChatMessage.Message, groupId, user.FirstName + " " + user.LastName);
          //   IsBusy = false;
         }
 
