@@ -199,7 +199,7 @@ namespace DementiaHelper.WebApi.Data
         {
             var citizen = _context.Citizens.SingleOrDefault(x => x.ConnectionId == connectionId);
             if (citizen == null) return null;
-            var relative = _context.Relatives.SingleOrDefault(x => x.RelativeId == relativeId);
+            var relative = _context.Relatives.Include(x => x.ApplicationUser).SingleOrDefault(x => x.RelativeId == relativeId);
             if (relative == null) return null;
             relative.CitizenId = citizen.CitizenId;
             _context.SaveChanges();
