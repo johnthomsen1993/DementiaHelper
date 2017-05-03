@@ -158,6 +158,7 @@ namespace DementiaHelper.WebApi.Controllers
         }
 
         [HttpGet("contactlist/{token}")]
+        [AllowAnonymous]
         public string GetListOfConnectedUsers(string token)
         {
             var decoded = JWTService.Decode(token);
