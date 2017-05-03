@@ -31,12 +31,6 @@ namespace DementiaHelper.PageModels
         {
             ShoppingList = new ShoppingList() {ShoppingListItems = new ObservableCollection<ShoppingListItem>() {} };
             var User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                var shoppinglist = await GetShoppingList(User.CitizenId);
-                ShoppingList.ShoppingListItems = shoppinglist?.ShoppingListItems;
-                ShoppingListDetails = ShoppingList?.ShoppingListItems;
-            });
             CreateShoppingItemCommand = new Command(async (id) => await GoToCreateShoppingItem(User.CitizenId));
             RemoveFromDatabaseCommand = new Command(async (obj) => await RemoveFromDatabase((ShoppingListItem) obj));
         }

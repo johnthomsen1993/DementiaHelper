@@ -5,17 +5,14 @@
              xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              Title="{i18n:Translate CalenderTitle}"
-            x:Name="CalenderPage"
-            >
-
-
+            x:Name="CalenderTabPage">
     <ContentPage  Title="Day" >
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  >
                 <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
                     <schedule:SfSchedule
-                         BindingContext="{Binding BindingContext,Source={x:Reference CalenderPage}}"
-                         DataSource="{Binding Appointments}"
+                         BindingContext="{Binding BindingContext,Source={x:Reference CalenderTabPage}}"
+                         DataSource="{Binding Appointments, Mode=TwoWay}"
                          x:Name="DaySchedule"
                          ScheduleView="DayView" 
                          HorizontalOptions="FillAndExpand"
@@ -51,8 +48,8 @@
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
                 <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
                     <schedule:SfSchedule 
-                        BindingContext="{Binding BindingContext,Source={x:Reference CalenderPage}}"
-                        DataSource="{Binding Appointments}"
+                        BindingContext="{Binding BindingContext,Source={x:Reference CalenderTabPage}}"
+                        DataSource="{Binding Appointments, Mode=TwoWay}"
                         x:Name="MonthSchedule"
                         ScheduleView="MonthView"
                         HorizontalOptions="FillAndExpand"

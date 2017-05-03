@@ -43,12 +43,6 @@ namespace DementiaHelper.PageModels
             ChatMessage = new ChatMessage();
             Messages = new ObservableCollection<Message>();
             groupId = user.GroupId ?? 0;
-
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await GetChatMessageList(groupId);
-            });
-            
             _chatServices.Connect();
             _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
             
@@ -58,6 +52,10 @@ namespace DementiaHelper.PageModels
         {
             base.ViewIsAppearing(sender, e);
             _chatServices.JoinRoom(groupId);
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await GetChatMessageList(groupId);
+            });
         }
 
         private async Task GetChatMessageList(int id)

@@ -23,16 +23,14 @@ namespace DementiaHelper.PageModels
         {
             _SearchText = "";
            // var User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                ApplicationUserContactCollection = await GetApplicationUserContactCollection(User.CitizenId);
-            });
+
             ApplicationUserContactCollection = new ObservableCollection<Contact>() {  }; ; ;
             ContactCollection = new ObservableCollection<Contact>() { new Contact() { } };
             this.FilterContacts();
             CallContactCommand = new Command<Contact>(CallNumber);
 
         }
+       
 
         private async Task<ObservableCollection<Contact>> GetApplicationUserContactCollection(int? id)
         {
