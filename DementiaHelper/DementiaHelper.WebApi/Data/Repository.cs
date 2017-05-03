@@ -206,10 +206,28 @@ namespace DementiaHelper.WebApi.Data
             return true;
         }
 
-        public bool ConnectToCaregiver(int citizenId, string connectionId)
+        public bool CitizenConnectToCaregiverCenter(int citizenId, string connectionId)
         {
-            //var caregiver = _context.Caregivers.
-            return false;
+            var citizen = _context.Citizens.SingleOrDefault(x => x.CitizenId == citizenId);
+            if (citizen == null) return false;
+            var center = _context.CaregiverCenters.SingleOrDefault(x => x.CitizenConnectionId == connectionId);
+            if (center == null) return false;
+            citizen.CaregiverCenterId = center.CaregiverCenterId;
+
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool CaregiverConnectToCaregiverCenter(int caregiverId, string connectionId)
+        {
+            var caregiver = _context.Caregivers.SingleOrDefault(x => x.CaregiverId == caregiverId);
+            if (caregiver == null) return false;
+            var center = _context.CaregiverCenters.SingleOrDefault(x => x.CaregiverConnectionId == connectionId);
+            if (center == null) return false;
+            caregiver.CaregiverCenterId = center.CaregiverCenterId;
+
+            _context.SaveChanges();
+            return true;
         }
 
         public List<Relative> GetRelativesConnectedToId(int id)
@@ -221,6 +239,36 @@ namespace DementiaHelper.WebApi.Data
         {
             var citizen = _context.Citizens.SingleOrDefault(x => x.CitizenId == id);
             return _context.CaregiverCenters.SingleOrDefault(x => x.CaregiverCenterId == citizen.CaregiverCenterId);
+        }
+
+        public bool DeleteAppointment(int id)
+        {
+            var appointment = _context.Appointments.SingleOrDefault(x => x.AppointmentId == id);
+            if (appointment == null) return false;
+            _context.Appointments.Remove(appointment);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public void CreateNote(Note note)
+        {
+            _context.Notes.Add(note);
+            _context.SaveChanges();
+        }
+
+        public List<Note> GetNotes(int id)
+        {
+            return _context.Notes.Where(x => x.CitizenId == id).ToList();
+        }
+
+        public bool DeleteNote(int id)
+        {
+            var note = _context.Notes.SingleOrDefault(x => x.NoteId == id);
+            if (note == null) return false;
+
+            _context.Notes.Remove(note);
+            _context.SaveChanges();
+            return true;
         }
     }
 }
