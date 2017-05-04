@@ -56,7 +56,7 @@ namespace DementiaHelper.PageModels
                     }
                     else
                     {
-                        await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.ErrorOnRemoveAccept);
+                        await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.General_Ok);
                     }
                 }
                 catch (Exception)
