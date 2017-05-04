@@ -40,9 +40,9 @@ namespace DementiaHelper.WebApi.Controllers
         //email, password, role
         [HttpPut("createAccount")]
         [AllowAnonymous]
-        public string CreateAccount(string content)
+        public string CreateAccount(string token)
         {
-            var decoded = JWTService.Decode(content);
+            var decoded = JWTService.Decode(token);
             var user = new ApplicationUser()
             {
                 Email = decoded["email"].ToString(),
@@ -194,9 +194,9 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpPut("connecttocitizen")]
         [AllowAnonymous]
-        public string ConnectToCitizen(string content)
+        public string ConnectToCitizen(string token)
         {
-            var decoded = JWTService.Decode(content);
+            var decoded = JWTService.Decode(token);
             var relative = _repository.ConnectToCitizen(Convert.ToInt32(
                 decoded.SingleOrDefault(x => x.Key.Equals("RelativeId")).Value),
                 decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString());
@@ -212,9 +212,9 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpPut("connectcitizentocenter")]
         [AllowAnonymous]
-        public string ConnectToCaregiverCenter(string content)
+        public string ConnectToCaregiverCenter(string token)
         {
-            var decoded = JWTService.Decode(content);
+            var decoded = JWTService.Decode(token);
             return JWTService.Encode(new Dictionary<string, object>()
             {
                 {

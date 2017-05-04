@@ -279,5 +279,14 @@ namespace DementiaHelper.WebApi.Data
             _context.SaveChanges();
             return chatGroup;
         }
+
+        public bool ChangeBoughtStatus(int id, bool bought)
+        {
+            var item = _context.ShoppingListItems.SingleOrDefault(x => x.ShoppingListItemId == id);
+            if (item == null) return false;
+            item.Bought = bought;
+            _context.SaveChanges();
+            return true;
+        }
     }
 }
