@@ -22,7 +22,6 @@ namespace DementiaHelper.PageModels
     {
         #region Properties
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/calendar/";
-        private ApplicationUser user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public ICommand AddAppointmentCommand { get; protected set; }
         public bool RedrawView { get; set; }
         public ObservableCollection<ScheduleAppointment> Appointments { get; set; }
@@ -30,12 +29,10 @@ namespace DementiaHelper.PageModels
         public override void Init(object initData)
         {
             base.Init(initData);
-            RedrawView = true;
-      
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                Appointments = await GetAppointments(user.CitizenId);
-            });
+            //Device.BeginInvokeOnMainThread(async () =>
+            //{
+            //    Appointments = await GetAppointments(user.CitizenId);
+            //});
         }
         
 
@@ -43,7 +40,7 @@ namespace DementiaHelper.PageModels
         #region Constructor
         public CalenderPageModel()
         {
-            this.AddAppointmentCommand = new Command(async (id) => await GoToCreateAppointment(user.CitizenId));
+            this.AddAppointmentCommand = new Command(async () => await GoToCreateAppointment());
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
@@ -51,7 +48,8 @@ namespace DementiaHelper.PageModels
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread(async () =>
             {
-                Appointments = await GetAppointments(user.CitizenId);
+                
+                Appointments = await GetAppointments(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
             });
         }
         protected override void ViewIsDisappearing(object sender, EventArgs e)
@@ -100,9 +98,9 @@ namespace DementiaHelper.PageModels
         }
     
 
-        async Task GoToCreateAppointment(int? id)
+        async Task GoToCreateAppointment()
         {
-            await CoreMethods.PushPageModel<CreateCalenderAppointmentPageModel>(id);
+            await CoreMethods.PushPageModel<CreateCalenderAppointmentPageModel>(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
         }
         #endregion Constructor
     }

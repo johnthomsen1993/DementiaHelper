@@ -37,13 +37,14 @@ namespace DementiaHelper.PageModels
                 {
                     App.MapToApplicationUser(decoded);
                     ConnectionId = "";
-                    App.SetMasterDetailToRole();
-                    CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
+                    //App.SetMasterDetailToRole();
+                    //CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
                     await CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
                 }
                 else
                 {
-                    //TODO: Do something here to tell user connection didn't happen!
+                        await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at forbinde til borgeren, check venligst at dit indtasted borger id passer overens med borgerens id i borgerens konto view", "Ok");
+                    
                 }
             }
         }

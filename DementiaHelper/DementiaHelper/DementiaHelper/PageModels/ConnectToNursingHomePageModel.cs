@@ -36,7 +36,11 @@ namespace DementiaHelper.PageModels
                 if ((bool)decoded["Connected"])
                 {
                     ConnectionId = "";
-                    await CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
+                    await CoreMethods.SwitchSelectedMaster<CitizenHomePageModel>();
+                }
+                else
+                {
+                   await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at konnektere til plejecenteret, check venligst at dit udleveret plejecenter id er korrekt indtastet", "Ok");
                 }
             }
         }

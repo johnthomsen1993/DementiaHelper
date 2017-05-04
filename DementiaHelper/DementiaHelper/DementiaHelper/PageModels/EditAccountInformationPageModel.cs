@@ -106,7 +106,5 @@ namespace DementiaHelper.PageModels
                 entry.TextChanged += OnEntryTextChanged;
             }
         }
-
-
     }
 }

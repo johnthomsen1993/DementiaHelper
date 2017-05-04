@@ -37,7 +37,6 @@ namespace DementiaHelper
         static FreshMvvm.FreshNavigationContainer LoginNavigationContainer { get; set; }
         public App()
         {
-            
             InitializeComponent();
         }
         static public async Task<bool> LoginAsync(string Email, string Password)

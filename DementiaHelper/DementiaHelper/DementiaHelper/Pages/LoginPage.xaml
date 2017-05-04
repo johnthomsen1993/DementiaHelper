@@ -43,19 +43,19 @@
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
                         <customRenders:CustomButtonRender  Style="{StaticResource ButtonStyle}" HeightRequest="40"  Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
-                        <customRenders:CustomButtonRender  Style="{StaticResource ForgotPasswordButtonStyle}" HeightRequest="40"  Text="{i18n:Translate ForgotPassword}" />
+                        <!--<customRenders:CustomButtonRender  Style="{StaticResource ForgotPasswordButtonStyle}" HeightRequest="40"  Text="{i18n:Translate ForgotPassword}" />-->
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
                         <customRenders:CustomButtonRender  HeightRequest="40"  Style="{StaticResource ButtonStyle}" Command="{Binding GoToCreateAccountCommand}" Text="{i18n:Translate CreateNewAccount}" />
-                        <Grid>
+                        <!--<Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <customRenders:CustomButtonRender Grid.Column="0" Style="{StaticResource FacebookButtonStyle}"  HeightRequest="40"  TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
                             <customRenders:CustomButtonRender Grid.Column="1" Style="{StaticResource GoogleButtonStyle}" HeightRequest="40"  TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
-                        </Grid>
+                        </Grid>-->
                     </StackLayout>
                 </StackLayout>
             <!--</OnIdiom.Phone>-->
