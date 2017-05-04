@@ -16,6 +16,9 @@ namespace DementiaHelper.WebApi.model
         public int RelativeId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
+        [Required]
+        public bool PrimaryRelative { get; set; }
+
         [ForeignKey("Citizen")]
         public int? CitizenId { get; set; }
         public Citizen Citizen { get; set; }

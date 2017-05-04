@@ -124,6 +124,7 @@ namespace DementiaHelper
                     break;
                 case 2:
                     ApplicationUser.CitizenId = User.SelectToken("CitizenId") != null ? User.SelectToken("CitizenId").ToObject<int?>() : null;
+                    ApplicationUser.PrimaryRelative = Convert.ToBoolean(dict["PrimaryRelative"]);
                     break;
                 case 3:
                     if (!dict.ContainsKey("CitizenIds")) break;

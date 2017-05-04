@@ -96,6 +96,7 @@ namespace DementiaHelper.WebApi.Controllers
                     var relative = _repository.GetRelative(user.ApplicationUserId);
                     if (relative == null) break;
                     payload.Add("CitizenId", relative.CitizenId);
+                    payload.Add("PrimaryRelative", relative.PrimaryRelative);
                     break;
                 case 3:
                     var caregiver = _repository.GetCaregiver(user.ApplicationUserId);
@@ -222,6 +223,15 @@ namespace DementiaHelper.WebApi.Controllers
                         decoded.SingleOrDefault(x => x.Key.Equals("CitizenId")).Value), decoded.SingleOrDefault(x => x.Key.Equals("ConnectionId")).Value.ToString())
                 }
             });
+        }
+
+        [HttpPut("primaryrelative")]
+        [AllowAnonymous]
+        public string SetPrimaryRelative(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var success = _repository.SetNewPrimaryRelative(Convert.ToInt32(decoded["CitizenId"]), Convert.ToInt32(decoded["NewPrimaryRelative"]));
+            return JWTService.Encode(new Dictionary<string, object>() { { "PrimaryRelativeChanged", success } });
         }
     }
 }

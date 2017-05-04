@@ -18,6 +18,7 @@ namespace DementiaHelper.Model
         public string Description { get; set; }
         public string Phone { get; set; }
         public int? CitizenId { get; set; }
+        public bool PrimaryRelative { get; set; }
         public ObservableCollection<int?> ListOfCitizens {get;set;}
         public int? RoleId { get; set; }
         public int? GroupId { get; set; }

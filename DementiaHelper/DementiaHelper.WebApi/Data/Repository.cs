@@ -74,7 +74,7 @@ namespace DementiaHelper.WebApi.Data
                     _context.SaveChanges();
                     return true;
                 case 2:
-                    var relative = new Relative() {ApplicationUser = user};
+                    var relative = new Relative() {ApplicationUser = user, PrimaryRelative = false};
                     _context.Add(relative);
                     _context.SaveChanges();
                     return true;
@@ -278,6 +278,20 @@ namespace DementiaHelper.WebApi.Data
             var chatGroup = _context.ChatGroups.Add(new ChatGroup() {GroupName = name}).Entity;
             _context.SaveChanges();
             return chatGroup;
+        }
+
+        public bool SetNewPrimaryRelative(int citizenId, int newPrimaryRelative)
+        {
+            var newPrimary = _context.Relatives.SingleOrDefault(x => x.RelativeId == newPrimaryRelative);
+            if (newPrimary == null) { return false; }
+
+            var oldPrimary = _context.Relatives.SingleOrDefault(x => x.CitizenId == citizenId && x.PrimaryRelative);
+            if (oldPrimary != null){oldPrimary.PrimaryRelative = false;}
+
+            newPrimary.PrimaryRelative = true;
+
+            _context.SaveChanges();
+            return true;
         }
     }
 }
