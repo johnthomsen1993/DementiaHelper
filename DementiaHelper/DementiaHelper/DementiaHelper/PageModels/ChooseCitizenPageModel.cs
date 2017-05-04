@@ -22,14 +22,21 @@ namespace DementiaHelper.PageModels
         public ChooseCitizenPageModel()
         {
             _SearchText = "";
-
-            CaregiversCitizenCollection = User.CitizenList;
-
-           // CaregiversCitizenCollection = new ObservableCollection<Citizen>() {  }; ;
-            CitizenCollection = new ObservableCollection<Citizen>();
-            this.FilterCitizens();
             CitizenTappedCommand = new Command<Citizen>(ChooseCitizen);
             
+        }
+
+        protected override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
+            if (User?.CitizenList != null)
+            {
+                CaregiversCitizenCollection = User.CitizenList;
+
+                // CaregiversCitizenCollection = new ObservableCollection<Citizen>() {  }; ;
+                CitizenCollection = new ObservableCollection<Citizen>();
+                this.FilterCitizens();
+            }
         }
 
         //private async Task<ObservableCollection<Citizen>> GetCaregiverCitizenCollection(int? id)
