@@ -44,8 +44,6 @@ namespace DementiaHelper.PageModels
             Messages = new ObservableCollection<Message>();
             groupId = user.GroupId ?? 0;
             _chatServices.Connect();
-            _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
-            
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
@@ -56,6 +54,13 @@ namespace DementiaHelper.PageModels
             {
                 await GetChatMessageList(groupId);
             });
+            _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
+        }
+
+        protected override void ViewIsDisappearing(object sender, EventArgs e)
+        {
+            base.ViewIsDisappearing(sender, e);
+            _chatServices.OnMessageReceived -= _chatServices_OnMessageReceived;
         }
 
         private async Task GetChatMessageList(int id)

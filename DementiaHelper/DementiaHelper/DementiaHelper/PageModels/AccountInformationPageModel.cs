@@ -82,7 +82,7 @@ namespace DementiaHelper.PageModels
                         LastName = decoded["lastName"]?.ToString(),
                         Email = decoded["email"]?.ToString(),
                         Description = decoded["description"]?.ToString(),
-                        Phone = Convert.ToInt32(decoded["phone"])
+                        Phone = decoded["phone"].ToString()
                     };
                 }
                 catch (Exception)
