@@ -5,6 +5,7 @@
              xmlns:c="clr-namespace:DementiaHelper.Converters;assembly=DementiaHelper"
              xmlns:b="clr-namespace:DementiaHelper.Behaviors;assembly=DementiaHelper"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              BackgroundColor="#ffffff"
              Title="{i18n:Translate ChooseCitizenTitle}">
 
@@ -16,86 +17,115 @@
     <ContentPage.Content>
         <OnIdiom x:TypeArguments="View">
             <OnIdiom.Phone>
-                <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
-                    <SearchBar Placeholder="søg" Text="{Binding SearchText}" HeightRequest="50">
-                    </SearchBar>
-                    <ListView ItemsSource="{Binding CitizenCollection}">
-                        <ListView.Header>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions >
-                                    <RowDefinition  Height="*"></RowDefinition>
-                                    <RowDefinition  Height="1"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Label Text="{i18n:Translate FirstName}" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"></Label>
-                                <Label Text="{i18n:Translate LastName}"  FontAttributes="Bold" Grid.Row="0" Grid.Column="1"></Label>
-                                <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></BoxView>
-                            </Grid>
-                        </ListView.Header>
-                        <ListView.Behaviors>
-                            <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding CitizenTappedCommand}" Converter="{StaticResource ItemTappedConverter}" />
-                        </ListView.Behaviors>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="{Binding FirstName}" Grid.Column="0"></Label>
-                                        <Label Text="{Binding LastName}" Grid.Column="1"></Label>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" >
+                    <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <StackLayout  VerticalOptions="Start" >
+                            <SearchBar Placeholder="{i18n:Translate SearchCitizen}" Text="{Binding SearchText}" HeightRequest="50">
+                            </SearchBar>
+                            <ScrollView>
+                                <ListView ItemsSource="{Binding CitizenCollection}">
+                                    <ListView.Header>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions >
+                                                <RowDefinition  Height="*"></RowDefinition>
+                                                <RowDefinition  Height="1"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="{i18n:Translate FirstName}" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"></Label>
+                                            <Label Text="{i18n:Translate LastName}"  FontAttributes="Bold" Grid.Row="0" Grid.Column="1"></Label>
+                                            <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></BoxView>
+                                        </Grid>
+                                    </ListView.Header>
+                                    <ListView.Behaviors>
+                                        <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding CitizenTappedCommand}" Converter="{StaticResource ItemTappedConverter}" />
+                                    </ListView.Behaviors>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding FirstName}" Grid.Column="0"></Label>
+                                                    <Label Text="{Binding LastName}" Grid.Column="1"></Label>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </ScrollView>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" ></StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                            <Label IsVisible="{Binding CitizenChoosen}" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate ChoosenCitizen}"/>
+                            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                                <Label Text="{Binding ChoosenCitizen.FirstName}" ></Label>
+                                <Label  Text="{Binding ChoosenCitizen.LastName}" ></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
                 </StackLayout>
             </OnIdiom.Phone>
             <OnIdiom.Tablet>
-                <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
-                    <SearchBar FontSize="22" Placeholder="søg" Text="{Binding SearchText}" >
-                    </SearchBar>
-                    <ListView ItemsSource="{Binding CitizenCollection}">
-                        <ListView.Header>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions >
-                                    <RowDefinition  Height="*"></RowDefinition>
-                                    <RowDefinition  Height="1"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Label Text="{i18n:Translate FirstName}" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"></Label>
-                                <Label Text="{i18n:Translate LastName}" Style="{StaticResource ListLabelStyleTablet}"  FontAttributes="Bold" Grid.Row="0" Grid.Column="1"></Label>
-                                <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></BoxView>
-                            </Grid>
-                        </ListView.Header>
-                        <ListView.Behaviors>
-                            <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding CitizenTappedCommand}" Converter="{StaticResource ItemTappedConverter}" />
-                        </ListView.Behaviors>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="{Binding FirstName}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="0"></Label>
-                                        <Label Text="{Binding LastName}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="1"></Label>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" >
+                    <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <StackLayout VerticalOptions="Start" >
+                            <SearchBar FontSize="22" Placeholder="{i18n:Translate SearchCitizen}" Text="{Binding SearchText}" >
+                            </SearchBar>
+                            <ScrollView>
+                                <ListView ItemsSource="{Binding CitizenCollection}">
+                                    <ListView.Header>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions >
+                                                <RowDefinition  Height="*"></RowDefinition>
+                                                <RowDefinition  Height="1"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="{i18n:Translate FirstName}" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"></Label>
+                                            <Label Text="{i18n:Translate LastName}" Style="{StaticResource ListLabelStyleTablet}"  FontAttributes="Bold" Grid.Row="0" Grid.Column="1"></Label>
+                                            <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></BoxView>
+                                        </Grid>
+                                    </ListView.Header>
+                                    <ListView.Behaviors>
+                                        <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding CitizenTappedCommand}" Converter="{StaticResource ItemTappedConverter}" />
+                                    </ListView.Behaviors>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding FirstName}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="0"></Label>
+                                                    <Label Text="{Binding LastName}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="1"></Label>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </ScrollView>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                            <Label Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" IsVisible="{Binding CitizenChoosen}" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate ChoosenCitizen}"/>
+                            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                                <Label Style="{StaticResource ListLabelStyleTablet}" Text="{Binding ChoosenCitizen.FirstName}" ></Label>
+                                <Label Style="{StaticResource ListLabelStyleTablet}" Text="{Binding ChoosenCitizen.LastName}" ></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
-
             </OnIdiom.Tablet>
-        </OnIdiom> 
+        </OnIdiom>
     </ContentPage.Content>
 </ContentPage>

@@ -326,4 +326,24 @@
     <value>Settings</value>
     <comment>Title for settings view</comment>
   </data>
+  <data name="ChoosenCitizen" xml:space="preserve">
+    <value>Your choosen citizen is:</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="CreateNewAppointment" xml:space="preserve">
+    <value>Create new appointment</value>
+    <comment>Title for CreateCalendarAppointment view</comment>
+  </data>
+  <data name="NewAppointment" xml:space="preserve">
+    <value>Create appointment</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note, only shared among a nursing home</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="SearchCitizen" xml:space="preserve">
+    <value>Search citizen</value>
+    <comment>Label for Textfield</comment>
+  </data>
 </root>

@@ -5,7 +5,7 @@
              xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.CreateShoppingItemPage"
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
-             Title="Tilføj vare"
+             Title="{i18n:Translate AddShoppingItem}"
              >
 
     <ContentPage.Content>

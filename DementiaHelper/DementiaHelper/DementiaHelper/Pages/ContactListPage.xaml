@@ -13,7 +13,7 @@
         <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
             <SearchBar Placeholder="søg" Text="{Binding SearchText}" HeightRequest="50">
             </SearchBar>
-            <ListView x:Name="ContactListView" ItemsSource="{Binding ContactCollection}">
+            <ListView x:Name="ContactListView" ItemsSource="{Binding ContactCollection}" HasUnevenRows="True">
                 <ListView.Header>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
                 <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
                     <SearchBar Placeholder="søg" Text="{Binding SearchText}" HeightRequest="50">
                     </SearchBar>
-                    <ListView x:Name="ContactListViewTablet" ItemsSource="{Binding ContactCollection}">
+                    <ListView HasUnevenRows="True" x:Name="ContactListViewTablet" ItemsSource="{Binding ContactCollection}">
                         <ListView.Header>
                             <Grid>
                                 <Grid.ColumnDefinitions>

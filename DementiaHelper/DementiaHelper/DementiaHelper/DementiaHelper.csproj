@@ -100,6 +100,7 @@
     <Compile Include="Renders\CustomControlRenders\CustomButtonRender.cs" />
     <Compile Include="Renders\CustomControlRenders\CustomImageGallery.cs" />
     <Compile Include="Renders\ChatListView.cs" />
+    <Compile Include="Renders\CustomControlRenders\ToggleButton.cs" />
     <Compile Include="Renders\MessageViewCell.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\IChatService.cs" />
