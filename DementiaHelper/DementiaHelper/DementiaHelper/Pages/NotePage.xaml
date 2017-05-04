@@ -32,7 +32,7 @@
         </ListView.ItemTemplate>
     </ListView>
         <StackLayout BackgroundColor="#0099cc" Padding="1">
-            <Entry Text="{Binding Subject}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Placeholder="Message"></Entry>
+            <Entry Text="{Binding Note}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Placeholder="Message"></Entry>
         </StackLayout>
 
         <customRenders:CustomButtonRender  Style="{StaticResource ButtonStyle}" Text="{i18n:Translate NewNote}" Command="{Binding NewNoteCommand}"/>
