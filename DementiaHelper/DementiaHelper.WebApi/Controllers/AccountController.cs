@@ -43,14 +43,12 @@ namespace DementiaHelper.WebApi.Controllers
         public string CreateAccount(string content)
         {
             var decoded = JWTService.Decode(content);
-            var chatGroup = _repository.CreateChatGroup(decoded["firstName"] + " " + decoded["lastName"]);
             var user = new ApplicationUser()
             {
                 Email = decoded["email"].ToString(),
                 RoleId = Convert.ToInt32(decoded["role"]),
                 FirstName = decoded["firstName"].ToString(),
                 LastName = decoded["lastName"].ToString(),
-                ChatGroupId = chatGroup.ChatGroupId,
                 Salt = GenerateSalt()
             };
             user.Hash = GenerateHash(decoded.SingleOrDefault(x => x.Key.Equals("password")).Value.ToString(),user.Salt);
@@ -126,7 +124,7 @@ namespace DementiaHelper.WebApi.Controllers
                 FirstName = decoded["firstName"]?.ToString(),
                 LastName = decoded["lastName"]?.ToString(),
                 Description = decoded["description"]?.ToString(),
-                Phone = Convert.ToInt32(decoded["phone"])
+                Phone = decoded["phone"]?.ToString()
             };
             var success = _repository.UpdateAccount(user, decoded["oldEmail"].ToString());
             return JWTService.Encode(new Dictionary<string, object>() { { "UserUpdated", success } });

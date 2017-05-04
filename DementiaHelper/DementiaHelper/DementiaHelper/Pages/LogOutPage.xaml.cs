@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DementiaHelper.PageModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace DementiaHelper.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage
+    public partial class LogOutPage : ContentPage
     {
-        public SettingsPage()
+        public LogOutPage()
         {
             InitializeComponent();
+
         }
     }
 }
