@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DementiaHelper.Extensions;
 using DementiaHelper.Model;
+using DementiaHelper.Resx;
 using DementiaHelper.Services;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto.Agreement.JPake;
@@ -74,7 +75,7 @@ namespace DementiaHelper.PageModels
                 }
                 await CoreMethods.PopPageModel();
 
-            }else{ await CoreMethods.DisplayAlert("Invalid email", "Please enter a valid email", "Ok"); }
+            }else{ await CoreMethods.DisplayAlert(AppResources.General_InvalidEmailTitle, AppResources.General_InvalidEmailText, AppResources.General_Ok); }
         }
 
         async Task Cancel()

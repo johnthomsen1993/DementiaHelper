@@ -21,9 +21,9 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpPut("saveChatMessage")]
         [AllowAnonymous]
-        public void SaveChatMessage(string content)
+        public void SaveChatMessage(string token)
         {
-            var decoded = JWTService.Decode(content);
+            var decoded = JWTService.Decode(token);
             if (Convert.ToInt32(decoded["GroupId"]) != 0)
             {
                 _iRepository.SaveChatMessage(decoded["Message"]?.ToString(), Convert.ToInt32(decoded["GroupId"]), Convert.ToInt32(decoded["Sender"]));

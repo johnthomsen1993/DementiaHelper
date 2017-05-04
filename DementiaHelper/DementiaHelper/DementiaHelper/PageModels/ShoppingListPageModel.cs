@@ -56,7 +56,7 @@ namespace DementiaHelper.PageModels
                     }
                     else
                     {
-                        await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.ErrorOnRemoveAccept);
+                        await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.General_Ok);
                     }
                 }
                 catch (Exception)
@@ -97,7 +97,7 @@ namespace DementiaHelper.PageModels
             {
                 try
                 {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "shoppingListItemId", item.ShoppingListItemId }, {"citizenId", User.CitizenId} }); //TODO: Make citizenid accessible and change this
+                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "shoppingListItemId", item.ShoppingListItemId }, {"citizenId", User.CitizenId} });
                     var result = await client.DeleteAsync(new Uri(URI_BASE + encoded));
                     var test = await result.Content.ReadAsStringAsync();
                     var decoded = JWTService.Decode(test);
@@ -108,7 +108,7 @@ namespace DementiaHelper.PageModels
                     }
                     else
                     {
-                       await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.ErrorOnRemoveAccept);
+                       await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.General_Ok);
                     }
                 }
                 catch (Exception)
@@ -144,7 +144,6 @@ namespace DementiaHelper.PageModels
                 ShoppingListItems = new ObservableCollection<ShoppingListItem>()
             };
             var list = dict.SingleOrDefault(x => x.Key.Equals("ShoppingList")).Value as IEnumerable<object>;
-            //var list = dict.Where(x => x.Key.Contains("ShoppingList")).Select(x => x.Value).ToList().FirstOrDefault() as IEnumerable<object>;
             foreach (var obj in list)
             {
                 var jsonContainer = obj as JContainer;

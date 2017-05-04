@@ -62,6 +62,42 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password must be at least 6 characters long..
+        /// </summary>
+        public static string Account_InvalidPasswordText {
+            get {
+                return ResourceManager.GetString("Account_InvalidPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid password.
+        /// </summary>
+        public static string Account_InvalidPasswordTitle {
+            get {
+                return ResourceManager.GetString("Account_InvalidPasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must choose a role before proceeding..
+        /// </summary>
+        public static string Account_InvalidRoleText {
+            get {
+                return ResourceManager.GetString("Account_InvalidRoleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid role.
+        /// </summary>
+        public static string Account_InvalidRoleTitle {
+            get {
+                return ResourceManager.GetString("Account_InvalidRoleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My account.
         /// </summary>
         public static string AccountInformationTitle {
@@ -71,29 +107,11 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add shopping item.
-        /// </summary>
-        public static string AddShoppingItem {
-            get {
-                return ResourceManager.GetString("AddShoppingItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Are you sure, that you would want to close this application.
         /// </summary>
         public static string AreYouSureThatYouWantToCloseThisApplication {
             get {
                 return ResourceManager.GetString("AreYouSureThatYouWantToCloseThisApplication", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Back.
-        /// </summary>
-        public static string Back {
-            get {
-                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
@@ -314,15 +332,6 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
-        /// </summary>
-        public static string ErrorOnRemoveAccept {
-            get {
-                return ResourceManager.GetString("ErrorOnRemoveAccept", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string ErrorOnRemoveTitle {
@@ -346,6 +355,33 @@ namespace DementiaHelper.Resx {
         public static string ForgotPassword {
             get {
                 return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid email.
+        /// </summary>
+        public static string General_InvalidEmailText {
+            get {
+                return ResourceManager.GetString("General_InvalidEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid email.
+        /// </summary>
+        public static string General_InvalidEmailTitle {
+            get {
+                return ResourceManager.GetString("General_InvalidEmailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string General_Ok {
+            get {
+                return ResourceManager.GetString("General_Ok", resourceCulture);
             }
         }
         
