@@ -5,55 +5,97 @@
              xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              Title="{i18n:Translate CalenderTitle}"
-            x:Name="CalenderPage"
-            >
+            x:Name="CalenderTabPage">
+
 
 
     <ContentPage  Title="Day" >
-        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  >
-                <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
-                    <schedule:SfSchedule
-                         BindingContext="{Binding BindingContext,Source={x:Reference CalenderPage}}"
+        <OnIdiom x:TypeArguments="View">
+            <OnIdiom.Phone>
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  >
+                        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                            <schedule:SfSchedule
+                         BindingContext="{Binding BindingContext,Source={x:Reference CalenderTabPage}}"
                          DataSource="{Binding Appointments}"
                          x:Name="DaySchedule"
+                        Locale="da-DK"
                          ScheduleView="DayView" 
                          HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand"  >
-                        <schedule:SfSchedule.DayViewSettings>
-                            <schedule:DayViewSettings >
-                                <schedule:DayViewSettings.DayLabelSettings>
-                                    <schedule:DayLabelSettings TimeFormat="HH" />
-                                </schedule:DayViewSettings.DayLabelSettings>
-                            </schedule:DayViewSettings>
-                        </schedule:SfSchedule.DayViewSettings>
-                    </schedule:SfSchedule>
-                </ScrollView>
-            </StackLayout>
+                                <schedule:SfSchedule.DayViewSettings>
+                                    <schedule:DayViewSettings >
+                                        <schedule:DayViewSettings.DayLabelSettings>
+                                            <schedule:DayLabelSettings TimeFormat="HH" />
+                                        </schedule:DayViewSettings.DayLabelSettings>
+                                    </schedule:DayViewSettings>
+                                </schedule:SfSchedule.DayViewSettings>
+                            </schedule:SfSchedule>
+                        </ScrollView>
+                    </StackLayout>
 
 
-            <Image Source="ic_add_circle_black_48dp.png"
+                    <Image Source="ic_add_circle_black_48dp.png"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand"
               AbsoluteLayout.LayoutBounds="1,.99, 65, 65"
               AbsoluteLayout.LayoutFlags="PositionProportional" >
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
               Command="{Binding AddAppointmentCommand}"/>
-                </Image.GestureRecognizers>
-            </Image>
-        </AbsoluteLayout>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </AbsoluteLayout>
+            </OnIdiom.Phone>
+            <OnIdiom.Tablet>
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  >
+                        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                            <schedule:SfSchedule
+                         BindingContext="{Binding BindingContext,Source={x:Reference CalenderTabPage}}"
+                         DataSource="{Binding Appointments}"
+                         x:Name="DayScheduleTablet"
+                        Locale="da-DK"
+                         ScheduleView="DayView" 
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"  >
+                                <schedule:SfSchedule.DayViewSettings>
+                                    <schedule:DayViewSettings >
+                                        <schedule:DayViewSettings.DayLabelSettings>
+                                            <schedule:DayLabelSettings TimeFormat="HH" />
+                                        </schedule:DayViewSettings.DayLabelSettings>
+                                    </schedule:DayViewSettings>
+                                </schedule:SfSchedule.DayViewSettings>
+                            </schedule:SfSchedule>
+                        </ScrollView>
+                    </StackLayout>
+
+
+                    <Image Source="ic_add_circle_black_48dp.png"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              AbsoluteLayout.LayoutBounds="1,.99, 130, 130"
+              AbsoluteLayout.LayoutFlags="PositionProportional" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+              Command="{Binding AddAppointmentCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </AbsoluteLayout>
+            </OnIdiom.Tablet>
+        </OnIdiom>
     </ContentPage>
 
 
-    <ContentPage Title="Month">
+    <!--<ContentPage Title="Month">
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
                 <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
                     <schedule:SfSchedule 
-                        BindingContext="{Binding BindingContext,Source={x:Reference CalenderPage}}"
+                        BindingContext="{Binding BindingContext,Source={x:Reference CalenderTabPage}}"
                         DataSource="{Binding Appointments}"
                         x:Name="MonthSchedule"
+                        Locale="da-DK"
                         ScheduleView="MonthView"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
@@ -74,26 +116,45 @@
                 </Image.GestureRecognizers>
             </Image>
         </AbsoluteLayout>
+    </ContentPage>-->
+
+    <ContentPage Title="Week">
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  >
+                <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                    <schedule:SfSchedule
+                             BindingContext="{Binding BindingContext,Source={x:Reference CalenderTabPage}}"
+                             DataSource="{Binding Appointments}"
+                             x:Name="WeekSchedule"  
+                             Locale="da-DK"
+                             ScheduleView="WeekView"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"  >
+                        <schedule:SfSchedule.WeekViewSettings>
+                            <schedule:WeekViewSettings >
+                                <schedule:WeekViewSettings.WeekLabelSettings>
+                                    <schedule:WeekLabelSettings TimeFormat="HH" />
+                                </schedule:WeekViewSettings.WeekLabelSettings>
+                            </schedule:WeekViewSettings>
+
+                        </schedule:SfSchedule.WeekViewSettings>
+                    </schedule:SfSchedule>
+                </ScrollView>
+            </StackLayout>
+
+
+            <Image Source="ic_add_circle_black_48dp.png"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              AbsoluteLayout.LayoutBounds="1,.99, 130, 130"
+              AbsoluteLayout.LayoutFlags="PositionProportional" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+              Command="{Binding AddAppointmentCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
     </ContentPage>
 
-
-    <!--<ContentPage Title="Week">
-
-        <schedule:SfSchedule
-            x:Name="WeekSchedule"
-     ScheduleView="WeekView"
-      HorizontalOptions="FillAndExpand"
-      VerticalOptions="FillAndExpand"  >
-            <schedule:SfSchedule.WeekViewSettings>
-                <schedule:WeekViewSettings >
-                    <schedule:WeekViewSettings.WeekLabelSettings>
-                        <schedule:WeekLabelSettings TimeFormat="HH" />
-                    </schedule:WeekViewSettings.WeekLabelSettings>
-                </schedule:WeekViewSettings>
-            </schedule:SfSchedule.WeekViewSettings>
-        </schedule:SfSchedule>
-
-
-    </ContentPage>-->
 
 </TabbedPage>

@@ -26,7 +26,7 @@ namespace DementiaHelper.WebApi.Controllers
             var decoded = JWTService.Decode(content);
             if (Convert.ToInt32(decoded["GroupId"]) != 0)
             {
-                _iRepository.SaveChatMessage(decoded["Message"]?.ToString(), Convert.ToInt32(decoded["GroupId"]), decoded["Sender"]?.ToString());
+                _iRepository.SaveChatMessage(decoded["Message"]?.ToString(), Convert.ToInt32(decoded["GroupId"]), Convert.ToInt32(decoded["Sender"]));
             }
             
         }

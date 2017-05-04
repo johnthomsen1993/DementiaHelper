@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
-             x:Class="DementiaHelper.Pages.ConnectToNursingHomePage">
+             x:Class="DementiaHelper.Pages.ConnectToNursingHomePage"
+             Title="{i18n:Translate ConnectToNursingHomeTitle}"
+             >
 
 
 
@@ -14,7 +16,7 @@
             </StackLayout>
             <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand">
                 <StackLayout Margin="10" Padding="1" BackgroundColor="#0099cc">
-                    <Entry BackgroundColor="White" Placeholder="{i18n:Translate NursingHomeId}" Text="{Binding ConnectionId}" ></Entry>
+                    <Entry BackgroundColor="White" Placeholder="{i18n:Translate ConnectToNursingHomePlaceholderText}" Text="{Binding ConnectionId}" ></Entry>
                 </StackLayout>
                 <Label  Margin="10" TextColor="#0099cc" Font="Bold" Text="Indtast plejehjemmets id, se Idet i den plejehjemmets account information"></Label>
             </StackLayout>
