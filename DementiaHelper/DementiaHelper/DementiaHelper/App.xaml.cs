@@ -123,7 +123,7 @@ namespace DementiaHelper
                     ApplicationUser.CitizenId = ApplicationUser.ApplicationUserId;
                     break;
                 case 2:
-                    ApplicationUser.CitizenId = User.SelectToken("CitizenId") != null ? User.SelectToken("CitizenId").ToObject<int?>() : null;
+                    ApplicationUser.CitizenId = dict["CitizenId"] != null ? Convert.ToInt32(dict["CitizenId"]) : (int?)null;
                     break;
                 case 3:
                     if (!dict.ContainsKey("CitizenIds")) break;
