@@ -121,7 +121,7 @@ namespace DementiaHelper.WebApi.Controllers
                 {
                     CitizenId = Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("CitizenId")).Value),
                     Subject = decoded.SingleOrDefault(x => x.Key.Equals("Subject")).Value.ToString(),
-                    CreatedTime = DateTime.Parse(decoded.SingleOrDefault(x => x.Key.Equals("Subject")).Value.ToString())
+                    CreatedTime = DateTime.Parse(decoded.SingleOrDefault(x => x.Key.Equals("CreatedTime")).Value.ToString())
                 };
                 _iRepository.CreateNote(note);
                 return JWTService.Encode(new Dictionary<string, object>() {{"NoteCreated", true}});

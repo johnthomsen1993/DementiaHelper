@@ -114,7 +114,7 @@ namespace DementiaHelper
                 RoleId = User.SelectToken("RoleId").ToObject<int>(),
                 GroupId = User.SelectToken("ChatGroupId").ToObject<int?>(),
                 Description = User.SelectToken("Description")?.ToObject<string>(),
-                Phone = User.SelectToken("Phone").ToObject<int?>()
+                Phone = User.SelectToken("Phone")?.ToObject<string>()
             };
             switch (ApplicationUser.RoleId)
             {

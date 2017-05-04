@@ -67,6 +67,8 @@ namespace DementiaHelper.WebApi.Data
             switch (user.RoleId)
             {
                 case 1:
+                    var chatGroup = CreateChatGroup(user.FirstName + " " + user.LastName);
+                    user.ChatGroupId = chatGroup.ChatGroupId;
                     var citizen = new Citizen() {ApplicationUser = user, ConnectionId = connectionId};
                     _context.Add(citizen);
                     _context.SaveChanges();
