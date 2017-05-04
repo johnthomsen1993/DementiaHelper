@@ -143,6 +143,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your choosen citizen is:.
+        /// </summary>
+        public static string ChoosenCitizen {
+            get {
+                return ResourceManager.GetString("ChoosenCitizen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Today.
         /// </summary>
         public static string CitizenHomeTitle {
@@ -238,6 +247,15 @@ namespace DementiaHelper.Resx {
         public static string CreateNewAccount {
             get {
                 return ResourceManager.GetString("CreateNewAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new appointment.
+        /// </summary>
+        public static string CreateNewAppointment {
+            get {
+                return ResourceManager.GetString("CreateNewAppointment", resourceCulture);
             }
         }
         
@@ -404,11 +422,29 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create appointment.
+        /// </summary>
+        public static string NewAppointment {
+            get {
+                return ResourceManager.GetString("NewAppointment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New note.
         /// </summary>
         public static string NewNote {
             get {
                 return ResourceManager.GetString("NewNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note, only shared among a nursing home.
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
             }
         }
         
@@ -526,6 +562,15 @@ namespace DementiaHelper.Resx {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search citizen.
+        /// </summary>
+        public static string SearchCitizen {
+            get {
+                return ResourceManager.GetString("SearchCitizen", resourceCulture);
             }
         }
         

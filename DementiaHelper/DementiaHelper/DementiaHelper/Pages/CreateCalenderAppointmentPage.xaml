@@ -4,7 +4,7 @@
              x:Class="DementiaHelper.Pages.CreateCalenderAppointmentPage"
              xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
-             Title="Ny begivenhed">
+             Title="{i18n:Translate CreateNewAppointment}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -67,7 +67,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <customRenders:CustomButtonRender x:Name="CancelCreateAppointmentButton" Text="{i18n:Translate Cancel}" Style="{StaticResource CancelButtonStyle}" Command="{Binding CancelCreateAppointmentCommand}" Grid.Column="0" />
-                <customRenders:CustomButtonRender  x:Name="CreateAppointmentButton" Text="Opret begivenhed" Style="{StaticResource ButtonStyle}" Command="{Binding CreateAppointmentCommand}" Grid.Column="1" />
+                <customRenders:CustomButtonRender  x:Name="CreateAppointmentButton" Text="{i18n:Translate NewAppointment}" Style="{StaticResource ButtonStyle}" Command="{Binding CreateAppointmentCommand}" Grid.Column="1" />
             </Grid>
         </Grid>
 

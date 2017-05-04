@@ -67,10 +67,10 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"></RowDefinition>
                                             </Grid.RowDefinitions>
-                                            <customRenders:CustomButtonRender Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewPhone},Path=BindingContext}" Style="{StaticResource DeleteItemStylePhone}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
+                                            <customRenders:CustomButtonRender  Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewPhone},Path=BindingContext}" Style="{StaticResource DeleteItemStylePhone}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
                                             <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
                                             <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
-                                            <Switch  IsToggled="{Binding Bought}" Grid.Column="6" Grid.ColumnSpan="2" ></Switch>
+                                            <customRenders:ToggleButton Command="{Binding Source={x:Reference ShoppingListViewPhone},Path=BindingContext.ChangeBoughtStateOfItemCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Checked="{Binding Bought}"   CheckedImage="CheckBoxChecked.png" UnCheckedImage="CheckBoxUnchecked.png" Grid.Column="6" Grid.ColumnSpan="2" ></customRenders:ToggleButton>
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>
@@ -114,7 +114,7 @@
                                     </Grid.RowDefinitions>
                                     <Label Text="{i18n:Translate Quantity}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold"></Label>
                                     <Label Text="{i18n:Translate ProductName}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold"></Label>
-                                    <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"></BoxView>
+                                    <BoxView  Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"></BoxView>
                                 </Grid>
                             </ListView.Header>
                             <ListView.ItemTemplate>
@@ -137,7 +137,7 @@
                                             <customRenders:CustomButtonRender Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewTablet},Path=BindingContext}" Style="{StaticResource DeleteItemStyleTablet}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
                                             <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}"></Label>
                                             <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}"></Label>
-                                            <Switch  IsToggled="{Binding Bought}" Grid.Column="6" Grid.ColumnSpan="2" ></Switch>
+                                            <customRenders:ToggleButton VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Checked="False"  CheckedImage="CheckBoxChecked.png" UnCheckedImage="CheckBoxUnchecked.png" Grid.Column="6" Grid.ColumnSpan="2" ></customRenders:ToggleButton>
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>
