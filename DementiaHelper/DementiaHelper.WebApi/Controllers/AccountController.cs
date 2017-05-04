@@ -124,7 +124,7 @@ namespace DementiaHelper.WebApi.Controllers
                 FirstName = decoded["firstName"]?.ToString(),
                 LastName = decoded["lastName"]?.ToString(),
                 Description = decoded["description"]?.ToString(),
-                Phone = Convert.ToInt32(decoded["phone"])
+                Phone = decoded["phone"]?.ToString()
             };
             var success = _repository.UpdateAccount(user, decoded["oldEmail"].ToString());
             return JWTService.Encode(new Dictionary<string, object>() { { "UserUpdated", success } });

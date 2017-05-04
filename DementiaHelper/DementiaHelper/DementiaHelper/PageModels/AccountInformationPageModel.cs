@@ -44,7 +44,7 @@ namespace DementiaHelper.PageModels
             if (user.RoleId == 1)
             {
                 IsCitizen = true;
-                CitizenId = user.ConnectionId; //TODO: change to use connectionId
+                CitizenId = user.ConnectionId; 
             }
             else
             {
@@ -82,7 +82,7 @@ namespace DementiaHelper.PageModels
                         LastName = decoded["lastName"]?.ToString(),
                         Email = decoded["email"]?.ToString(),
                         Description = decoded["description"]?.ToString(),
-                        Phone = decoded["phone"].ToString()
+                        Phone = decoded["phone"]?.ToString()
                     };
                 }
                 catch (Exception)

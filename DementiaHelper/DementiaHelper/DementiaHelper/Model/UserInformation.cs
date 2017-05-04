@@ -18,10 +18,4 @@ namespace DementiaHelper.Model
         public string Picture { get; set; }
         public string Phone { get; set; }
     }
-
-    public class AddToShoppingList
-    {
-        public string Product { get; set; }
-        public int Amount { get; set; }
-    }
 }
