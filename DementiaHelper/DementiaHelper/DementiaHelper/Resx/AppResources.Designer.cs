@@ -388,9 +388,9 @@ namespace DementiaHelper.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
-        public static string LogOut {
+        public static string LogOutTitle {
             get {
-                return ResourceManager.GetString("LogOut", resourceCulture);
+                return ResourceManager.GetString("LogOutTitle", resourceCulture);
             }
         }
         

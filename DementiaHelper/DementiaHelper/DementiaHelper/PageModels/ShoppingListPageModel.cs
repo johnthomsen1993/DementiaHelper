@@ -26,11 +26,10 @@ namespace DementiaHelper.PageModels
         public ICommand CreateShoppingItemCommand { get; protected set; }
         public string Item { get; set; }
         public ObservableCollection<ShoppingListItem> ShoppingListDetails { get; set; }
-
+        ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public ShoppingListPageModel()
         {
             ShoppingList = new ShoppingList() {ShoppingListItems = new ObservableCollection<ShoppingListItem>() {} };
-            var User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
             CreateShoppingItemCommand = new Command(async (id) => await GoToCreateShoppingItem(User.CitizenId));
             RemoveFromDatabaseCommand = new Command(async (obj) => await RemoveFromDatabase((ShoppingListItem) obj));
         }
@@ -49,7 +48,15 @@ namespace DementiaHelper.PageModels
 
         private async Task GoToCreateShoppingItem(int? id)
         {
-            await CoreMethods.PushPageModel<CreateShoppingItemPageModel>(id);
+            if (id != null)
+            {
+                await CoreMethods.PushPageModel<CreateShoppingItemPageModel>(id);
+            }
+            else
+            {
+                if (User.RoleId == 2) { await CoreMethods.DisplayAlert("Not possible", "to add new items, you need to be connected to a person under care", "Ok"); }
+                if (User.RoleId == 3) { await CoreMethods.DisplayAlert("Not possible", "to add new items, you need to have choosen the citizen your inspecting", "Ok"); }
+            }
         }
         private async Task RemoveFromDatabase(ShoppingListItem item)
         {

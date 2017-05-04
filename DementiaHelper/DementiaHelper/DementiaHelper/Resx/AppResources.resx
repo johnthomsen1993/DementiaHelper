@@ -310,9 +310,9 @@
     <value>Connect to nursing home</value>
     <comment>Title for Connect to nursing home View</comment>
   </data>
-  <data name="LogOut" xml:space="preserve">
+  <data name="LogOutTitle" xml:space="preserve">
     <value>Logout</value>
-    <comment>Label for Textfield</comment>
+    <comment>Title for log out view</comment>
   </data>
   <data name="NewNote" xml:space="preserve">
     <value>New note</value>

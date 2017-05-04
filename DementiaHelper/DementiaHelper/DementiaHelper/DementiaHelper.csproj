@@ -61,8 +61,8 @@
     <Compile Include="PageModels\CreateCalenderAppointmentPageModel.cs" />
     <Compile Include="PageModels\EditAccountInformationPageModel.cs" />
     <Compile Include="PageModels\ImageGalleryPageModel.cs" />
+    <Compile Include="PageModels\LogoutPageModel.cs" />
     <Compile Include="PageModels\NotePageModel.cs" />
-    <Compile Include="PageModels\SettingsPageModel.cs" />
     <Compile Include="Pages\CalenderPage.xaml.cs">
       <DependentUpon>CalenderPage.xaml</DependentUpon>
     </Compile>
@@ -93,8 +93,8 @@
     <Compile Include="Pages\NotePage.xaml.cs">
       <DependentUpon>NotePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    <Compile Include="Pages\LogOutPage.xaml.cs">
+      <DependentUpon>LogOutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Renders\CustomControlRenders\ColorPickerCustomRender.cs" />
     <Compile Include="Renders\CustomControlRenders\CustomButtonRender.cs" />
@@ -325,7 +325,7 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\SettingsPage.xaml">
+    <EmbeddedResource Include="Pages\LogOutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

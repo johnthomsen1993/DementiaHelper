@@ -18,7 +18,7 @@
                         <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand" Padding="10">
                             <Entry Text="{Binding FirstName}" Placeholder="First name" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
                             <Entry Text="{Binding LastName}"  Placeholder="Last name" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
-                            <Entry Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
+                            <Entry Text="{Binding Email}"  Keyboard="Email" Placeholder="{i18n:Translate Email}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
                             <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
                         </StackLayout>
                     </StackLayout>
