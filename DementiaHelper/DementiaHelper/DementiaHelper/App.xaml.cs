@@ -126,6 +126,7 @@ namespace DementiaHelper
                     ApplicationUser.CitizenId = User.SelectToken("CitizenId") != null ? User.SelectToken("CitizenId").ToObject<int?>() : null;
                     break;
                 case 3:
+                    if (!dict.ContainsKey("CitizenIds")) break;
                     var list = dict["CitizenIds"] as IList;
                     ApplicationUser.CitizenList = MapToCitizenList(list);
                     break;

@@ -99,15 +99,11 @@ namespace DementiaHelper.WebApi.Controllers
                     break;
                 case 3:
                     var caregiver = _repository.GetCaregiver(user.ApplicationUserId);
-                    if (caregiver?.CaregiverCenterId == null)
-                    {
-                        payload.Add("Citizens", false);
-                    }
-                    else
+                    if (caregiver?.CaregiverCenterId != null)
                     {
                         var citizens = _repository.GetCitizenList(caregiver.CaregiverCenterId.Value);
                         var list = new List<Citizen>();
-                        citizens.ForEach(x => list.Add(new Citizen() {CitizenId = x.CitizenId, ApplicationUser = new ApplicationUser() {FirstName = x.ApplicationUser.FirstName, LastName = x.ApplicationUser.LastName} }));
+                        citizens.ForEach(x => list.Add(new Citizen() { CitizenId = x.CitizenId, ApplicationUser = new ApplicationUser() { FirstName = x.ApplicationUser.FirstName, LastName = x.ApplicationUser.LastName } }));
                         payload.Add("CitizenIds", list);
                     }
                     break;
