@@ -42,7 +42,21 @@ namespace DementiaHelper.PageModels
         async Task CreateAccountAsync()
         {
             var RoleId = GetIntegerValueForDatabase();
-            if (RoleId == 0 || !IsValidEmail(Email) || Password.Length<8) { return; }
+            if (RoleId == 0)
+            {
+                await CoreMethods.DisplayAlert(AppResources.Account_InvalidRoleTitle, AppResources.Account_InvalidRoleText, AppResources.General_Ok);
+                return; 
+            }
+            if (!IsValidEmail(Email))
+            {
+                await CoreMethods.DisplayAlert(AppResources.General_InvalidEmailTitle, AppResources.General_InvalidEmailText, AppResources.General_Ok);
+                return;
+            }
+            if (Password.Length < 6)
+            {
+                await CoreMethods.DisplayAlert(AppResources.Account_InvalidPasswordTitle, AppResources.Account_InvalidPasswordText, AppResources.General_Ok);
+                return;
+            }
             using (var client = new HttpClient())
             {
                 var encoded = JWTService.Encode(new Dictionary<string, object>

@@ -45,7 +45,7 @@
                             <Label Text="{Binding ShowedUser.LastName}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"></Label>
                             <Label Text="{i18n:Translate Description}" Grid.Row="5" Grid.Column="1"></Label>
                             <Label Text="{Binding ShowedUser.Description}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3"></Label>
-                            <Label Text="Citizen Id:" IsVisible="{Binding IsCitizen}"  Grid.Row="6" Grid.Column="1"></Label>
+                            <Label Text="{i18n:Translate CitizenId}" IsVisible="{Binding IsCitizen}"  Grid.Row="6" Grid.Column="1"></Label>
                             <Label Text="{Binding CitizenId}" IsVisible="{Binding IsCitizen}" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3"></Label>
                             <Label  Font="Bold" Text="{i18n:Translate ContactDetails}" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="4"></Label>
                             <!--This is used as a seperator line in the grid-->

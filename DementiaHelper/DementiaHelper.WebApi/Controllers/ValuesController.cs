@@ -62,9 +62,9 @@ namespace DementiaHelper.WebApi.Controllers
         // PUT api/values/5
         [HttpPut("shoppinglist")]
         [AllowAnonymous]
-        public void Put(string content)
+        public void Put(string token)
         {
-            var decoded = JWTService.Decode(content);
+            var decoded = JWTService.Decode(token);
             var sucess = _iRepository.SaveItemInShoppingList(Convert.ToInt32(decoded["CitizenId"]), decoded["Item"]?.ToString(), Convert.ToInt32(decoded["Quantity"]));
         }
 
@@ -79,9 +79,9 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpPut("calendar")]
         [AllowAnonymous]
-        public string CreateAppointment(string content)
+        public string CreateAppointment(string token)
         {
-            var decoded = JWTService.Decode(content);
+            var decoded = JWTService.Decode(token);
             try
             {
                 var appointment = new Appointment()
@@ -112,9 +112,9 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpPut("note")]
         [AllowAnonymous]
-        public string CreateNote(string content)
+        public string CreateNote(string token)
         {
-            var decoded = JWTService.Decode(content);
+            var decoded = JWTService.Decode(token);
             try
             {
                 var note = new Note()
@@ -151,6 +151,20 @@ namespace DementiaHelper.WebApi.Controllers
             var deleted =
                 _iRepository.DeleteNote(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("NoteId")).Value));
             return JWTService.Encode(new Dictionary<string, object>() { {"Deleted", deleted} });
+        }
+
+        [HttpPut("shoppinglist/bought")]
+        [AllowAnonymous]
+        public string ItemBought(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var changed = _iRepository.ChangeBoughtStatus(
+                Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("ShoppingListItemId")).Value),
+                Convert.ToBoolean(decoded.SingleOrDefault(x => x.Key.Equals("Bought")).Value));
+            if (!changed) return JWTService.Encode(new Dictionary<string, object>() {{"Bought", changed}});
+            var shoppingList = _iRepository.GetShoppingList(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("CitizenId")).Value));
+            var encoded = JWTService.Encode(new Dictionary<string, object>() { { "ShoppingList", shoppingList } });
+            return encoded;
         }
     }
 }

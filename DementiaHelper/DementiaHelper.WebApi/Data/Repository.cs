@@ -280,6 +280,15 @@ namespace DementiaHelper.WebApi.Data
             return chatGroup;
         }
 
+        public bool ChangeBoughtStatus(int id, bool bought)
+        {
+            var item = _context.ShoppingListItems.SingleOrDefault(x => x.ShoppingListItemId == id);
+            if (item == null) return false;
+            item.Bought = bought;
+            _context.SaveChanges();
+            return true;
+        }
+
         public bool SetNewPrimaryRelative(int citizenId, int newPrimaryRelative)
         {
             var newPrimary = _context.Relatives.SingleOrDefault(x => x.RelativeId == newPrimaryRelative);
