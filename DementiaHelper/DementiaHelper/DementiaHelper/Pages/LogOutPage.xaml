@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
              xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
-             x:Class="DementiaHelper.Pages.SettingsPage">
-    <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+             x:Class="DementiaHelper.Pages.LogOutPage"
+             Title="{i18n:Translate LogOutTitle}"
+             >
+    <!--<StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <StackLayout x:Name="outerStack" VerticalOptions="Start" >
             <StackLayout Orientation="Vertical" VerticalOptions="Start" >
                 <Image   x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
@@ -27,5 +29,5 @@
                 <customRenders:CustomButtonRender Grid.Column="1" Command="{Binding LogOutCommand}"  Style="{StaticResource ButtonStyle}" HeightRequest="40"  TextColor="White" Text="{i18n:Translate Save}" />
             </Grid>
         </StackLayout>
-    </StackLayout>
+    </StackLayout>-->
 </ContentPage>

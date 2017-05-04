@@ -305,9 +305,9 @@
     <value>Opret forbindelse til et plejehjem</value>
     <comment>Title for Connect to nursing home View</comment>
   </data>
-  <data name="LogOut" xml:space="preserve">
+  <data name="LogOutTitle" xml:space="preserve">
     <value>Log ud</value>
-    <comment>Label for Textfield</comment>
+    <comment>Title for log out view</comment>
   </data>
   <data name="NewNote" xml:space="preserve">
     <value>Nyt notat om borgeren</value>

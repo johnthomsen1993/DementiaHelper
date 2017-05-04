@@ -37,7 +37,7 @@
                             <Image   x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
                         </StackLayout>
                         <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand" Padding="5">
-                            <Entry  Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalTextAlignment="Center"  />
+                            <Entry Keyboard="Email" Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalTextAlignment="Center"  />
                             <Entry  Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalTextAlignment="Center" />
                         </StackLayout>
                     </StackLayout>

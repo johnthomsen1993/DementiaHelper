@@ -171,7 +171,7 @@ namespace DementiaHelper
                         MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
                         MasterDetailNav.AddPage<ConnectToNursingHomePageModel>(AppResources.ConnectToNursingHomeTitle, null);
-                        MasterDetailNav.AddPage<SettingsPageModel>(AppResources.SettingsTitle, null);
+                        MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);
 
                         break;
                     }
@@ -186,7 +186,7 @@ namespace DementiaHelper
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
-                        MasterDetailNav.AddPage<SettingsPageModel>(AppResources.SettingsTitle, null);
+                        MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);
                         break;
                     }
                 case 3:
@@ -201,7 +201,7 @@ namespace DementiaHelper
 
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
                         MasterDetailNav.AddPage<NotePageModel>(AppResources.NoteTitle, null);
-                        MasterDetailNav.AddPage<SettingsPageModel>(AppResources.SettingsTitle, null);
+                        MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);
                         break;
                     }
 
