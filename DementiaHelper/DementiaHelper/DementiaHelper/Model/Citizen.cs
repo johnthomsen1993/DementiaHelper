@@ -13,7 +13,6 @@ namespace DementiaHelper.Model
   
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
         public int CitizenId { get; set; }
     }
 }

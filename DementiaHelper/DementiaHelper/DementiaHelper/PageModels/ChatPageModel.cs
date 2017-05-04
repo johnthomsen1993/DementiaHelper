@@ -46,6 +46,7 @@ namespace DementiaHelper.PageModels
             _chatServices.Connect();
         }
 
+
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);

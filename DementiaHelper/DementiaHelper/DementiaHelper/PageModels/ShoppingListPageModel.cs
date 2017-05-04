@@ -23,6 +23,7 @@ namespace DementiaHelper.PageModels
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/shoppinglist/";
         public ShoppingList ShoppingList { get; set; }
         public ICommand RemoveFromDatabaseCommand { get; protected set; }
+        public ICommand ChangeBoughtStateOfItemCommand { get; protected set; }
         public ICommand CreateShoppingItemCommand { get; protected set; }
         public string Item { get; set; }
         public ObservableCollection<ShoppingListItem> ShoppingListDetails { get; set; }
@@ -32,7 +33,39 @@ namespace DementiaHelper.PageModels
             ShoppingList = new ShoppingList() {ShoppingListItems = new ObservableCollection<ShoppingListItem>() {} };
             CreateShoppingItemCommand = new Command(async (id) => await GoToCreateShoppingItem(User.CitizenId));
             RemoveFromDatabaseCommand = new Command(async (obj) => await RemoveFromDatabase((ShoppingListItem) obj));
+            ChangeBoughtStateOfItemCommand = new Command(async (obj) => await ChangeBoughtStateOfItem((ShoppingListItem)obj));
         }
+
+        private async Task ChangeBoughtStateOfItem(ShoppingListItem item)
+        {
+
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "ShoppingListItemId", item.ShoppingListItemId }, {"Bought", item.Bought },{"CitizenId",User.CitizenId } }); //TODO: Make citizenid accessible and change this
+                    var values = new Dictionary<string, string> { { "content", encoded } };
+                    var content = new FormUrlEncodedContent(values);
+                    var result = await client.PutAsync(new Uri(URI_BASE + "bought/"), content);
+                    var test = await result.Content.ReadAsStringAsync();
+                    var decoded = JWTService.Decode(test);
+                    if (!decoded.ContainsKey("ErrorOnRemove"))
+                    {
+                        ShoppingList = MapToShoppingListModel(decoded);
+                        ShoppingListDetails = ShoppingList.ShoppingListItems;
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.ErrorOnRemoveAccept);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
@@ -64,7 +97,7 @@ namespace DementiaHelper.PageModels
             {
                 try
                 {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "shoppingListItemId", item.ShoppingListItemId }, {"citizenId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId } });
+                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "shoppingListItemId", item.ShoppingListItemId }, {"citizenId", User.CitizenId} });
                     var result = await client.DeleteAsync(new Uri(URI_BASE + encoded));
                     var test = await result.Content.ReadAsStringAsync();
                     var decoded = JWTService.Decode(test);

@@ -32,8 +32,6 @@
                     </schedule:SfSchedule>
                 </ScrollView>
             </StackLayout>
-
-
             <Image Source="ic_add_circle_black_48dp.png"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand"

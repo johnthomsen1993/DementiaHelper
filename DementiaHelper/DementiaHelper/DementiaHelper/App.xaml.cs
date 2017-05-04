@@ -161,7 +161,7 @@ namespace DementiaHelper
             switch (User.RoleId)
             {
                 case 1:
-                    {
+                    { 
                         MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
@@ -178,6 +178,7 @@ namespace DementiaHelper
                     }
                 case 2:
                     {
+                        
                         MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
@@ -199,7 +200,6 @@ namespace DementiaHelper
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, null);
                         MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
-
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
                         MasterDetailNav.AddPage<NotePageModel>(AppResources.NoteTitle, null);
                         MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);

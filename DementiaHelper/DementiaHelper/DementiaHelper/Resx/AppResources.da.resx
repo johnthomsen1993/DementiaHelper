@@ -314,6 +314,26 @@
     <value>Indstillinger</value>
     <comment>Title for Settings view</comment>
   </data>
+  <data name="ChoosenCitizen" xml:space="preserve">
+    <value>Din valgte borger er:</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="CreateNewAppointment" xml:space="preserve">
+    <value>Opret ny aftale</value>
+    <comment>Title for CreateCalendarAppointment view</comment>
+  </data>
+  <data name="NewAppointment" xml:space="preserve">
+    <value>Opret aftale</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Notat, Kun delt mellem plejepersonale</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="SearchCitizen" xml:space="preserve">
+    <value>Søg borger</value>
+    <comment>Label for Textfield</comment>
+  </data>
   <data name="Account_InvalidPasswordText" xml:space="preserve">
     <value>Password skal være mininum 6 karakterer langt</value>
   </data>

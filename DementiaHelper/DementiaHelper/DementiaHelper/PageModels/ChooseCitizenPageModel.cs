@@ -1,6 +1,7 @@
 ﻿using DementiaHelper.Model;
 using DementiaHelper.Services;
 using Newtonsoft.Json.Linq;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,16 +12,19 @@ using System.Windows.Input;
 using Xamarin.Forms;
 namespace DementiaHelper.PageModels
 {
-    
+    [ImplementPropertyChanged]
     public class ChooseCitizenPageModel : FreshMvvm.FreshBasePageModel
     {
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/caregiver/";
         public ObservableCollection<Citizen> CaregiversCitizenCollection { get; set; }
         public ObservableCollection<Citizen> CitizenCollection { get; set; }
+        public Citizen ChoosenCitizen { get; set; }
+        public bool CitizenChoosen { get; set; }
         public Command<Citizen> CitizenTappedCommand { get; set; }
         ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public ChooseCitizenPageModel()
         {
+            CitizenChoosen = false;
             _SearchText = "";
             CitizenTappedCommand = new Command<Citizen>(ChooseCitizen);
             
@@ -29,9 +33,22 @@ namespace DementiaHelper.PageModels
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
+            CitizenChoosen = false;
             if (User?.CitizenList != null)
             {
                 CaregiversCitizenCollection = User.CitizenList;
+                if (User.CitizenId != null)
+                {
+                    foreach (var Citizen in CaregiversCitizenCollection)
+                    {
+                        if (User.CitizenId == Citizen.CitizenId)
+                        {
+                            ChoosenCitizen = new Citizen() { FirstName = Citizen.FirstName, LastName = Citizen.LastName, CitizenId = Citizen.CitizenId };
+                            CitizenChoosen = true;
+                            break;
+                        }
+                    }
+                }
 
                 // CaregiversCitizenCollection = new ObservableCollection<Citizen>() {  }; ;
                 CitizenCollection = new ObservableCollection<Citizen>();
@@ -110,12 +127,14 @@ namespace DementiaHelper.PageModels
                         CitizenCollection.Add(Citizen);
                     }
                     
-                }else if (Citizen.FirstName.IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0 || Citizen.LastName.IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0 || (Citizen.FirstName+" "+ Citizen.LastName).IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                }
+                else if (Citizen.FirstName.IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0 || Citizen.LastName.IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0 || (Citizen.FirstName+" "+ Citizen.LastName).IndexOf(_SearchText, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     CitizenCollection.Add(Citizen);
                 }
             }
         }
+
         public void ChooseCitizen(Citizen citizen)
         {
             User.CitizenId = citizen.CitizenId;
