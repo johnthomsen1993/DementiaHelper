@@ -357,10 +357,10 @@
   <data name="General_InvalidEmailTitle" xml:space="preserve">
     <value>Invalid email</value>
   </data>
-  <data name="Account_ConnectErrorText" xml:space="preserve">
+  <data name="Connection_ErrorText" xml:space="preserve">
     <value>An error happened when trying to connect, please try again later</value>
   </data>
-  <data name="Account_ConnectErrorTitle" xml:space="preserve">
+  <data name="Connection_ErrorTitle" xml:space="preserve">
     <value>Not Connected</value>
   </data>
   <data name="General_NullText" xml:space="preserve">
@@ -372,5 +372,17 @@
   <data name="AddShoppingItem" xml:space="preserve">
     <value>Add item</value>
     <comment>Title for add shopping item view</comment>
+  </data>
+  <data name="Account_ConnectIdErrorText" xml:space="preserve">
+    <value>An error happened when trying to connect, please check id was entered right (it is case sensitive)</value>
+  </data>
+  <data name="Account_ConnectIdErrorTitle" xml:space="preserve">
+    <value>Connection Error</value>
+  </data>
+  <data name="Account_LoginFailText" xml:space="preserve">
+    <value>Invalid username or password</value>
+  </data>
+  <data name="Account_LoginFailTitle" xml:space="preserve">
+    <value>Login failed</value>
   </data>
 </root>

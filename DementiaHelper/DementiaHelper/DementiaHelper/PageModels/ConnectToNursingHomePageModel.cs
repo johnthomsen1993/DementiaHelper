@@ -40,7 +40,7 @@ namespace DementiaHelper.PageModels
                 }
                 else
                 {
-                    await CoreMethods.DisplayAlert(AppResources.Account_ConnectErrorTitle, AppResources.Account_ConnectErrorText, AppResources.General_Ok);
+                    await CoreMethods.DisplayAlert(AppResources.Connection_ErrorTitle, AppResources.Connection_ErrorText, AppResources.General_Ok);
                 }
             }
         }

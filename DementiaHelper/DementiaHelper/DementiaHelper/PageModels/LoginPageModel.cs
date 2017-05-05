@@ -12,6 +12,7 @@ using Xamarin.Forms;
 using DementiaHelper.Pages;
 using System.Net.Http.Headers;
 using DementiaHelper.Model;
+using DementiaHelper.Resx;
 using Newtonsoft.Json.Linq;
 
 namespace DementiaHelper.PageModels
@@ -52,7 +53,7 @@ namespace DementiaHelper.PageModels
 
             }else
             {
-                await CoreMethods.DisplayAlert("Login Failed","Either your account dont exist or your password or email is incorrect","Ok");
+                await CoreMethods.DisplayAlert(AppResources.Account_LoginFailTitle,AppResources.Account_LoginFailText,AppResources.General_Ok);
             }
 
         }

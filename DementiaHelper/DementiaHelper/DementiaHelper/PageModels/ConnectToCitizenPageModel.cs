@@ -43,14 +43,13 @@ namespace DementiaHelper.PageModels
                     }
                     else
                     {
-                        await CoreMethods.DisplayAlert(AppResources.Account_ConnectErrorTitle, AppResources.Account_ConnectErrorText, AppResources.General_Ok); // TODO: find ud af om rigtig externalization
-                        await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at forbinde til borgeren, check venligst at dit indtasted borger id passer overens med borgerens id i borgerens konto view", "Ok");
+                        await CoreMethods.DisplayAlert(AppResources.Account_ConnectIdErrorTitle, AppResources.Account_ConnectIdErrorText, AppResources.General_Ok);
 
                     }
                 }
                 else
                 {
-                    await CoreMethods.DisplayAlert(AppResources.Account_ConnectErrorTitle, AppResources.Account_ConnectErrorText, AppResources.General_Ok);
+                    await CoreMethods.DisplayAlert(AppResources.Connection_ErrorTitle, AppResources.Connection_ErrorText, AppResources.General_Ok);
                 }
             }
         }

@@ -94,6 +94,7 @@ namespace DementiaHelper.PageModels
                 }
             }
         
+        //TODO: Is this going to be used?
         private bool AppointmentCreated(Dictionary<string, object> dict)
         {
             return (bool)dict["AppointmentCreated"];

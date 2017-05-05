@@ -62,20 +62,20 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error happened when trying to connect, please try again later.
+        ///   Looks up a localized string similar to An error happened when trying to connect, please check id was entered right (it is case sensitive).
         /// </summary>
-        public static string Account_ConnectErrorText {
+        public static string Account_ConnectIdErrorText {
             get {
-                return ResourceManager.GetString("Account_ConnectErrorText", resourceCulture);
+                return ResourceManager.GetString("Account_ConnectIdErrorText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Connected.
+        ///   Looks up a localized string similar to Connection Error.
         /// </summary>
-        public static string Account_ConnectErrorTitle {
+        public static string Account_ConnectIdErrorTitle {
             get {
-                return ResourceManager.GetString("Account_ConnectErrorTitle", resourceCulture);
+                return ResourceManager.GetString("Account_ConnectIdErrorTitle", resourceCulture);
             }
         }
         
@@ -112,6 +112,24 @@ namespace DementiaHelper.Resx {
         public static string Account_InvalidRoleTitle {
             get {
                 return ResourceManager.GetString("Account_InvalidRoleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid username or password.
+        /// </summary>
+        public static string Account_LoginFailText {
+            get {
+                return ResourceManager.GetString("Account_LoginFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login failed.
+        /// </summary>
+        public static string Account_LoginFailTitle {
+            get {
+                return ResourceManager.GetString("Account_LoginFailTitle", resourceCulture);
             }
         }
         
@@ -220,6 +238,24 @@ namespace DementiaHelper.Resx {
         public static string Connect {
             get {
                 return ResourceManager.GetString("Connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error happened when trying to connect, please try again later.
+        /// </summary>
+        public static string Connection_ErrorText {
+            get {
+                return ResourceManager.GetString("Connection_ErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Connected.
+        /// </summary>
+        public static string Connection_ErrorTitle {
+            get {
+                return ResourceManager.GetString("Connection_ErrorTitle", resourceCulture);
             }
         }
         
