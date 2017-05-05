@@ -122,7 +122,7 @@ namespace DementiaHelper
                     ApplicationUser.CitizenId = ApplicationUser.ApplicationUserId;
                     break;
                 case 2:
-                    ApplicationUser.PrimaryRelative = Convert.ToBoolean(dict["PrimaryRelative"]);
+                    ApplicationUser.PrimaryRelative = dict.ContainsKey("PrimaryRelative") ? Convert.ToBoolean(dict["PrimaryRelative"]) : false;
                     ApplicationUser.CitizenId = dict["CitizenId"] != null ? Convert.ToInt32(dict["CitizenId"]) : (int?)null;
                     break;
                 case 3:

@@ -29,15 +29,11 @@ namespace DementiaHelper.PageModels
         public override void Init(object initData)
         {
             base.Init(initData);
-            //Device.BeginInvokeOnMainThread(async () =>
-            //{
-            //    Appointments = await GetAppointments(user.CitizenId);
-            //});
         }
         
 
 
-        #region Constructor
+     
         public CalenderPageModel()
         {
             this.AddAppointmentCommand = new Command(async () => await GoToCreateAppointment());
@@ -48,14 +44,8 @@ namespace DementiaHelper.PageModels
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread(async () =>
             {
-                
                 Appointments = await GetAppointments(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
             });
-        }
-        protected override void ViewIsDisappearing(object sender, EventArgs e)
-        {
-            base.ViewIsDisappearing(sender, e);
-            
         }
 
 
@@ -102,6 +92,5 @@ namespace DementiaHelper.PageModels
         {
             await CoreMethods.PushPageModel<CreateCalenderAppointmentPageModel>(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
         }
-        #endregion Constructor
     }
 }

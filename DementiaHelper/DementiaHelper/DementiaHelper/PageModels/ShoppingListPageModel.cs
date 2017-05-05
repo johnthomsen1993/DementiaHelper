@@ -27,11 +27,10 @@ namespace DementiaHelper.PageModels
         public ICommand CreateShoppingItemCommand { get; protected set; }
         public string Item { get; set; }
         public ObservableCollection<ShoppingListItem> ShoppingListDetails { get; set; }
-        ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public ShoppingListPageModel()
         {
             ShoppingList = new ShoppingList() {ShoppingListItems = new ObservableCollection<ShoppingListItem>() {} };
-            CreateShoppingItemCommand = new Command(async (id) => await GoToCreateShoppingItem(User.CitizenId));
+            CreateShoppingItemCommand = new Command(async (id) => await GoToCreateShoppingItem(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId));
             RemoveFromDatabaseCommand = new Command(async (obj) => await RemoveFromDatabase((ShoppingListItem) obj));
             ChangeBoughtStateOfItemCommand = new Command(async (obj) => await ChangeBoughtStateOfItem((ShoppingListItem)obj));
         }
@@ -43,8 +42,8 @@ namespace DementiaHelper.PageModels
             {
                 try
                 {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "ShoppingListItemId", item.ShoppingListItemId }, {"Bought", item.Bought },{"CitizenId",User.CitizenId } }); //TODO: Make citizenid accessible and change this
-                    var values = new Dictionary<string, string> { { "content", encoded } };
+                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "ShoppingListItemId", item.ShoppingListItemId }, {"Bought", item.Bought },{"CitizenId", item.CitizenId } }); //TODO: Make citizenid accessible and change this
+                    var values = new Dictionary<string, string> { { "token", encoded } };
                     var content = new FormUrlEncodedContent(values);
                     var result = await client.PutAsync(new Uri(URI_BASE + "bought/"), content);
                     var test = await result.Content.ReadAsStringAsync();
@@ -87,8 +86,8 @@ namespace DementiaHelper.PageModels
             }
             else
             {
-                if (User.RoleId == 2) { await CoreMethods.DisplayAlert("Not possible", "to add new items, you need to be connected to a person under care", "Ok"); }
-                if (User.RoleId == 3) { await CoreMethods.DisplayAlert("Not possible", "to add new items, you need to have choosen the citizen your inspecting", "Ok"); }
+                if (((ApplicationUser)App.Current.Properties["ApplicationUser"]).RoleId == 2) { await CoreMethods.DisplayAlert("Not possible", "to add new items, you need to be connected to a person under care", "Ok"); }
+                if (((ApplicationUser)App.Current.Properties["ApplicationUser"]).RoleId == 3) { await CoreMethods.DisplayAlert("Not possible", "to add new items, you need to have choosen the citizen your inspecting", "Ok"); }
             }
         }
         private async Task RemoveFromDatabase(ShoppingListItem item)
@@ -97,7 +96,7 @@ namespace DementiaHelper.PageModels
             {
                 try
                 {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "shoppingListItemId", item.ShoppingListItemId }, {"citizenId", User.CitizenId} });
+                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "shoppingListItemId", item.ShoppingListItemId }, {"citizenId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId} });
                     var result = await client.DeleteAsync(new Uri(URI_BASE + encoded));
                     var test = await result.Content.ReadAsStringAsync();
                     var decoded = JWTService.Decode(test);

@@ -352,4 +352,8 @@
   <data name="General_InvalidEmailTitle" xml:space="preserve">
     <value>Ugyldig email</value>
   </data>
+  <data name="AddShoppingItem" xml:space="preserve">
+    <value>Tilføj vare</value>
+    <comment>Title for add shopping item view</comment>
+  </data>
 </root>

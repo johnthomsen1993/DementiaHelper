@@ -27,24 +27,28 @@ namespace DementiaHelper.PageModels
         {
             using (var client = new HttpClient())
             {
-                var user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
-                var encoded = JWTService.Encode(new Dictionary<string, object>() { { "RelativeId", user.ApplicationUserId }, { "ConnectionId", ConnectionId } });
-                var values = new Dictionary<string, string> { { "content", encoded } };
+                var encoded = JWTService.Encode(new Dictionary<string, object>() { { "RelativeId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).ApplicationUserId }, { "ConnectionId", ConnectionId } });
+                var values = new Dictionary<string, string> { { "token", encoded } };
                 var content = new FormUrlEncodedContent(values);
                 var result = await client.PutAsync(new Uri(URI_BASE), content);
                 var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
-                if (!decoded.ContainsKey("Connected"))
+                if (decoded != null)
                 {
-                    App.MapToApplicationUser(decoded);
-                    ConnectionId = "";
-                    //App.SetMasterDetailToRole();
-                    //CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
-                    await CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
+                    if (!decoded.ContainsKey("Connected"))
+                    {
+                        App.MapToApplicationUser(decoded);
+                        ConnectionId = "";
+                        await CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
+                    }
+                    else
+                    {
+                        await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at forbinde til borgeren, check venligst at dit indtasted borger id passer overens med borgerens id i borgerens konto view", "Ok");
+
+                    }
                 }
                 else
                 {
-                        await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at forbinde til borgeren, check venligst at dit indtasted borger id passer overens med borgerens id i borgerens konto view", "Ok");
-                    
+                    await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at forbinde til vores server prøv igen senere", "Ok");
                 }
             }
         }

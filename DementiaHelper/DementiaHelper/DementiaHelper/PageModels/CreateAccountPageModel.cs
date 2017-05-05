@@ -67,7 +67,7 @@ namespace DementiaHelper.PageModels
                 {"firstName", FirstName},
                 {"lastName", LastName}
             });
-                var values = new Dictionary<string, string> { { "content", encoded } };
+                var values = new Dictionary<string, string> { { "token", encoded } };
                 var content = new FormUrlEncodedContent(values);
                 var result = await client.PutAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/createaccount"), content);
                 var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
@@ -82,6 +82,10 @@ namespace DementiaHelper.PageModels
                             await CoreMethods.PopPageModel();
                         }
                     }
+                }
+                else
+                {
+                   await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at forbinde til vores server prøv igen senere", "Ok");
                 }
             };
         }

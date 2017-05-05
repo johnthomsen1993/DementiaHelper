@@ -19,24 +19,16 @@ namespace DementiaHelper.PageModels
         private const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/getuser/";
         private const string URI_BASE_TEST = "http://localhost:29342/api/account/getuser/";
         public UserInformation ShowedUser { get; set; }
-        private readonly ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
+      //  private readonly ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public bool IsCitizen { get; set; }
         public string CitizenId { get; set; }
         public bool Editbutton { get; set ; }
         public ICommand GoToEditCommand { get; set; }
-        public ICommand BackCommand { get; set; }
 
 
         public AccountInformationPageModel()
         {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                ShowedUser = await GetProfile(User.Email);
-                Editbutton = ShowedUser.Email == User.Email;
-            });
-            CheckIfCitizen((ApplicationUser)App.Current.Properties["ApplicationUser"]);
             GoToEditCommand = new Command(async () => await GoToEdit());
-            BackCommand = new Command(async () => await Back());
         }
 
         private void CheckIfCitizen(ApplicationUser user)
@@ -55,10 +47,6 @@ namespace DementiaHelper.PageModels
         private async Task GoToEdit()
         {
             await CoreMethods.PushPageModel<EditAccountInformationPageModel>(ShowedUser);
-        }
-        private async Task Back()
-        {
-            await CoreMethods.PopPageModel();
         }
 
         private async Task<UserInformation> GetProfile(string email)
@@ -96,10 +84,11 @@ namespace DementiaHelper.PageModels
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
+            CheckIfCitizen((ApplicationUser)App.Current.Properties["ApplicationUser"]);
             Device.BeginInvokeOnMainThread(async () =>
             {
-                ShowedUser = await GetProfile(User.Email);
-                Editbutton = ShowedUser.Email == User.Email;
+                ShowedUser = await GetProfile(((ApplicationUser)App.Current.Properties["ApplicationUser"]).Email);
+                Editbutton = ShowedUser.Email == ((ApplicationUser)App.Current.Properties["ApplicationUser"]).Email;
             });
         }
     }

@@ -61,7 +61,7 @@
                         </Grid>
                     </ScrollView>
                     <StackLayout>
-                        <customRenders:CustomButtonRender Style="{StaticResource ButtonStyle}" IsEnabled="{Binding Editbutton}" Text="{i18n:Translate EditUserInformation}" Command="{Binding GoToEditCommand}"></customRenders:CustomButtonRender>
+                        <customRenders:CustomButtonRender Style="{StaticResource ButtonStyle}" Text="{i18n:Translate EditUserInformation}" Command="{Binding GoToEditCommand}"></customRenders:CustomButtonRender>
                     </StackLayout>
                 </StackLayout>
             </OnIdiom.Phone>

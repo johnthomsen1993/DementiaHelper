@@ -80,7 +80,7 @@ namespace DementiaHelper.PageModels
 
         async Task Cancel()
         {
-            await CoreMethods.PopPageModel();
+           await  CoreMethods.PopPageModel();
         }
 
         private bool IsValidEmail(string inputEmail)
@@ -93,19 +93,6 @@ namespace DementiaHelper.PageModels
                 return (true);
             else
                 return (false);
-        }
-
-        private void OnEntryTextChanged(object sender, TextChangedEventArgs e)
-        {
-            var entry = (Entry)sender;
-
-            if (entry.Text.Length > 16)
-            {
-                string entryText = entry.Text;
-                entry.TextChanged -= OnEntryTextChanged;
-                entry.Text = e.OldTextValue;
-                entry.TextChanged += OnEntryTextChanged;
-            }
         }
     }
 }

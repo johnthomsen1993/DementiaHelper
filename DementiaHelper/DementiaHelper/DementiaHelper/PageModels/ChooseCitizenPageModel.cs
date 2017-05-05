@@ -139,8 +139,6 @@ namespace DementiaHelper.PageModels
         {
             User.CitizenId = citizen.CitizenId;
             App.Current.Properties["ApplicationUser"] = User;
-            App.SetMasterDetailToRole();
-            CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
             CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
         }
     }

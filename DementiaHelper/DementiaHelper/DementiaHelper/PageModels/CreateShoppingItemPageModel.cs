@@ -42,7 +42,7 @@ namespace DementiaHelper.PageModels
                 try
                 {
                     var encoded = JWTService.Encode(new Dictionary<string, object>() { {"CitizenId", CitizenId }, { "Item", Item }, { "Quantity", Quantity } });
-                    var values = new Dictionary<string, string> { { "content", encoded } };
+                    var values = new Dictionary<string, string> { { "token", encoded } };
                     var content = new FormUrlEncodedContent(values);
                     await client.PutAsync(new Uri(URI_BASE), content);
                 }
