@@ -28,7 +28,7 @@ namespace DementiaHelper.PageModels
             using (var client = new HttpClient())
             {
                 var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).ApplicationUserId }, { "ConnectionId", ConnectionId } });
-                var values = new Dictionary<string, string> { { "content", encoded } };
+                var values = new Dictionary<string, string> { { "token", encoded } };
                 var content = new FormUrlEncodedContent(values);
                 var result = await client.PutAsync(new Uri(URI_BASE), content);
                 var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());

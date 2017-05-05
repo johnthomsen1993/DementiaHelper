@@ -9,6 +9,12 @@
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="Margin" Value="10,0,10,5"/>
             </Style>
+            <Style x:Key="ButtonStyleTablet" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#0099cc"/>
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="10,0,10,5"/>
+                <Setter Property="FontSize" Value="22"/>
+            </Style>
             <Style x:Key="CancelButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#A9A9A9"/>
                 <Setter Property="TextColor" Value="Black" />

@@ -32,15 +32,37 @@ namespace DementiaHelper.Pages
                 this.height = height;
                 if (width > height)
                 {
-                    outerStack.Orientation = StackOrientation.Horizontal;
-                    secondInnerStack.VerticalOptions = LayoutOptions.StartAndExpand;
-                    imageElderlyHands.HeightRequest = 120;
+                    if (Device.Idiom == TargetIdiom.Phone)
+                    {
+                        outerStack.Orientation = StackOrientation.Horizontal;
+                        secondInnerStack.VerticalOptions = LayoutOptions.StartAndExpand;
+                        imageElderlyHands.HeightRequest = 120;
+                    }
+                    else if (Device.Idiom == TargetIdiom.Tablet)
+                    {
+                        outerStackTablet.Orientation = StackOrientation.Horizontal;
+                        secondInnerStackTablet.VerticalOptions = LayoutOptions.StartAndExpand;
+                        //outerStackTablet
+                        imageElderlyHandsTablet.HeightRequest = 350;
+                    }
+
+
                 }
                 else
                 {
-                    outerStack.Orientation = StackOrientation.Vertical;
-                    secondInnerStack.VerticalOptions = LayoutOptions.CenterAndExpand;
-                    imageElderlyHands.HeightRequest = 200;
+                    if (Device.Idiom == TargetIdiom.Phone)
+                    {
+                        outerStack.Orientation = StackOrientation.Vertical;
+                        secondInnerStack.VerticalOptions = LayoutOptions.CenterAndExpand;
+                        imageElderlyHands.HeightRequest = 200;
+                    }
+                    else if (Device.Idiom == TargetIdiom.Tablet)
+                    {
+                        outerStackTablet.Orientation = StackOrientation.Vertical;
+                        secondInnerStackTablet.VerticalOptions = LayoutOptions.CenterAndExpand;
+                        imageElderlyHandsTablet.HeightRequest = 400;
+                    }
+
                 }
             }
         }

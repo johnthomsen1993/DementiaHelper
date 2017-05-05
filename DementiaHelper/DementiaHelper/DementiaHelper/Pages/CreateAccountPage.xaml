@@ -15,16 +15,16 @@
                         <StackLayout  Orientation="Vertical" VerticalOptions="Start">
                             <Image x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
                         </StackLayout>
-                        <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand" Padding="10">
+                        <StackLayout x:Name="secondInnerStack" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Padding="10">
                             <Entry Text="{Binding FirstName}" Placeholder="First name" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
                             <Entry Text="{Binding LastName}"  Placeholder="Last name" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
                             <Entry Text="{Binding Email}"  Keyboard="Email" Placeholder="{i18n:Translate Email}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
                             <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
+                            <Label HorizontalTextAlignment="Center" Margin="10" Text="Opret konto som:" Font="Bold"></Label>
+                            <Picker WidthRequest="150" HorizontalOptions="Center"  SelectedItem="{Binding SelecteRoleName,Mode=TwoWay}" x:Name="rolePicker"  ItemsSource="{Binding RoleCollection}" Title="Role"  ></Picker>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
-                        <Label HorizontalTextAlignment="Center" Margin="10" Text="Opret konto som:" Font="Bold"></Label>
-                        <Picker WidthRequest="150" HorizontalOptions="Center"  SelectedItem="{Binding SelecteRoleName,Mode=TwoWay}" x:Name="rolePicker"  ItemsSource="{Binding RoleCollection}" Title="Role"  ></Picker>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
                         <Grid>
@@ -39,33 +39,33 @@
                 </StackLayout>
             </OnIdiom.Phone>
             <OnIdiom.Tablet>
-                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="0">
-                        <StackLayout  Orientation="Vertical" VerticalOptions="Start">
-                            <!-- top controls -->
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout x:Name="outerStackTablet" VerticalOptions="Start" >
+                        <StackLayout  Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Image x:Name="imageElderlyHandsTablet" Source="elderlyhands.png" ></Image>
                         </StackLayout>
-                        <StackLayout VerticalOptions="CenterAndExpand">
-                            <Entry Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
-                            <Entry Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}"  HorizontalOptions="CenterAndExpand" />
-                            <customRenders:CustomButtonRender Command="{Binding CreateAccountCommand}" Style="{StaticResource ButtonStyle}" Text="Create Account" />
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
-                            <customRenders:CustomButtonRender Text="{i18n:Translate Cancel}"  Style="{StaticResource CancelButtonStyle}" Command="{Binding CancelCreateAccountCommand}" ></customRenders:CustomButtonRender>
+                        <StackLayout x:Name="secondInnerStackTablet" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
+                            <Entry FontSize="22" HeightRequest="60" Text="{Binding FirstName}" Placeholder="First name" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
+                            <Entry FontSize="22" HeightRequest="60" Text="{Binding LastName}"  Placeholder="Last name" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
+                            <Entry FontSize="22" HeightRequest="60" Text="{Binding Email}"  Keyboard="Email" Placeholder="{i18n:Translate Email}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
+                            <Entry FontSize="22" HeightRequest="60" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
+                            <Label FontAttributes="Bold" FontSize="22" HeightRequest="60" HorizontalTextAlignment="Center" Margin="10" Text="Opret konto som:" ></Label>
+                            <Picker HeightRequest="60" WidthRequest="150" HorizontalOptions="Center"  SelectedItem="{Binding SelecteRoleName,Mode=TwoWay}" ItemsSource="{Binding RoleCollection}" Title="Role"  ></Picker>
                         </StackLayout>
                     </StackLayout>
-                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1">
-                        <StackLayout  Orientation="Vertical" VerticalOptions="Start">
-                            <Label Text="Extra Information" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
-                        </StackLayout>
-                        <StackLayout VerticalOptions="CenterAndExpand">
-                        </StackLayout>
+                    <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
+                     </StackLayout>
+                    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <customRenders:CustomButtonRender HeightRequest="80" Style="{StaticResource CancelButtonStyle}" Text="{i18n:Translate Cancel}"  Command="{Binding CancelCreateAccountCommand}" Grid.Column="0" ></customRenders:CustomButtonRender>
+                            <customRenders:CustomButtonRender HeightRequest="80" Style="{StaticResource ButtonStyle}" Command="{Binding CreateAccountCommand}" Text="Create Account" Grid.Column="1" />
+                        </Grid>
                     </StackLayout>
-                </Grid>
+                </StackLayout>
             </OnIdiom.Tablet>
         </OnIdiom>
     </ContentPage.Content>

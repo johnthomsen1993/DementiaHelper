@@ -29,8 +29,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <!--<OnIdiom x:TypeArguments="View">
-            <OnIdiom.Phone>-->
+        <OnIdiom x:TypeArguments="View">
+            <OnIdiom.Phone>
                 <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <StackLayout x:Name="outerStack" VerticalOptions="Start" >
                         <StackLayout Orientation="Vertical" VerticalOptions="Start" >
@@ -58,42 +58,37 @@
                         </Grid>-->
                     </StackLayout>
                 </StackLayout>
-            <!--</OnIdiom.Phone>-->
-            <!--<OnIdiom.Tablet>
-                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1">
-                        <StackLayout  Orientation="Vertical" VerticalOptions="Start">
-                            --><!-- top controls --><!--
+            </OnIdiom.Phone>
+            <OnIdiom.Tablet>
+                <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout x:Name="outerStackTablet" VerticalOptions="Start" >
+                        <StackLayout Orientation="Vertical" VerticalOptions="Start" >
+                            <Image   x:Name="imageElderlyHandsTablet" Source="elderlyhands.png" ></Image>
                         </StackLayout>
-                        <StackLayout VerticalOptions="CenterAndExpand">
-                            <Entry BackgroundColor="#00A8C8" Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalOptions="CenterAndExpand" />
-                            <Entry BackgroundColor="#00A8C8" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalOptions="CenterAndExpand" />
-                            <Button HorizontalOptions="CenterAndExpand" Style="{StaticResource ButtonStyle}" Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
-                            <StackLayout Orientation="Horizontal" Spacing="2">
-                                <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="New account">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding GoToCreateAccountCommand}"></TapGestureRecognizer>
-                                    </Label.GestureRecognizers>
-                                </Label>
-                                <Label HorizontalOptions="EndAndExpand" TextColor="Blue" Text="Account Info">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding GoToAccountInformationCommand}"></TapGestureRecognizer>
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </StackLayout>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
-                            <customRenders:CustomButtonRender Style="{StaticResource FacebookButtonStyle}"  HorizontalOptions="CenterAndExpand" TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
-                            <customRenders:CustomButtonRender Style="{StaticResource GoogleButtonStyle}" HorizontalOptions="CenterAndExpand" TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
+                        <StackLayout x:Name="secondInnerStackTablet" VerticalOptions="CenterAndExpand" Padding="5">
+                            <Entry HeightRequest="50" FontSize="22" Keyboard="Email" Text="{Binding Email}" Placeholder="{i18n:Translate Email}" HorizontalTextAlignment="Center"  />
+                            <Entry HeightRequest="50" FontSize="22" Text="{Binding Password}" IsPassword="true"  Placeholder="{i18n:Translate Password}" HorizontalTextAlignment="Center" />
                         </StackLayout>
                     </StackLayout>
-                </Grid>
-            </OnIdiom.Tablet>-->
-        <!--</OnIdiom>-->
+                    <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
+                        <customRenders:CustomButtonRender  Style="{StaticResource ButtonStyleTablet}" HeightRequest="80"  Command="{Binding LoginCommand}" Text="{i18n:Translate Login}" />
+                        <!--<customRenders:CustomButtonRender  Style="{StaticResource ForgotPasswordButtonStyle}" HeightRequest="40"  Text="{i18n:Translate ForgotPassword}" />-->
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                        <customRenders:CustomButtonRender  HeightRequest="80"  Style="{StaticResource ButtonStyleTablet}" Command="{Binding GoToCreateAccountCommand}" Text="{i18n:Translate CreateNewAccount}" />
+                        <!--<Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <customRenders:CustomButtonRender Grid.Column="0" Style="{StaticResource FacebookButtonStyle}"  HeightRequest="40"  TextColor="White" Text="{i18n:Translate LoginWithFacebook}" />
+                            <customRenders:CustomButtonRender Grid.Column="1" Style="{StaticResource GoogleButtonStyle}" HeightRequest="40"  TextColor="White" Text="{i18n:Translate LoginWithGoogle}" />
+                        </Grid>-->
+                    </StackLayout>
+                </StackLayout>
+            </OnIdiom.Tablet>
+        </OnIdiom>
     </ContentPage.Content>
 </ContentPage>
 

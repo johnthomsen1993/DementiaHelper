@@ -18,7 +18,8 @@ namespace DementiaHelper.PageModels
        
         public string Weekday { get; set; }
         public string Month { get; set; }
- 
+
+        public ImageSource PictureOfWhoIsVisiting { get; set; }
         public ScheduleAppointment Appointment { get; set; }
         
 
@@ -27,7 +28,7 @@ namespace DementiaHelper.PageModels
             var test = DateTime.Now;
             Weekday = FirstLetterToUpper(test.ToString("dddd", new CultureInfo("da-DK")));
             Month = FirstLetterToUpper( test.ToString("MMMM", new CultureInfo("da-DK")));
-       
+            PictureOfWhoIsVisiting = ImageSource.FromFile("FakeProfilBillede.png");
             Appointment = GetNextAppointment();
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                     CurrentTime = DateTime.Now;
