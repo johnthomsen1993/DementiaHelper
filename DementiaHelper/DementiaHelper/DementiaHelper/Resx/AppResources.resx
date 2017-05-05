@@ -357,6 +357,18 @@
   <data name="General_InvalidEmailTitle" xml:space="preserve">
     <value>Invalid email</value>
   </data>
+  <data name="Account_ConnectErrorText" xml:space="preserve">
+    <value>An error happened when trying to connect, please try again later</value>
+  </data>
+  <data name="Account_ConnectErrorTitle" xml:space="preserve">
+    <value>Not Connected</value>
+  </data>
+  <data name="General_NullText" xml:space="preserve">
+    <value>Please fill out each field.</value>
+  </data>
+  <data name="General_NullTitle" xml:space="preserve">
+    <value>Fill each field</value>
+  </data>
   <data name="AddShoppingItem" xml:space="preserve">
     <value>Add item</value>
     <comment>Title for add shopping item view</comment>

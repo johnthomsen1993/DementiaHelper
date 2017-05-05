@@ -46,6 +46,7 @@ namespace DementiaHelper.PageModels
             return str.ToUpper();
         }
 
+        //TODO: Fix this method
         private ScheduleAppointment GetNextAppointment() {
             return new ScheduleAppointment() {Subject="Ole (Barnebarn) kommer til frokost",StartTime= new DateTime(2017,4,18,10,15,0), EndTime= new DateTime(2017, 4, 18, 12, 15, 0) };
         }

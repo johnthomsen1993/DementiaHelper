@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DementiaHelper.Resx;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
@@ -39,7 +40,7 @@ namespace DementiaHelper.PageModels
                 }
                 else
                 {
-                   await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at konnektere til plejecenteret, check venligst at dit udleveret plejecenter id er korrekt indtastet", "Ok");
+                    await CoreMethods.DisplayAlert(AppResources.Account_ConnectErrorTitle, AppResources.Account_ConnectErrorText, AppResources.General_Ok);
                 }
             }
         }
