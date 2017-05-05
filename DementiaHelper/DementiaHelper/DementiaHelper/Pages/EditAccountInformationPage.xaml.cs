@@ -31,21 +31,20 @@ namespace DementiaHelper.Pages
                     }
                 }
             });
-
             return true;
         }
-
-        private void Entry_OnTextChanged(object sender, TextChangedEventArgs e)
+        protected override void OnDisappearing()
         {
-
+            base.OnDisappearing();
+            PhoneEntry.TextChanged -= Entry_OnTextChanged;
+        }
+        public void Entry_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
             var entry = (Entry)sender;
-
             if (entry.Text.Length > 15)
             {
-                string entryText = entry.Text;
-                entry.TextChanged -= Entry_OnTextChanged;
                 entry.Text = e.OldTextValue;
-                entry.TextChanged += Entry_OnTextChanged;
+
             }
         }
     

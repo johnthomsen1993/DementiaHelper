@@ -37,7 +37,6 @@ namespace DementiaHelper
         static FreshMvvm.FreshNavigationContainer LoginNavigationContainer { get; set; }
         public App()
         {
-            
             InitializeComponent();
         }
         static public async Task<bool> LoginAsync(string Email, string Password)
@@ -123,6 +122,7 @@ namespace DementiaHelper
                     ApplicationUser.CitizenId = ApplicationUser.ApplicationUserId;
                     break;
                 case 2:
+                    ApplicationUser.PrimaryRelative = dict.ContainsKey("PrimaryRelative") ? Convert.ToBoolean(dict["PrimaryRelative"]) : false;
                     ApplicationUser.CitizenId = dict["CitizenId"] != null ? Convert.ToInt32(dict["CitizenId"]) : (int?)null;
                     break;
                 case 3:

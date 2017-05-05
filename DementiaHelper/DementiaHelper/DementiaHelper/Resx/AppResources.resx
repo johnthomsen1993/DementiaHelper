@@ -369,4 +369,8 @@
   <data name="General_NullTitle" xml:space="preserve">
     <value>Fill each field</value>
   </data>
+  <data name="AddShoppingItem" xml:space="preserve">
+    <value>Add item</value>
+    <comment>Title for add shopping item view</comment>
+  </data>
 </root>

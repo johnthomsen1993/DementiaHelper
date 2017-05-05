@@ -20,7 +20,6 @@ namespace DementiaHelper.PageModels
         public ObservableCollection<Contact> ApplicationUserContactCollection { get; set; }
         public ObservableCollection<Contact> ContactCollection { get; set; }
         public Command<Contact> CallContactCommand { get; set; }
-        ApplicationUser User = (ApplicationUser) App.Current.Properties["ApplicationUser"];
         public ContactListPageModel()
         {
             _SearchText = "";
@@ -55,7 +54,7 @@ namespace DementiaHelper.PageModels
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread(async () =>
             {
-                ApplicationUserContactCollection = await GetApplicationUserContactCollection(User.CitizenId);
+                ApplicationUserContactCollection = await GetApplicationUserContactCollection(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
                 FilterContacts();
             });
         }
@@ -68,17 +67,22 @@ namespace DementiaHelper.PageModels
             foreach (var obj in list)
             {
                 var jsonContainer = obj as JContainer;
-                tempCaregiversCitizenCollection.Add(item: new Contact()
+                var number = jsonContainer.SelectToken("ApplicationUser").SelectToken("Phone").ToObject<string>();
+                if (number != "" && number!=null)
                 {
-                    Phone = jsonContainer.SelectToken("ApplicationUser").SelectToken("Phone").ToObject<int>(),
-                    Name = jsonContainer.SelectToken("ApplicationUser").SelectToken("FirstName").ToObject<string>() + " " + jsonContainer.SelectToken("ApplicationUser").SelectToken("LastName").ToObject<string>()
-                });
+                    tempCaregiversCitizenCollection.Add(item: new Contact()
+                    {
+                        Phone = jsonContainer.SelectToken("ApplicationUser").SelectToken("Phone").ToObject<string>(),
+                        Name = jsonContainer.SelectToken("ApplicationUser").SelectToken("FirstName").ToObject<string>() + " " + jsonContainer.SelectToken("ApplicationUser").SelectToken("LastName").ToObject<string>()
+                    });
+                }
             }
 
             var jContainer = dict["caregiverCenter"] as JContainer;
+
             tempCaregiversCitizenCollection.Add(new Contact()
             {
-                Phone = jContainer.SelectToken("Phone").ToObject<int>(),
+                Phone = jContainer.SelectToken("Phone").ToObject<string>(),
                 Name = jContainer.SelectToken("Name").ToObject<string>()
             });
             return tempCaregiversCitizenCollection;

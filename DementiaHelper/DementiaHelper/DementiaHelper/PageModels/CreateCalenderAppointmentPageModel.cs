@@ -80,7 +80,7 @@ namespace DementiaHelper.PageModels
                                 { "StartTime",new DateTime(Date.Year, Date.Month, Date.Day, AppointmentStartTimeSpan.Hours, AppointmentStartTimeSpan.Minutes, 0).ToUniversalTime() },
                                 { "EndTime", new DateTime(Date.Year, Date.Month, Date.Day, AppointmentEndTimeSpan.Hours, AppointmentEndTimeSpan.Minutes, 0).ToUniversalTime() }
                             });
-                        var values = new Dictionary<string, string> { { "content", encoded } };
+                        var values = new Dictionary<string, string> { { "token", encoded } };
                         var content = new FormUrlEncodedContent(values);
                         var result = await client.PutAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/calendar"), content);
                         var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());

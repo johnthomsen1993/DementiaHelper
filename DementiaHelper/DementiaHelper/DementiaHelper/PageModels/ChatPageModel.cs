@@ -21,7 +21,7 @@ namespace DementiaHelper.PageModels
     {
         
 		private IChatServices _chatServices;
-        private ApplicationUser user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
+      //  private ApplicationUser user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         private const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/getMessagesForChatGroup/";
         private const string URI_BASE_TEST = "http://localhost:29342/api/chat/getMessagesForChatGroup/";
         private readonly int groupId;
@@ -42,7 +42,7 @@ namespace DementiaHelper.PageModels
             _chatServices = DependencyService.Get<IChatServices>();
             ChatMessage = new ChatMessage();
             Messages = new ObservableCollection<Message>();
-            groupId = user.GroupId ?? 0;
+           groupId = ((ApplicationUser)App.Current.Properties["ApplicationUser"]).GroupId ?? 0;
             _chatServices.Connect();
         }
 
@@ -97,7 +97,7 @@ namespace DementiaHelper.PageModels
                 var lastName = jsonContainer.SelectToken("Sender").SelectToken("LastName");
 
 
-                if (senderId.ToObject<int>() == user.ApplicationUserId)
+                if (senderId.ToObject<int>() == ((ApplicationUser)App.Current.Properties["ApplicationUser"]).ApplicationUserId)
                 {
                     Messages.Add(new Message { Name = firstName + " " + lastName, MessageSent = message.ToString(), MessageRecievedIsVisible = false, MessageSentIsVisible = true });
                 }
@@ -110,7 +110,7 @@ namespace DementiaHelper.PageModels
 
         void _chatServices_OnMessageReceived(object sender, ChatMessage e)
         {
-            if (e.Name == user.FirstName + " " + user.LastName)
+            if (e.Name == ((ApplicationUser)App.Current.Properties["ApplicationUser"]).FirstName + " " + ((ApplicationUser)App.Current.Properties["ApplicationUser"]).LastName)
             {
                 Messages.Add(new Message { Name = e.Name, MessageSent = e.Message, MessageRecievedIsVisible = false, MessageSentIsVisible = true });
                 MessagingCenter.Send<ChatPageModel>(this, "New Messages");
@@ -140,9 +140,9 @@ namespace DementiaHelper.PageModels
 
         async void ExecuteSendMessageCommand()
         {
-            var sender = user.ApplicationUserId;
+            var sender = ((ApplicationUser)App.Current.Properties["ApplicationUser"]).ApplicationUserId;
            // IsBusy = true;
-            await _chatServices.Send(sender, ChatMessage.Message, groupId, user.FirstName + " " + user.LastName);
+            await _chatServices.Send(sender, ChatMessage.Message, groupId, ((ApplicationUser)App.Current.Properties["ApplicationUser"]).FirstName + " " + ((ApplicationUser)App.Current.Properties["ApplicationUser"]).LastName);
          //   IsBusy = false;
         }
 

@@ -36,5 +36,6 @@ namespace DementiaHelper.WebApi.Data
         bool DeleteNote(int id);
         ChatGroup CreateChatGroup(string name);
         bool ChangeBoughtStatus(int id, bool bought);
+        bool SetNewPrimaryRelative(int citizenId, int newPrimaryRelative);
     }
 }

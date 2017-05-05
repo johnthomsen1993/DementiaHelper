@@ -28,16 +28,15 @@ namespace DementiaHelper.PageModels
         {
             using (var client = new HttpClient())
             {
-                var user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
-                var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", user.ApplicationUserId }, { "ConnectionId", ConnectionId } });
-                var values = new Dictionary<string, string> { { "content", encoded } };
+                var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).ApplicationUserId }, { "ConnectionId", ConnectionId } });
+                var values = new Dictionary<string, string> { { "token", encoded } };
                 var content = new FormUrlEncodedContent(values);
                 var result = await client.PutAsync(new Uri(URI_BASE), content);
                 var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
                 if ((bool)decoded["Connected"])
                 {
                     ConnectionId = "";
-                    await CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
+                    await CoreMethods.SwitchSelectedMaster<CitizenHomePageModel>();
                 }
                 else
                 {

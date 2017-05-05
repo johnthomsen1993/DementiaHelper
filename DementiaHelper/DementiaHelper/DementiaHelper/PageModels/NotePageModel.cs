@@ -44,16 +44,29 @@ namespace DementiaHelper.PageModels
             {
                 try
                 {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", User.CitizenId }, { "Subject", Note }, { "CreatedTime", DateTime.Now.ToUniversalTime() } });
-                    var values = new Dictionary<string, string> { { "content", encoded } };
+                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId }, { "Subject", Note }, { "CreatedTime", DateTime.Now.ToUniversalTime() } });
+                    var values = new Dictionary<string, string> { { "token", encoded } };
                     var content = new FormUrlEncodedContent(values);
                     var result = await client.PutAsync(new Uri(URI_BASE), content);
                     var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
+                    if (decoded != null)
+                    {
+                        if (NoteCreated(decoded))
+                        {
+                            Note = "";
+                            NoteList = await GetNoteCollection(User.CitizenId);
+                        }
+                    }
                 }
                 catch (Exception)
                 {
                 }
             }
+        }
+
+        private bool NoteCreated(IDictionary<string, object> dict)
+        {
+            return (bool)dict["NoteCreated"];
         }
 
         public async Task<ObservableCollection<Note>> GetNoteCollection(int? citizenId)

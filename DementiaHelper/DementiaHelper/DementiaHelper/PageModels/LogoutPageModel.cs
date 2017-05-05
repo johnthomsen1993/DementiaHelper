@@ -25,9 +25,7 @@ namespace DementiaHelper.PageModels
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread( () =>
             {
-                DependencyService.Get<ICredentialsService>().DeleteCredentials();
-                App.SetLoginPageContainer();
-                CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.LoginNavigationStack);
+                LogOut();
             });
         }
     }

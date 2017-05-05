@@ -60,8 +60,7 @@
                 <Entry Text="{Binding UpdatedUser.Email}"  Keyboard="Email" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3"></Entry>
 
                 <Label Text="{i18n:Translate Phone}" VerticalOptions="Center" Grid.Row="8" Grid.Column="1"></Label>
-                <Entry Text="{Binding UpdatedUser.Phone}" Keyboard="Numeric" x:Name="PhoneEntry" TextChanged="Entry_OnTextChanged"  Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3"></Entry>
-
+                <Entry Text="{Binding UpdatedUser.Phone}" TextChanged="Entry_OnTextChanged" Keyboard="Numeric" x:Name="PhoneEntry"  Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3"></Entry>
 
 
                 <Label Text="{i18n:Translate Picture}" VerticalOptions="End" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4"></Label>

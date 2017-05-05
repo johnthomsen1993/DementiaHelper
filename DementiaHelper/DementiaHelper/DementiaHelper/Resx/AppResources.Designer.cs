@@ -125,6 +125,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add item.
+        /// </summary>
+        public static string AddShoppingItem {
+            get {
+                return ResourceManager.GetString("AddShoppingItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure, that you would want to close this application.
         /// </summary>
         public static string AreYouSureThatYouWantToCloseThisApplication {
