@@ -19,6 +19,7 @@
                          DataSource="{Binding Appointments}"
                          x:Name="DaySchedule"
                         Locale="da-DK"
+                        
                          ScheduleView="DayView" 
                          HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand"  >

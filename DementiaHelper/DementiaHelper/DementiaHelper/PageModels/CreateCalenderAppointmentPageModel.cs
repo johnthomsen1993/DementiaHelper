@@ -23,6 +23,7 @@ namespace DementiaHelper.PageModels
         private int User { get; set; }
         public ICommand CancelCreateAppointmentCommand { get; protected set; }
         public string Description { get; set; }
+        public string SelecteColorName { get; set; }
         public DateTime Date { get; set; }
         public ScheduleAppointment Appointment { get; set; }
         public TimeSpan AppointmentStartTimeSpan { get; set; }
@@ -71,12 +72,35 @@ namespace DementiaHelper.PageModels
                     {
                         try
                         {
-
+                        string ColorText = "";
+                        switch (SelecteColorName)
+                        {
+                            case "Red":
+                                {
+                                    ColorText = "#ff0000";
+                                    break;
+                                }
+                            case "Blue":
+                                {
+                                    ColorText = "#0000ff";
+                                    break;
+                                }
+                            case "Green":
+                                {
+                                    ColorText = "#00ff00";
+                                    break;
+                                }
+                            default:
+                                {
+                                    ColorText = "#FFA2C139";
+                                    break;
+                                }
+                        }
                             var encoded = JWTService.Encode(new Dictionary<string, object>
                              {
                                 {"CitizenId", CitizenId },
                                 { "Subject",Description},
-                                { "Color", "#FFA2C139"},
+                                { "Color", ColorText},
                                 { "StartTime",new DateTime(Date.Year, Date.Month, Date.Day, AppointmentStartTimeSpan.Hours, AppointmentStartTimeSpan.Minutes, 0).ToUniversalTime() },
                                 { "EndTime", new DateTime(Date.Year, Date.Month, Date.Day, AppointmentEndTimeSpan.Hours, AppointmentEndTimeSpan.Minutes, 0).ToUniversalTime() }
                             });

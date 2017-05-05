@@ -368,6 +368,10 @@
     <value>Tilføj vare</value>
     <comment>Title for add shopping item view</comment>
   </data>
+  <data name="Call" xml:space="preserve">
+    <value>Ring</value>
+    <comment>Label for Textfield</comment>
+  </data>
   <data name="Account_ConnectIdErrorText" xml:space="preserve">
     <value>Der skete en fejl ved forbindelse, tjek om id er indtastet korrekt (Der er forskel på store og små bogstaver)</value>
   </data>

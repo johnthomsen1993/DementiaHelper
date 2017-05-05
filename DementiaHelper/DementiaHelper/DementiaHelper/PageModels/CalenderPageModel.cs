@@ -90,7 +90,10 @@ namespace DementiaHelper.PageModels
 
         async Task GoToCreateAppointment()
         {
-            await CoreMethods.PushPageModel<CreateCalenderAppointmentPageModel>(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
+            if (((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId != null)
+            {
+                await CoreMethods.PushPageModel<CreateCalenderAppointmentPageModel>(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
+            }
         }
     }
 }

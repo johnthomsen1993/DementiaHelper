@@ -40,7 +40,14 @@ namespace DementiaHelper.PageModels
                     var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", id } });
                     var result = await client.GetStringAsync(new Uri(URI_BASE + encoded));
                     var decoded = JWTService.Decode(result);
-                    return MapToContactsCollection(decoded);
+                    if (decoded != null)
+                    {
+                        return MapToContactsCollection(decoded);
+                    }
+                    {
+                        return new ObservableCollection<Contact>() { };
+                    }
+
                 }
                 catch (Exception)
                 {
@@ -63,12 +70,12 @@ namespace DementiaHelper.PageModels
         {
             var tempCaregiversCitizenCollection = new ObservableCollection<Contact>();
             var list = dict.SingleOrDefault(x => x.Key.Equals("contactList")).Value as IEnumerable<object>;
-            
+
             foreach (var obj in list)
             {
                 var jsonContainer = obj as JContainer;
                 var number = jsonContainer.SelectToken("ApplicationUser").SelectToken("Phone").ToObject<string>();
-                if (number != "" && number!=null)
+                if (number != "" && number != null)
                 {
                     tempCaregiversCitizenCollection.Add(item: new Contact()
                     {
@@ -78,13 +85,14 @@ namespace DementiaHelper.PageModels
                 }
             }
 
-            var jContainer = dict["caregiverCenter"] as JContainer;
-
-            tempCaregiversCitizenCollection.Add(new Contact()
-            {
+            if (dict["caregiverCenter"] != null) { 
+                var jContainer = dict["caregiverCenter"] as JContainer;
+                tempCaregiversCitizenCollection.Add(new Contact()
+              {
                 Phone = jContainer.SelectToken("Phone").ToObject<string>(),
                 Name = jContainer.SelectToken("Name").ToObject<string>()
-            });
+               });
+             }
             return tempCaregiversCitizenCollection;
         }
         #region Filter
