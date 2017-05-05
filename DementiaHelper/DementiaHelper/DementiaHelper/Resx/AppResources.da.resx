@@ -356,4 +356,8 @@
     <value>Tilføj vare</value>
     <comment>Title for add shopping item view</comment>
   </data>
+  <data name="Call" xml:space="preserve">
+    <value>Ring</value>
+    <comment>Label for Textfield</comment>
+  </data>
 </root>

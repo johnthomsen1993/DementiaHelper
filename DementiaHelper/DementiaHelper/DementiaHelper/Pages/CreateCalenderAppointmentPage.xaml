@@ -58,7 +58,7 @@
                     <Label x:Name="DateEndTimeLabel" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Text="Sluttidspunkt:"></Label>
                     <TimePicker  x:Name="DateEndTimeTimePicker" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Format="HH:mm" Time="{Binding AppointmentEndTimeSpan}"></TimePicker>
                     <Label x:Name="ColorLabel" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Text="Farve:"></Label>
-                    <Picker x:Name="ColorPicker"  Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Title="Farve" ItemsSource="{Binding ColorList}" ></Picker>
+                    <Picker x:Name="ColorPicker"  Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Title="Farve" SelectedItem="{Binding SelecteColorName,Mode=TwoWay}" ItemsSource="{Binding ColorList}" ></Picker>
                 </Grid>
             </Grid>
             <Grid x:Name="buttonsGrid" Grid.Row="1">

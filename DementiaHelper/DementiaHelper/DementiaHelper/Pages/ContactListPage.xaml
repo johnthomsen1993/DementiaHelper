@@ -41,7 +41,7 @@
                                 </Grid.ColumnDefinitions>
                                         <Label VerticalTextAlignment="Center" Text="{Binding Name}" FontAttributes="Bold" Grid.Column="0"></Label>
                                         <Label VerticalTextAlignment="Center"  Text="{Binding Phone}" FontAttributes="Bold" Grid.Column="1"></Label>
-                                <Button BindingContext="{Binding Source={x:Reference ContactListView},Path=BindingContext}" Command="{Binding CallContactCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Text="Call" Grid.Column="2"></Button>
+                                        <Button BindingContext="{Binding Source={x:Reference ContactListView},Path=BindingContext}" Command="{Binding CallContactCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Style="{StaticResource ButtonStyle}" Text="{i18n:Translate Call}" Grid.Column="2"></Button>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -81,7 +81,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Label VerticalTextAlignment="Center" Text="{Binding Name}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="0"></Label>
                                         <Label VerticalTextAlignment="Center"  Text="{Binding Phone}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="1"></Label>
-                                        <Button BindingContext="{Binding Source={x:Reference ContactListView},Path=BindingContext}" Command="{Binding CallContactCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"  Text="Call" Grid.Column="2"></Button>
+                                        <Button BindingContext="{Binding Source={x:Reference ContactListView},Path=BindingContext}" Command="{Binding CallContactCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"  Style="{StaticResource ButtonStyle}" Text="{i18n:Translate Call}" Grid.Column="2"></Button>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>

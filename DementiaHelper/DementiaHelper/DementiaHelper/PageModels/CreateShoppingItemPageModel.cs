@@ -44,10 +44,20 @@ namespace DementiaHelper.PageModels
                     var encoded = JWTService.Encode(new Dictionary<string, object>() { {"CitizenId", CitizenId }, { "Item", Item }, { "Quantity", Quantity } });
                     var values = new Dictionary<string, string> { { "token", encoded } };
                     var content = new FormUrlEncodedContent(values);
-                    await client.PutAsync(new Uri(URI_BASE), content);
+                    var result =await client.PutAsync(new Uri(URI_BASE), content);
+                    var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
+                    if (decoded != null)
+                    {
+                        await CoreMethods.PopPageModel();
+                    }
+                    else
+                    {
+                        await CoreMethods.DisplayAlert("Fejl", "", "OK");
+                    }
                 }
                 catch (Exception)
                 {
+
                 }
             }
             await CoreMethods.PopPageModel();

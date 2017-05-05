@@ -134,11 +134,29 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Call.
+        /// </summary>
+        public static string Call {
+            get {
+                return ResourceManager.GetString("Call", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Det var ikke muligt at forbinde til vores server prøv igen senere.
+        /// </summary>
+        public static string CanNotConnectToServer {
+            get {
+                return ResourceManager.GetString("CanNotConnectToServer", resourceCulture);
             }
         }
         
