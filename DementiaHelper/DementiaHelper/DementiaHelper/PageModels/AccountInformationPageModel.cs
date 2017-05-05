@@ -19,7 +19,6 @@ namespace DementiaHelper.PageModels
         private const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/getuser/";
         private const string URI_BASE_TEST = "http://localhost:29342/api/account/getuser/";
         public UserInformation ShowedUser { get; set; }
-      //  private readonly ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public bool IsCitizen { get; set; }
         public string CitizenId { get; set; }
         public bool Editbutton { get; set ; }

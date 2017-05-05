@@ -206,7 +206,8 @@ namespace DementiaHelper.WebApi.Controllers
             var payload = new Dictionary<string, object>()
             {
                 {"User", relative.ApplicationUser},
-                {"CitizenId", relative.CitizenId}
+                {"CitizenId", relative.CitizenId},
+                {"PrimaryRelative", relative.PrimaryRelative }
             };
             return JWTService.Encode(payload);
         }
