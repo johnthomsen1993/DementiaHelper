@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DementiaHelper.Resx;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
@@ -37,6 +38,10 @@ namespace DementiaHelper.PageModels
                 {
                     ConnectionId = "";
                     await CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
+                }
+                else
+                {
+                    await CoreMethods.DisplayAlert(AppResources.Account_ConnectErrorTitle, AppResources.Account_ConnectErrorText, AppResources.General_Ok);
                 }
             }
         }

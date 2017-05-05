@@ -62,6 +62,24 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error happened when trying to connect, please try again later.
+        /// </summary>
+        public static string Account_ConnectErrorText {
+            get {
+                return ResourceManager.GetString("Account_ConnectErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Connected.
+        /// </summary>
+        public static string Account_ConnectErrorTitle {
+            get {
+                return ResourceManager.GetString("Account_ConnectErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password must be at least 6 characters long..
         /// </summary>
         public static string Account_InvalidPasswordText {
@@ -373,6 +391,24 @@ namespace DementiaHelper.Resx {
         public static string General_InvalidEmailTitle {
             get {
                 return ResourceManager.GetString("General_InvalidEmailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill out each field..
+        /// </summary>
+        public static string General_NullText {
+            get {
+                return ResourceManager.GetString("General_NullText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill each field.
+        /// </summary>
+        public static string General_NullTitle {
+            get {
+                return ResourceManager.GetString("General_NullTitle", resourceCulture);
             }
         }
         

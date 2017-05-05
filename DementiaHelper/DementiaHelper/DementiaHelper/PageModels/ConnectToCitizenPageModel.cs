@@ -9,6 +9,7 @@ using System.Windows.Input;
 using DementiaHelper.Model;
 using DementiaHelper.Services;
 using DementiaHelper.PageModels;
+using DementiaHelper.Resx;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
@@ -43,7 +44,7 @@ namespace DementiaHelper.PageModels
                 }
                 else
                 {
-                    //TODO: Do something here to tell user connection didn't happen!
+                    await CoreMethods.DisplayAlert(AppResources.Account_ConnectErrorTitle, AppResources.Account_ConnectErrorText, AppResources.General_Ok);
                 }
             }
         }

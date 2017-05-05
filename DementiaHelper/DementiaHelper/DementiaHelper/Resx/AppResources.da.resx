@@ -352,4 +352,16 @@
   <data name="General_InvalidEmailTitle" xml:space="preserve">
     <value>Ugyldig email</value>
   </data>
+  <data name="Account_ConnectErrorText" xml:space="preserve">
+    <value>Der skete en fejl ved forbindelsen, prøv igen senere</value>
+  </data>
+  <data name="Account_ConnectErrorTitle" xml:space="preserve">
+    <value>Forbindelsesproblem</value>
+  </data>
+  <data name="General_NullText" xml:space="preserve">
+    <value>Udfyld venligst alle felter</value>
+  </data>
+  <data name="General_NullTitle" xml:space="preserve">
+    <value>Felter ikke udfyldt</value>
+  </data>
 </root>
