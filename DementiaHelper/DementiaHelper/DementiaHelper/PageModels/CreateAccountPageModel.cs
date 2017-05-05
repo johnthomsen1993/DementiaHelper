@@ -41,6 +41,11 @@ namespace DementiaHelper.PageModels
 
         async Task CreateAccountAsync()
         {
+            if (FirstName == null || LastName == null || Password == null || Email == null)
+            {
+                await CoreMethods.DisplayAlert(AppResources.General_NullTitle, AppResources.General_NullText, AppResources.General_Ok);
+                return;
+            }
             var RoleId = GetIntegerValueForDatabase();
             if (RoleId == 0)
             {
@@ -92,6 +97,7 @@ namespace DementiaHelper.PageModels
 
         private bool IsValidEmail(string inputEmail)
         {
+            if (inputEmail == null) return false;
             string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
                   @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
                   @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";

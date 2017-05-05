@@ -49,7 +49,7 @@ namespace DementiaHelper.PageModels
                 Appointment = await GetNextAppointment();
             });
         }
-        private async Task<ScheduleAppointment> GetAppointments()
+        private async Task<ScheduleAppointment> GetAppointment()
         {
             if (((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId == null) { return new ScheduleAppointment(); }
             using (var client = new HttpClient())
@@ -94,8 +94,7 @@ namespace DementiaHelper.PageModels
         }
 
         private async Task<ScheduleAppointment> GetNextAppointment() {
-            var ScheduleAppointments = await GetAppointments();
-            var currentTime = DateTime.Now;
+            var ScheduleAppointments = await GetAppointment();
             return ScheduleAppointments;
         }
     }

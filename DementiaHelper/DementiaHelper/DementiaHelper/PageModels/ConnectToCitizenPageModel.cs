@@ -9,6 +9,7 @@ using System.Windows.Input;
 using DementiaHelper.Model;
 using DementiaHelper.Services;
 using DementiaHelper.PageModels;
+using DementiaHelper.Resx;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
@@ -42,13 +43,14 @@ namespace DementiaHelper.PageModels
                     }
                     else
                     {
+                        await CoreMethods.DisplayAlert(AppResources.Account_ConnectErrorTitle, AppResources.Account_ConnectErrorText, AppResources.General_Ok); // TODO: find ud af om rigtig externalization
                         await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at forbinde til borgeren, check venligst at dit indtasted borger id passer overens med borgerens id i borgerens konto view", "Ok");
 
                     }
                 }
                 else
                 {
-                    await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at forbinde til vores server prøv igen senere", "Ok");
+                    await CoreMethods.DisplayAlert(AppResources.Account_ConnectErrorTitle, AppResources.Account_ConnectErrorText, AppResources.General_Ok);
                 }
             }
         }
