@@ -392,4 +392,28 @@
   <data name="Account_LoginFailTitle" xml:space="preserve">
     <value>Login failed</value>
   </data>
+  <data name="DayTitle" xml:space="preserve">
+    <value>Day</value>
+    <comment>Title for Day calendar view</comment>
+  </data>
+  <data name="MonthTitle" xml:space="preserve">
+    <value>Month</value>
+    <comment>Title for Month calendar view</comment>
+  </data>
+  <data name="SeeMonthsAppointments" xml:space="preserve">
+    <value>See months appointments</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="SeeTodaysAppointments" xml:space="preserve">
+    <value>See todays appointments</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="SeeWeeksAppointments" xml:space="preserve">
+    <value>See weeks appointments</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="WeekTitle" xml:space="preserve">
+    <value>Week</value>
+    <comment>Title for Week Calendar view</comment>
+  </data>
 </root>

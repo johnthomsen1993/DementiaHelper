@@ -139,7 +139,7 @@ namespace DementiaHelper.PageModels
         {
             User.CitizenId = citizen.CitizenId;
             App.Current.Properties["ApplicationUser"] = User;
-            CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
+            CoreMethods.SwitchSelectedMaster<CalendarPageModel>();
         }
     }
 }

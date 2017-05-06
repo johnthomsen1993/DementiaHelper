@@ -359,6 +359,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        public static string DayTitle {
+            get {
+                return ResourceManager.GetString("DayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Caretaker.
         /// </summary>
         public static string DementiaRole {
@@ -548,6 +557,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        public static string MonthTitle {
+            get {
+                return ResourceManager.GetString("MonthTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -710,6 +728,33 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to See months appointments.
+        /// </summary>
+        public static string SeeMonthsAppointments {
+            get {
+                return ResourceManager.GetString("SeeMonthsAppointments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See todays appointments.
+        /// </summary>
+        public static string SeeTodaysAppointments {
+            get {
+                return ResourceManager.GetString("SeeTodaysAppointments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See weeks appointments.
+        /// </summary>
+        public static string SeeWeeksAppointments {
+            get {
+                return ResourceManager.GetString("SeeWeeksAppointments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send message.
         /// </summary>
         public static string SendMessage {
@@ -760,6 +805,15 @@ namespace DementiaHelper.Resx {
         public static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week.
+        /// </summary>
+        public static string WeekTitle {
+            get {
+                return ResourceManager.GetString("WeekTitle", resourceCulture);
             }
         }
         

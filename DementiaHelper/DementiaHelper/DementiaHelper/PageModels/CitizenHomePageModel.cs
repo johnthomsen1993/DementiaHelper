@@ -79,7 +79,7 @@ namespace DementiaHelper.PageModels
         }
         private async Task GoToCreateShoppingItem()
         {
-          await  CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
+          await  CoreMethods.SwitchSelectedMaster<CalendarPageModel>();
         }
 
         private string FirstLetterToUpper(string str)  // made this one since CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower()); does not exist in xamarin.forms pcl yet, which would have been the proper way to do it

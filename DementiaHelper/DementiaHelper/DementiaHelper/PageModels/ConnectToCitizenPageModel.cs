@@ -39,7 +39,7 @@ namespace DementiaHelper.PageModels
                     {
                         App.MapToApplicationUser(decoded);
                         ConnectionId = "";
-                        await CoreMethods.SwitchSelectedMaster<CalenderPageModel>();
+                        await CoreMethods.SwitchSelectedMaster<CalendarPageModel>();
                     }
                     else
                     {
