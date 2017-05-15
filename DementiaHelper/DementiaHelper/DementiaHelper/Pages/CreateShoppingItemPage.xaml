@@ -54,8 +54,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <customRenders:CustomButtonRender Text="{i18n:Translate Cancel}" Style="{StaticResource CancelButtonStyle}" Command="{Binding CancelCommand}" Grid.Column="0" />
-                <customRenders:CustomButtonRender Text="{i18n:Translate AddShoppingItem}" Style="{StaticResource ButtonStyle}" Command="{Binding SaveCommand}" Grid.Column="1" />
+                <customRenders:CustomButtonRender Text="{i18n:Translate Cancel}" Style="{StaticResource CancelButtonStyle}" Command="{Binding CancelAddShoppingItemToShoppingListCommand}" Grid.Column="0" />
+                <customRenders:CustomButtonRender Text="{i18n:Translate AddShoppingItem}" Style="{StaticResource ButtonStyle}" Command="{Binding AddShoppingItemToShoppingListCommand}" Grid.Column="1" />
             </Grid>
         </Grid>
     </ContentPage.Content>

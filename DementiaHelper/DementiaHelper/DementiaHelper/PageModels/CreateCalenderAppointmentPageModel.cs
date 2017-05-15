@@ -25,20 +25,9 @@ namespace DementiaHelper.PageModels
         public string Description { get; set; }
         public string SelecteColorName { get; set; }
         public DateTime Date { get; set; }
-        public ScheduleAppointment Appointment { get; set; }
         public TimeSpan AppointmentStartTimeSpan { get; set; }
-
-
-    
-
         public TimeSpan AppointmentEndTimeSpan { get; set; } 
-        public ObservableCollection<String> ColorList{ get; set; } 
-
-
-
-
-
-
+        public ObservableCollection<string> ColorList{ get; set; } 
         public CreateCalenderAppointmentPageModel()
         {
             this.CreateAppointmentCommand = new Command( async() => await CreateNewAppointment());
@@ -47,14 +36,8 @@ namespace DementiaHelper.PageModels
             AppointmentEndTimeSpan = new TimeSpan(13, 0, 0);
             Description = "";
             Date = DateTime.Now;
-            DateTime currentDate = DateTime.Now;
             ColorList = new ObservableCollection<string>() {"Red","Blue","Green" };
 
-        }
-
-        private void CancelCreateAppointment()
-        {
-            CoreMethods.PopPageModel();
         }
         public override void Init(object initData)
         {
@@ -66,70 +49,11 @@ namespace DementiaHelper.PageModels
         {
             if (Description!="")
             {
-              //  var Appointment = CreateAppointment(Description, Color.FromHex("#FFA2C139"), new DateTime(Date.Year, Date.Month, Date.Day, AppointmentStartTimeSpan.Hours, AppointmentStartTimeSpan.Minutes, 0), new DateTime(Date.Year, Date.Month, Date.Day, AppointmentEndTimeSpan.Hours, AppointmentEndTimeSpan.Minutes, 0));
-              //  MessagingCenter.Send(this, "CreatedNewAppointment", Appointment);
-                    using (var client = new HttpClient())
-                    {
-                        try
-                        {
-                        string ColorText = "";
-                        switch (SelecteColorName)
-                        {
-                            case "Red":
-                                {
-                                    ColorText = "#ff0000";
-                                    break;
-                                }
-                            case "Blue":
-                                {
-                                    ColorText = "#0000ff";
-                                    break;
-                                }
-                            case "Green":
-                                {
-                                    ColorText = "#00ff00";
-                                    break;
-                                }
-                            default:
-                                {
-                                    ColorText = "#FFA2C139";
-                                    break;
-                                }
-                        }
-                            var encoded = JWTService.Encode(new Dictionary<string, object>
-                             {
-                                {"CitizenId", CitizenId },
-                                { "Subject",Description},
-                                { "Color", ColorText},
-                                { "StartTime",new DateTime(Date.Year, Date.Month, Date.Day, AppointmentStartTimeSpan.Hours, AppointmentStartTimeSpan.Minutes, 0).ToUniversalTime() },
-                                { "EndTime", new DateTime(Date.Year, Date.Month, Date.Day, AppointmentEndTimeSpan.Hours, AppointmentEndTimeSpan.Minutes, 0).ToUniversalTime() }
-                            });
-                        var values = new Dictionary<string, string> { { "token", encoded } };
-                        var content = new FormUrlEncodedContent(values);
-                        var result = await client.PutAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/calendar"), content);
-                        var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
-                        await CoreMethods.PopPageModel();
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
-                    }
-                }
+                var decoded = await ModelAccessor.Instance.CalendarController.CreateNewAppointment(SelecteColorName, Description, CitizenId,
+                            new DateTime(Date.Year, Date.Month, Date.Day, AppointmentEndTimeSpan.Hours, AppointmentEndTimeSpan.Minutes, 0).ToUniversalTime(),
+                            new DateTime(Date.Year, Date.Month, Date.Day, AppointmentStartTimeSpan.Hours, AppointmentStartTimeSpan.Minutes, 0).ToUniversalTime());
+               await CoreMethods.PopPageModel();
             }
-        
-        //TODO: Is this going to be used?
-        private bool AppointmentCreated(Dictionary<string, object> dict)
-        {
-            return (bool)dict["AppointmentCreated"];
         }
-
-        public ScheduleAppointment CreateAppointment(string subject, Color color, DateTime startTime, DateTime endTime)
-        {
-            ScheduleAppointment scheduleAppointment = new ScheduleAppointment() { Subject = subject, Color = color, StartTime = startTime, EndTime = endTime };
-            return scheduleAppointment;
-
-        }
-
     }
 }

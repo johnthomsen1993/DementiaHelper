@@ -46,7 +46,7 @@ namespace DementiaHelper.PageModels
                 await CoreMethods.DisplayAlert(AppResources.General_NullTitle, AppResources.General_NullText, AppResources.General_Ok);
                 return;
             }
-            var RoleId = GetIntegerValueForDatabase();
+            var RoleId = GetRoleIntegerValue();
             if (RoleId == 0)
             {
                 await CoreMethods.DisplayAlert(AppResources.Account_InvalidRoleTitle, AppResources.Account_InvalidRoleText, AppResources.General_Ok);
@@ -62,25 +62,13 @@ namespace DementiaHelper.PageModels
                 await CoreMethods.DisplayAlert(AppResources.Account_InvalidPasswordTitle, AppResources.Account_InvalidPasswordText, AppResources.General_Ok);
                 return;
             }
-            using (var client = new HttpClient())
-            {
-                var encoded = JWTService.Encode(new Dictionary<string, object>
-            {
-                {"email",Email},
-                {"password", Password},
-                {"role", RoleId},
-                {"firstName", FirstName},
-                {"lastName", LastName}
-            });
-                var values = new Dictionary<string, string> { { "token", encoded } };
-                var content = new FormUrlEncodedContent(values);
-                var result = await client.PutAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/createaccount"), content);
-                var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
+
+                var decoded = await ModelAccessor.Instance.AccountController.CreateAccount(Email, Password, RoleId, FirstName, LastName);
                 if (decoded != null)
                 {
-                    if (UserCreated(decoded))
+                    if ((bool)decoded["UserCreated"])
                     {
-                        if (await App.LoginAsync(Email, Password))
+                        if (await ModelAccessor.Instance.AccountController.LoginAsync(Email, Password))
                         {
                             App.SetMasterDetailToRole();
                             CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
@@ -92,7 +80,7 @@ namespace DementiaHelper.PageModels
                 {
                    await CoreMethods.DisplayAlert(AppResources.Connection_ErrorTitle, AppResources.Connection_ErrorText, AppResources.General_Ok);
                 }
-            };
+           
         }
 
         private bool IsValidEmail(string inputEmail)
@@ -108,11 +96,8 @@ namespace DementiaHelper.PageModels
                 return (false);
         }
 
-        private bool UserCreated(IDictionary<string, object> dict)
-        {
-            return (bool)dict["UserCreated"];
-        }
-        public int GetIntegerValueForDatabase()
+
+        public int GetRoleIntegerValue()
         {
             if (SelecteRoleName == AppResources.DementiaRole)
             {

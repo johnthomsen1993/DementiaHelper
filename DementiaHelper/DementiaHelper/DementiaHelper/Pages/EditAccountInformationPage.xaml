@@ -78,8 +78,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <customRenders:CustomButtonRender Text="{i18n:Translate Cancel}" Style="{StaticResource CancelButtonStyle}" Command="{Binding CancelCommand}" Grid.Column="0" />
-                    <customRenders:CustomButtonRender Text="{i18n:Translate Save}" Style="{StaticResource ButtonStyle}" Command="{Binding SaveCommand}" Grid.Column="1" />
+                    <customRenders:CustomButtonRender Text="{i18n:Translate Cancel}" Style="{StaticResource CancelButtonStyle}" Command="{Binding CancelUpdateOfUserInformationCommand}" Grid.Column="0" />
+                    <customRenders:CustomButtonRender Text="{i18n:Translate Save}" Style="{StaticResource ButtonStyle}" Command="{Binding SaveUpdateUserInformationCommand}" Grid.Column="1" />
                 </Grid>
 
             </StackLayout>

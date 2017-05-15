@@ -20,7 +20,6 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class CalendarPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/calendar/";
         public ICommand GoToDayViewCommand { get; protected set; }
         public ICommand GoToWeekViewCommand { get; protected set; }
         public ICommand GoToMonthViewCommand { get; protected set; }
@@ -46,51 +45,6 @@ namespace DementiaHelper.PageModels
         private async Task GoToDayView()
         {
             await CoreMethods.PushPageModel<DayCalendarPageModel>();
-        }
-
-        public static async Task<ObservableCollection<ScheduleAppointment>> GetAppointments(int? id)
-        {
-            if (id == null) { return new ObservableCollection<ScheduleAppointment>(); }
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", id } });
-                    var result = await client.GetStringAsync(new Uri(URI_BASE + encoded));
-                    var decoded = JWTService.Decode(result);
-                    return MapToCalenderAppointments(decoded);
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-        }
-
-
-
-        /// <summary>
-        /// might need to get moved elsewhere
-        /// </summary>
-        /// <param name="decoded"></param>
-        /// <returns></returns>
-        public static ObservableCollection<ScheduleAppointment> MapToCalenderAppointments(IDictionary<string, object> decoded)
-        {
-            ObservableCollection<ScheduleAppointment> tempCalenderAppointmentsList = new ObservableCollection<ScheduleAppointment>();
-
-            var list = decoded.SingleOrDefault(x => x.Key.Equals("Appointments")).Value as IEnumerable<object>;
-            foreach (var obj in list)
-            {
-                var jsonContainer = obj as JContainer;
-                tempCalenderAppointmentsList.Add(new ScheduleAppointment()
-                {
-                    Subject = jsonContainer.SelectToken("Subject").ToString(),
-                    Color = Color.FromHex(jsonContainer.SelectToken("Color").ToString()),
-                    StartTime = jsonContainer.SelectToken("StartTime").ToObject<DateTime>().ToLocalTime(),
-                    EndTime = jsonContainer.SelectToken("EndTime").ToObject<DateTime>().ToLocalTime()
-                });
-            }
-            return tempCalenderAppointmentsList;
         }
     }
 }

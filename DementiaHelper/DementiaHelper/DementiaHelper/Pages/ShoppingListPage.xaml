@@ -67,7 +67,7 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"></RowDefinition>
                                             </Grid.RowDefinitions>
-                                            <customRenders:CustomButtonRender  Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewPhone},Path=BindingContext}" Style="{StaticResource DeleteItemStylePhone}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
+                                            <customRenders:CustomButtonRender  Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewPhone},Path=BindingContext}" Style="{StaticResource DeleteItemStylePhone}" Command="{Binding RemoveShoppingItemCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
                                             <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
                                             <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
                                             <customRenders:ToggleButton Command="{Binding Source={x:Reference ShoppingListViewPhone},Path=BindingContext.ChangeBoughtStateOfItemCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Checked="{Binding Bought}"   CheckedImage="CheckBoxChecked.png" UnCheckedImage="CheckBoxUnchecked.png" Grid.Column="6" Grid.ColumnSpan="2" ></customRenders:ToggleButton>
@@ -85,7 +85,7 @@
               AbsoluteLayout.LayoutFlags="PositionProportional" >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-              Command="{Binding CreateShoppingItemCommand}"/>
+              Command="{Binding GoToCreateShoppingItemCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
             </AbsoluteLayout>
@@ -134,7 +134,7 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"></RowDefinition>
                                             </Grid.RowDefinitions>
-                                            <customRenders:CustomButtonRender Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewTablet},Path=BindingContext}" Style="{StaticResource DeleteItemStyleTablet}" Command="{Binding RemoveFromDatabaseCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
+                                            <customRenders:CustomButtonRender Text="X" Grid.Column="0" BindingContext="{Binding Source={x:Reference ShoppingListViewTablet},Path=BindingContext}" Style="{StaticResource DeleteItemStyleTablet}" Command="{Binding RemoveShoppingItemCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"></customRenders:CustomButtonRender>
                                             <Label Text="{Binding Quantity}" Grid.Column="1" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}"></Label>
                                             <Label Text="{Binding Product.ProductName}" Grid.Column="3" Grid.ColumnSpan="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource ListLabelStyleTablet}"></Label>
                                             <customRenders:ToggleButton Command="{Binding Source={x:Reference ShoppingListViewTablet},Path=BindingContext.ChangeBoughtStateOfItemCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Checked="{Binding Bought}"   CheckedImage="CheckBoxChecked.png" UnCheckedImage="CheckBoxUnchecked.png" Grid.Column="6" Grid.ColumnSpan="2"></customRenders:ToggleButton>
@@ -154,7 +154,7 @@
               AbsoluteLayout.LayoutFlags="PositionProportional" >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-                              Command="{Binding CreateShoppingItemCommand}"/>
+                              Command="{Binding GoToCreateShoppingItemCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
             </AbsoluteLayout>

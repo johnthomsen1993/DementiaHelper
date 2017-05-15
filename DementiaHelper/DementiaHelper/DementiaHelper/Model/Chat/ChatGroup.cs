@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DementiaHelper.Model
 {
-    class ChatGroup
+    public class ChatGroup
     {
         public int ChatGroupId { get; set; }
         public int ApplicationUserId { get; set; }

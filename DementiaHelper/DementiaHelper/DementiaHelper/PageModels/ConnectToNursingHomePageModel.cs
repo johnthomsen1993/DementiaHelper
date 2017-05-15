@@ -26,14 +26,10 @@ namespace DementiaHelper.PageModels
 
         private async Task ConnectToNursingHome()
         {
-            using (var client = new HttpClient())
-            {
-                var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).ApplicationUserId }, { "ConnectionId", ConnectionId } });
-                var values = new Dictionary<string, string> { { "token", encoded } };
-                var content = new FormUrlEncodedContent(values);
-                var result = await client.PutAsync(new Uri(URI_BASE), content);
-                var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
-                if ((bool)decoded["Connected"])
+
+            var decoded = await ModelAccessor.Instance.AccountController.ConnectToNursingHome(ConnectionId);
+
+            if ((bool)decoded["Connected"])
                 {
                     ConnectionId = "";
                     await CoreMethods.SwitchSelectedMaster<CitizenHomePageModel>();
@@ -42,7 +38,6 @@ namespace DementiaHelper.PageModels
                 {
                     await CoreMethods.DisplayAlert(AppResources.Connection_ErrorTitle, AppResources.Connection_ErrorText, AppResources.General_Ok);
                 }
-            }
         }
     }
 }

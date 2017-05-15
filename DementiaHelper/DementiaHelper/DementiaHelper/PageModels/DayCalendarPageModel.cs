@@ -29,7 +29,7 @@ namespace DementiaHelper.PageModels
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread(async () =>
             {
-                Appointments = await CalendarPageModel.GetAppointments(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
+                Appointments = await ModelAccessor.Instance.CalendarController.GetAppointments(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
             });
         }
 

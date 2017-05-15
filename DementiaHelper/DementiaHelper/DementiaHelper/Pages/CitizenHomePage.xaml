@@ -52,7 +52,7 @@
                 </StackLayout>
                 <StackLayout  VerticalOptions="End">
                     <StackLayout Spacing="0" Padding="10" Orientation="Vertical">
-                        <customRenders:CustomButtonRender  Style="{StaticResource SeeListOfDayAppointmentsButtonStyle}" Text="Se liste over dagens aftaler"/>
+                                <customRenders:CustomButtonRender Command="{Binding GoToCalendarDayViewCommand}"  Style="{StaticResource SeeListOfDayAppointmentsButtonStyle}" Text="Se liste over dagens aftaler"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

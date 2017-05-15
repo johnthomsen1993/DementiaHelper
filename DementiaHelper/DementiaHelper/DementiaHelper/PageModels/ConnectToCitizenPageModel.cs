@@ -26,18 +26,12 @@ namespace DementiaHelper.PageModels
 
         private async Task ConnectToCitizen()
         {
-            using (var client = new HttpClient())
-            {
-                var encoded = JWTService.Encode(new Dictionary<string, object>() { { "RelativeId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).ApplicationUserId }, { "ConnectionId", ConnectionId } });
-                var values = new Dictionary<string, string> { { "token", encoded } };
-                var content = new FormUrlEncodedContent(values);
-                var result = await client.PutAsync(new Uri(URI_BASE), content);
-                var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
+                var decoded = await ModelAccessor.Instance.AccountController.ConnectToCitizen(ConnectionId);
                 if (decoded != null)
                 {
                     if (!decoded.ContainsKey("Connected"))
                     {
-                        App.MapToApplicationUser(decoded);
+                        ModelAccessor.Instance.AccountController.MapToApplicationUser(decoded);
                         ConnectionId = "";
                         await CoreMethods.SwitchSelectedMaster<CalendarPageModel>();
                     }
@@ -52,6 +46,6 @@ namespace DementiaHelper.PageModels
                     await CoreMethods.DisplayAlert(AppResources.Connection_ErrorTitle, AppResources.Connection_ErrorText, AppResources.General_Ok);
                 }
             }
-        }
+        
     }
 }

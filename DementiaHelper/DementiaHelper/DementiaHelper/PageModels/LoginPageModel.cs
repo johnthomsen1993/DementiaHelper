@@ -20,8 +20,9 @@ namespace DementiaHelper.PageModels
    
    public class LoginPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/login";
-        public string Email { get; set; }
+
+    
+      public string Email { get; set; }
       public string Password { get; set; }
       public ICommand LoginCommand { get; protected set; }
       public ICommand GoToCreateAccountCommand { get; protected set; }
@@ -44,7 +45,7 @@ namespace DementiaHelper.PageModels
 
         async Task LoginAsync()
         {
-            if (await App.LoginAsync(Email, Password))
+            if (await ModelAccessor.Instance.AccountController.LoginAsync(Email, Password))
             {
                 Email = "";
                 Password = "";

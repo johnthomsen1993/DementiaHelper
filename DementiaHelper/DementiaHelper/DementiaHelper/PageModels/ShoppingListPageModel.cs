@@ -22,46 +22,30 @@ namespace DementiaHelper.PageModels
     {
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/shoppinglist/";
         public ShoppingList ShoppingList { get; set; }
-        public ICommand RemoveFromDatabaseCommand { get; protected set; }
+        public ICommand RemoveShoppingItemCommand { get; protected set; }
         public ICommand ChangeBoughtStateOfItemCommand { get; protected set; }
-        public ICommand CreateShoppingItemCommand { get; protected set; }
+        public ICommand GoToCreateShoppingItemCommand { get; protected set; }
         public string Item { get; set; }
         public ObservableCollection<ShoppingListItem> ShoppingListDetails { get; set; }
         public ShoppingListPageModel()
         {
             ShoppingList = new ShoppingList() {ShoppingListItems = new ObservableCollection<ShoppingListItem>() {} };
-            CreateShoppingItemCommand = new Command(async (id) => await GoToCreateShoppingItem(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId));
-            RemoveFromDatabaseCommand = new Command(async (obj) => await RemoveFromDatabase((ShoppingListItem) obj));
+            GoToCreateShoppingItemCommand = new Command(async (id) => await GoToCreateShoppingItem(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId));
+            RemoveShoppingItemCommand = new Command(async (obj) => await RemoveShoppingItem((ShoppingListItem) obj));
             ChangeBoughtStateOfItemCommand = new Command(async (obj) => await ChangeBoughtStateOfItem((ShoppingListItem)obj));
         }
 
         private async Task ChangeBoughtStateOfItem(ShoppingListItem item)
         {
-
-            using (var client = new HttpClient())
+            var decoded = await ModelAccessor.Instance.ShoppingListController.ChangeBoughtStateOfItem(item);
+            if (!decoded.ContainsKey("ErrorOnUpdate"))
             {
-                try
-                {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "ShoppingListItemId", item.ShoppingListItemId }, {"Bought", item.Bought },{"CitizenId", item.CitizenId } }); //TODO: Make citizenid accessible and change this
-                    var values = new Dictionary<string, string> { { "token", encoded } };
-                    var content = new FormUrlEncodedContent(values);
-                    var result = await client.PutAsync(new Uri(URI_BASE + "bought/"), content);
-                    var test = await result.Content.ReadAsStringAsync();
-                    var decoded = JWTService.Decode(test);
-                    if (!decoded.ContainsKey("ErrorOnRemove"))
-                    {
-                        ShoppingList = MapToShoppingListModel(decoded);
-                        ShoppingListDetails = ShoppingList.ShoppingListItems;
-                    }
-                    else
-                    {
-                        await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.General_Ok);
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                ShoppingList = ModelAccessor.Instance.ShoppingListController.MapToShoppingListModel(decoded);
+                ShoppingListDetails = ShoppingList.ShoppingListItems;
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.General_Ok);
             }
         }
 
@@ -72,7 +56,7 @@ namespace DementiaHelper.PageModels
             var User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
             Device.BeginInvokeOnMainThread(async () =>
             {
-                var shoppinglist = await GetShoppingList(User.CitizenId);
+                var shoppinglist = await ModelAccessor.Instance.ShoppingListController.GetShoppingList(User.CitizenId);
                 ShoppingList.ShoppingListItems = shoppinglist?.ShoppingListItems;
                 ShoppingListDetails = ShoppingList?.ShoppingListItems;
             });
@@ -86,91 +70,31 @@ namespace DementiaHelper.PageModels
             }
             else
             {
-                if (((ApplicationUser)App.Current.Properties["ApplicationUser"]).RoleId == 2) { await CoreMethods.DisplayAlert("Not possible", "to add new items, you need to be connected to a person under care", "Ok"); }
-                if (((ApplicationUser)App.Current.Properties["ApplicationUser"]).RoleId == 3) { await CoreMethods.DisplayAlert("Not possible", "to add new items, you need to have choosen the citizen your inspecting", "Ok"); }
-            }
-        }
-        private async Task RemoveFromDatabase(ShoppingListItem item)
-        {
-            using (var client = new HttpClient())
-            {
-                try
+                switch (((ApplicationUser) App.Current.Properties["ApplicationUser"]).RoleId)
                 {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "shoppingListItemId", item.ShoppingListItemId }, {"citizenId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId} });
-                    var result = await client.DeleteAsync(new Uri(URI_BASE + encoded));
-                    var test = await result.Content.ReadAsStringAsync();
-                    var decoded = JWTService.Decode(test);
-                    if (!decoded.ContainsKey("ErrorOnRemove"))
-                    {
-                        ShoppingList = MapToShoppingListModel(decoded);
-                        ShoppingListDetails = ShoppingList.ShoppingListItems;
-                    }
-                    else
-                    {
-                       await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.General_Ok);
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
+                    case 2:
+                        await CoreMethods.DisplayAlert("Not possible",
+                            "to add new items, you need to be connected to a person under care", "Ok");
+                        break;
+                    case 3:
+                        await CoreMethods.DisplayAlert("Not possible",
+                            "to add new items, you need to have choosen the citizen your inspecting", "Ok");
+                        break;
                 }
             }
         }
-
-        private async Task<ShoppingList> GetShoppingList(int? id)
+        private async Task RemoveShoppingItem(ShoppingListItem item)
         {
-            if (id == null) { return null; }
-            using (var client = new HttpClient())
+            var decoded = await ModelAccessor.Instance.ShoppingListController.RemoveShoppingItem(item);
+            if (!decoded.ContainsKey("ErrorOnRemove"))
             {
-                try
-                {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "citizenId", id } });
-                    var result =  await client.GetStringAsync(new Uri(URI_BASE + encoded));
-                    var decoded = JWTService.Decode(result);
-                    return decoded.ContainsKey("List") ? null : MapToShoppingListModel(decoded);
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
+                ShoppingList = ModelAccessor.Instance.ShoppingListController.MapToShoppingListModel(decoded);
+                ShoppingListDetails = ShoppingList.ShoppingListItems;
             }
-        }
-
-        private ShoppingList MapToShoppingListModel(IDictionary<string, object> dict)
-        {
-            ShoppingList tempShoppingList = new ShoppingList()
+            else
             {
-                ShoppingListItems = new ObservableCollection<ShoppingListItem>()
-            };
-            var list = dict.SingleOrDefault(x => x.Key.Equals("ShoppingList")).Value as IEnumerable<object>;
-            foreach (var obj in list)
-            {
-                var jsonContainer = obj as JContainer;
-
-                var shoppingListItemId = jsonContainer.SelectToken("ShoppingListItemId");
-                var bought = jsonContainer.SelectToken("Bought");
-                var quantity = jsonContainer.SelectToken("Quantity");
-
-                //Product
-                var jsonProduct = jsonContainer.SelectToken("Product");
-                var productName = jsonProduct.SelectToken("ProductName");
-                var productId = jsonProduct.SelectToken("ProductId");
-
-                //CitizenId
-                var jsonShoppingList = jsonContainer.SelectToken("CitizenId");
-                
-                tempShoppingList.ShoppingListItems.Add(new ShoppingListItem()
-                {
-                    Bought = bought.ToObject<bool>(),
-                    Quantity = quantity.ToObject<int>(),
-                    ShoppingListItemId = shoppingListItemId.ToObject<int>(),
-                    CitizenId = jsonShoppingList.ToObject<int>(),
-                    Product = new Product() {
-                        ProductName = productName.ToString(),
-                        ProductId = productId.ToObject<int>()}
-                });
+                await App.Current.MainPage.DisplayAlert(AppResources.ErrorOnRemoveTitle, AppResources.ErrorOnRemove, AppResources.General_Ok);
             }
-            return tempShoppingList;
         }
     }
 }
