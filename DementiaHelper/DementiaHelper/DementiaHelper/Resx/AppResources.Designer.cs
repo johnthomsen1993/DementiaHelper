@@ -170,6 +170,33 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Caretaker Chat.
+        /// </summary>
+        public static string Chat_ChatTitleCaretaker {
+            get {
+                return ResourceManager.GetString("Chat_ChatTitleCaretaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Citizen Chat.
+        /// </summary>
+        public static string Chat_ChatTitleCitizen {
+            get {
+                return ResourceManager.GetString("Chat_ChatTitleCitizen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relative Chat.
+        /// </summary>
+        public static string Chat_ChatTitleRelative {
+            get {
+                return ResourceManager.GetString("Chat_ChatTitleRelative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chat.
         /// </summary>
         public static string ChatTitle {
@@ -382,6 +409,15 @@ namespace DementiaHelper.Resx {
         public static string ForgotPassword {
             get {
                 return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string General_Back {
+            get {
+                return ResourceManager.GetString("General_Back", resourceCulture);
             }
         }
         

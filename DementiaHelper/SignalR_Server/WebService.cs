@@ -24,7 +24,7 @@ namespace SignalR_Server
 
             using (HttpClient h = new HttpClient())
             {
-                var values = new Dictionary<string, string> {{"content", encoded}};
+                var values = new Dictionary<string, string> {{"token", encoded}};
                 var content = new FormUrlEncodedContent(values);
                 await h.PutAsync(new Uri(URI_BASE), content);
             }

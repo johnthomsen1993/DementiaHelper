@@ -17,6 +17,7 @@
     <input type="button" id="sendmessage" value="Send"/>
     <input type="hidden" id="groupId"/>
     <input type="hidden" id="displayname"/>
+    <input type="hidden" id="id" />
     
     <ul id="discussion"></ul>
 </div>
@@ -35,6 +36,7 @@
             $('#discussion').append('<li><strong>' + encodedName + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
         };
 
+        $('#id').val(prompt('Enter a id:', ''));
         $('#displayname').val(prompt('Enter your name:', ''));
         $('#groupId').val(prompt('Enter a group number:', ''));
         $('#message').focus();
@@ -43,7 +45,7 @@
 
         $.connection.hub.start().done(function() {
             $('#sendmessage').click(function () {
-                chat.server.groupChat($('#displayname').val(), $('#message').val(), $('#groupId').val());
+                chat.server.groupChat($('#id').val(), $('#message').val(), $('#groupId').val(), $('#displayname').val());
 
                 console.log($('#groupId').val());
                 $('#message').val('').focus();

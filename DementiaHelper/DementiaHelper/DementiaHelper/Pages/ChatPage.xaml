@@ -8,7 +8,7 @@
              Title="{i18n:Translate ChatTitle}"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="True">
-
+       
     <StackLayout Orientation="Vertical" Padding="5, 20, 5, 10">
 
         <ListView SeparatorVisibility="None" HasUnevenRows="True" x:Name="MessageList" ItemsSource="{Binding Messages}" VerticalOptions="FillAndExpand" >

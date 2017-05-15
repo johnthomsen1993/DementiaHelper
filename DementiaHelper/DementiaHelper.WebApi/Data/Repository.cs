@@ -67,10 +67,11 @@ namespace DementiaHelper.WebApi.Data
             switch (user.RoleId)
             {
                 case 1:
-                    var chatGroup = CreateChatGroup(user.FirstName + " " + user.LastName);
-                    user.ChatGroupId = chatGroup.ChatGroupId;
                     var citizen = new Citizen() {ApplicationUser = user, ConnectionId = connectionId};
                     _context.Add(citizen);
+                    var chatGroup = CreateChatGroup(citizen.CitizenId.ToString(), 1);
+                    AddMemberToGroup(chatGroup.ChatGroupId, user.ApplicationUserId);
+                    CreateChatGroup(citizen.CitizenId.ToString(), 3);
                     _context.SaveChanges();
                     return true;
                 case 2:
@@ -180,20 +181,57 @@ namespace DementiaHelper.WebApi.Data
 
         public void SaveChatMessage(string message, int groupId, int sender)
         {
-            _context.ChatMessages.Add(new ChatMessage() {ChatGroupId = groupId, Message = message, SenderId = sender});
+            _context.ChatMessages.Add(new ChatMessage()
+            {
+                ChatGroupId = groupId,
+                Message = message,
+                SenderId = sender
+            });
             _context.SaveChanges();
         }
 
-        public void AddMemberToGroup(int group, string email)
+        public ChatGroup CreateChatGroup(string groupName, int groupRole)
         {
-            var targetUser = _context.ApplicationUsers.SingleOrDefault(user => user.Email == email);
-            targetUser.ChatGroupId = group;
+            var chatgroup = _context.ChatGroups.Add(new ChatGroup()
+            {
+                GroupName = groupName,
+                GroupRole = groupRole
+            });
+            _context.SaveChanges();
+            return chatgroup.Entity;
+        }
+
+        public bool AddMemberToGroup(int groupId, int userId)
+        {
+            _context.ChatGroupConnections.Add(new ChatGroupConnection()
+            {
+                ChatGroupId = groupId,
+                ApplicationUserId = userId
+            });
            _context.SaveChanges();
+            return true;
+        }
+
+        public bool RemoveFromChatGroup(int groupId, int applicationUserId)
+        {
+            //ChatGroupConnection(){ChatGroupId = groupId,ApplicationUserId = applicationUserId}
+            var connections = _context.ChatGroupConnections.Where(x => x.ChatGroupId == groupId && x.ApplicationUserId == applicationUserId);
+            foreach (var connection in connections)
+            {
+                _context.ChatGroupConnections.Remove(connection);
+            }
+            _context.SaveChanges();
+            return true;
         }
 
         public ICollection<ChatMessage> GetChatMessagesForGroup(int groupId)
         {
             return _context.ChatMessages.Include(x => x.Sender).Where(chatMessage => chatMessage.ChatGroupId == groupId).ToList();
+        }
+
+        public ICollection<ChatGroupConnection> GetChatgroupId(int id)
+        {
+            return _context.ChatGroupConnections.Include(x=> x.ChatGroup).Where(x => x.ApplicationUserId == id).ToList();
         }
 
         public Relative ConnectToCitizen(int relativeId, string connectionId)
@@ -202,8 +240,20 @@ namespace DementiaHelper.WebApi.Data
             if (citizen == null) return null;
             var relative = _context.Relatives.Include(x => x.ApplicationUser).SingleOrDefault(x => x.RelativeId == relativeId);
             if (relative == null) return null;
+
+            var connectedRelative = _context.Relatives.FirstOrDefault(x => x.CitizenId == citizen.CitizenId);
+            if (connectedRelative != null)
+            {
+                var chatGroup = _context.ChatGroupConnections.Include(x => x.ChatGroup).FirstOrDefault(x => x.ApplicationUserId == connectedRelative.RelativeId && x.ChatGroup.GroupRole == 2);
+                AddMemberToGroup(chatGroup.ChatGroupId, relativeId);
+            }
+            else {
+                var newChatGroup = CreateChatGroup(citizen.CitizenId.ToString(), 2);
+                AddMemberToGroup(newChatGroup.ChatGroupId, relativeId);
+            }
+            
             relative.CitizenId = citizen.CitizenId;
-            relative.ApplicationUser.ChatGroupId = citizen.ApplicationUser.ChatGroupId;
+            
             _context.SaveChanges();
             return relative;
         }
@@ -216,6 +266,15 @@ namespace DementiaHelper.WebApi.Data
             if (center == null) return false;
             citizen.CaregiverCenterId = center.CaregiverCenterId;
 
+            var caregiverList = _context.Caregivers.Where(x => x.CaregiverCenterId == center.CaregiverCenterId).ToList();
+
+            foreach (var caregiver in caregiverList)
+            {
+                var caretakerChatGroup = _context.ChatGroupConnections.Include(x=>x.ChatGroup).FirstOrDefault(x => x.ChatGroup.GroupName == citizenId.ToString() && x.ChatGroup.GroupRole == 3);
+                AddMemberToGroup(caretakerChatGroup.ChatGroup.ChatGroupId, caregiver.CaregiverId);
+            }
+            
+
             _context.SaveChanges();
             return true;
         }
@@ -227,6 +286,13 @@ namespace DementiaHelper.WebApi.Data
             var center = _context.CaregiverCenters.SingleOrDefault(x => x.CaregiverConnectionId == connectionId);
             if (center == null) return false;
             caregiver.CaregiverCenterId = center.CaregiverCenterId;
+
+            var citizenList = _context.Citizens.Where(x=> x.CaregiverCenterId == center.CaregiverCenterId).ToList();
+            foreach (var citizen in citizenList)
+            {
+                var caretakerChatGroup = _context.ChatGroupConnections.Include(x=> x.ChatGroup).FirstOrDefault(x => x.ChatGroup.GroupName == citizen.CitizenId.ToString() && x.ChatGroup.GroupRole == 3);
+                AddMemberToGroup(caretakerChatGroup.ChatGroup.ChatGroupId, caregiverId);
+            }
 
             _context.SaveChanges();
             return true;
@@ -273,12 +339,12 @@ namespace DementiaHelper.WebApi.Data
             return true;
         }
 
-        public ChatGroup CreateChatGroup(string name)
-        {
-            var chatGroup = _context.ChatGroups.Add(new ChatGroup() {GroupName = name}).Entity;
-            _context.SaveChanges();
-            return chatGroup;
-        }
+        //public ChatGroup CreateChatGroup(string name)
+        //{
+        //    var chatGroup = _context.ChatGroups.Add(new ChatGroup() {GroupName = name}).Entity;
+        //    _context.SaveChanges();
+        //    return chatGroup;
+        //}
 
         public bool ChangeBoughtStatus(int id, bool bought)
         {
@@ -291,12 +357,21 @@ namespace DementiaHelper.WebApi.Data
 
         public bool SetNewPrimaryRelative(int citizenId, int newPrimaryRelative)
         {
+            var citizenChatGroup = _context.ChatGroupConnections.Include(x=>x.ChatGroup).FirstOrDefault(x => x.ApplicationUserId == citizenId && x.ChatGroup.GroupRole == 1);
+            var caretakerChatGroup = _context.ChatGroups.FirstOrDefault(x => x.GroupName == citizenId.ToString() && x.GroupRole == 3);
+
             var newPrimary = _context.Relatives.SingleOrDefault(x => x.RelativeId == newPrimaryRelative);
             if (newPrimary == null) { return false; }
 
             var oldPrimary = _context.Relatives.SingleOrDefault(x => x.CitizenId == citizenId && x.PrimaryRelative);
-            if (oldPrimary != null){oldPrimary.PrimaryRelative = false;}
-
+            if (oldPrimary != null)
+            {
+                RemoveFromChatGroup(citizenChatGroup.ChatGroupId, oldPrimary.RelativeId); // removing old primary relative from citizen chat 
+                RemoveFromChatGroup(caretakerChatGroup.ChatGroupId, oldPrimary.RelativeId); // removing old primary relative from caretaker chat
+                oldPrimary.PrimaryRelative = false;
+            }
+            AddMemberToGroup(citizenChatGroup.ChatGroupId, newPrimary.RelativeId); // adding new primary relative to citizen chat
+            AddMemberToGroup(caretakerChatGroup.ChatGroupId, newPrimary.RelativeId); // adding new primary relative to caretaker chat
             newPrimary.PrimaryRelative = true;
 
             _context.SaveChanges();

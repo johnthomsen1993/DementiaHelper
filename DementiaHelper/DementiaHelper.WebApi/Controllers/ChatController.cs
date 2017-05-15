@@ -49,7 +49,20 @@ namespace DementiaHelper.WebApi.Controllers
         public void AddMemberToGroup(string token)
         {
             var decoded = JWTService.Decode(token);
-            _iRepository.AddMemberToGroup(Convert.ToInt32(decoded["GroupId"]), decoded["Email"]?.ToString());
+            _iRepository.AddMemberToGroup(Convert.ToInt32(decoded["GroupId"]), Convert.ToInt32(decoded["ApplicationUserId"]));
+        }
+
+        [HttpGet("chatgroupid/{token}")]
+        [AllowAnonymous]
+        public string GetChatGroupId(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var chatGroupId = _iRepository.GetChatgroupId(Convert.ToInt32(decoded["ApplicationUserId"]));
+            var payload = new Dictionary<string, object>()
+            {
+                {"ChatGroupIds", chatGroupId}
+            };
+            return JWTService.Encode(payload);
         }
     }
 }

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:DementiaHelper.Converters;assembly=DementiaHelper"
+             xmlns:extensions="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             xmlns:behaviors="clr-namespace:DementiaHelper.Behaviors;assembly=DementiaHelper"
+             x:Class="DementiaHelper.Pages.ChoosePrimaryRelativePage"
+             BackgroundColor="#ffffff"
+             Title="{extensions:Translate ChooseCitizenTitle}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <OnIdiom x:TypeArguments="View">
+            <OnIdiom.Phone>
+                <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" >
+                    <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <StackLayout  VerticalOptions="Start" >
+                            <SearchBar Placeholder="{extensions:Translate SearchCitizen}" Text="{Binding SearchText}" HeightRequest="50">
+                            </SearchBar>
+                            <ScrollView>
+                                <ListView ItemsSource="{Binding RelativeCollection}">
+                                    <ListView.Header>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions >
+                                                <RowDefinition  Height="*"></RowDefinition>
+                                                <RowDefinition  Height="1"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="{extensions:Translate FirstName}" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"></Label>
+                                            <Label Text="{extensions:Translate LastName}"  FontAttributes="Bold" Grid.Row="0" Grid.Column="1"></Label>
+                                            <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></BoxView>
+                                        </Grid>
+                                    </ListView.Header>
+                                    <ListView.Behaviors>
+                                        <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ChoosePrimaryRelativeCommand}" Converter="{StaticResource ItemTappedConverter}" />
+                                    </ListView.Behaviors>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding FirstName}" Grid.Column="0"></Label>
+                                                    <Label Text="{Binding LastName}" Grid.Column="1"></Label>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </ScrollView>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" ></StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                            <Label IsVisible="{Binding RelativeChoosen}" HorizontalOptions="CenterAndExpand" Text="{extensions:Translate ChoosenCitizen}"/>
+                            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                                <Label Text="{Binding ChoosenRelative.FirstName}" ></Label>
+                                <Label  Text="{Binding ChoosenRelative.LastName}" ></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                </StackLayout>
+            </OnIdiom.Phone>
+            <OnIdiom.Tablet>
+                <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" >
+                    <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <StackLayout VerticalOptions="Start" >
+                            <SearchBar FontSize="22" Placeholder="{extensions:Translate SearchCitizen}" Text="{Binding SearchText}" >
+                            </SearchBar>
+                            <ScrollView>
+                                <ListView ItemsSource="{Binding RelativeCollection}">
+                                    <ListView.Header>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions >
+                                                <RowDefinition  Height="*"></RowDefinition>
+                                                <RowDefinition  Height="1"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="{extensions:Translate FirstName}" Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"></Label>
+                                            <Label Text="{extensions:Translate LastName}" Style="{StaticResource ListLabelStyleTablet}"  FontAttributes="Bold" Grid.Row="0" Grid.Column="1"></Label>
+                                            <BoxView Color="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></BoxView>
+                                        </Grid>
+                                    </ListView.Header>
+                                    <ListView.Behaviors>
+                                        <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ChoosePrimaryRelativeCommand}" Converter="{StaticResource ItemTappedConverter}" />
+                                    </ListView.Behaviors>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding FirstName}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="0"></Label>
+                                                    <Label Text="{Binding LastName}" Style="{StaticResource ListLabelStyleTablet}" Grid.Column="1"></Label>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </ScrollView>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
+                            <Label Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" IsVisible="{Binding RelativeChoosen}" HorizontalOptions="CenterAndExpand" Text="{extensions:Translate ChoosenCitizen}"/>
+                            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                                <Label Style="{StaticResource ListLabelStyleTablet}" Text="{Binding ChoosenRelative.FirstName}" ></Label>
+                                <Label Style="{StaticResource ListLabelStyleTablet}" Text="{Binding ChoosenRelative.LastName}" ></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </OnIdiom.Tablet>
+        </OnIdiom>
+    </ContentPage.Content>
+</ContentPage>

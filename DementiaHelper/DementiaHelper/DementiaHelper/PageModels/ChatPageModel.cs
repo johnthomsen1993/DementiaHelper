@@ -22,9 +22,11 @@ namespace DementiaHelper.PageModels
         
 		private IChatServices _chatServices;
       //  private ApplicationUser user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
-        private const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/getMessagesForChatGroup/";
+        private const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/";
         private const string URI_BASE_TEST = "http://localhost:29342/api/chat/getMessagesForChatGroup/";
-        private readonly int groupId;
+        private int groupId;
+        private List<ChatGroup> chatGroupIds { get; set; }
+        private int ChatRole { get; set; }
         
 
         #region ViewModel Properties
@@ -42,26 +44,88 @@ namespace DementiaHelper.PageModels
             _chatServices = DependencyService.Get<IChatServices>();
             ChatMessage = new ChatMessage();
             Messages = new ObservableCollection<Message>();
-           groupId = ((ApplicationUser)App.Current.Properties["ApplicationUser"]).GroupId ?? 0;
-            _chatServices.Connect();
+            chatGroupIds = new List<ChatGroup>();
+        }
+
+        public override void Init(object initData)
+        {
+            base.Init(initData);
+            if (initData != null)
+            {
+                ChatRole = (int)initData;
+            }
+            
         }
 
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
+            chatGroupIds.Clear();
             base.ViewIsAppearing(sender, e);
-            _chatServices.JoinRoom(groupId);
             Device.BeginInvokeOnMainThread(async () =>
             {
+                await GetChatGroupId(((ApplicationUser)App.Current.Properties["ApplicationUser"]).ApplicationUserId);
+                if (chatGroupIds.Count == 1)
+                {
+                    groupId = chatGroupIds.First().ChatGroupId;
+                }
+                else if (chatGroupIds.Count != 0)
+                {
+                    switch (ChatRole)
+                    {
+                        case 1:
+                            var group1 = chatGroupIds.FirstOrDefault(x => x.GroupRole == 2);
+                            groupId = group1.ChatGroupId;
+                            break;
+                        case 2:
+                            var group2 = chatGroupIds.FirstOrDefault(x=> x.GroupRole == 2);
+                            groupId = group2.ChatGroupId;
+                            break;
+                        case 3:
+                            var group3 = chatGroupIds.FirstOrDefault(x => x.GroupRole == 2);
+                            groupId = group3.ChatGroupId;
+                            break;
+                    }
+                }
+                await _chatServices.JoinRoom(groupId);
                 await GetChatMessageList(groupId);
+                _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
+
             });
-            _chatServices.OnMessageReceived += _chatServices_OnMessageReceived;
         }
 
         protected override void ViewIsDisappearing(object sender, EventArgs e)
         {
             base.ViewIsDisappearing(sender, e);
             _chatServices.OnMessageReceived -= _chatServices_OnMessageReceived;
+        }
+
+        private async Task GetChatGroupId(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                var encoded = JWTService.Encode(new Dictionary<string, object>() {{"ApplicationUserId", id}});
+                var result = await client.GetStringAsync(new Uri(URI_BASE + "chatgroupid/" + encoded));
+                var decoded = JWTService.Decode(result);
+                MapChatGroupToList(decoded);
+            }
+        }
+
+        private void MapChatGroupToList(IDictionary<string, object> dict)
+        {
+            var list = dict["ChatGroupIds"] as IList;
+
+            foreach (var obj in list)
+            {
+                var jsonContainer = obj as JContainer;
+
+                var chatGroupId = jsonContainer.SelectToken("ChatGroupId");
+                var applicationUserId = jsonContainer.SelectToken("ApplicationUserId");
+                var groupName = jsonContainer.SelectToken("ChatGroup").SelectToken("GroupName");
+                var groupRole = jsonContainer.SelectToken("ChatGroup").SelectToken("GroupRole");
+
+                chatGroupIds.Add(new ChatGroup() {ApplicationUserId = applicationUserId.ToObject<int>(), ChatGroupId = chatGroupId.ToObject<int>(), GroupName = groupName.ToString(), GroupRole = groupRole.ToObject<int>() });
+            }
         }
 
         private async Task GetChatMessageList(int id)
@@ -71,7 +135,7 @@ namespace DementiaHelper.PageModels
                 try
                 {
                     var encoded = JWTService.Encode(new Dictionary<string, object>() {{"GroupId", id}});
-                    var result = await client.GetStringAsync(new Uri(URI_BASE + encoded));
+                    var result = await client.GetStringAsync(new Uri(URI_BASE + "getMessagesForChatGroup/" + encoded));
                     var decoded = JWTService.Decode(result);
                     AddChatMessagesToList(decoded);
                 }
@@ -148,29 +212,6 @@ namespace DementiaHelper.PageModels
 
         #endregion
 
-        #region Join Room Command
-
-        Command joinRoomCommand;
-
-        /// <summary>
-        /// Command to Send Message
-        /// </summary>
-        public Command JoinRoomCommand
-        {
-            get
-            {
-                return joinRoomCommand ??
-                    (joinRoomCommand = new Command(ExecuteJoinRoomCommand));
-            }
-        }
-
-        async void ExecuteJoinRoomCommand()
-        {
-            //IsBusy = true;
-            await _chatServices.JoinRoom(groupId);
-            //IsBusy = false;
-        }
-
-        #endregion
+        
     }
 }

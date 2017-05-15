@@ -10,6 +10,7 @@ using DementiaHelper.Renders;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DementiaHelper.Model;
+using FreshMvvm;
 
 namespace DementiaHelper.Pages
 {
@@ -46,7 +47,8 @@ namespace DementiaHelper.Pages
         }
         protected override bool OnBackButtonPressed()
         {
-            Device.BeginInvokeOnMainThread(async () => {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
                 var result = await this.DisplayAlert("Alert!", "Do you really want to exit?", "Yes", "No");
                 if (result)
                 {

@@ -133,7 +133,7 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpGet("getuser/{token}")]
         [AllowAnonymous]
-        public string GetApplicationUser(string token)
+        public string GetUserInformation(string token)
         {
             var decoded = JWTService.Decode(token);
             var user = _repository.GetApplicationUser(decoded["email"]?.ToString());
@@ -144,7 +144,6 @@ namespace DementiaHelper.WebApi.Controllers
                 {"email", user.Email},
                 {"description", user.Description},
                 {"roleId", user.RoleId },
-                {"chatGroupId", user.ChatGroupId },
                 {"phone", user.Phone}
             };
             var encoded = JWTService.Encode(payload);

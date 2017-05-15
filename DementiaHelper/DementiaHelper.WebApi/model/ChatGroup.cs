@@ -13,5 +13,6 @@ namespace DementiaHelper.WebApi.model
         public int ChatGroupId { get; set; }
         [Required]
         public string GroupName { get; set; }
+        public int? GroupRole { get; set; }
     }
 }

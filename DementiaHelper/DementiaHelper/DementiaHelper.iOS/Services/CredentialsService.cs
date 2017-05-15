@@ -16,7 +16,10 @@ namespace DementiaHelper.iOS.Services
 {
     public class CredentialsService : ICredentialsService
     {
+        public CredentialsService()
+        {
 
+        }
         public bool Authenticate()
         {
             var account = AccountStore.Create().FindAccountsForService(App.AppName).FirstOrDefault();

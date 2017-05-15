@@ -27,6 +27,7 @@ namespace DementiaHelper.Services
         {
             _connection = new HubConnection(URL);
             _proxy = _connection.CreateHubProxy("ChatHub");
+            Connect();
         }
 
         #region IChatServices implementation
