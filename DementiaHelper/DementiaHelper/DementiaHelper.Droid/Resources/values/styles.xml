@@ -24,7 +24,7 @@
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-    <item name="colorAccent">#FF4081</item>
+    <item name="colorAccent">#000000</item>
   </style>
   <style name="MainTheme.Splash" parent="MainTheme.Base" >
     <item name="android:windowBackground">@drawable/splash_screen</item>

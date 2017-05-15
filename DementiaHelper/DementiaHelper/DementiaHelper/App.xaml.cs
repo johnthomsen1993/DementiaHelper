@@ -34,8 +34,7 @@ namespace DementiaHelper
         // public static string UserName { get { return "John"; } }
         public ApplicationUser ApplicationUser { get; set; }
         //  public static string Password { get { return "password"; } }
-        static FreshMvvm.FreshMasterDetailNavigationContainer MasterDetailNav { get; set; }
-        static  FreshMvvm.FreshTabbedNavigationContainer TabbedNavigation { get; set; }
+        static FreshMvvm.CustomMasterDetailNavigation MasterDetailNav { get; set; }
         static FreshMvvm.FreshNavigationContainer LoginNavigationContainer { get; set; }
         public App()
         {
@@ -155,12 +154,6 @@ namespace DementiaHelper
             LoginNavigationContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
         }
 
-        static public void SetTabbedPageContainer()
-        {
-            var Chat = FreshMvvm.FreshPageModelResolver.ResolvePageModel<ChatPageModel>();
-            TabbedNavigation = new FreshMvvm.FreshTabbedNavigationContainer(NavigationStacks.TabbedAppStack);
-        }
-
         static public void SetMasterDetailToRole()
         {
 
@@ -169,25 +162,25 @@ namespace DementiaHelper
             {
                 case 1:
                     { 
-                        MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        MasterDetailNav = new FreshMvvm.CustomMasterDetailNavigation(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
                         MasterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
                         MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, 1);
-                        MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        MasterDetailNav.AddPage<CalendarPageModel>(AppResources.CalenderTitle, null);
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
                         MasterDetailNav.AddPage<ConnectToNursingHomePageModel>(AppResources.ConnectToNursingHomeTitle, null);
                         MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);
-                        MasterDetailNav.AddPage<ChoosePrimaryRelativePageModel>("Test shit, move it or I KILL you!!. kh claus", null);
+                        MasterDetailNav.AddPage<ChoosePrimaryRelativePageModel>(AppResources.ChoosePrimaryRelative, null);
 
                         break;
                     }
                 case 2:
                     {
                         
-                        MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        MasterDetailNav = new FreshMvvm.CustomMasterDetailNavigation(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
                         MasterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
@@ -199,20 +192,20 @@ namespace DementiaHelper
                             MasterDetailNav.AddPage<ChatPageModel>(AppResources.Chat_ChatTitleCitizen, 1);
                             MasterDetailNav.AddPage<ChatPageModel>(AppResources.Chat_ChatTitleCaretaker, 3);
                         }
-                        MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        MasterDetailNav.AddPage<CalendarPageModel>(AppResources.CalenderTitle, null);
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
                         MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);
                         break;
                     }
                 case 3:
                     {
-                        MasterDetailNav = new FreshMvvm.FreshMasterDetailNavigationContainer(NavigationStacks.MainAppStack);
+                        MasterDetailNav = new FreshMvvm.CustomMasterDetailNavigation(NavigationStacks.MainAppStack);
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<ChooseCitizenPageModel>(AppResources.ChooseCitizenTitle, null);
                         MasterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, 3);
-                        MasterDetailNav.AddPage<CalenderPageModel>(AppResources.CalenderTitle, null);
+                        MasterDetailNav.AddPage<CalendarPageModel>(AppResources.CalenderTitle, null);
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
                         MasterDetailNav.AddPage<NotePageModel>(AppResources.NoteTitle, null);
                         MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);
@@ -235,7 +228,6 @@ namespace DementiaHelper
                 {
                     App.SetMasterDetailToRole();
                     MainPage = MasterDetailNav;
-                // CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
             }
             else
             {

@@ -9,5 +9,6 @@ namespace DementiaHelper.Renders.CustomControlRenders
 {
     public class CustomButtonRender : Button
     {
+       
     }
 }

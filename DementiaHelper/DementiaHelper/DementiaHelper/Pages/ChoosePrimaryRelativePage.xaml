@@ -60,7 +60,7 @@
                         </StackLayout>
                         <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" ></StackLayout>
                         <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
-                            <Label IsVisible="{Binding RelativeChoosen}" HorizontalOptions="CenterAndExpand" Text="{extensions:Translate ChoosenCitizen}"/>
+                            <Label IsVisible="{Binding RelativeChoosen}" HorizontalOptions="CenterAndExpand" Text="{extensions:Translate ChoosenPrimaryRelative}"/>
                             <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                                 <Label Text="{Binding ChoosenRelative.FirstName}" ></Label>
                                 <Label  Text="{Binding ChoosenRelative.LastName}" ></Label>

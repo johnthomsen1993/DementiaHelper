@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DementiaHelper.Pages.WeekCalendarPage"
+             xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             Title="{i18n:Translate WeekTitle}">
+    
+    
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  >
+            <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                <schedule:SfSchedule FirstDayOfWeek="2"
+                             DataSource="{Binding Appointments}"
+                             x:Name="WeekSchedule"  
+                             Locale="da-DK"
+                             ScheduleView="WeekView"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"  >
+                    <schedule:SfSchedule.WeekViewSettings>
+                        <schedule:WeekViewSettings >
+                            <schedule:WeekViewSettings.WeekLabelSettings>
+                                <schedule:WeekLabelSettings TimeFormat="HH" />
+                            </schedule:WeekViewSettings.WeekLabelSettings>
+                        </schedule:WeekViewSettings>
+                    </schedule:SfSchedule.WeekViewSettings>
+                </schedule:SfSchedule>
+            </ScrollView>
+        </StackLayout>
+        <Image Source="ic_add_circle_black_48dp.png"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              AbsoluteLayout.LayoutFlags="PositionProportional" >
+            <Image.AbsoluteLayout.LayoutBounds>
+                <OnIdiom x:TypeArguments="Rectangle" Phone="1,.99, 65, 65" Tablet="1,.99, 130, 130" />
+            </Image.AbsoluteLayout.LayoutBounds>
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+              Command="{Binding AddAppointmentCommand}"/>
+            </Image.GestureRecognizers>
+        </Image>
+    </AbsoluteLayout>
+</ContentPage>

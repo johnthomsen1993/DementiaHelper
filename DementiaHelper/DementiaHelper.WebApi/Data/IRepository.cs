@@ -29,6 +29,7 @@ namespace DementiaHelper.WebApi.Data
         List<Appointment> GetAppointments(int id);
         void CreateAppointment(Appointment appointment);
         bool DeleteAppointment(int id);
+        Appointment GetLatestAppointment(int id);
 
 
         void SaveChatMessage(string message, int group, int sender);

@@ -62,20 +62,20 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error happened when trying to connect, please try again later.
+        ///   Looks up a localized string similar to An error happened when trying to connect, please check id was entered right (it is case sensitive).
         /// </summary>
-        public static string Account_ConnectErrorText {
+        public static string Account_ConnectIdErrorText {
             get {
-                return ResourceManager.GetString("Account_ConnectErrorText", resourceCulture);
+                return ResourceManager.GetString("Account_ConnectIdErrorText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Connected.
+        ///   Looks up a localized string similar to Connection Error.
         /// </summary>
-        public static string Account_ConnectErrorTitle {
+        public static string Account_ConnectIdErrorTitle {
             get {
-                return ResourceManager.GetString("Account_ConnectErrorTitle", resourceCulture);
+                return ResourceManager.GetString("Account_ConnectIdErrorTitle", resourceCulture);
             }
         }
         
@@ -116,6 +116,24 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid username or password.
+        /// </summary>
+        public static string Account_LoginFailText {
+            get {
+                return ResourceManager.GetString("Account_LoginFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login failed.
+        /// </summary>
+        public static string Account_LoginFailTitle {
+            get {
+                return ResourceManager.GetString("Account_LoginFailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My account.
         /// </summary>
         public static string AccountInformationTitle {
@@ -152,11 +170,29 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Call.
+        /// </summary>
+        public static string Call {
+            get {
+                return ResourceManager.GetString("Call", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Det var ikke muligt at forbinde til vores server prøv igen senere.
+        /// </summary>
+        public static string CanNotConnectToServer {
+            get {
+                return ResourceManager.GetString("CanNotConnectToServer", resourceCulture);
             }
         }
         
@@ -224,6 +260,24 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choosen Primary Relative.
+        /// </summary>
+        public static string ChoosenPrimaryRelative {
+            get {
+                return ResourceManager.GetString("ChoosenPrimaryRelative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Primary Relative.
+        /// </summary>
+        public static string ChoosePrimaryRelative {
+            get {
+                return ResourceManager.GetString("ChoosePrimaryRelative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Today.
         /// </summary>
         public static string CitizenHomeTitle {
@@ -247,6 +301,24 @@ namespace DementiaHelper.Resx {
         public static string Connect {
             get {
                 return ResourceManager.GetString("Connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error happened when trying to connect, please try again later.
+        /// </summary>
+        public static string Connection_ErrorText {
+            get {
+                return ResourceManager.GetString("Connection_ErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Connected.
+        /// </summary>
+        public static string Connection_ErrorTitle {
+            get {
+                return ResourceManager.GetString("Connection_ErrorTitle", resourceCulture);
             }
         }
         
@@ -328,6 +400,15 @@ namespace DementiaHelper.Resx {
         public static string CreateNewAppointment {
             get {
                 return ResourceManager.GetString("CreateNewAppointment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        public static string DayTitle {
+            get {
+                return ResourceManager.GetString("DayTitle", resourceCulture);
             }
         }
         
@@ -530,6 +611,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        public static string MonthTitle {
+            get {
+                return ResourceManager.GetString("MonthTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -692,6 +782,33 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to See months appointments.
+        /// </summary>
+        public static string SeeMonthsAppointments {
+            get {
+                return ResourceManager.GetString("SeeMonthsAppointments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See todays appointments.
+        /// </summary>
+        public static string SeeTodaysAppointments {
+            get {
+                return ResourceManager.GetString("SeeTodaysAppointments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See weeks appointments.
+        /// </summary>
+        public static string SeeWeeksAppointments {
+            get {
+                return ResourceManager.GetString("SeeWeeksAppointments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send message.
         /// </summary>
         public static string SendMessage {
@@ -742,6 +859,15 @@ namespace DementiaHelper.Resx {
         public static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week.
+        /// </summary>
+        public static string WeekTitle {
+            get {
+                return ResourceManager.GetString("WeekTitle", resourceCulture);
             }
         }
         

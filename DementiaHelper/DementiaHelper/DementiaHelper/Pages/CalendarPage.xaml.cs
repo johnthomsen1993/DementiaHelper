@@ -16,10 +16,9 @@ using Xamarin.Forms.Xaml;
 namespace DementiaHelper.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CalenderPage : TabbedPage
+    public partial class CalendarPage : ContentPage
     {
-
-        public CalenderPage()
+        public CalendarPage()
         {
             InitializeComponent();
         }
@@ -29,7 +28,6 @@ namespace DementiaHelper.Pages
                 var result = await this.DisplayAlert(AppResources.Warning + "!", AppResources.AreYouSureThatYouWantToCloseThisApplication, AppResources.YesText, AppResources.NoText);
                 if (result)
                 {
-
                     INativeService nativeHelper = DependencyService.Get<INativeService>();
                     if (nativeHelper != null)
                     {
@@ -37,8 +35,8 @@ namespace DementiaHelper.Pages
                     }
                 }
             });
-
             return true;
         }
     }
+
 }

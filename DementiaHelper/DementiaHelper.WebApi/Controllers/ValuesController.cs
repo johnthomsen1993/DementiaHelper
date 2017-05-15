@@ -77,6 +77,15 @@ namespace DementiaHelper.WebApi.Controllers
             return JWTService.Encode(new Dictionary<string, object>() {{"Appointments", appointments}});
         }
 
+        [HttpGet("calendar/latest/{token}")]
+        [AllowAnonymous]
+        public string GetLatestAppointment(string token)
+        {
+            var decoded = JWTService.Decode(token);
+            var appointment = _iRepository.GetLatestAppointment(Convert.ToInt32(decoded.SingleOrDefault(x => x.Key.Equals("CitizenId")).Value));
+            return JWTService.Encode(new Dictionary<string, object>() { { "Appointment", appointment } });
+        }
+
         [HttpPut("calendar")]
         [AllowAnonymous]
         public string CreateAppointment(string token)

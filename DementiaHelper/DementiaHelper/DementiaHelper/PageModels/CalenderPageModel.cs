@@ -18,38 +18,37 @@ using Xamarin.Forms;
 namespace DementiaHelper.PageModels
 {
     [ImplementPropertyChanged]
-    public class CalenderPageModel : FreshMvvm.FreshBasePageModel
+    public class CalendarPageModel : FreshMvvm.FreshBasePageModel
     {
-        #region Properties
         public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/calendar/";
-        public ICommand AddAppointmentCommand { get; protected set; }
-        public bool RedrawView { get; set; }
-        public ObservableCollection<ScheduleAppointment> Appointments { get; set; }
-        #endregion Properties
-        public override void Init(object initData)
-        {
-            base.Init(initData);
-        }
-        
+        public ICommand GoToDayViewCommand { get; protected set; }
+        public ICommand GoToWeekViewCommand { get; protected set; }
+        public ICommand GoToMonthViewCommand { get; protected set; }
 
-
-     
-        public CalenderPageModel()
+        public CalendarPageModel()
         {
-            this.AddAppointmentCommand = new Command(async () => await GoToCreateAppointment());
+            this.GoToDayViewCommand = new Command(async () => await GoToDayView());
+            this.GoToWeekViewCommand = new Command(async () => await GoToWeekView());
+            this.GoToMonthViewCommand = new Command(async () => await GoToMonthView());
+
         }
 
-        protected override void ViewIsAppearing(object sender, EventArgs e)
+        private async Task GoToMonthView()
         {
-            base.ViewIsAppearing(sender, e);
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                Appointments = await GetAppointments(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
-            });
+            await CoreMethods.PushPageModel<MonthCalendarPageModel>();
         }
 
+        private async Task GoToWeekView()
+        {
+            await CoreMethods.PushPageModel<WeekCalendarPageModel>();
+        }
 
-        private async Task<ObservableCollection<ScheduleAppointment>> GetAppointments(int? id)
+        private async Task GoToDayView()
+        {
+            await CoreMethods.PushPageModel<DayCalendarPageModel>();
+        }
+
+        public static async Task<ObservableCollection<ScheduleAppointment>> GetAppointments(int? id)
         {
             if (id == null) { return new ObservableCollection<ScheduleAppointment>(); }
             using (var client = new HttpClient())
@@ -68,7 +67,14 @@ namespace DementiaHelper.PageModels
             }
         }
 
-        private ObservableCollection<ScheduleAppointment> MapToCalenderAppointments(IDictionary<string, object> decoded)
+
+
+        /// <summary>
+        /// might need to get moved elsewhere
+        /// </summary>
+        /// <param name="decoded"></param>
+        /// <returns></returns>
+        public static ObservableCollection<ScheduleAppointment> MapToCalenderAppointments(IDictionary<string, object> decoded)
         {
             ObservableCollection<ScheduleAppointment> tempCalenderAppointmentsList = new ObservableCollection<ScheduleAppointment>();
 
@@ -85,12 +91,6 @@ namespace DementiaHelper.PageModels
                 });
             }
             return tempCalenderAppointmentsList;
-        }
-    
-
-        async Task GoToCreateAppointment()
-        {
-            await CoreMethods.PushPageModel<CreateCalenderAppointmentPageModel>(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
         }
     }
 }

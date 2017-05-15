@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DementiaHelper.Pages.CalendarPage"
+             xmlns:customRenders="clr-namespace:DementiaHelper.Renders.CustomControlRenders;assembly=DementiaHelper"
+             xmlns:i18n="clr-namespace:DementiaHelper.Extensions;assembly=DementiaHelper"
+             Title="{i18n:Translate CalenderTitle}"
+            x:Name="CalenderTabPage">
+
+
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <customRenders:CustomButtonRender AbsoluteLayout.LayoutFlags="PositionProportional" Style="{StaticResource ButtonStyle}" Text="{i18n:Translate SeeTodaysAppointments}" Command="{Binding GoToDayViewCommand}">
+                <AbsoluteLayout.LayoutBounds>
+                    <OnIdiom x:TypeArguments="Rectangle" Phone=".50,.25, 300, 100" Tablet=".20,.20, 130, 130" />
+                </AbsoluteLayout.LayoutBounds>
+            </customRenders:CustomButtonRender>
+            <customRenders:CustomButtonRender Style="{StaticResource ButtonStyle}" Text="{i18n:Translate SeeWeeksAppointments}" AbsoluteLayout.LayoutFlags="PositionProportional"  Command="{Binding GoToWeekViewCommand}">
+                <AbsoluteLayout.LayoutBounds>
+                    <OnIdiom x:TypeArguments="Rectangle" Phone=".50,.50, 300, 100" Tablet=".40,.40, 130, 130" />
+                </AbsoluteLayout.LayoutBounds>
+            </customRenders:CustomButtonRender>
+            <customRenders:CustomButtonRender Style="{StaticResource ButtonStyle}" Text="{i18n:Translate SeeMonthsAppointments}" AbsoluteLayout.LayoutFlags="PositionProportional"  Command="{Binding GoToMonthViewCommand}">
+                <AbsoluteLayout.LayoutBounds>
+                    <OnIdiom x:TypeArguments="Rectangle" Phone=".50,.75, 300, 100" Tablet=".40,.40, 130, 130" />
+                </AbsoluteLayout.LayoutBounds>
+            </customRenders:CustomButtonRender>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+
+</ContentPage>

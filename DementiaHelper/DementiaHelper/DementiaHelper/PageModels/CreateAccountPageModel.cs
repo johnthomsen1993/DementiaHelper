@@ -90,7 +90,7 @@ namespace DementiaHelper.PageModels
                 }
                 else
                 {
-                   await CoreMethods.DisplayAlert("Fejl", "Det var ikke muligt at forbinde til vores server prøv igen senere", "Ok");
+                   await CoreMethods.DisplayAlert(AppResources.Connection_ErrorTitle, AppResources.Connection_ErrorText, AppResources.General_Ok);
                 }
             };
         }

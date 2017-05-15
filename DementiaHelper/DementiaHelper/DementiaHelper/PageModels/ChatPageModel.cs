@@ -61,6 +61,7 @@ namespace DementiaHelper.PageModels
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             chatGroupIds.Clear();
+            Messages.Clear();
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -74,7 +75,7 @@ namespace DementiaHelper.PageModels
                     switch (ChatRole)
                     {
                         case 1:
-                            var group1 = chatGroupIds.FirstOrDefault(x => x.GroupRole == 2);
+                            var group1 = chatGroupIds.FirstOrDefault(x => x.GroupRole == 1);
                             groupId = group1.ChatGroupId;
                             break;
                         case 2:
@@ -82,7 +83,7 @@ namespace DementiaHelper.PageModels
                             groupId = group2.ChatGroupId;
                             break;
                         case 3:
-                            var group3 = chatGroupIds.FirstOrDefault(x => x.GroupRole == 2);
+                            var group3 = chatGroupIds.FirstOrDefault(x => x.GroupRole == 3);
                             groupId = group3.ChatGroupId;
                             break;
                     }

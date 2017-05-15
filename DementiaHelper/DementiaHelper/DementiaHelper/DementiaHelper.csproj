@@ -63,12 +63,15 @@
     <Compile Include="PageModels\ChooseCitizenPageModel.cs" />
     <Compile Include="PageModels\CitizenHomePageModel.cs" />
     <Compile Include="PageModels\CreateCalenderAppointmentPageModel.cs" />
+    <Compile Include="PageModels\DayCalendarPageModel.cs" />
     <Compile Include="PageModels\EditAccountInformationPageModel.cs" />
     <Compile Include="PageModels\ImageGalleryPageModel.cs" />
     <Compile Include="PageModels\LogoutPageModel.cs" />
+    <Compile Include="PageModels\MonthCalendarPageModel.cs" />
     <Compile Include="PageModels\NotePageModel.cs" />
-    <Compile Include="Pages\CalenderPage.xaml.cs">
-      <DependentUpon>CalenderPage.xaml</DependentUpon>
+    <Compile Include="PageModels\WeekCalendarPageModel.cs" />
+    <Compile Include="Pages\CalendarPage.xaml.cs">
+      <DependentUpon>CalendarPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ChatTabPage.xaml.cs">
       <DependentUpon>ChatTabPage.xaml</DependentUpon>
@@ -97,8 +100,14 @@
     <Compile Include="Pages\CreateCalenderAppointmentPage.xaml.cs">
       <DependentUpon>CreateCalenderAppointmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DayCalendarPage.xaml.cs">
+      <DependentUpon>DayCalendarPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ImageGalleryPage.xaml.cs">
       <DependentUpon>ImageGalleryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MonthCalendarPage.xaml.cs">
+      <DependentUpon>MonthCalendarPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\NotePage.xaml.cs">
       <DependentUpon>NotePage.xaml</DependentUpon>
@@ -106,10 +115,14 @@
     <Compile Include="Pages\LogOutPage.xaml.cs">
       <DependentUpon>LogOutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WeekCalendarPage.xaml.cs">
+      <DependentUpon>WeekCalendarPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Renders\CustomControlRenders\ColorPickerCustomRender.cs" />
     <Compile Include="Renders\CustomControlRenders\CustomButtonRender.cs" />
     <Compile Include="Renders\CustomControlRenders\CustomImageGallery.cs" />
     <Compile Include="Renders\ChatListView.cs" />
+    <Compile Include="Renders\CustomControlRenders\CustomMasterDetailNavigation.cs" />
     <Compile Include="Renders\CustomControlRenders\ToggleButton.cs" />
     <Compile Include="Renders\MessageViewCell.cs" />
     <Compile Include="Services\ChatService.cs" />
@@ -304,7 +317,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\CalenderPage.xaml">
+    <EmbeddedResource Include="Pages\CalendarPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -350,6 +363,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\NotePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\DayCalendarPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\WeekCalendarPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\MonthCalendarPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

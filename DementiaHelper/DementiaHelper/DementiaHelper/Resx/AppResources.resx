@@ -357,10 +357,10 @@
   <data name="General_InvalidEmailTitle" xml:space="preserve">
     <value>Invalid email</value>
   </data>
-  <data name="Account_ConnectErrorText" xml:space="preserve">
+  <data name="Connection_ErrorText" xml:space="preserve">
     <value>An error happened when trying to connect, please try again later</value>
   </data>
-  <data name="Account_ConnectErrorTitle" xml:space="preserve">
+  <data name="Connection_ErrorTitle" xml:space="preserve">
     <value>Not Connected</value>
   </data>
   <data name="General_NullText" xml:space="preserve">
@@ -373,6 +373,49 @@
     <value>Add item</value>
     <comment>Title for add shopping item view</comment>
   </data>
+  <data name="CanNotConnectToServer" xml:space="preserve">
+    <value>Det var ikke muligt at forbinde til vores server prøv igen senere</value>
+  </data>
+  <data name="Call" xml:space="preserve">
+    <value>Call</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="Account_ConnectIdErrorText" xml:space="preserve">
+    <value>An error happened when trying to connect, please check id was entered right (it is case sensitive)</value>
+  </data>
+  <data name="Account_ConnectIdErrorTitle" xml:space="preserve">
+    <value>Connection Error</value>
+  </data>
+  <data name="Account_LoginFailText" xml:space="preserve">
+    <value>Invalid username or password</value>
+  </data>
+  <data name="Account_LoginFailTitle" xml:space="preserve">
+    <value>Login failed</value>
+  </data>
+  <data name="DayTitle" xml:space="preserve">
+    <value>Day</value>
+    <comment>Title for Day calendar view</comment>
+  </data>
+  <data name="MonthTitle" xml:space="preserve">
+    <value>Month</value>
+    <comment>Title for Month calendar view</comment>
+  </data>
+  <data name="SeeMonthsAppointments" xml:space="preserve">
+    <value>See months appointments</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="SeeTodaysAppointments" xml:space="preserve">
+    <value>See todays appointments</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="SeeWeeksAppointments" xml:space="preserve">
+    <value>See weeks appointments</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="WeekTitle" xml:space="preserve">
+    <value>Week</value>
+    <comment>Title for Week Calendar view</comment>
+  </data>
   <data name="Chat_ChatTitleCaretaker" xml:space="preserve">
     <value>Caretaker Chat</value>
   </data>
@@ -384,5 +427,11 @@
   </data>
   <data name="General_Back" xml:space="preserve">
     <value>Back</value>
+  </data>
+  <data name="ChoosePrimaryRelative" xml:space="preserve">
+    <value>Choose Primary Relative</value>
+  </data>
+  <data name="ChoosenPrimaryRelative" xml:space="preserve">
+    <value>Choosen Primary Relative</value>
   </data>
 </root>

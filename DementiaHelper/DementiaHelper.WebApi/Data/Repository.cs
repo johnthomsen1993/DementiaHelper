@@ -377,5 +377,14 @@ namespace DementiaHelper.WebApi.Data
             _context.SaveChanges();
             return true;
         }
+
+        public Appointment GetLatestAppointment(int id)
+        {
+            var appointment =
+                _context.Appointments.Where(x => x.StartTime > DateTime.Now.ToUniversalTime() && x.CitizenId == id)
+                    .OrderByDescending(x => x.StartTime)
+                    .FirstOrDefault();
+            return appointment;
+        }
     }
 }
