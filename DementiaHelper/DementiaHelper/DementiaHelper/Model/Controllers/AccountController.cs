@@ -255,6 +255,59 @@ namespace DementiaHelper.Model.Controllers
             return tempCaregiversCitizenCollection;
         }
 
+        public async Task<ObservableCollection<Relative>> GetRelativeList()
+        {
+            var payload = new Dictionary<string, object>()
+            {
+                { "CitizenId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).ApplicationUserId },
+            };
+
+            using (var client = new HttpClient())
+            {
+                var encoded = JWTService.Encode(payload);
+                var result = await client.GetStringAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/contactlist /" + encoded));
+                var decoded = JWTService.Decode(result);
+                return decoded.ContainsKey("contactList") ? MapToRelativeList(decoded["contactList"] as IList) : null;
+            }
+        }
+
+        public ObservableCollection<Relative> MapToRelativeList(IList RelativeList)
+        {
+            var tempRelativeList = new ObservableCollection<Relative>();
+            foreach (var relative in RelativeList)
+            {
+                var jsonContainer = relative as JContainer;
+                tempRelativeList.Add(new Relative()
+                {
+                    RelativeId = jsonContainer.SelectToken("RelativeId").ToObject<int>(),
+                    FirstName = jsonContainer.SelectToken("ApplicationUser").SelectToken("FirstName").ToObject<string>(),
+                    LastName = jsonContainer.SelectToken("ApplicationUser").SelectToken("LastName").ToObject<string>(),
+                    PrimaryRelative = jsonContainer.SelectToken("PrimaryRelative").ToObject<bool>()
+                });
+            }
+            return tempRelativeList;
+        }
+        public async Task ChoosePrimaryRelative(Relative relative)
+        {
+            if (relative != null)
+            {
+                using (var client = new HttpClient())
+                {
+                    var encoded = JWTService.Encode(new Dictionary<string, object>()
+                    {
+                        {"CitizenId", ((ApplicationUser) App.Current.Properties["ApplicationUser"]).ApplicationUserId},
+                        {"NewPrimaryRelative", relative.RelativeId}
+                    });
+
+                    var values = new Dictionary<string, string> { { "token", encoded } };
+                    var content = new FormUrlEncodedContent(values);
+                    var result = await client.PutAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/primaryrelative/"), content);
+                    var decoded = JWTService.Decode(await result.Content.ReadAsStringAsync());
+
+                }
+            }
+        }
+
         public async Task SaveUpdateUserInformation(UserInformation updatedUser, string oldEmail)
         {
 
