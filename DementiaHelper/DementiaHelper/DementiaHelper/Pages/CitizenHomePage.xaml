@@ -23,40 +23,43 @@
         <OnIdiom x:TypeArguments="View">
             <OnIdiom.Phone>
                 <StackLayout Orientation="Vertical">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <StackLayout HorizontalOptions="Start">
-                    <StackLayout Spacing="0" Padding="10" Orientation="Horizontal">
-                        <Label FontSize="Large" Text="{Binding Weekday, StringFormat='{0}'}"></Label>
-                        <Label FontSize="Large" Text="{Binding CurrentTime.Day, StringFormat=' d. {0}.'}" x:Name="yourLabel"></Label>
-                        <Label FontSize="Large" Text="{Binding Month, StringFormat=' {0}'}" ></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Start">
+                            <StackLayout Spacing="0" Padding="10" Orientation="Horizontal">
+                                <Label FontSize="Large" Text="{Binding Weekday, StringFormat='{0}'}"></Label>
+                                <Label FontSize="Large" Text="{Binding CurrentTime.Day, StringFormat=' d. {0}.'}" x:Name="yourLabel"></Label>
+                                <Label FontSize="Large" Text="{Binding Month, StringFormat=' {0}'}" ></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                        </StackLayout>
+                        <StackLayout  HorizontalOptions="End">
+                            <StackLayout Spacing="0" Padding="10" Orientation="Horizontal">
+                                <Label FontSize="Large" Text=" kl. "></Label>
+                                <Label FontSize="Large" Text="{Binding CurrentTime, StringFormat='{0:HH:mm:ss}'}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+                            <Image Source="{Binding PictureOfWhoIsVisiting}" />
+                            <StackLayout Spacing="0" Padding="10" Orientation="Vertical">
+                                <Label  FontSize="Medium"  Text="{i18n:Translate NextAppointment}"></Label>
+                                <Label FontSize="Medium" Text="{Binding Appointment.Subject,StringFormat='{0}'}"></Label>
+                                <Label FontSize="Medium" Text="{Binding Appointment.StartTime,StringFormat='D. {0:dd/MM/yyyy}'}"></Label>
+                                <Label FontSize="Medium" Text="{Binding Appointment.StartTime,StringFormat='Fra {0:HH:mm}'}"></Label>
+                                <Label FontSize="Medium" Text="{Binding Appointment.EndTime,StringFormat='Til {0:HH:mm}'}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout VerticalOptions="CenterAndExpand">
+                        </StackLayout>
+                        <StackLayout  VerticalOptions="End">
+                            <StackLayout Spacing="0" Padding="10" Orientation="Vertical">
+                                <customRenders:CustomButtonRender Command="{Binding GoToCalendarDayViewCommand}"  Style="{StaticResource SeeListOfDayAppointmentsButtonStyle}" Text="{i18n:Translate SeeListOfTodaysAppointments}"/>
+                            </StackLayout>
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout HorizontalOptions="CenterAndExpand">
-                </StackLayout>
-                <StackLayout  HorizontalOptions="End">
-                    <StackLayout Spacing="0" Padding="10" Orientation="Horizontal">
-                        <Label FontSize="Large" Text=" kl. "></Label>
-                        <Label FontSize="Large" Text="{Binding CurrentTime, StringFormat='{0:HH:mm:ss}'}"></Label>
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
-            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout Orientation="Horizontal" VerticalOptions="Start">
-                    <Image Source="{Binding PictureOfWhoIsVisiting}" />
-                    <StackLayout Spacing="0" Padding="10" Orientation="Vertical">
-                        <Label  FontSize="Medium"  Text="Næste aftale:"></Label>
-                        <Label FontSize="Medium" Text="{Binding Appointment.Subject,StringFormat='{0}'}"></Label>
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout VerticalOptions="CenterAndExpand">
-                </StackLayout>
-                <StackLayout  VerticalOptions="End">
-                    <StackLayout Spacing="0" Padding="10" Orientation="Vertical">
-                                <customRenders:CustomButtonRender Command="{Binding GoToCalendarDayViewCommand}"  Style="{StaticResource SeeListOfDayAppointmentsButtonStyle}" Text="Se liste over dagens aftaler"/>
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
-        </StackLayout>
             </OnIdiom.Phone>
             <OnIdiom.Tablet>
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
@@ -78,7 +81,7 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-  
+
                         <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
@@ -87,8 +90,9 @@
                                 </Grid.ColumnDefinitions>
                                 <Image HeightRequest="300" WidthRequest="300" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding PictureOfWhoIsVisiting}" />
                                 <StackLayout Grid.Column="1" Spacing="0" Padding="10" Orientation="Vertical">
-                                    <Label FontSize="36" FontAttributes="Bold"  Text="Næste aftale:"></Label>
+                                    <Label FontSize="36" FontAttributes="Bold"  Text="{i18n:Translate NextAppointment}"></Label>
                                     <Label FontSize="30" Text="{Binding Appointment.Subject,StringFormat='{0}'}"></Label>
+                                    <Label FontSize="30" Text="{Binding Appointment.StartTime,StringFormat='D. {0:dd/MM/yyyy}'}"></Label>
                                     <Label FontSize="30" Text="{Binding Appointment.StartTime,StringFormat='Fra {0:HH:mm}'}"></Label>
                                     <Label FontSize="30" Text="{Binding Appointment.EndTime,StringFormat='Til {0:HH:mm}'}"></Label>
                                 </StackLayout>
@@ -98,7 +102,7 @@
                         </StackLayout>
                         <StackLayout  VerticalOptions="End">
                             <StackLayout Spacing="0" Padding="10" Orientation="Vertical">
-                                <customRenders:CustomButtonRender FontSize="36" HeightRequest="80" Command="{Binding GoToCalendarDayViewCommand}" Style="{StaticResource SeeListOfDayAppointmentsButtonStyle}" Text="Se liste over dagens aftaler"/>
+                                <customRenders:CustomButtonRender FontSize="36" HeightRequest="80" Command="{Binding GoToCalendarDayViewCommand}" Style="{StaticResource SeeListOfDayAppointmentsButtonStyle}" Text="{i18n:Translate SeeListOfTodaysAppointments}"/>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>

@@ -10,6 +10,7 @@ using DementiaHelper.Renders;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DementiaHelper.Model;
+using DementiaHelper.Resx;
 using FreshMvvm;
 
 namespace DementiaHelper.Pages
@@ -47,18 +48,16 @@ namespace DementiaHelper.Pages
         }
         protected override bool OnBackButtonPressed()
         {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                var result = await this.DisplayAlert("Alert!", "Do you really want to exit?", "Yes", "No");
+            Device.BeginInvokeOnMainThread(async () => {
+                var result = await this.DisplayAlert(AppResources.Warning + "!", AppResources.AreYouSureThatYouWantToCloseThisApplication, AppResources.YesText, AppResources.NoText);
                 if (result)
                 {
-                    INativeService nativeHelper = null;
-                    nativeHelper = DependencyService.Get<INativeService>();
+                    INativeService nativeHelper = DependencyService.Get<INativeService>();
                     if (nativeHelper != null)
                     {
                         nativeHelper.CloseApp();
                     }
-                } // or anything else
+                }
             });
             return true;
         }

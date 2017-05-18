@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using DementiaHelper.Resx;
 using DementiaHelper.Services;
 using Newtonsoft.Json.Linq;
 using Syncfusion.SfSchedule.XForms;
@@ -99,26 +100,11 @@ namespace DementiaHelper.Model.Controllers
 
         public string GetHexColor(string selecteColorName)
         {
-            switch (selecteColorName)
-            {
-                case "Red":
-                {
-                    return "#ff0000";
-
-                }
-                case "Blue":
-                {
-                    return "#0000ff";
-                }
-                case "Green":
-                {
-                    return "#00ff00";
-                }
-                default:
-                {
-                    return "#FFA2C139";
-                }
-            }
+            return selecteColorName == AppResources.Red
+                ? "#ff0000"
+                : (selecteColorName == AppResources.Blue
+                    ? "#0000ff"
+                    : (selecteColorName == AppResources.Green ? "#00ff00" : "#FFA2C139"));
         }
 
         public async Task<IDictionary<string, object>> CreateNewAppointment(string selecteColorName, string description,

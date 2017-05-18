@@ -100,7 +100,6 @@ namespace DementiaHelper.PageModels
         public void ChooseCitizen(Citizen citizen)
         {
             ((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId = citizen.CitizenId;
-       //     App.Current.Properties["ApplicationUser"] = User;
             CoreMethods.SwitchSelectedMaster<CalendarPageModel>();
         }
     }

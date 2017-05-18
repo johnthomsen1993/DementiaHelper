@@ -41,10 +41,10 @@
                         <ColumnDefinition Width="*" ></ColumnDefinition>
 
                     </Grid.ColumnDefinitions>
-                    <Label Text="Vare:" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></Label>
+                    <Label Text="{i18n:Translate ShoppingListItemDescription}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></Label>
                     <Entry  Text="{Binding Item}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" Placeholder="{i18n:Translate ItemToAdd}"  />
-                    <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="Mængde:"></Label>
-                    <numeric:SfNumericUpDown FontSize="10" HeightRequest="50" WidthRequest="50"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"  Value="{Binding Quantity}" />
+                    <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="{i18n:Translate ShoppingListItemQuantity}"></Label>
+                    <numeric:SfNumericUpDown Minimum="1" FontSize="10" HeightRequest="50" WidthRequest="50"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"  Value="{Binding Quantity}" />
 
                 <!--<Entry  Text="{Binding Quantity}" Placeholder="{i18n:Translate Quantity}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Keyboard="Numeric" HorizontalOptions="CenterAndExpand" />-->
                 </Grid>

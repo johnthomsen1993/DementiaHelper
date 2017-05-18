@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DementiaHelper.Resx;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
@@ -35,9 +36,10 @@ namespace DementiaHelper.PageModels
             AppointmentEndTimeSpan = new TimeSpan(13, 0, 0);
             Description = "";
             Date = DateTime.Now;
-            ColorList = new ObservableCollection<string>() {"Red","Blue","Green" };
+            ColorList = new ObservableCollection<string>() {AppResources.Red,AppResources.Blue,AppResources.Green };
 
         }
+
         public override void Init(object initData)
         {
             base.Init(initData);

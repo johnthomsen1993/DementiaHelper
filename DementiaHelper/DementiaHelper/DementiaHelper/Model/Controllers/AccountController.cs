@@ -242,7 +242,7 @@ namespace DementiaHelper.Model.Controllers
             {
                 var jsonContainer = obj as JContainer;
                 var number = jsonContainer.SelectToken("ApplicationUser").SelectToken("Phone").ToObject<string>();
-                if (number != "" && number != null)
+                if (!string.IsNullOrEmpty(number))
                 {
                     tempCaregiversCitizenCollection.Add(item: new Contact()
                     {
@@ -274,7 +274,7 @@ namespace DementiaHelper.Model.Controllers
             using (var client = new HttpClient())
             {
                 var encoded = JWTService.Encode(payload);
-                var result = await client.GetStringAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/contactlist /" + encoded));
+                var result = await client.GetStringAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/contactlist/" + encoded));
                 var decoded = JWTService.Decode(result);
                 return decoded.ContainsKey("contactList") ? MapToRelativeList(decoded["contactList"] as IList) : null;
             }

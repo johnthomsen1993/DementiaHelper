@@ -74,7 +74,7 @@
                 <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" >
                     <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                         <StackLayout VerticalOptions="Start" >
-                            <SearchBar FontSize="22" Placeholder="{extensions:Translate SearchCitizen}" Text="{Binding SearchText}" >
+                            <SearchBar FontSize="22" Placeholder="{extensions:Translate SearchRelative}" Text="{Binding SearchText}" >
                             </SearchBar>
                             <ScrollView>
                                 <ListView ItemsSource="{Binding RelativeCollection}">

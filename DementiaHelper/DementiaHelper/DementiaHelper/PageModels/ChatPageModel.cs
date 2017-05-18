@@ -21,9 +21,6 @@ namespace DementiaHelper.PageModels
     {
         
 		private IChatServices _chatServices;
-      //  private ApplicationUser user = (ApplicationUser)App.Current.Properties["ApplicationUser"];
-        private const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/chat/";
-        private const string URI_BASE_TEST = "http://localhost:29342/api/chat/getMessagesForChatGroup/";
         private int groupId;
         private List<ChatGroup> chatGroupIds { get; set; }
         private int ChatRole { get; set; }
@@ -61,7 +58,7 @@ namespace DementiaHelper.PageModels
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             chatGroupIds.Clear();
-            Messages.Clear();
+           // Messages.Clear();
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread(async () =>
             {

@@ -72,12 +72,12 @@ namespace DementiaHelper.PageModels
                 switch (((ApplicationUser) App.Current.Properties["ApplicationUser"]).RoleId)
                 {
                     case 2:
-                        await CoreMethods.DisplayAlert("Not possible",
-                            "to add new items, you need to be connected to a person under care", "Ok");
+                        await CoreMethods.DisplayAlert(AppResources.RelativeAddFailureTitle,
+                            AppResources.ShoppingListAddRelativeFailureSubjekt, AppResources.General_Ok);
                         break;
                     case 3:
-                        await CoreMethods.DisplayAlert("Not possible",
-                            "to add new items, you need to have choosen the citizen your inspecting", "Ok");
+                        await CoreMethods.DisplayAlert(AppResources.CaregiverAddFailureTitle,
+                            AppResources.ShoppingListAddCaregiverFailureSubjekt, AppResources.General_Ok);
                         break;
                 }
             }

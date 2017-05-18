@@ -152,11 +152,65 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Appointment end time:.
+        /// </summary>
+        public static string AppointmentEndTime {
+            get {
+                return ResourceManager.GetString("AppointmentEndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appointment start time:.
+        /// </summary>
+        public static string AppointmentStartTime {
+            get {
+                return ResourceManager.GetString("AppointmentStartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure, that you would want to close this application.
         /// </summary>
         public static string AreYouSureThatYouWantToCloseThisApplication {
             get {
                 return ResourceManager.GetString("AreYouSureThatYouWantToCloseThisApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string Blue {
+            get {
+                return ResourceManager.GetString("Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to add new appointments, you need to have choosen the citizen your inspecting.
+        /// </summary>
+        public static string CalendarAddCaregiverFailureSubjekt {
+            get {
+                return ResourceManager.GetString("CalendarAddCaregiverFailureSubjekt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to add new appointments, you need to be connected to a person under care.
+        /// </summary>
+        public static string CalendarAddRelativeFailureSubjekt {
+            get {
+                return ResourceManager.GetString("CalendarAddRelativeFailureSubjekt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to en-US.
+        /// </summary>
+        public static string CalendarLanguage {
+            get {
+                return ResourceManager.GetString("CalendarLanguage", resourceCulture);
             }
         }
         
@@ -193,6 +247,15 @@ namespace DementiaHelper.Resx {
         public static string CanNotConnectToServer {
             get {
                 return ResourceManager.GetString("CanNotConnectToServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No citizen choosen.
+        /// </summary>
+        public static string CaregiverAddFailureTitle {
+            get {
+                return ResourceManager.GetString("CaregiverAddFailureTitle", resourceCulture);
             }
         }
         
@@ -395,6 +458,24 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Account.
+        /// </summary>
+        public static string CreateAccount {
+            get {
+                return ResourceManager.GetString("CreateAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Account as:.
+        /// </summary>
+        public static string CreateAccountAs {
+            get {
+                return ResourceManager.GetString("CreateAccountAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create new account.
         /// </summary>
         public static string CreateNewAccount {
@@ -436,6 +517,15 @@ namespace DementiaHelper.Resx {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description of appointment:.
+        /// </summary>
+        public static string DescriptionOfAppointment {
+            get {
+                return ResourceManager.GetString("DescriptionOfAppointment", resourceCulture);
             }
         }
         
@@ -557,11 +647,38 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string Green {
+            get {
+                return ResourceManager.GetString("Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My pictures.
         /// </summary>
         public static string ImageGalleryTitle {
             get {
                 return ResourceManager.GetString("ImageGalleryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert nursing home id, you can find this in the delievered papers from the nursing home.
+        /// </summary>
+        public static string InsertCarecenterIdText {
+            get {
+                return ResourceManager.GetString("InsertCarecenterIdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert dementia id, you can find this in the demented persons account information.
+        /// </summary>
+        public static string InsertDementiaIdText {
+            get {
+                return ResourceManager.GetString("InsertDementiaIdText", resourceCulture);
             }
         }
         
@@ -661,6 +778,15 @@ namespace DementiaHelper.Resx {
         public static string NewNote {
             get {
                 return ResourceManager.GetString("NewNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next appointment:.
+        /// </summary>
+        public static string NextAppointment {
+            get {
+                return ResourceManager.GetString("NextAppointment", resourceCulture);
             }
         }
         
@@ -773,11 +899,38 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string Red {
+            get {
+                return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No connected citizen.
+        /// </summary>
+        public static string RelativeAddFailureTitle {
+            get {
+                return ResourceManager.GetString("RelativeAddFailureTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Relatives.
         /// </summary>
         public static string RelativesRole {
             get {
                 return ResourceManager.GetString("RelativesRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
             }
         }
         
@@ -796,6 +949,33 @@ namespace DementiaHelper.Resx {
         public static string SearchCitizen {
             get {
                 return ResourceManager.GetString("SearchCitizen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search contacts.
+        /// </summary>
+        public static string SearchContacts {
+            get {
+                return ResourceManager.GetString("SearchContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Søg pårørende.
+        /// </summary>
+        public static string SearchRelative {
+            get {
+                return ResourceManager.GetString("SearchRelative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See todays appointments.
+        /// </summary>
+        public static string SeeListOfTodaysAppointments {
+            get {
+                return ResourceManager.GetString("SeeListOfTodaysAppointments", resourceCulture);
             }
         }
         
@@ -850,6 +1030,42 @@ namespace DementiaHelper.Resx {
         public static string ShoppingList {
             get {
                 return ResourceManager.GetString("ShoppingList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to add new items, you need to have choosen the citizen your inspecting.
+        /// </summary>
+        public static string ShoppingListAddCaregiverFailureSubjekt {
+            get {
+                return ResourceManager.GetString("ShoppingListAddCaregiverFailureSubjekt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to add new items, you need to be connected to a person under care.
+        /// </summary>
+        public static string ShoppingListAddRelativeFailureSubjekt {
+            get {
+                return ResourceManager.GetString("ShoppingListAddRelativeFailureSubjekt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item:.
+        /// </summary>
+        public static string ShoppingListItemDescription {
+            get {
+                return ResourceManager.GetString("ShoppingListItemDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity:.
+        /// </summary>
+        public static string ShoppingListItemQuantity {
+            get {
+                return ResourceManager.GetString("ShoppingListItemQuantity", resourceCulture);
             }
         }
         
