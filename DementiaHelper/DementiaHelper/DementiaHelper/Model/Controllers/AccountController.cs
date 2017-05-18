@@ -34,6 +34,10 @@ namespace DementiaHelper.Model.Controllers
         {
             using (var client = new HttpClient())
             {
+                try
+                {
+
+                
                 var encoded = JWTService.Encode(new Dictionary<string, object>()
                 {
                     {"CitizenId", ((ApplicationUser) App.Current.Properties["ApplicationUser"]).ApplicationUserId},
@@ -42,7 +46,12 @@ namespace DementiaHelper.Model.Controllers
                 var values = new Dictionary<string, string> {{"token", encoded}};
                 var content = new FormUrlEncodedContent(values);
                 var result = await client.PutAsync(new Uri("http://dementiahelper.azurewebsites.net/api/account/connectcitizentocenter/"), content);
+                    var ssad = result;
                 return JWTService.Decode(await result.Content.ReadAsStringAsync());
+                }
+                catch(Exception e) {
+                    return new Dictionary<string, object>();
+                }
             }
         }
 

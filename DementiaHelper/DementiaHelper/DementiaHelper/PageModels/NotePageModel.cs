@@ -20,7 +20,6 @@ namespace DementiaHelper.PageModels
         public ObservableCollection<Note> NoteList { get; set; }
         public string Note { get; set; }
         public ICommand NewNoteCommand { get; protected set; }
-        ApplicationUser User = (ApplicationUser)App.Current.Properties["ApplicationUser"];
         public NotePageModel()
         {
             NewNoteCommand = new Command(async () => await CreatedNewNote());
@@ -49,9 +48,5 @@ namespace DementiaHelper.PageModels
                 }
             }
         }
-
-
-
-      
     }
 }

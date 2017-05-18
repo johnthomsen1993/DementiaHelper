@@ -12,17 +12,17 @@
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <customRenders:CustomButtonRender AbsoluteLayout.LayoutFlags="PositionProportional" Style="{StaticResource ButtonStyle}" Text="{i18n:Translate SeeTodaysAppointments}" Command="{Binding GoToDayViewCommand}">
                 <AbsoluteLayout.LayoutBounds>
-                    <OnIdiom x:TypeArguments="Rectangle" Phone=".50,.25, 300, 100" Tablet=".20,.20, 130, 130" />
+                    <OnIdiom x:TypeArguments="Rectangle" Phone=".50,.25, 300, 100" Tablet=".50,.25, 500, 150" />
                 </AbsoluteLayout.LayoutBounds>
             </customRenders:CustomButtonRender>
             <customRenders:CustomButtonRender Style="{StaticResource ButtonStyle}" Text="{i18n:Translate SeeWeeksAppointments}" AbsoluteLayout.LayoutFlags="PositionProportional"  Command="{Binding GoToWeekViewCommand}">
                 <AbsoluteLayout.LayoutBounds>
-                    <OnIdiom x:TypeArguments="Rectangle" Phone=".50,.50, 300, 100" Tablet=".40,.40, 130, 130" />
+                    <OnIdiom x:TypeArguments="Rectangle" Phone=".50,.50, 300, 100" Tablet=".50,.50, 500, 150" />
                 </AbsoluteLayout.LayoutBounds>
             </customRenders:CustomButtonRender>
             <customRenders:CustomButtonRender Style="{StaticResource ButtonStyle}" Text="{i18n:Translate SeeMonthsAppointments}" AbsoluteLayout.LayoutFlags="PositionProportional"  Command="{Binding GoToMonthViewCommand}">
                 <AbsoluteLayout.LayoutBounds>
-                    <OnIdiom x:TypeArguments="Rectangle" Phone=".50,.75, 300, 100" Tablet=".40,.40, 130, 130" />
+                    <OnIdiom x:TypeArguments="Rectangle" Phone=".50,.75, 300, 100" Tablet=".50,.75, 500, 150" />
                 </AbsoluteLayout.LayoutBounds>
             </customRenders:CustomButtonRender>
         </AbsoluteLayout>

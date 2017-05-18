@@ -20,7 +20,6 @@ namespace DementiaHelper.PageModels
     {
         private int CitizenId { get; set; }
         public ICommand CreateAppointmentCommand { get; protected set; }
-        private int User { get; set; }
         public ICommand CancelCreateAppointmentCommand { get; protected set; }
         public string Description { get; set; }
         public string SelecteColorName { get; set; }

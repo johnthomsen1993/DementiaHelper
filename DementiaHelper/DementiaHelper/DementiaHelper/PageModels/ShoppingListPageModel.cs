@@ -20,7 +20,6 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class ShoppingListPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/shoppinglist/";
         public ShoppingList ShoppingList { get; set; }
         public ICommand RemoveShoppingItemCommand { get; protected set; }
         public ICommand ChangeBoughtStateOfItemCommand { get; protected set; }
