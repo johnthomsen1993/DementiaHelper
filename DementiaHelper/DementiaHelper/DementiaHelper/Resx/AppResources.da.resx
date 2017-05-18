@@ -426,4 +426,11 @@
   <data name="ChoosenPrimaryRelative" xml:space="preserve">
     <value>Valgte primær pårørende</value>
   </data>
+  <data name="ChoosenPrimaryRelativeTitle" xml:space="preserve">
+    <value>Vælg primær pårørende</value>
+    <comment>Title for Choose Primary Relative View</comment>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Besked</value>
+  </data>
 </root>

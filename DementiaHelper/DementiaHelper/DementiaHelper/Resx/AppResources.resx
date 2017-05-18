@@ -434,4 +434,12 @@
   <data name="ChoosenPrimaryRelative" xml:space="preserve">
     <value>Choosen Primary Relative</value>
   </data>
+  <data name="ChoosenPrimaryRelativeTitle" xml:space="preserve">
+    <value>Choose primary relative</value>
+    <comment>Title for Choose Primary Relative View</comment>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+    <comment>Label for Textfield</comment>
+  </data>
 </root>

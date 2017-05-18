@@ -6,7 +6,7 @@
              xmlns:behaviors="clr-namespace:DementiaHelper.Behaviors;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.ChoosePrimaryRelativePage"
              BackgroundColor="#ffffff"
-             Title="{extensions:Translate ChooseCitizenTitle}">
+             Title="{extensions:Translate ChoosenPrimaryRelativeTitle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

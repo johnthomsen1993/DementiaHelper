@@ -269,6 +269,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose primary relative.
+        /// </summary>
+        public static string ChoosenPrimaryRelativeTitle {
+            get {
+                return ResourceManager.GetString("ChoosenPrimaryRelativeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose Primary Relative.
         /// </summary>
         public static string ChoosePrimaryRelative {
@@ -607,6 +616,15 @@ namespace DementiaHelper.Resx {
         public static string LogOutTitle {
             get {
                 return ResourceManager.GetString("LogOutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
             }
         }
         
