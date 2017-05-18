@@ -19,6 +19,8 @@ namespace DementiaHelper.Model.Controllers
         ObservableCollection<Contact> MapToContactsCollection(IDictionary<string, object> dict);
         Task<ObservableCollection<Contact>> GetApplicationUserContactCollection(int? id);
         Task SaveUpdateUserInformation(UserInformation updatedUser, string oldEmail);
+        Task<ObservableCollection<Relative>> GetRelativeList();
+        Task ChoosePrimaryRelative(Relative relative);
 
     }
 }

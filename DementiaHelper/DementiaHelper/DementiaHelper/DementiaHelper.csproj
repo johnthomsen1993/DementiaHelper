@@ -67,7 +67,6 @@
     <Compile Include="Model\ShoppingList\ShoppingList.cs" />
     <Compile Include="Model\ShoppingList\ShoppingListItem.cs" />
     <Compile Include="PageModels\CalenderPageModel.cs" />
-    <Compile Include="PageModels\ChatTabPageModel.cs" />
     <Compile Include="PageModels\ConnectToCitizenPageModel.cs" />
     <Compile Include="PageModels\ChoosePrimaryRelativePageModel.cs" />
     <Compile Include="PageModels\ConnectToNursingHomePageModel.cs" />
@@ -85,9 +84,6 @@
     <Compile Include="PageModels\WeekCalendarPageModel.cs" />
     <Compile Include="Pages\CalendarPage.xaml.cs">
       <DependentUpon>CalendarPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ChatTabPage.xaml.cs">
-      <DependentUpon>ChatTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ChoosePrimaryRelativePage.xaml.cs">
       <DependentUpon>ChoosePrimaryRelativePage.xaml</DependentUpon>
@@ -400,12 +396,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\ChoosePrimaryRelativePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\ChatTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
