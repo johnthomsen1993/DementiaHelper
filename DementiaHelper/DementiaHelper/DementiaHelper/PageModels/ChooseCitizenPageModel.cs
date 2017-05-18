@@ -15,8 +15,7 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class ChooseCitizenPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/values/caregiver/";
-        public ObservableCollection<Citizen> CaregiversCitizenCollection { get; set; }
+         public ObservableCollection<Citizen> CaregiversCitizenCollection { get; set; }
         public ObservableCollection<Citizen> CitizenCollection { get; set; }
         public Citizen ChoosenCitizen { get; set; }
         public bool CitizenChoosen { get; set; }

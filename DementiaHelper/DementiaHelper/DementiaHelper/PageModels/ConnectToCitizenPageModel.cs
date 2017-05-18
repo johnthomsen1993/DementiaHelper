@@ -16,7 +16,6 @@ namespace DementiaHelper.PageModels
 {
     public class ConnectToCitizenPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/connecttocitizen/";
         public string ConnectionId { get; set; }
         public ICommand ConnectToCitizenCommand { get; protected set; }
         public ConnectToCitizenPageModel() {

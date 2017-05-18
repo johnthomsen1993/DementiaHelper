@@ -19,7 +19,7 @@
                 <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" >
                     <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                         <StackLayout  VerticalOptions="Start" >
-                            <SearchBar Placeholder="{extensions:Translate SearchCitizen}" Text="{Binding SearchText}" HeightRequest="50">
+                            <SearchBar Placeholder="Søg pårørende" Text="{Binding SearchText}" HeightRequest="50">
                             </SearchBar>
                             <ScrollView>
                                 <ListView ItemsSource="{Binding RelativeCollection}">

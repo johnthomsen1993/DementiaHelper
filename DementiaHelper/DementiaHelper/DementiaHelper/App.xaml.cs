@@ -58,15 +58,14 @@ namespace DementiaHelper
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<CitizenHomePageModel>(AppResources.CitizenHomeTitle, null);
                         MasterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
-                        MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
+                       // MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.ChatTitle, 1);
                         MasterDetailNav.AddPage<CalendarPageModel>(AppResources.CalenderTitle, null);
                         MasterDetailNav.AddPage<AccountInformationPageModel>(AppResources.AccountInformationTitle, null);
                         MasterDetailNav.AddPage<ConnectToNursingHomePageModel>(AppResources.ConnectToNursingHomeTitle, null);
-                        MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);
                         MasterDetailNav.AddPage<ChoosePrimaryRelativePageModel>(AppResources.ChoosePrimaryRelative, null);
-
+                        MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);
                         break;
                     }
                 case 2:
@@ -76,7 +75,7 @@ namespace DementiaHelper
                         MasterDetailNav.Init("Menu");
                         MasterDetailNav.AddPage<ConnectToCitizenPageModel>(AppResources.ConnectToCitizenTitle, null);
                         MasterDetailNav.AddPage<ContactListPageModel>(AppResources.ContactListTitle, null);
-                        MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
+                        //MasterDetailNav.AddPage<ImageGalleryPageModel>(AppResources.ImageGalleryTitle, null);
                         MasterDetailNav.AddPage<ShoppingListPageModel>(AppResources.ShoppingListTitle, null);
                         MasterDetailNav.AddPage<ChatPageModel>(AppResources.Chat_ChatTitleRelative, 2);
                         if (User.PrimaryRelative)

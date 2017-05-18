@@ -63,7 +63,9 @@
     <Compile Include="Behaviors\BehaviorBase.cs" />
     <Compile Include="Behaviors\EventToCommandBehavior.cs" />
     <Compile Include="Converters\ItemTappedEventArgsConverter.cs" />
+    <Compile Include="Model\ShoppingList\Product.cs" />
     <Compile Include="Model\ShoppingList\ShoppingList.cs" />
+    <Compile Include="Model\ShoppingList\ShoppingListItem.cs" />
     <Compile Include="PageModels\CalenderPageModel.cs" />
     <Compile Include="PageModels\ConnectToCitizenPageModel.cs" />
     <Compile Include="PageModels\ChoosePrimaryRelativePageModel.cs" />
