@@ -5,6 +5,7 @@ using DementiaHelper.Services;
 using Xamarin.Auth;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using DementiaHelper.Model;
 
 [assembly: Dependency(typeof(CredentialsService))]
 namespace DementiaHelper.Droid
@@ -16,7 +17,7 @@ namespace DementiaHelper.Droid
             var account = AccountStore.Create(Forms.Context).FindAccountsForService(App.AppName).FirstOrDefault();
             if (account != null && account.Username!=null && account.Properties["Password"]!=null )
             {
-                    if ( App.Login(account.Username, account.Properties["Password"]))
+                    if ( ModelAccessor.Instance.AccountController.Login(account.Username, account.Properties["Password"]))
                     {
                         return true;
                     }

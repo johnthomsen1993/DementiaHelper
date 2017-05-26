@@ -38,23 +38,35 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\ApplicationUser.cs" />
-    <Compile Include="Model\CalenderTask.cs" />
-    <Compile Include="Model\ChatGroup.cs" />
-    <Compile Include="Model\ChatMessage.cs" />
-    <Compile Include="Model\Contact.cs" />
-    <Compile Include="Model\GalleryImage.cs" />
-    <Compile Include="Model\Message.cs" />
-    <Compile Include="Model\Note.cs" />
-    <Compile Include="Model\Relative.cs" />
-    <Compile Include="Model\ShoppingList.cs" />
+    <Compile Include="Model\Account\ApplicationUser.cs" />
+    <Compile Include="Model\Account\Citizen.cs" />
+    <Compile Include="Model\Account\Contact.cs" />
+    <Compile Include="Model\Account\UserInformation.cs" />
+    <Compile Include="Model\Chat\ChatGroup.cs" />
+    <Compile Include="Model\Chat\ChatMessage.cs" />
+    <Compile Include="Model\Chat\Message.cs" />
+    <Compile Include="Model\Controllers\AccountController.cs" />
+    <Compile Include="Model\Controllers\CalendarController.cs" />
+    <Compile Include="Model\Controllers\ChatController.cs" />
+    <Compile Include="Model\Controllers\IAccountController.cs" />
+    <Compile Include="Model\Controllers\ICalendarController.cs" />
+    <Compile Include="Model\Controllers\IChatController.cs" />
+    <Compile Include="Model\Controllers\INoteController.cs" />
+    <Compile Include="Model\Controllers\IShoppingListController.cs" />
+    <Compile Include="Model\Controllers\NoteController.cs" />
+    <Compile Include="Model\Controllers\ShoppingListController.cs" />
+    <Compile Include="Model\ImageGallery\GalleryImage.cs" />
+    <Compile Include="Model\IModelAccessor.cs" />
+    <Compile Include="Model\ModelAccessor.cs" />
+    <Compile Include="Model\Note\Note.cs" />
+    <Compile Include="Model\Account\Relative.cs" />
     <Compile Include="Behaviors\BehaviorBase.cs" />
     <Compile Include="Behaviors\EventToCommandBehavior.cs" />
     <Compile Include="Converters\ItemTappedEventArgsConverter.cs" />
-    <Compile Include="Model\Citizen.cs" />
-    <Compile Include="Model\UserInformation.cs" />
+    <Compile Include="Model\ShoppingList\Product.cs" />
+    <Compile Include="Model\ShoppingList\ShoppingList.cs" />
+    <Compile Include="Model\ShoppingList\ShoppingListItem.cs" />
     <Compile Include="PageModels\CalenderPageModel.cs" />
-    <Compile Include="PageModels\ChatTabPageModel.cs" />
     <Compile Include="PageModels\ConnectToCitizenPageModel.cs" />
     <Compile Include="PageModels\ChoosePrimaryRelativePageModel.cs" />
     <Compile Include="PageModels\ConnectToNursingHomePageModel.cs" />
@@ -72,9 +84,6 @@
     <Compile Include="PageModels\WeekCalendarPageModel.cs" />
     <Compile Include="Pages\CalendarPage.xaml.cs">
       <DependentUpon>CalendarPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ChatTabPage.xaml.cs">
-      <DependentUpon>ChatTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ChoosePrimaryRelativePage.xaml.cs">
       <DependentUpon>ChoosePrimaryRelativePage.xaml</DependentUpon>
@@ -391,12 +400,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\ChatTabPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

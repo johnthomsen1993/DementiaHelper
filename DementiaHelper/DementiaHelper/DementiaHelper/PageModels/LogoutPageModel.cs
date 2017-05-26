@@ -23,10 +23,7 @@ namespace DementiaHelper.PageModels
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
-            Device.BeginInvokeOnMainThread( () =>
-            {
-                LogOut();
-            });
+            Device.BeginInvokeOnMainThread( LogOut);
         }
     }
 }

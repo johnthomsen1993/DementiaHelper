@@ -64,7 +64,7 @@
                             <Label IsVisible="{Binding CitizenChoosen}" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate ChoosenCitizen}"/>
                             <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                                 <Label Text="{Binding ChoosenCitizen.FirstName}" ></Label>
-                                <Label  Text="{Binding ChoosenCitizen.LastName}" ></Label>
+                                <Label Text="{Binding ChoosenCitizen.LastName}" ></Label>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DementiaHelper.Resx;
 using Xamarin.Forms;
 
 namespace DementiaHelper.PageModels
@@ -27,7 +28,7 @@ namespace DementiaHelper.PageModels
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread(async () =>
             {
-                Appointments = await CalendarPageModel.GetAppointments(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
+                Appointments = await ModelAccessor.Instance.CalendarController.GetAppointments(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
             });
         }
 
@@ -36,6 +37,20 @@ namespace DementiaHelper.PageModels
             if (((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId != null)
             {
                 await CoreMethods.PushPageModel<CreateCalenderAppointmentPageModel>(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
+            }
+            else
+            {
+                switch (((ApplicationUser)App.Current.Properties["ApplicationUser"]).RoleId)
+                {
+                    case 2:
+                        await CoreMethods.DisplayAlert(AppResources.RelativeAddFailureTitle,
+                            AppResources.CalendarAddRelativeFailureSubjekt, AppResources.General_Ok);
+                        break;
+                    case 3:
+                        await CoreMethods.DisplayAlert(AppResources.CaregiverAddFailureTitle,
+                            AppResources.CalendarAddCaregiverFailureSubjekt, AppResources.General_Ok);
+                        break;
+                }
             }
         }
     }

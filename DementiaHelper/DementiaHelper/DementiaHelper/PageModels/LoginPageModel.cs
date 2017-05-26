@@ -20,14 +20,12 @@ namespace DementiaHelper.PageModels
    
    public class LoginPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/login";
-        public string Email { get; set; }
+
+    
+      public string Email { get; set; }
       public string Password { get; set; }
       public ICommand LoginCommand { get; protected set; }
       public ICommand GoToCreateAccountCommand { get; protected set; }
-      public ICommand GoToAccountInformationCommand { get; protected set; }
-      public ICommand GoToShoppingListCommand { get; protected set; }
-
         public LoginPageModel()
         {
             Email = "";
@@ -38,13 +36,11 @@ namespace DementiaHelper.PageModels
             base.Init(initData);
             this.LoginCommand = new Command( async() => await LoginAsync());
             this.GoToCreateAccountCommand = new Command(async () => await GoToCreateAccount());
-            this.GoToAccountInformationCommand = new Command(async () => await GoToAccountInformation());
-            this.GoToShoppingListCommand = new Command(async () => await GoToShoppingList());
         }
 
         async Task LoginAsync()
         {
-            if (await App.LoginAsync(Email, Password))
+            if (await ModelAccessor.Instance.AccountController.LoginAsync(Email, Password))
             {
                 Email = "";
                 Password = "";
@@ -60,15 +56,6 @@ namespace DementiaHelper.PageModels
         async Task GoToCreateAccount()
         {
             await CoreMethods.PushPageModel<CreateAccountPageModel>();
-        }
-        async Task GoToAccountInformation()
-        {
-            
-            await CoreMethods.PushPageModel<AccountInformationPageModel>();
-        }
-        async Task GoToShoppingList()
-        {
-            await CoreMethods.PushPageModel <ShoppingListPageModel>();
         }
     }
 }

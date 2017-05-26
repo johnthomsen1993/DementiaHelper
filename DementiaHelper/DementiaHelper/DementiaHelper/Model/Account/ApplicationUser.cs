@@ -11,15 +11,13 @@ namespace DementiaHelper.Model
     {
         public int ApplicationUserId { get; set; }
         public string Email { get; set; }
-        public string Salt { get; set; }
-        public string Hash { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Description { get; set; }
         public string Phone { get; set; }
         public int? CitizenId { get; set; }
         public bool PrimaryRelative { get; set; }
-        public ObservableCollection<int?> ListOfCitizens {get;set;}
+        public ObservableCollection<int?> ListOfCitizens { get; set; }
         public int? RoleId { get; set; }
         public int? GroupId { get; set; }
         public string ConnectionId { get; internal set; }

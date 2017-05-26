@@ -20,7 +20,7 @@
                             <Entry BackgroundColor="White" Placeholder="{i18n:Translate CitizenId}" Text="{Binding ConnectionId}" ></Entry>
                         </StackLayout>
 
-                        <Label  Margin="10" TextColor="#0099cc" Font="Bold" Text="Indtast dement id, se Idet i den dementes account information"></Label>
+                <Label  Margin="10" TextColor="#0099cc" Font="Bold" Text="{i18n:Translate InsertDementiaIdText}" ></Label> 
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >

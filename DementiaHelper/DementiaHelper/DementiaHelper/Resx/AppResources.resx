@@ -434,4 +434,99 @@
   <data name="ChoosenPrimaryRelative" xml:space="preserve">
     <value>Choosen Primary Relative</value>
   </data>
+  <data name="ChoosenPrimaryRelativeTitle" xml:space="preserve">
+    <value>Choose primary relative</value>
+    <comment>Title for Choose Primary Relative View</comment>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="AppointmentEndTime" xml:space="preserve">
+    <value>Appointment end time:</value>
+    <comment>Label</comment>
+  </data>
+  <data name="AppointmentStartTime" xml:space="preserve">
+    <value>Appointment start time:</value>
+    <comment>Label</comment>
+  </data>
+  <data name="CalendarLanguage" xml:space="preserve">
+    <value>en-US</value>
+    <comment>SettingTheCalendarLanguage</comment>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Create Account</value>
+    <comment>Label</comment>
+  </data>
+  <data name="CreateAccountAs" xml:space="preserve">
+    <value>Create Account as:</value>
+    <comment>Label</comment>
+  </data>
+  <data name="DescriptionOfAppointment" xml:space="preserve">
+    <value>Description of appointment:</value>
+    <comment>Label</comment>
+  </data>
+  <data name="InsertCarecenterIdText" xml:space="preserve">
+    <value>Insert nursing home id, you can find this in the delievered papers from the nursing home</value>
+    <comment>Label</comment>
+  </data>
+  <data name="InsertDementiaIdText" xml:space="preserve">
+    <value>Insert dementia id, you can find this in the demented persons account information</value>
+    <comment>Label</comment>
+  </data>
+  <data name="NextAppointment" xml:space="preserve">
+    <value>Next appointment:</value>
+    <comment>Label</comment>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+    <comment>Label</comment>
+  </data>
+  <data name="SearchContacts" xml:space="preserve">
+    <value>Search contacts</value>
+    <comment>Label</comment>
+  </data>
+  <data name="SearchRelative" xml:space="preserve">
+    <value>Søg pårørende</value>
+    <comment>Label for Textfield</comment>
+  </data>
+  <data name="SeeListOfTodaysAppointments" xml:space="preserve">
+    <value>See todays appointments</value>
+    <comment>label for Textfield</comment>
+  </data>
+  <data name="ShoppingListItemDescription" xml:space="preserve">
+    <value>Item:</value>
+    <comment>Label</comment>
+  </data>
+  <data name="ShoppingListItemQuantity" xml:space="preserve">
+    <value>Quantity:</value>
+    <comment>Label</comment>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="CalendarAddCaregiverFailureSubjekt" xml:space="preserve">
+    <value>to add new appointments, you need to have choosen the citizen your inspecting</value>
+  </data>
+  <data name="CalendarAddRelativeFailureSubjekt" xml:space="preserve">
+    <value>to add new appointments, you need to be connected to a person under care</value>
+  </data>
+  <data name="CaregiverAddFailureTitle" xml:space="preserve">
+    <value>No citizen choosen</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="RelativeAddFailureTitle" xml:space="preserve">
+    <value>No connected citizen</value>
+  </data>
+  <data name="ShoppingListAddCaregiverFailureSubjekt" xml:space="preserve">
+    <value>to add new items, you need to have choosen the citizen your inspecting</value>
+  </data>
+  <data name="ShoppingListAddRelativeFailureSubjekt" xml:space="preserve">
+    <value>to add new items, you need to be connected to a person under care</value>
+  </data>
 </root>

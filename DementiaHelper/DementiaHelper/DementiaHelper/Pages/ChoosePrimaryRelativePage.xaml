@@ -6,7 +6,7 @@
              xmlns:behaviors="clr-namespace:DementiaHelper.Behaviors;assembly=DementiaHelper"
              x:Class="DementiaHelper.Pages.ChoosePrimaryRelativePage"
              BackgroundColor="#ffffff"
-             Title="{extensions:Translate ChooseCitizenTitle}">
+             Title="{extensions:Translate ChoosenPrimaryRelativeTitle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,7 +19,7 @@
                 <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" >
                     <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                         <StackLayout  VerticalOptions="Start" >
-                            <SearchBar Placeholder="{extensions:Translate SearchCitizen}" Text="{Binding SearchText}" HeightRequest="50">
+                            <SearchBar Placeholder="Søg pårørende" Text="{Binding SearchText}" HeightRequest="50">
                             </SearchBar>
                             <ScrollView>
                                 <ListView ItemsSource="{Binding RelativeCollection}">
@@ -74,7 +74,7 @@
                 <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" >
                     <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                         <StackLayout VerticalOptions="Start" >
-                            <SearchBar FontSize="22" Placeholder="{extensions:Translate SearchCitizen}" Text="{Binding SearchText}" >
+                            <SearchBar FontSize="22" Placeholder="{extensions:Translate SearchRelative}" Text="{Binding SearchText}" >
                             </SearchBar>
                             <ScrollView>
                                 <ListView ItemsSource="{Binding RelativeCollection}">

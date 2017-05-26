@@ -11,7 +11,7 @@
             <OnIdiom.Phone>
 
         <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
-            <SearchBar Placeholder="søg" Text="{Binding SearchText}" HeightRequest="50">
+                    <SearchBar Placeholder="{i18n:Translate SearchContacts}" Text="{Binding SearchText}" HeightRequest="50">
             </SearchBar>
             <ListView x:Name="ContactListView" ItemsSource="{Binding ContactCollection}" HasUnevenRows="True">
                 <ListView.Header>
@@ -51,7 +51,7 @@
             </OnIdiom.Phone>
             <OnIdiom.Tablet>
                 <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
-                    <SearchBar Placeholder="søg" Text="{Binding SearchText}" HeightRequest="50">
+                    <SearchBar Placeholder="{i18n:Translate SearchContacts}" Text="{Binding SearchText}" HeightRequest="50">
                     </SearchBar>
                     <ListView HasUnevenRows="True" x:Name="ContactListViewTablet" ItemsSource="{Binding ContactCollection}">
                         <ListView.Header>

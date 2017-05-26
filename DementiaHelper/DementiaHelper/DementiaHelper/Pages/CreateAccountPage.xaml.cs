@@ -36,7 +36,8 @@ namespace DementiaHelper.Pages
                     {
                         outerStack.Orientation = StackOrientation.Horizontal;
                         secondInnerStack.VerticalOptions = LayoutOptions.StartAndExpand;
-                        imageElderlyHands.HeightRequest = 120;
+                        imageElderlyHands.HeightRequest = 0;
+                        RolePickerStackLayout.Orientation = StackOrientation.Horizontal;
                     }
                     else if (Device.Idiom == TargetIdiom.Tablet)
                     {
@@ -52,6 +53,7 @@ namespace DementiaHelper.Pages
                 {
                     if (Device.Idiom == TargetIdiom.Phone)
                     {
+                        RolePickerStackLayout.Orientation = StackOrientation.Vertical;
                         outerStack.Orientation = StackOrientation.Vertical;
                         secondInnerStack.VerticalOptions = LayoutOptions.CenterAndExpand;
                         imageElderlyHands.HeightRequest = 200;

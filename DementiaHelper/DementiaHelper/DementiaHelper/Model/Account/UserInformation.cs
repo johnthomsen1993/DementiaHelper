@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 
 namespace DementiaHelper.Model
 {
-    [JsonObject]
     public class UserInformation 
     {
         public string Email { get; set; }

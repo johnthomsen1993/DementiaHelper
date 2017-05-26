@@ -38,7 +38,7 @@
         </ListView>
 
         <StackLayout BackgroundColor="#0099cc" Padding="1">
-            <Entry Keyboard="Chat" Text="{Binding ChatMessage.Message}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Placeholder="Message"></Entry>
+            <Entry Keyboard="Chat" Text="{Binding ChatMessage.Message}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Placeholder="{i18n:Translate Message}"></Entry>
         </StackLayout>
 
         <customRenders:CustomButtonRender  Style="{StaticResource ButtonStyle}" Text="{i18n:Translate SendMessage}" Command="{Binding SendMessageCommand}"/>

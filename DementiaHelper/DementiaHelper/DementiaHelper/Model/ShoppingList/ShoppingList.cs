@@ -5,13 +5,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PropertyChanged;
 
 namespace DementiaHelper.Model
 {
     [JsonObject]
-    public class CalenderTask
+    public class ShoppingList
     {
-       public DateTime Time { get; set; }
-       public string Description { get; set; }
+        [JsonExtensionData]
+        public ObservableCollection<ShoppingListItem> ShoppingListItems { get; set; }
     }
 }

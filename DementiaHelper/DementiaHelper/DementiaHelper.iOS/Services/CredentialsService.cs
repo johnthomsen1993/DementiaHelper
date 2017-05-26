@@ -9,6 +9,7 @@ using DementiaHelper.Services;
 using Xamarin.Auth;
 using System.Threading.Tasks;
 using DementiaHelper.iOS.Services;
+using DementiaHelper.Model;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(CredentialsService))]
@@ -25,7 +26,7 @@ namespace DementiaHelper.iOS.Services
             var account = AccountStore.Create().FindAccountsForService(App.AppName).FirstOrDefault();
             if (account != null && account.Username != null && account.Properties["Password"] != null)
             {
-                if ( App.Login(account.Username, account.Properties["Password"]))
+                if ( ModelAccessor.Instance.AccountController.Login(account.Username, account.Properties["Password"]))
                 {
                     return true;
                 }

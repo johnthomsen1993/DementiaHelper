@@ -16,7 +16,6 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class ContactListPageModel : FreshMvvm.FreshBasePageModel
     {
-        public const string URI_BASE = "http://dementiahelper.azurewebsites.net/api/account/contactlist/";
         public ObservableCollection<Contact> ApplicationUserContactCollection { get; set; }
         public ObservableCollection<Contact> ContactCollection { get; set; }
         public Command<Contact> CallContactCommand { get; set; }
@@ -26,74 +25,16 @@ namespace DementiaHelper.PageModels
             ApplicationUserContactCollection = new ObservableCollection<Contact>() { }; ; ;
             ContactCollection = new ObservableCollection<Contact>() { new Contact() { } };
             CallContactCommand = new Command<Contact>(CallNumber);
-
+            
         }
-       
-
-        private async Task<ObservableCollection<Contact>> GetApplicationUserContactCollection(int? id)
-        {
-            if (id == null) { return new ObservableCollection<Contact>() { }; }
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", id } });
-                    var result = await client.GetStringAsync(new Uri(URI_BASE + encoded));
-                    var decoded = JWTService.Decode(result);
-                    if (decoded != null)
-                    {
-                        return MapToContactsCollection(decoded);
-                    }
-                    {
-                        return new ObservableCollection<Contact>() { };
-                    }
-
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-        }
-
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread(async () =>
             {
-                ApplicationUserContactCollection = await GetApplicationUserContactCollection(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
+                ApplicationUserContactCollection = await ModelAccessor.Instance.AccountController.GetApplicationUserContactCollection(((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId);
                 FilterContacts();
             });
-        }
-
-        private ObservableCollection<Contact> MapToContactsCollection(IDictionary<string, object> dict)
-        {
-            var tempCaregiversCitizenCollection = new ObservableCollection<Contact>();
-            var list = dict.SingleOrDefault(x => x.Key.Equals("contactList")).Value as IEnumerable<object>;
-
-            foreach (var obj in list)
-            {
-                var jsonContainer = obj as JContainer;
-                var number = jsonContainer.SelectToken("ApplicationUser").SelectToken("Phone").ToObject<string>();
-                if (number != "" && number != null)
-                {
-                    tempCaregiversCitizenCollection.Add(item: new Contact()
-                    {
-                        Phone = jsonContainer.SelectToken("ApplicationUser").SelectToken("Phone").ToObject<string>(),
-                        Name = jsonContainer.SelectToken("ApplicationUser").SelectToken("FirstName").ToObject<string>() + " " + jsonContainer.SelectToken("ApplicationUser").SelectToken("LastName").ToObject<string>()
-                    });
-                }
-            }
-
-            if (dict["caregiverCenter"] != null) { 
-                var jContainer = dict["caregiverCenter"] as JContainer;
-                tempCaregiversCitizenCollection.Add(new Contact()
-              {
-                Phone = jContainer.SelectToken("Phone").ToObject<string>(),
-                Name = jContainer.SelectToken("Name").ToObject<string>()
-               });
-             }
-            return tempCaregiversCitizenCollection;
         }
         #region Filter
 

@@ -19,9 +19,7 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class CitizenHomePageModel :FreshMvvm.FreshBasePageModel
     {
-     
         public DateTime CurrentTime { get; set; }
-       
         public string Weekday { get; set; }
         public string Month { get; set; }
         public ICommand GoToCalendarDayViewCommand { get; protected set; }
@@ -31,7 +29,7 @@ namespace DementiaHelper.PageModels
         public CitizenHomePageModel()
         {
             var test = DateTime.Now;
-            GoToCalendarDayViewCommand = new Command(async (id) => await GoToCreateShoppingItem());
+            GoToCalendarDayViewCommand = new Command(async () => await GoToCalendarDayView());
             Weekday = FirstLetterToUpper(test.ToString("dddd", new CultureInfo("da-DK")));
             Month = FirstLetterToUpper( test.ToString("MMMM", new CultureInfo("da-DK")));
             PictureOfWhoIsVisiting = ImageSource.FromFile("FakeProfilBillede.png");
@@ -46,40 +44,13 @@ namespace DementiaHelper.PageModels
         {
             base.ViewIsAppearing(sender, e);
             Device.BeginInvokeOnMainThread(async () => {
-                Appointment = await GetNextAppointment();
+                Appointment = await ModelAccessor.Instance.CalendarController.GetAppointment(); 
             });
         }
-        private async Task<ScheduleAppointment> GetAppointment()
+
+        private async Task GoToCalendarDayView()
         {
-            if (((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId == null) { return new ScheduleAppointment(); }
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    var encoded = JWTService.Encode(new Dictionary<string, object>() { { "CitizenId", ((ApplicationUser)App.Current.Properties["ApplicationUser"]).CitizenId } });
-                    var result = await client.GetStringAsync(new Uri("http://dementiahelper.azurewebsites.net/api/values/calendar/latest/" + encoded));
-                    var decoded = JWTService.Decode(result);
-                    return MapToCalenderAppointments(decoded);
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-        }
-        private ScheduleAppointment MapToCalenderAppointments(IDictionary<string, object> decoded)
-        {
-           var tempCalenderAppointmentsList = new ScheduleAppointment();
-            var jsonContainer = decoded["Appointment"] as JContainer;
-            tempCalenderAppointmentsList.Subject = jsonContainer.SelectToken("Subject").ToString();
-            tempCalenderAppointmentsList.Color = Color.FromHex(jsonContainer.SelectToken("Color").ToString());
-            tempCalenderAppointmentsList.StartTime = jsonContainer.SelectToken("StartTime").ToObject<DateTime>().ToLocalTime();
-            tempCalenderAppointmentsList.EndTime = jsonContainer.SelectToken("EndTime").ToObject<DateTime>().ToLocalTime();
-            return tempCalenderAppointmentsList;
-        }
-        private async Task GoToCreateShoppingItem()
-        {
-          await  CoreMethods.SwitchSelectedMaster<CalendarPageModel>();
+          await  CoreMethods.PushPageModel<DayCalendarPageModel>();
         }
 
         private string FirstLetterToUpper(string str)  // made this one since CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower()); does not exist in xamarin.forms pcl yet, which would have been the proper way to do it
@@ -91,11 +62,6 @@ namespace DementiaHelper.PageModels
                 return char.ToUpper(str[0]) + str.Substring(1);
 
             return str.ToUpper();
-        }
-
-        private async Task<ScheduleAppointment> GetNextAppointment() {
-            var ScheduleAppointments = await GetAppointment();
-            return ScheduleAppointments;
         }
     }
 }

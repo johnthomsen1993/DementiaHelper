@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackLayout x:Name="DescriptionStackLayout"  Grid.Row="0" Grid.Column="0" HeightRequest="300" WidthRequest="300">
-                    <Label x:Name="DescriptionLabel"   Text="Beskrivelse af begivenheden:"></Label>
+                    <Label x:Name="DescriptionLabel"   Text="{i18n:Translate DescriptionOfAppointment}"></Label>
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  x:Name="EditorStacklayout"  BackgroundColor="#0099cc" Padding="1">
                         <Editor BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Text="{Binding Description}"></Editor>
                     </StackLayout>
@@ -53,9 +53,9 @@
                     </Grid.ColumnDefinitions>
                     <Label x:Name="DateLabel" Text="Dato:" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"></Label>
                     <DatePicker x:Name="DateDatepicker" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3" Date="{Binding Date}" MinimumDate="01/01/2017" MaximumDate="12/31/2030"></DatePicker>
-                    <Label x:Name="DateStartTimeLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="Starttidspunkt:"></Label>
+                    <Label x:Name="DateStartTimeLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="{i18n:Translate AppointmentStartTime}"></Label>
                     <TimePicker  x:Name="DateStartTimeTimePicker" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Format="HH:mm" Time="{Binding AppointmentStartTimeSpan}"></TimePicker>
-                    <Label x:Name="DateEndTimeLabel" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Text="Sluttidspunkt:"></Label>
+                    <Label x:Name="DateEndTimeLabel" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Text="{i18n:Translate AppointmentEndTime}"></Label>
                     <TimePicker  x:Name="DateEndTimeTimePicker" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Format="HH:mm" Time="{Binding AppointmentEndTimeSpan}"></TimePicker>
                     <Label x:Name="ColorLabel" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Text="Farve:"></Label>
                     <Picker x:Name="ColorPicker"  Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Title="Farve" SelectedItem="{Binding SelecteColorName,Mode=TwoWay}" ItemsSource="{Binding ColorList}" ></Picker>

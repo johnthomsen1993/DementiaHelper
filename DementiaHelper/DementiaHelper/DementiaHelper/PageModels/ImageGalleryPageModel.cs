@@ -68,8 +68,6 @@ namespace DementiaHelper.PageModels
             var imageSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
 
             Images.Add(new GalleryImage { Source = imageSource, OrgImage = imageAsBytes });
-
-
             return;
         }
     }
