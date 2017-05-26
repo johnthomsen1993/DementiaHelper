@@ -62,7 +62,7 @@ namespace DementiaHelper.WebApi.Controllers
         // PUT api/values/5
         [HttpPut("shoppinglist")]
         [AllowAnonymous]
-        public void Put(string token)
+        public void SaveShoppingListItem(string token)
         {
             var decoded = JWTService.Decode(token);
             var sucess = _iRepository.SaveItemInShoppingList(Convert.ToInt32(decoded["CitizenId"]), decoded["Item"]?.ToString(), Convert.ToInt32(decoded["Quantity"]));

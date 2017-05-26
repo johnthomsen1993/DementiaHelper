@@ -116,7 +116,7 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpPut("update")]
         [AllowAnonymous]
-        public string Put(string token)
+        public string UpdateAccountInforamtion(string token)
         {
             var decoded = JWTService.Decode(token);
             var user = new ApplicationUser()

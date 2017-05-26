@@ -270,8 +270,8 @@ namespace DementiaHelper.WebApi.Data
 
             foreach (var caregiver in caregiverList)
             {
-                var caretakerChatGroup = _context.ChatGroupConnections.Include(x=>x.ChatGroup).FirstOrDefault(x => x.ChatGroup.GroupName == citizenId.ToString() && x.ChatGroup.GroupRole == 3);
-                AddMemberToGroup(caretakerChatGroup.ChatGroup.ChatGroupId, caregiver.CaregiverId);
+                var caretakerChatGroup = _context.ChatGroups.FirstOrDefault(x => x.GroupName == citizenId.ToString() && x.GroupRole == 3);
+                AddMemberToGroup(caretakerChatGroup.ChatGroupId, caregiver.CaregiverId);
             }
             
 

@@ -33,7 +33,7 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpGet("getMessagesForChatGroup/{token}")]
         [AllowAnonymous]
-        public string Get(string token)
+        public string GetMessagesForGroup(string token)
         {
             var decoded = JWTService.Decode(token);
             var chatMessageList = _iRepository.GetChatMessagesForGroup(Convert.ToInt32(decoded["GroupId"]));
@@ -54,7 +54,7 @@ namespace DementiaHelper.WebApi.Controllers
 
         [HttpGet("chatgroupid/{token}")]
         [AllowAnonymous]
-        public string GetChatGroupId(string token)
+        public string GetChatGroupIds(string token)
         {
             var decoded = JWTService.Decode(token);
             var chatGroupId = _iRepository.GetChatgroupId(Convert.ToInt32(decoded["ApplicationUserId"]));
