@@ -458,7 +458,7 @@
     <comment>Label</comment>
   </data>
   <data name="InsertCarecenterIdText" xml:space="preserve">
-    <value>Insert plejecenterets id, du kan finde idet i et udleveret dokument fra plejecenteret</value>
+    <value>Indtast plejecenterets id, du kan finde idet i et udleveret dokument fra plejecenteret</value>
     <comment>Label</comment>
   </data>
   <data name="InsertDementiaIdText" xml:space="preserve">
