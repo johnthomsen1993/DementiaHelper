@@ -16,7 +16,6 @@ namespace DementiaHelper.Pages
         public LogOutPage()
         {
             InitializeComponent();
-
         }
     }
 }

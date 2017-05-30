@@ -18,6 +18,8 @@ namespace DementiaHelper.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CalendarPage : ContentPage
     {
+        private double width;
+        private double height;
         public CalendarPage()
         {
             InitializeComponent();
@@ -37,6 +39,36 @@ namespace DementiaHelper.Pages
             });
             return true;
         }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            if (width != this.width || height != this.height)
+            {
+                this.width = width;
+                this.height = height;
+                if (width > height)
+                {
+                    if (Device.Idiom == TargetIdiom.Phone)
+                    {
+                        AbsoluteLayout.SetLayoutBounds(TodaysAppointments, new Rectangle(.50, .10, 500, 79));
+                        AbsoluteLayout.SetLayoutBounds(WeeksAppointments, new Rectangle(.50, .50, 500, 79));
+                        AbsoluteLayout.SetLayoutBounds(MonthsAppointments, new Rectangle(.50, .90, 500, 79));
+                    }
+                }
+                else
+                {
+                    if (Device.Idiom == TargetIdiom.Phone)
+                    {
+                        AbsoluteLayout.SetLayoutBounds(TodaysAppointments, new Rectangle(.50, .25, 300, 100));
+                        AbsoluteLayout.SetLayoutBounds(WeeksAppointments, new Rectangle(.50, .50, 300, 100));
+                        AbsoluteLayout.SetLayoutBounds(MonthsAppointments, new Rectangle(.50, .75, 300, 100));
+                    }
+
+                }
+            }
+        }
+
     }
 
 }

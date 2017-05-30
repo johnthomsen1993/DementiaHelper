@@ -28,12 +28,9 @@ namespace DementiaHelper
         {
             public static string LoginNavigationStack = "LoginNavigationStack";
             public static string MainAppStack = "MainAppStack";
-            public static string TabbedAppStack = "TabbedAppStack";
         }
-        public static string AppName { get { return "Dementia Helper"; } }
-        // public static string UserName { get { return "John"; } }
+        public static string AppName { get { return "Cura Civis"; } }
         public ApplicationUser ApplicationUser { get; set; }
-        //  public static string Password { get { return "password"; } }
         static FreshMvvm.CustomMasterDetailNavigation MasterDetailNav { get; set; }
         static FreshMvvm.FreshNavigationContainer LoginNavigationContainer { get; set; }
         public App()
@@ -102,12 +99,6 @@ namespace DementiaHelper
                         MasterDetailNav.AddPage<LogOutPageModel>(AppResources.LogOutTitle, null);
                         break;
                     }
-
-                default:
-                    {
-                        break;
-                    }
-
             }
                 
         }
@@ -115,8 +106,7 @@ namespace DementiaHelper
         
         protected override void OnStart()
         {
-              if ( DependencyService.Get<ICredentialsService>().Authenticate())
-                {
+            if(DependencyService.Get<ICredentialsService>().Authenticate()){
                     App.SetMasterDetailToRole();
                     MainPage = MasterDetailNav;
             }
@@ -126,7 +116,6 @@ namespace DementiaHelper
                 MainPage = LoginNavigationContainer;
 
             }
-     
         }
 
         protected override void OnSleep()

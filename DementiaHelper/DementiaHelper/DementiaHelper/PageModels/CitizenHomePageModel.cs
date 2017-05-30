@@ -19,12 +19,14 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class CitizenHomePageModel :FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public DateTime CurrentTime { get; set; }
         public string Weekday { get; set; }
         public string Month { get; set; }
         public ICommand GoToCalendarDayViewCommand { get; protected set; }
         public ImageSource PictureOfWhoIsVisiting { get; set; }
         public ScheduleAppointment Appointment { get; set; }
+        #endregion
 
         public CitizenHomePageModel()
         {

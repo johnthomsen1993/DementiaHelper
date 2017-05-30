@@ -16,9 +16,11 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class ContactListPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public ObservableCollection<Contact> ApplicationUserContactCollection { get; set; }
         public ObservableCollection<Contact> ContactCollection { get; set; }
         public Command<Contact> CallContactCommand { get; set; }
+        #endregion
         public ContactListPageModel()
         {
             _SearchText = "";
@@ -36,7 +38,7 @@ namespace DementiaHelper.PageModels
                 FilterContacts();
             });
         }
-        #region Filter
+   
 
         private string _SearchText;
         public string SearchText
@@ -52,12 +54,9 @@ namespace DementiaHelper.PageModels
                     _SearchText = value;
                     RaisePropertyChanged("SearchText");
                     this.FilterContacts();
-
                 }
             }
         }
-
-        #endregion
         private void FilterContacts()
         {
             ContactCollection.Clear();
