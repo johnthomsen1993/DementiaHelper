@@ -74,7 +74,7 @@ namespace FreshMvvm
             var listView = new ListView();
 
             listView.ItemsSource = _pageNames;
-
+            listView.HasUnevenRows = true;
 
             listView.ItemTemplate = new DataTemplate(() => {
                 var ViewCell = new ViewCell();
