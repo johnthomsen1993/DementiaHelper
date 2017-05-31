@@ -6,6 +6,9 @@ using Xamarin.Forms;
 
 namespace DementiaHelper.Behaviors
 {
+    /// <summary>
+    /// https://github.com/xamarin/xamarin-forms-samples/tree/master/Behaviors/EventToCommandBehavior/EventToCommandBehavior/Behaviors
+    /// </summary>
     public class EventToCommandBehavior : BehaviorBase<Xamarin.Forms.View>
     {
         Delegate eventHandler;

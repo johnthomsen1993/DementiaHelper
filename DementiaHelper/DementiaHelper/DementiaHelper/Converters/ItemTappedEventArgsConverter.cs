@@ -8,6 +8,10 @@ using Xamarin.Forms;
 
 namespace DementiaHelper.Converters
 {
+
+    /// <summary>
+    /// https://github.com/dotnet-architecture/eShopOnContainers/blob/master/src/Mobile/eShopOnContainers/eShopOnContainers.Core/Converters/ItemTappedEventArgsConverter.cs
+    /// </summary>
     public class ItemTappedEventArgsConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

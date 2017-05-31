@@ -20,6 +20,11 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(CustomButtonRender), typeof(CustomButtonRenderer))]
 namespace DementiaHelper.Droid.Renders
 {
+    /// <summary>
+    /// Adapted from
+    /// http://www.wintellect.com/devcenter/jprosise/supercharging-xamarin-forms-with-custom-renderers-part-1
+    /// 
+    /// </summary>
     public class CustomButtonRenderer : ButtonRenderer
     {
         private GradientDrawable _normal, _pressed;

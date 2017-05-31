@@ -11,7 +11,10 @@ namespace DementiaHelper.IOS.Renders
 {
     public class CustomButtonRenderer : ButtonRenderer
     {
-
+        /// <summary>
+        /// http://www.wintellect.com/devcenter/jprosise/supercharging-xamarin-forms-with-custom-renderers-part-2
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Button> e)
         {
             base.OnElementChanged(e);
