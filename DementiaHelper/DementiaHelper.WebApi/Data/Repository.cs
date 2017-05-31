@@ -382,7 +382,7 @@ namespace DementiaHelper.WebApi.Data
         {
             var appointment =
                 _context.Appointments.Where(x => x.StartTime > DateTime.Now.ToUniversalTime() && x.CitizenId == id)
-                    .OrderByDescending(x => x.StartTime)
+                    .OrderBy(x => x.StartTime)
                     .FirstOrDefault();
             return appointment;
         }
