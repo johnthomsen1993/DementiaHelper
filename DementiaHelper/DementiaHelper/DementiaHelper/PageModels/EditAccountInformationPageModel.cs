@@ -39,12 +39,21 @@ namespace DementiaHelper.PageModels
         }
         async Task SaveUpdateUserInformation()
         {
-            if (IsValidEmail(UpdatedUser.Email))
+            if (!IsValidEmail(UpdatedUser.Email))
             {
-                await ModelAccessor.Instance.AccountController.SaveUpdateUserInformation(UpdatedUser, ((ApplicationUser) App.Current.Properties["ApplicationUser"]).Email);
+                await CoreMethods.DisplayAlert(AppResources.General_InvalidEmailTitle, AppResources.General_InvalidEmailText, AppResources.General_Ok);
+            }
+            else if (UpdatedUser.FirstName == "" || UpdatedUser.LastName == "")
+            {
+                await CoreMethods.DisplayAlert(AppResources.General_NullTitle, AppResources.General_MissingName, AppResources.General_Ok);
+            }
+            else
+            {
+                await ModelAccessor.Instance.AccountController.SaveUpdateUserInformation(UpdatedUser,
+                        ((ApplicationUser)App.Current.Properties["ApplicationUser"]).Email);
                 await CoreMethods.PopPageModel();
-
-            }else{ await CoreMethods.DisplayAlert(AppResources.General_InvalidEmailTitle, AppResources.General_InvalidEmailText, AppResources.General_Ok); }
+                
+            }
         }
 
         async Task Cancel()

@@ -620,6 +620,15 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please fill out first name and last name.
+        /// </summary>
+        public static string General_MissingName {
+            get {
+                return ResourceManager.GetString("General_MissingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please fill out each field..
         /// </summary>
         public static string General_NullText {

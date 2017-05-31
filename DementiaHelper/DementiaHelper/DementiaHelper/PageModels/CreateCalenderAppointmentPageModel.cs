@@ -75,13 +75,26 @@ namespace DementiaHelper.PageModels
 
         private async Task CreateNewAppointment()
         {
-            if (Description!="")
+            try
             {
-                var decoded = await ModelAccessor.Instance.CalendarController.CreateNewAppointment(SelecteColorName, Description, CitizenId,
-                            new DateTime(Date.Year, Date.Month, Date.Day, AppointmentEndTimeSpan.Hours, AppointmentEndTimeSpan.Minutes, 0).ToUniversalTime(),
-                            new DateTime(Date.Year, Date.Month, Date.Day, AppointmentStartTimeSpan.Hours, AppointmentStartTimeSpan.Minutes, 0).ToUniversalTime());
-               await CoreMethods.PopPageModel();
+                if (Description != "")
+                {
+                    var decoded =
+                        await
+                            ModelAccessor.Instance.CalendarController.CreateNewAppointment(SelecteColorName, Description,
+                                CitizenId,
+                                new DateTime(Date.Year, Date.Month, Date.Day, AppointmentEndTimeSpan.Hours,
+                                    AppointmentEndTimeSpan.Minutes, 0).ToUniversalTime(),
+                                new DateTime(Date.Year, Date.Month, Date.Day, AppointmentStartTimeSpan.Hours,
+                                    AppointmentStartTimeSpan.Minutes, 0).ToUniversalTime());
+                    await CoreMethods.PopPageModel();
+                }
             }
+            catch (Exception)
+            {
+                await CoreMethods.DisplayAlert(AppResources.Connection_ErrorTitle, AppResources.Connection_ErrorText,AppResources.General_Ok);
+            }
+
         }
     }
 }

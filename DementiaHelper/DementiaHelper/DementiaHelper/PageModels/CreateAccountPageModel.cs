@@ -40,7 +40,7 @@ namespace DementiaHelper.PageModels
         }
         async Task CreateAccountAsync()
         {
-            if (FirstName == null || LastName == null || Password == null || Email == null)
+            if (FirstName == null || LastName == null || Password == null || Email == null || FirstName == "" || LastName == "")
             {
                 await CoreMethods.DisplayAlert(AppResources.General_NullTitle, AppResources.General_NullText, AppResources.General_Ok);
                 return;
