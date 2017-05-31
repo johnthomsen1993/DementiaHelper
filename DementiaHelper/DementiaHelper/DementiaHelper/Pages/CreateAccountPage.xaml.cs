@@ -20,7 +20,6 @@ namespace DementiaHelper.Pages
         public CreateAccountPage()
         {
             InitializeComponent();
-
         }
 
         protected override void OnSizeAllocated(double width, double height)

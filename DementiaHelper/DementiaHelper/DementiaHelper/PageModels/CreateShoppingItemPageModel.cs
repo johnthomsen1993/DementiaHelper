@@ -13,12 +13,13 @@ namespace DementiaHelper.PageModels
 {
     class CreateShoppingItemPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public ICommand AddShoppingItemToShoppingListCommand { get; protected set; }
         public ICommand CancelAddShoppingItemToShoppingListCommand { get; protected set; }
         public string Item { get; set; }
         public int CitizenId { get; set; }
         public int Quantity { get; set; }
-
+        #endregion
 
         public CreateShoppingItemPageModel ()
         {

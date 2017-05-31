@@ -70,12 +70,9 @@ namespace FreshMvvm
         {
             _menuPage = new ContentPage();
             _menuPage.Title = menuPageTitle;
-            
             var listView = new ListView();
-
             listView.ItemsSource = _pageNames;
-
-
+            listView.HasUnevenRows = true;
             listView.ItemTemplate = new DataTemplate(() => {
                 var ViewCell = new ViewCell();
                 var myLabel = new Label();

@@ -14,8 +14,10 @@ namespace DementiaHelper.PageModels
 {
    public class ConnectToNursingHomePageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public string ConnectionId { get; set; }
         public ICommand ConnectToNursingHomeCommand { get; protected set; }
+        #endregion
         public ConnectToNursingHomePageModel()
         {
             ConnectToNursingHomeCommand = new Command(async () => await ConnectToNursingHome());

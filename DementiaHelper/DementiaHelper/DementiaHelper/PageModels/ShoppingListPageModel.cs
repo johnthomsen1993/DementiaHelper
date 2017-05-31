@@ -20,12 +20,14 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class ShoppingListPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public ShoppingList ShoppingList { get; set; }
         public ICommand RemoveShoppingItemCommand { get; protected set; }
         public ICommand ChangeBoughtStateOfItemCommand { get; protected set; }
         public ICommand GoToCreateShoppingItemCommand { get; protected set; }
         public string Item { get; set; }
         public ObservableCollection<ShoppingListItem> ShoppingListDetails { get; set; }
+        #endregion
         public ShoppingListPageModel()
         {
             ShoppingList = new ShoppingList() {ShoppingListItems = new ObservableCollection<ShoppingListItem>() {} };

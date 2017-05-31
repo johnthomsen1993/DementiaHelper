@@ -16,7 +16,7 @@ namespace DementiaHelper.Model
         public IShoppingListController ShoppingListController { get; set; }
         public INoteController NoteController { get; set; }
 
-        public ModelAccessor()
+        private ModelAccessor()
         {
             AccountController = new AccountController();
             ChatController = new ChatController();

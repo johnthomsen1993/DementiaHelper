@@ -17,10 +17,6 @@ namespace DementiaHelper.Pages
         public CitizenHomePage()
         {
             InitializeComponent();
-            //Device.StartTimer(TimeSpan.FromSeconds(1), () => {
-            //    Device.BeginInvokeOnMainThread(() => yourLabel.Text = DateTime.Now.ToString());
-            //    return true;
-            //});
         }
         protected override bool OnBackButtonPressed()
         {

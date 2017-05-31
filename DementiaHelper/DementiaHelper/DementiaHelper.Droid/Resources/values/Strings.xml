@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-  <string name="app_name">Dementia Helper</string>
-  <string name="Hello">Dementia Helper</string>
-  <string name="ApplicationName">Dementia Helper</string>
-  <string name="library_name">Dementia Helper</string>
+  <string name="app_name">Cura Civis</string>
+  <string name="Hello">Cura Civis</string>
+  <string name="ApplicationName">Cura Civis</string>
+  <string name="library_name">Cura Civis</string>
 </resources>

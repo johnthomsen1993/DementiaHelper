@@ -21,11 +21,12 @@ namespace DementiaHelper.PageModels
    public class LoginPageModel : FreshMvvm.FreshBasePageModel
     {
 
-    
-      public string Email { get; set; }
-      public string Password { get; set; }
-      public ICommand LoginCommand { get; protected set; }
-      public ICommand GoToCreateAccountCommand { get; protected set; }
+        #region ViewModel Properties
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public ICommand LoginCommand { get; protected set; }
+        public ICommand GoToCreateAccountCommand { get; protected set; }
+        #endregion
         public LoginPageModel()
         {
             Email = "";

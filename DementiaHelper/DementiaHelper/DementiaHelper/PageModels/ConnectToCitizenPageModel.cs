@@ -16,8 +16,10 @@ namespace DementiaHelper.PageModels
 {
     public class ConnectToCitizenPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public string ConnectionId { get; set; }
         public ICommand ConnectToCitizenCommand { get; protected set; }
+        #endregion
         public ConnectToCitizenPageModel() {
             ConnectToCitizenCommand = new Command(async () => await ConnectToCitizen());
 

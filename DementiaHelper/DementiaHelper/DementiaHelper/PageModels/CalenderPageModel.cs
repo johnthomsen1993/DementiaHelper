@@ -20,16 +20,17 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class CalendarPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public ICommand GoToDayViewCommand { get; protected set; }
         public ICommand GoToWeekViewCommand { get; protected set; }
         public ICommand GoToMonthViewCommand { get; protected set; }
+        #endregion
 
         public CalendarPageModel()
         {
             this.GoToDayViewCommand = new Command(async () => await GoToDayView());
             this.GoToWeekViewCommand = new Command(async () => await GoToWeekView());
             this.GoToMonthViewCommand = new Command(async () => await GoToMonthView());
-
         }
 
         private async Task GoToMonthView()

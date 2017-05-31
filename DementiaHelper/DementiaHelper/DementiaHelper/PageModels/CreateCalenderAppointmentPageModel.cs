@@ -19,15 +19,42 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class CreateCalenderAppointmentPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         private int CitizenId { get; set; }
         public ICommand CreateAppointmentCommand { get; protected set; }
         public ICommand CancelCreateAppointmentCommand { get; protected set; }
         public string Description { get; set; }
         public string SelecteColorName { get; set; }
         public DateTime Date { get; set; }
-        public TimeSpan AppointmentStartTimeSpan { get; set; }
-        public TimeSpan AppointmentEndTimeSpan { get; set; } 
-        public ObservableCollection<string> ColorList{ get; set; } 
+        private TimeSpan AppointmentStartTimeSpan_ { get; set; }
+
+        public TimeSpan AppointmentStartTimeSpan
+        {
+            get { return AppointmentStartTimeSpan_; }
+            set
+            {
+                AppointmentStartTimeSpan_ = value;
+                if (AppointmentStartTimeSpan_ > AppointmentEndTimeSpan)
+                {
+                    AppointmentEndTimeSpan = value.Add(TimeSpan.FromHours(1));
+                }
+            }
+        }
+        private TimeSpan AppointmentEndTimeSpan_ { get; set; }
+        public TimeSpan AppointmentEndTimeSpan
+        {
+            get { return AppointmentEndTimeSpan_; }
+            set
+            {
+                AppointmentEndTimeSpan_ = value;
+                if (AppointmentStartTimeSpan > AppointmentEndTimeSpan_)
+                {
+                    AppointmentStartTimeSpan = value.Subtract(TimeSpan.FromHours(1));
+                }
+            }
+        }
+        public ObservableCollection<string> ColorList{ get; set; }
+        #endregion
         public CreateCalenderAppointmentPageModel()
         {
             this.CreateAppointmentCommand = new Command( async() => await CreateNewAppointment());

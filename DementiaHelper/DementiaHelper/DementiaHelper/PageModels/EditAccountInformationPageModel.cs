@@ -21,10 +21,11 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class EditAccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public UserInformation UpdatedUser { get; set; }
         public ICommand SaveUpdateUserInformationCommand { get; protected set; }
         public ICommand CancelUpdateOfUserInformationCommand { get; protected set; }
-
+        #endregion
         public EditAccountInformationPageModel()
         {
             this.SaveUpdateUserInformationCommand = new Command(async () => await SaveUpdateUserInformation());

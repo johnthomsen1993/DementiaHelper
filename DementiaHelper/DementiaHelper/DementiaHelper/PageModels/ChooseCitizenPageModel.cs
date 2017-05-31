@@ -15,12 +15,31 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class ChooseCitizenPageModel : FreshMvvm.FreshBasePageModel
     {
-         public ObservableCollection<Citizen> CaregiversCitizenCollection { get; set; }
+        #region ViewModel Properties
+        public ObservableCollection<Citizen> CaregiversCitizenCollection { get; set; }
         public ObservableCollection<Citizen> CitizenCollection { get; set; }
         public Citizen ChoosenCitizen { get; set; }
         public bool CitizenChoosen { get; set; }
         public Command<Citizen> CitizenTappedCommand { get; set; }
+        private string _SearchText;
+        public string SearchText
+        {
+            get
+            {
+                return _SearchText;
+            }
+            set
+            {
+                if (_SearchText != value)
+                {
+                    _SearchText = value;
+                    RaisePropertyChanged("SearchText");
+                    this.FilterCitizens();
 
+                }
+            }
+        }
+        #endregion
         public ChooseCitizenPageModel()
         {
             CitizenChoosen = false;
@@ -55,28 +74,10 @@ namespace DementiaHelper.PageModels
             }
         }
 
-        #region Filter
 
-        private string _SearchText;
-        public string SearchText
-        {
-            get
-            {
-                return _SearchText;
-            }
-            set
-            {
-                if (_SearchText != value)
-                {
-                    _SearchText = value;
-                    RaisePropertyChanged("SearchText");
-                    this.FilterCitizens();
-                    
-                }
-            }
-        }
 
-        #endregion
+
+
         private void FilterCitizens()
         {
             CitizenCollection.Clear();
