@@ -520,4 +520,7 @@
   <data name="ShoppingListAddRelativeFailureSubjekt" xml:space="preserve">
     <value>Du skal være forbundet til en borger, før du har mulighed for at tilføje varer til hans/huns indkøbsliste</value>
   </data>
+  <data name="General_MissingName" xml:space="preserve">
+    <value>Udfyld venligst fornavn og efternavn</value>
+  </data>
 </root>

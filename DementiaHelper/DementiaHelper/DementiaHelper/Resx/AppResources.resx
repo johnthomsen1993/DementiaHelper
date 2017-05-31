@@ -529,4 +529,8 @@
   <data name="ShoppingListAddRelativeFailureSubjekt" xml:space="preserve">
     <value>to add new items, you need to be connected to a person under care</value>
   </data>
+  <data name="General_MissingName" xml:space="preserve">
+    <value>Please fill out first name and last name</value>
+    <comment>Label for missing first name and last name</comment>
+  </data>
 </root>
