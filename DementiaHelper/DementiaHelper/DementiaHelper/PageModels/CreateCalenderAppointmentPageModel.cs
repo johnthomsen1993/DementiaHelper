@@ -36,7 +36,14 @@ namespace DementiaHelper.PageModels
                 AppointmentStartTimeSpan_ = value;
                 if (AppointmentStartTimeSpan_ > AppointmentEndTimeSpan)
                 {
-                    AppointmentEndTimeSpan = value.Add(TimeSpan.FromHours(1));
+                    if (value.Hours < 23)
+                    {
+                        AppointmentEndTimeSpan = value.Add(TimeSpan.FromHours(1));
+                    }
+                    else
+                    {
+                        AppointmentEndTimeSpan = value;
+                    }
                 }
             }
         }
