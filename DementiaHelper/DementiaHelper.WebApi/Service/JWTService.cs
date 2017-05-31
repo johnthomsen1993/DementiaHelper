@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace DementiaHelper.WebApi.Service
 {
-    // adapted from example at https://github.com/SiroccoHub/JwtCore/
+    // Adapted from example at https://github.com/SiroccoHub/JwtCore/
     public static class JWTService
     {
         private const string SecretKey = "1234";

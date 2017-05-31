@@ -111,14 +111,14 @@ namespace FreshMvvm
         {
             if (modal)
                 return Navigation.PushModalAsync(CreateContainerPageSafe(page));
-            return (Detail as NavigationPage).PushAsync(page, animate); //TODO: make this better
+            return (Detail as NavigationPage).PushAsync(page, animate); 
         }
 
         public Task PopPage(bool modal = false, bool animate = true)
         {
             if (modal)
                 return Navigation.PopModalAsync(animate);
-            return (Detail as NavigationPage).PopAsync(animate); //TODO: make this better            
+            return (Detail as NavigationPage).PopAsync(animate);            
         }
 
         public Task PopToRoot(bool animate = true)
