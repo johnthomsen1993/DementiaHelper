@@ -19,14 +19,14 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class ChatPageModel : FreshMvvm.FreshBasePageModel 
     {
-        
-		private IChatServices _chatServices;
+        #region ViewModel Properties
+        private IChatServices _chatServices;
         private int groupId;
         private List<ChatGroup> chatGroupIds { get; set; }
         private int ChatRole { get; set; }
         
 
-        #region ViewModel Properties
+   
 
 
         public ObservableCollection<Message> Messages { get; set; }
@@ -97,12 +97,6 @@ namespace DementiaHelper.PageModels
             base.ViewIsDisappearing(sender, e);
             _chatServices.OnMessageReceived -= _chatServices_OnMessageReceived;
         }
-
-
-
-
-
-       
 
         void _chatServices_OnMessageReceived(object sender, ChatMessage e)
         {

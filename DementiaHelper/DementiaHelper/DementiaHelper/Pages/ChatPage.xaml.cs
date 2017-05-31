@@ -15,8 +15,8 @@ using FreshMvvm;
 
 namespace DementiaHelper.Pages
 {
-
-    public partial class ChatPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ChatPage : ContentPage
     {
         public ChatPage()
         {

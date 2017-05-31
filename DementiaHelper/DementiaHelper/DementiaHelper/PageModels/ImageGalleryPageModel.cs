@@ -18,9 +18,10 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class ImageGalleryPageModel : FreshMvvm.FreshBasePageModel
     {
-
+        #region ViewModel Properties
         public ICommand PreviewImageCommand { get; set; }
         public ICommand CameraCommand { get; protected set; }
+        #endregion
 
         public ImageGalleryPageModel()
         {

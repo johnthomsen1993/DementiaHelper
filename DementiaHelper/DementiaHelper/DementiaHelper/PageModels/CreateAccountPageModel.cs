@@ -17,28 +17,27 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class CreateAccountPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public ObservableCollection<string> RoleCollection { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string SelecteRoleName { get; set; }
         public ICommand CancelCreateAccountCommand { get; protected set; }
         public ICommand CreateAccountCommand { get; protected set; }
+        #endregion
         public CreateAccountPageModel()
         {
 
             this.CancelCreateAccountCommand = new Command(async () => await CoreMethods.PopPageModel());
             this.CreateAccountCommand = new Command(async () => await CreateAccountAsync());
             this.RoleCollection = new ObservableCollection<string>
-        {
-            {AppResources.DementiaRole}, {AppResources.CaregiverRole},{AppResources.RelativesRole}
+            {
+                {AppResources.DementiaRole}, {AppResources.CaregiverRole},{AppResources.RelativesRole}
 
-        };
+            };
         }
-
-
-        public string SelecteRoleName { get; set; }
-
         async Task CreateAccountAsync()
         {
             if (FirstName == null || LastName == null || Password == null || Email == null)

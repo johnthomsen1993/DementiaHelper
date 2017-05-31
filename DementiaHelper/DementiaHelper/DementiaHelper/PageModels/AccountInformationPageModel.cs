@@ -16,11 +16,13 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class AccountInformationPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public UserInformation ShowedUser { get; set; }
         public bool IsCitizen { get; set; }
         public string CitizenId { get; set; }
         public bool Editbutton { get; set ; }
         public ICommand GoToEditCommand { get; set; }
+        #endregion
 
 
         public AccountInformationPageModel()

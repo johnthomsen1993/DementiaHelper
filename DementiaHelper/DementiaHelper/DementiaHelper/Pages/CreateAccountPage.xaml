@@ -9,8 +9,10 @@
 
     <ContentPage.Content>
         <OnIdiom x:TypeArguments="View">
+
             <OnIdiom.Phone>
-                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ScrollView>
+                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <StackLayout x:Name="outerStack" VerticalOptions="Start" >
                         <StackLayout  Orientation="Vertical" VerticalOptions="Start">
                             <Image x:Name="imageElderlyHands" Source="elderlyhands.png" ></Image>
@@ -39,9 +41,11 @@
                         </Grid>
                     </StackLayout>
                 </StackLayout>
+                </ScrollView>
             </OnIdiom.Phone>
             <OnIdiom.Tablet>
-                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ScrollView>
+                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <StackLayout x:Name="outerStackTablet" VerticalOptions="Start" >
                         <StackLayout  Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                             <Image x:Name="imageElderlyHandsTablet" Source="elderlyhands.png" ></Image>
@@ -68,6 +72,7 @@
                         </Grid>
                     </StackLayout>
                 </StackLayout>
+                </ScrollView>
             </OnIdiom.Tablet>
         </OnIdiom>
     </ContentPage.Content>

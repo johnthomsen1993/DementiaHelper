@@ -7,9 +7,11 @@ using DementiaHelper.PageModels;
 using DementiaHelper.Resx;
 using DementiaHelper.Services;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace DementiaHelper.Pages
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ShoppingListPage : ContentPage
     {
         public ShoppingListPage()

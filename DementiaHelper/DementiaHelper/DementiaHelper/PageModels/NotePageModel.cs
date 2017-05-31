@@ -17,9 +17,11 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class NotePageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public ObservableCollection<Note> NoteList { get; set; }
         public string Note { get; set; }
         public ICommand NewNoteCommand { get; protected set; }
+        #endregion
         public NotePageModel()
         {
             NewNoteCommand = new Command(async () => await CreatedNewNote());

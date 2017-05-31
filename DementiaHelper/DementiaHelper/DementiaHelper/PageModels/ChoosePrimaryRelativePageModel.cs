@@ -17,6 +17,7 @@ namespace DementiaHelper.PageModels
 {
    public class ChoosePrimaryRelativePageModel : FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public ObservableCollection<Relative> CitizenRelatveCollection { get; set; }
         public ObservableCollection<Relative> RelativeCollection { get; set; }
         public Relative ChoosenRelative{ get; set; }
@@ -24,13 +25,12 @@ namespace DementiaHelper.PageModels
         public ObservableCollection<Relative> RelativeList { get; set; }
         public string NewPrimaryRelative { get; set; }
         public ICommand ChoosePrimaryRelativeCommand { get; protected set; }
+        #endregion
         public ChoosePrimaryRelativePageModel()
         {
             RelativeChoosen = false;
             _SearchText = "";
             ChoosePrimaryRelativeCommand = new Command<Relative>(ChoosePrimaryRelative);
-            //new Command(async () => await ChoosePrimaryRelative(ChoosenRelative));
-            //new Command(async (obj) => await ChoosePrimaryRelative((Relative)obj)); 
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace DementiaHelper.PageModels
            }
        }
 
-       #region Filter
+
 
         private string _SearchText;
         public string SearchText
@@ -87,11 +87,10 @@ namespace DementiaHelper.PageModels
                     _SearchText = value;
                     RaisePropertyChanged("SearchText");
                     this.FilterRelatives();
-
                 }
             }
         }
-        #endregion
+
 
         private void FilterRelatives()
         {

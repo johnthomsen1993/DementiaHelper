@@ -19,24 +19,34 @@ namespace DementiaHelper.PageModels
     [ImplementPropertyChanged]
     public class CitizenHomePageModel :FreshMvvm.FreshBasePageModel
     {
+        #region ViewModel Properties
         public DateTime CurrentTime { get; set; }
         public string Weekday { get; set; }
         public string Month { get; set; }
         public ICommand GoToCalendarDayViewCommand { get; protected set; }
         public ImageSource PictureOfWhoIsVisiting { get; set; }
         public ScheduleAppointment Appointment { get; set; }
+        #endregion
 
         public CitizenHomePageModel()
         {
-            var test = DateTime.Now;
+            CurrentTime = DateTime.Now;
+            Appointment = new ScheduleAppointment() {EndTime = CurrentTime};
             GoToCalendarDayViewCommand = new Command(async () => await GoToCalendarDayView());
-            Weekday = FirstLetterToUpper(test.ToString("dddd", new CultureInfo("da-DK")));
-            Month = FirstLetterToUpper( test.ToString("MMMM", new CultureInfo("da-DK")));
+            Weekday = FirstLetterToUpper(CurrentTime.ToString("dddd", new CultureInfo("da-DK")));
+            Month = FirstLetterToUpper(CurrentTime.ToString("MMMM", new CultureInfo("da-DK")));
             PictureOfWhoIsVisiting = ImageSource.FromFile("FakeProfilBillede.png");
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                     CurrentTime = DateTime.Now;
                     return true;
                 });
+            Device.StartTimer(TimeSpan.FromMinutes(15), () => {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    Appointment = await ModelAccessor.Instance.CalendarController.GetAppointment();
+                });
+                return true;
+            });
         }
 
 
