@@ -1,22 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.IO;
 using System.Linq;
-using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using DementiaHelper.WebApi.Data;
 using DementiaHelper.WebApi.model;
-using DementiaHelper.WebApi.Options;
 using DementiaHelper.WebApi.Service;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
@@ -58,7 +47,8 @@ namespace DementiaHelper.WebApi.Controllers
 
         private string GenerateHash(string password, string salt)
         {
-            var hash=Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            //Modified from https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/password-hashing
+            var hash =Convert.ToBase64String(KeyDerivation.Pbkdf2(
              password: password,
              salt: Convert.FromBase64String(salt),
              prf: KeyDerivationPrf.HMACSHA1,
@@ -175,20 +165,14 @@ namespace DementiaHelper.WebApi.Controllers
             return Convert.ToBase64String(key);
         }
 
+        //Adapted from https://stackoverflow.com/questions/730268/unique-random-string-generation/730418#730418
         private string GenerateConnectionId()
         {
             var g = Guid.NewGuid();
             var guidString = Convert.ToBase64String(g.ToByteArray());
             guidString = guidString.Replace("=", "");
             guidString = guidString.Replace("+", "");
-            guidString = guidString.Replace("/" +
-                                            "" +
-                                            "" +
-                                            "" +
-                                            "" +
-                                            "" +
-                                            "" +
-                                            "", "");
+            guidString = guidString.Replace("/", "");
             return guidString.Substring(0, 7);
         }
 

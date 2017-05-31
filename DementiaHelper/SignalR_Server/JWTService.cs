@@ -8,7 +8,7 @@ using JWT.exceptions;
 
 namespace SignalR_Server
 {
-    // adapted from example at https://github.com/senzacionale/jwt-portable-dotnet
+    // Adapted from example at https://github.com/senzacionale/jwt-portable-dotnet
     public static class JWTService
     {
         private const string SecretKey = "1234";
