@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DementiaHelper.Services
 {
+
+    /// <summary>
+    /// Adapted from https://github.com/xamarin/recipes/blob/master/cross-platform/xamarin-forms/General/StoreCredentials/StoreCredentials/ICredentialsService.cs
+    /// </summary>
     public interface ICredentialsService
     {
         bool Authenticate();

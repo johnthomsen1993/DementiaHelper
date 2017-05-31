@@ -36,6 +36,12 @@ namespace DementiaHelper.Pages
 
             return true;
         }
+        /// <summary>
+        /// how to handle rotation changes in xamarin.forms have been adapted from
+        /// https://developer.xamarin.com/guides/xamarin-forms/user-interface/layouts/device-orientation/
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);

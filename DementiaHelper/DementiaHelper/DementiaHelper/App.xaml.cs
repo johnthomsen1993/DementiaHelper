@@ -23,7 +23,9 @@ namespace DementiaHelper
     }
     public partial class App : Application
     {
-        //Setup names for you navigation stacks
+        /// <summary>
+        /// Found out how to make different navigation stacks at https://github.com/rid00z/FreshMvvm
+        /// </summary>
         public class NavigationStacks
         {
             public static string LoginNavigationStack = "LoginNavigationStack";
@@ -37,12 +39,18 @@ namespace DementiaHelper
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Adapted ways to setup the FreshNavigationContainer from https://github.com/rid00z/FreshMvvm
+        /// </summary>
         static public void SetLoginPageContainer()
         {
             var Login = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
             LoginNavigationContainer = new FreshMvvm.FreshNavigationContainer(Login, NavigationStacks.LoginNavigationStack);
         }
 
+        /// <summary>
+        /// Adapted ways to setup the FreshMasterDetail from https://github.com/rid00z/FreshMvvm
+        /// </summary>
         static public void SetMasterDetailToRole()
         {
 

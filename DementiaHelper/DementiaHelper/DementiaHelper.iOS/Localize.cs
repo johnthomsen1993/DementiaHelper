@@ -10,7 +10,9 @@ using DementiaHelper.iOS;
 
 namespace DementiaHelper.iOS
 {
-
+    /// <summary>
+    /// https://developer.xamarin.com/guides/xamarin-forms/advanced/localization/
+    /// </summary>
     public class Localize : Resx.ILocalize
     {
         public void SetLocale(CultureInfo ci)

@@ -15,6 +15,9 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(CredentialsService))]
 namespace DementiaHelper.iOS.Services
 {
+    /// <summary>
+    /// Adapted from https://github.com/xamarin/recipes/blob/master/cross-platform/xamarin-forms/General/StoreCredentials/iOS/CredentialsService.cs
+    /// </summary>
     public class CredentialsService : ICredentialsService
     {
         public CredentialsService()

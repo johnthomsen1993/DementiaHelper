@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DementiaHelper.Services
 {
+    /// <summary>
+    /// https://github.com/rasmuschristensen/XamarinFormsImageGallery
+    /// </summary>
     public interface IImageResize
     {
         byte[] ResizeImage(byte[] imageData, float width, float height);

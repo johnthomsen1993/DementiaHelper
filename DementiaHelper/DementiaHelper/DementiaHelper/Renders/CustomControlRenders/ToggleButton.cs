@@ -5,7 +5,10 @@ using Xamarin.Forms;
 namespace DementiaHelper.Renders.CustomControlRenders
 {
 
-    //taken from https://forums.xamarin.com/discussion/70704/checkbox-with-xamarin
+    /// <summary>
+    /// How to make a checkbox has been taken from
+    /// https://forums.xamarin.com/discussion/70704/checkbox-with-xamarin
+    /// </summary>
     public class ToggleButton : ContentView
     {
         public static readonly BindableProperty CommandProperty =

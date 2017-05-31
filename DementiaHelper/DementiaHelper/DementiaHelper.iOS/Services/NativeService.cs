@@ -10,6 +10,9 @@ namespace DementiaHelper.iOS
 {
     public class NativeService : INativeService
     {
+        /// <summary>
+        /// Found out how to close a Xamarin.Forms application https://stackoverflow.com/questions/40254023/how-to-exit-the-app-in-xamarin-forms
+        /// </summary>
         public void CloseApp()
         {
             Process.GetCurrentProcess().CloseMainWindow();

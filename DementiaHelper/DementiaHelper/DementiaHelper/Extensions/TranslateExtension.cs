@@ -6,6 +6,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 namespace DementiaHelper.Extensions
 {
+    /// <summary>
+    /// https://developer.xamarin.com/guides/xamarin-forms/advanced/localization/
+    /// </summary>
+
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {

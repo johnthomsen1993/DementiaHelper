@@ -17,6 +17,9 @@ using System.IO;
 [assembly: Xamarin.Forms.Dependency(typeof(ImageResizer))]
 namespace DementiaHelper.Droid.Services
 {
+    /// <summary>
+    /// https://github.com/rasmuschristensen/XamarinFormsImageGallery
+    /// </summary>
     public class ImageResizer : IImageResize
     {
         public ImageResizer()

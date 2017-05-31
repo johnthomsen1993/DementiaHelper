@@ -7,8 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+
+
+
+
 namespace DementiaHelper.Renders.CustomControlRenders
 {
+    /// <summary>
+    /// how to create image gallery in xamarin has been taken from
+    /// https://github.com/rasmuschristensen/XamarinFormsImageGallery
+    /// </summary>
     public class CustomImageGallery : ScrollView
     {
         readonly StackLayout _imageStack;

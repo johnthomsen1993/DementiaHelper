@@ -9,6 +9,10 @@ using Xamarin.Forms;
 
 namespace FreshMvvm
 {
+    /// <summary>
+    /// Adapted from https://github.com/rid00z/FreshMvvm/blob/master/src/FreshMvvm/NavigationContainers/FreshMasterDetailNavigationContainer.cs
+    /// mainly changed CreateMenuPage functionality
+    /// </summary>
     public class CustomMasterDetailNavigation : MasterDetailPage, IFreshNavigationService
     {
 

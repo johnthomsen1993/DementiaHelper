@@ -10,6 +10,9 @@ using DementiaHelper.Model;
 [assembly: Dependency(typeof(CredentialsService))]
 namespace DementiaHelper.Droid
 {
+    /// <summary>
+    /// Adapted from https://github.com/xamarin/recipes/blob/master/cross-platform/xamarin-forms/General/StoreCredentials/Droid/CredentialsService.cs
+    /// </summary>
     public class CredentialsService : ICredentialsService
     {
         public bool Authenticate()

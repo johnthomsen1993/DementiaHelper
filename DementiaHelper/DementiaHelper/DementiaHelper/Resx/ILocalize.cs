@@ -14,8 +14,7 @@ namespace DementiaHelper.Resx
     /// </summary>
     /// <remarks>
     /// Lists of valid .NET cultures can be found here:
-    ///   http://www.localeplanet.com/dotnet/
-    ///   http://www.csharp-examples.net/culture-names/
+    ///   https://developer.xamarin.com/guides/xamarin-forms/advanced/localization/
     /// You should always test all the locales implemented in your application.
     /// </remarks>
     public interface ILocalize
