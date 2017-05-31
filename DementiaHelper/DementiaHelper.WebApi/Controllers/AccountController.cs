@@ -175,20 +175,14 @@ namespace DementiaHelper.WebApi.Controllers
             return Convert.ToBase64String(key);
         }
 
+        //Adapted from https://stackoverflow.com/questions/730268/unique-random-string-generation/730418#730418
         private string GenerateConnectionId()
         {
             var g = Guid.NewGuid();
             var guidString = Convert.ToBase64String(g.ToByteArray());
             guidString = guidString.Replace("=", "");
             guidString = guidString.Replace("+", "");
-            guidString = guidString.Replace("/" +
-                                            "" +
-                                            "" +
-                                            "" +
-                                            "" +
-                                            "" +
-                                            "" +
-                                            "", "");
+            guidString = guidString.Replace("/", "");
             return guidString.Substring(0, 7);
         }
 
