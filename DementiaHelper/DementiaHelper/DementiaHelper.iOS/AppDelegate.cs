@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using Syncfusion.SfSchedule.iOS;
 using Syncfusion.SfNumericUpDown.XForms.iOS;
+using Syncfusion.SfSchedule.XForms.iOS;
 
 namespace DementiaHelper.iOS
 {
@@ -24,11 +25,13 @@ namespace DementiaHelper.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            new SFSchedule();
+            
             new SfNumericUpDownRenderer();
+            new SfScheduleRenderer();
             global::Xamarin.Forms.Forms.Init();
+         //   new SfScheduleRenderer().Init();
             LoadApplication(new App());
-
+            
             return base.FinishedLaunching(app, options);
         }
     }
