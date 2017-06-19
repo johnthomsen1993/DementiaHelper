@@ -235,7 +235,7 @@
     <comment>Label for Textfield</comment>
   </data>
   <data name="RelativesRole" xml:space="preserve">
-    <value>Relatives</value>
+    <value>Relative</value>
     <comment>Label for Textfield</comment>
   </data>
   <data name="ItemToAdd" xml:space="preserve">
@@ -293,14 +293,14 @@
     <comment>Label for Textfield</comment>
   </data>
   <data name="NursingHomeId" xml:space="preserve">
-    <value>Caregiver center id</value>
+    <value>Care center id</value>
   </data>
   <data name="ConnectToNursingHomePlaceholderText" xml:space="preserve">
-    <value>Caregivers nursing home id</value>
+    <value>Caregivers care center id</value>
     <comment>Placeholder text</comment>
   </data>
   <data name="ConnectToNursingHomeTitle" xml:space="preserve">
-    <value>Connect to nursing home</value>
+    <value>Connect to Care Center</value>
     <comment>Title for Connect to nursing home View</comment>
   </data>
   <data name="LogOutTitle" xml:space="preserve">
@@ -332,7 +332,7 @@
     <comment>Label for Textfield</comment>
   </data>
   <data name="Note" xml:space="preserve">
-    <value>Note, only shared among a nursing home</value>
+    <value>Note, only shared among caregivers</value>
     <comment>Label for Textfield</comment>
   </data>
   <data name="SearchCitizen" xml:space="preserve">
@@ -467,11 +467,11 @@
     <comment>Label</comment>
   </data>
   <data name="InsertCarecenterIdText" xml:space="preserve">
-    <value>Insert nursing home id, you can find this in the delievered papers from the nursing home</value>
+    <value>Insert care center id, you can find this in the delievered papers from the Care Center</value>
     <comment>Label</comment>
   </data>
   <data name="InsertDementiaIdText" xml:space="preserve">
-    <value>Insert dementia id, you can find this in the demented persons account information</value>
+    <value>Insert care id, you can find this in the account information for the citizen.</value>
     <comment>Label</comment>
   </data>
   <data name="NextAppointment" xml:space="preserve">

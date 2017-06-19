@@ -422,7 +422,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Caregivers nursing home id.
+        ///   Looks up a localized string similar to Caregivers care center id.
         /// </summary>
         public static string ConnectToNursingHomePlaceholderText {
             get {
@@ -431,7 +431,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Connect to nursing home.
+        ///   Looks up a localized string similar to Connect to Care Center.
         /// </summary>
         public static string ConnectToNursingHomeTitle {
             get {
@@ -674,7 +674,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert nursing home id, you can find this in the delievered papers from the nursing home.
+        ///   Looks up a localized string similar to Insert care center id, you can find this in the delievered papers from the Care Center.
         /// </summary>
         public static string InsertCarecenterIdText {
             get {
@@ -683,7 +683,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert dementia id, you can find this in the demented persons account information.
+        ///   Looks up a localized string similar to Insert care id, you can find this in the account information for the citizen..
         /// </summary>
         public static string InsertDementiaIdText {
             get {
@@ -800,7 +800,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note, only shared among a nursing home.
+        ///   Looks up a localized string similar to Note, only shared among caregivers.
         /// </summary>
         public static string Note {
             get {
@@ -827,7 +827,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Caregiver center id.
+        ///   Looks up a localized string similar to Care center id.
         /// </summary>
         public static string NursingHomeId {
             get {
@@ -926,7 +926,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Relatives.
+        ///   Looks up a localized string similar to Relative.
         /// </summary>
         public static string RelativesRole {
             get {

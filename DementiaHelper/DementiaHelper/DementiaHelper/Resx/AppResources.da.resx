@@ -327,7 +327,7 @@
     <comment>Label for Textfield</comment>
   </data>
   <data name="Note" xml:space="preserve">
-    <value>Notat, Kun delt mellem plejepersonale</value>
+    <value>Notat, kun delt mellem plejepersonale</value>
     <comment>Label for Textfield</comment>
   </data>
   <data name="SearchCitizen" xml:space="preserve">
@@ -462,7 +462,7 @@
     <comment>Label</comment>
   </data>
   <data name="InsertDementiaIdText" xml:space="preserve">
-    <value>Indtast dement id, se Idet i den dementes kontooplysninger</value>
+    <value>Indtast plejeid, se det i den borgerens kontooplysninger</value>
     <comment>Label</comment>
   </data>
   <data name="NextAppointment" xml:space="preserve">
