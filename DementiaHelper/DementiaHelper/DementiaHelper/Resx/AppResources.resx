@@ -130,7 +130,7 @@
     <value>Caregiver</value>
   </data>
   <data name="CitizenId" xml:space="preserve">
-    <value>Citizen id</value>
+    <value>Care id</value>
   </data>
   <data name="ConnectToCitizenLabelText" xml:space="preserve">
     <value>Enter the persons under care ID, given in the account Information view of the person with dementia</value>
@@ -149,7 +149,7 @@
     <value>Create new account</value>
   </data>
   <data name="DementiaRole" xml:space="preserve">
-    <value>Caretaker</value>
+    <value>Under Care</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -374,7 +374,7 @@
     <comment>Title for add shopping item view</comment>
   </data>
   <data name="CanNotConnectToServer" xml:space="preserve">
-    <value>Det var ikke muligt at forbinde til vores server prøv igen senere</value>
+    <value>There was a problem with the connection, please try again later.</value>
   </data>
   <data name="Call" xml:space="preserve">
     <value>Call</value>
@@ -417,7 +417,7 @@
     <comment>Title for Week Calendar view</comment>
   </data>
   <data name="Chat_ChatTitleCaretaker" xml:space="preserve">
-    <value>Caretaker Chat</value>
+    <value>Care Center Chat</value>
   </data>
   <data name="Chat_ChatTitleCitizen" xml:space="preserve">
     <value>Citizen Chat</value>
@@ -506,10 +506,10 @@
     <value>Blue</value>
   </data>
   <data name="CalendarAddCaregiverFailureSubjekt" xml:space="preserve">
-    <value>to add new appointments, you need to have choosen the citizen your inspecting</value>
+    <value>To add new appointments, you need to have choosen the citizen your inspecting</value>
   </data>
   <data name="CalendarAddRelativeFailureSubjekt" xml:space="preserve">
-    <value>to add new appointments, you need to be connected to a person under care</value>
+    <value>To add new appointments, you need to be connected to a person under care</value>
   </data>
   <data name="CaregiverAddFailureTitle" xml:space="preserve">
     <value>No citizen choosen</value>

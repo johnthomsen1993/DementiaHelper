@@ -116,7 +116,7 @@
                         <StackLayout Orientation="Vertical" Spacing="0"  VerticalOptions="CenterAndExpand" >
                         </StackLayout>
                         <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="End">
-                            <Label Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" IsVisible="{Binding RelativeChoosen}" HorizontalOptions="CenterAndExpand" Text="{extensions:Translate ChoosenCitizen}"/>
+                            <Label Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" IsVisible="{Binding RelativeChoosen}" HorizontalOptions="CenterAndExpand" Text="{extensions:Translate ChoosenPrimaryRelative}"/>
                             <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                                 <Label Style="{StaticResource ListLabelStyleTablet}" Text="{Binding ChoosenRelative.FirstName}" ></Label>
                                 <Label Style="{StaticResource ListLabelStyleTablet}" Text="{Binding ChoosenRelative.LastName}" ></Label>

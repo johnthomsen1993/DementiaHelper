@@ -90,7 +90,7 @@ namespace DementiaHelper.Model.Controllers
             App.Current.Properties["ApplicationUser"] = ApplicationUser;
             return true;
         }
-        public async Task<bool> LoginAsync(string email, string password)
+        public async Task<int> LoginAsync(string email, string password)
         {
             using (var client = new HttpClient())
             {
@@ -108,13 +108,13 @@ namespace DementiaHelper.Model.Controllers
                     {
                         DependencyService.Get<ICredentialsService>().DeleteCredentials();
                         DependencyService.Get<ICredentialsService>().SaveCredentials(email, password);
-                        return true;
+                        return 1;
                     }
-                    return false;
+                    return 2;
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return 3;
                 }
             }
         }

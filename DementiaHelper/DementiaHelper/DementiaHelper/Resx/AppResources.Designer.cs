@@ -188,7 +188,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to to add new appointments, you need to have choosen the citizen your inspecting.
+        ///   Looks up a localized string similar to To add new appointments, you need to have choosen the citizen your inspecting.
         /// </summary>
         public static string CalendarAddCaregiverFailureSubjekt {
             get {
@@ -197,7 +197,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to to add new appointments, you need to be connected to a person under care.
+        ///   Looks up a localized string similar to To add new appointments, you need to be connected to a person under care.
         /// </summary>
         public static string CalendarAddRelativeFailureSubjekt {
             get {
@@ -242,7 +242,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Det var ikke muligt at forbinde til vores server prøv igen senere.
+        ///   Looks up a localized string similar to There was a problem with the connection, please try again later..
         /// </summary>
         public static string CanNotConnectToServer {
             get {
@@ -269,7 +269,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Caretaker Chat.
+        ///   Looks up a localized string similar to Care Center Chat.
         /// </summary>
         public static string Chat_ChatTitleCaretaker {
             get {
@@ -359,7 +359,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Citizen id.
+        ///   Looks up a localized string similar to Care id.
         /// </summary>
         public static string CitizenId {
             get {
@@ -503,7 +503,7 @@ namespace DementiaHelper.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Caretaker.
+        ///   Looks up a localized string similar to Under Care.
         /// </summary>
         public static string DementiaRole {
             get {

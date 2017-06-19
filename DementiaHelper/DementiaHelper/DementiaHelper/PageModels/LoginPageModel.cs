@@ -41,16 +41,21 @@ namespace DementiaHelper.PageModels
 
         async Task LoginAsync()
         {
-            if (await ModelAccessor.Instance.AccountController.LoginAsync(Email, Password))
+            int fuckeup = await ModelAccessor.Instance.AccountController.LoginAsync(Email, Password);
+            if (fuckeup == 1)
             {
                 Email = "";
                 Password = "";
                 App.SetMasterDetailToRole();
                 CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);
 
-            }else
+            }else if(fuckeup == 2)
             {
                 await CoreMethods.DisplayAlert(AppResources.Account_LoginFailTitle,AppResources.Account_LoginFailText,AppResources.General_Ok);
+            }
+            else
+            {
+                await CoreMethods.DisplayAlert(AppResources.Connection_ErrorTitle, AppResources.Connection_ErrorText, AppResources.General_Ok);
             }
 
         }

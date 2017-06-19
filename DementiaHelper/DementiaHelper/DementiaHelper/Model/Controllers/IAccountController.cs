@@ -12,7 +12,7 @@ namespace DementiaHelper.Model.Controllers
         Task<IDictionary<string, object>> ConnectToCitizen(string connectionId);
         Task<IDictionary<string, object>> ConnectToNursingHome(string connectionId);
         bool MapToApplicationUser(IDictionary<string, object> dict);
-        Task<bool> LoginAsync(string email, string password);
+        Task<int> LoginAsync(string email, string password);
         bool Login(string email, string password);
         Task<UserInformation> GetProfile(string email);
         Task<IDictionary<string, object>> CreateAccount(string email, string password, int roleId, string firstName, string lastName);

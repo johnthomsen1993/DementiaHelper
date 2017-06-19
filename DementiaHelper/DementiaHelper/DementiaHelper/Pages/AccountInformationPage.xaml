@@ -75,7 +75,7 @@
                                 <RowDefinition Height="1" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="1" />
@@ -92,6 +92,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
                             </Grid.ColumnDefinitions>
                             <Label  Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" Text="{i18n:Translate PersonalDetails}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"></Label>
                             <!--This is used as a seperator line in the grid-->
@@ -102,7 +103,7 @@
                             <Label Style="{StaticResource ListLabelStyleTablet}" Text="{Binding ShowedUser.LastName}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"></Label>
                             <Label Style="{StaticResource ListLabelStyleTablet}" Text="{i18n:Translate Description}" Grid.Row="5" Grid.Column="1"></Label>
                             <Label Style="{StaticResource ListLabelStyleTablet}" Text="{Binding ShowedUser.Description}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3"></Label>
-                            <Label Style="{StaticResource ListLabelStyleTablet}" Text="Citizen Id:" IsVisible="{Binding IsCitizen}"  Grid.Row="6" Grid.Column="1"></Label>
+                            <Label Style="{StaticResource ListLabelStyleTablet}" Text="{i18n:Translate CitizenId}" IsVisible="{Binding IsCitizen}"  Grid.Row="6" Grid.Column="1"></Label>
                             <Label Style="{StaticResource ListLabelStyleTablet}" Text="{Binding CitizenId}" IsVisible="{Binding IsCitizen}" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3"></Label>
                             <Label  Style="{StaticResource ListLabelStyleTablet}" FontAttributes="Bold" Text="{i18n:Translate ContactDetails}" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="4"></Label>
                             <!--This is used as a seperator line in the grid-->

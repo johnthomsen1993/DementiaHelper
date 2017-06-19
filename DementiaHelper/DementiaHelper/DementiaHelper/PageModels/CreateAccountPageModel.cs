@@ -67,7 +67,7 @@ namespace DementiaHelper.PageModels
                 {
                     if ((bool)decoded["UserCreated"])
                     {
-                        if (await ModelAccessor.Instance.AccountController.LoginAsync(Email, Password))
+                        if (await ModelAccessor.Instance.AccountController.LoginAsync(Email, Password) == 1)
                         {
                             App.SetMasterDetailToRole();
                             CoreMethods.SwitchOutRootNavigation(App.NavigationStacks.MainAppStack);

@@ -133,10 +133,10 @@
     <value>Plejepersonale</value>
   </data>
   <data name="CitizenId" xml:space="preserve">
-    <value>Borger Id</value>
+    <value>Pleje id</value>
   </data>
   <data name="ConnectToCitizenLabelText" xml:space="preserve">
-    <value>Indtast dement id, se Idet i den dementes account information</value>
+    <value>Indtast dement id, se Idet i den dementes kontooplysninger</value>
   </data>
   <data name="ConnectToCitizenPlaceholderText" xml:space="preserve">
     <value>Dementens Id</value>
@@ -409,7 +409,7 @@
     <comment>Title for Week Calendar view</comment>
   </data>
   <data name="Chat_ChatTitleCaretaker" xml:space="preserve">
-    <value>Plejehjem Chat</value>
+    <value>Plejecenter Chat</value>
   </data>
   <data name="Chat_ChatTitleCitizen" xml:space="preserve">
     <value>Borger Chat</value>
@@ -434,11 +434,11 @@
     <value>Besked</value>
   </data>
   <data name="AppointmentEndTime" xml:space="preserve">
-    <value>Aftale slutstidspunkt:</value>
+    <value>Slutstidspunkt:</value>
     <comment>Label</comment>
   </data>
   <data name="AppointmentStartTime" xml:space="preserve">
-    <value>Aftale startstidspunkt:</value>
+    <value>Startstidspunkt:</value>
     <comment>Label</comment>
   </data>
   <data name="CalendarLanguage" xml:space="preserve">
@@ -462,7 +462,7 @@
     <comment>Label</comment>
   </data>
   <data name="InsertDementiaIdText" xml:space="preserve">
-    <value>Indtast dement id, se Idet i den dementes account information</value>
+    <value>Indtast dement id, se Idet i den dementes kontooplysninger</value>
     <comment>Label</comment>
   </data>
   <data name="NextAppointment" xml:space="preserve">

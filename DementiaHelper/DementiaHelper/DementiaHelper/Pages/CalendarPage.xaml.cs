@@ -61,6 +61,12 @@ namespace DementiaHelper.Pages
                         AbsoluteLayout.SetLayoutBounds(WeeksAppointments, new Rectangle(.50, .50, 500, 79));
                         AbsoluteLayout.SetLayoutBounds(MonthsAppointments, new Rectangle(.50, .90, 500, 79));
                     }
+                    else
+                    {
+                        AbsoluteLayout.SetLayoutBounds(TodaysAppointments, new Rectangle(.50, .25, 500, 100));
+                        AbsoluteLayout.SetLayoutBounds(WeeksAppointments, new Rectangle(.50, .50, 500, 100));
+                        AbsoluteLayout.SetLayoutBounds(MonthsAppointments, new Rectangle(.50, .75, 500, 100));
+                    }
                 }
                 else
                 {
@@ -69,6 +75,12 @@ namespace DementiaHelper.Pages
                         AbsoluteLayout.SetLayoutBounds(TodaysAppointments, new Rectangle(.50, .25, 300, 100));
                         AbsoluteLayout.SetLayoutBounds(WeeksAppointments, new Rectangle(.50, .50, 300, 100));
                         AbsoluteLayout.SetLayoutBounds(MonthsAppointments, new Rectangle(.50, .75, 300, 100));
+                    }
+                    else
+                    {
+                        AbsoluteLayout.SetLayoutBounds(TodaysAppointments, new Rectangle(.50, .25, 500, 150));
+                        AbsoluteLayout.SetLayoutBounds(WeeksAppointments, new Rectangle(.50, .50, 500, 150));
+                        AbsoluteLayout.SetLayoutBounds(MonthsAppointments, new Rectangle(.50, .75, 500, 150));
                     }
 
                 }

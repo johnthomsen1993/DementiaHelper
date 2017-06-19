@@ -17,7 +17,7 @@
                     <RowDefinition Height="1" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="100" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="1" />
                     <RowDefinition Height="*" />
@@ -48,7 +48,6 @@
 
                 <Label Text="{i18n:Translate Description}" VerticalOptions="Center" Grid.Row="4" Grid.Column="1"></Label>
                 <Editor Text="{Binding UpdatedUser.Description}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"></Editor>
-
 
 
                 <Label Text="{i18n:Translate ContactDetails}" VerticalOptions="End" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4"></Label>

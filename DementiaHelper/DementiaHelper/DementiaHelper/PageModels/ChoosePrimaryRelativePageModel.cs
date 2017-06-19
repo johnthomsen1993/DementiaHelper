@@ -67,7 +67,8 @@ namespace DementiaHelper.PageModels
            if (relative != null)
            {
                await ModelAccessor.Instance.AccountController.ChoosePrimaryRelative(relative);
-               await CoreMethods.PopPageModel();
+               await CoreMethods.SwitchSelectedMaster<CitizenHomePageModel>();
+                //await CoreMethods.PopPageModel();
            }
        }
 
